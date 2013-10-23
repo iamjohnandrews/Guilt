@@ -12,7 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *userEnterDollarAmountTextField;
 
-@property (weak, nonatomic) IBOutlet UITextField *charityImpactValueTextField;
+@property (weak, nonatomic) IBOutlet UILabel *charityImpactValueLabel;
+
+@property (weak, nonatomic) IBOutlet UITextView *charityImpactValueTextField;
 
 - (IBAction)conversionButton:(id)sender;
 
