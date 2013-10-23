@@ -10,4 +10,10 @@
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *userEnterDollarAmountTextField;
+
+@property (weak, nonatomic) IBOutlet UITextField *charityImpactValueTextField;
+
+- (IBAction)conversionButton:(id)sender;
+
 @end
