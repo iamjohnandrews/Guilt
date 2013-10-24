@@ -8,13 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *userEnterDollarAmountTextField;
-
-@property (weak, nonatomic) IBOutlet UILabel *charityImpactValueLabel;
-
-@property (weak, nonatomic) IBOutlet UITextView *charityImpactValueTextField;
 
 - (IBAction)conversionButton:(id)sender;
 

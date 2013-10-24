@@ -7,61 +7,78 @@
 //
 
 #import "ViewController.h"
+#import "CharityImpactViewCell.h"
 
-@interface ViewController ()
+@interface ViewController (){
+    NSMutableDictionary* charityImpactGoodsSuingularDictionary;
+    NSMutableDictionary* charityImpactGoodsPluralDictionary;
+    
+    NSArray* charitableDescriptionsSingularArray;
+    NSArray* charitableDescriptionsPluralArray;
+    NSMutableArray *convertedCharitableGoods;
+    NSMutableArray* inputtedValueArray;
+}
 
 @end
 
 @implementation ViewController
-@synthesize charityImpactValueLabel, userEnterDollarAmountTextField;
+@synthesize userEnterDollarAmountTextField;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
 }
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return 1;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CharityImpactViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CharityImpact" forIndexPath:indexPath];
+    
+    int randomCharityDisplay = arc4random() % 5;
+    
+    cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"%@ %@", convertedCharitableGoods[randomCharityDisplay], charitableDescriptionsSingularArray[randomCharityDisplay]];
+                                         
+    return cell;
+}
 
 - (IBAction)conversionButton:(id)sender {
     [self calculateCharitableImpactValue];
-    
 }
 
 - (void) calculateCharitableImpactValue {
-    float inputValue = [userEnterDollarAmountTextField.text floatValue];
+    NSNumberFormatter * inputtedValue = [[NSNumberFormatter alloc] init];
+    [inputtedValue setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber * inputtedValueNumber = [inputtedValue numberFromString:userEnterDollarAmountTextField.text];
     
+    float convertToFloat = [inputtedValueNumber floatValue];
     float lowestCommonDenominatorTARS = 1;
     float lowestCommonDenominatorSA = 50;
     float lowestCommonDenominatorFTC = 19;
     float lowestCommonDenominatorAWF = 500;
     float lowestCommonDenominatorU = 10;
     
-    NSString* tars = @"20 animal meals with The Animal Rescue Site";
-    NSString* sa = @"A military care package through Soildier's Angels";
-    NSString* ftc = @"Food, water, education, and medical supplies for a student for a month through Feed the Children";
-    NSString* awf = @"Natural Spring catchment and serving 250 people through Africa Well Fund";
-    NSString* u = @"providing children with lifesaving vaccines, relief after natural disasters & schooling for a month through Unicef";
+    float numberOfAnimalMeals = convertToFloat / lowestCommonDenominatorTARS * 20;
+    float numberOfCarePackages = convertToFloat / lowestCommonDenominatorSA;
+    float numberOfMonthsToFeedChildren = convertToFloat / lowestCommonDenominatorFTC;
+    float numberOfSpringCatchments = convertToFloat / lowestCommonDenominatorAWF;
+    float numberOfMonthsHelpingChildren = convertToFloat / lowestCommonDenominatorU;
+
+    [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfAnimalMeals]];
+    [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfCarePackages]];
+    [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfMonthsToFeedChildren]];
+    [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfSpringCatchments]];
+    [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfMonthsHelpingChildren]];
     
-    if (inputValue == lowestCommonDenominatorTARS) {
-        charityImpactValueLabel.text = tars;
-    } else if (inputValue == lowestCommonDenominatorSA){
-        charityImpactValueLabel.text = sa;
-    } else if (inputValue == lowestCommonDenominatorFTC){
-        charityImpactValueLabel.text = ftc;
-    } else if (inputValue == lowestCommonDenominatorAWF){
-        charityImpactValueLabel.text = awf;
-    } else if (inputValue == lowestCommonDenominatorU) {
-        charityImpactValueLabel.text = u;
-    }
+    charitableDescriptionsSingularArray = @[@"animal meals through The Animal Rescue Site", @"military care package through Soildier's Angels", @"month of food, water, education, and medical supplies for a student through Feed The Children", @"natural spring catchment that serves 250 people per a catchment through Africa Well Fund", @"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef"];
+
     
     [userEnterDollarAmountTextField resignFirstResponder];
     
-    /* Charity Conversions:
-     (TARS) The Animal Rescue Site, $1 = 20 animal meals
-     (SA) Soildier's Angels, $50 = Care Package
-     (FTC) Feed the Children, $19-$30 = Food, Water, Education, and Medical Supplies for a student for a month
-     (AWF) Africa Well Fund, $500 = Natural Spring catchment serving 250 people
-     (U) Unicef, $10-$20 = lifesaving vaccines, relief after natural disasters & schooling for a month
-     */
+
 }
 
 @end

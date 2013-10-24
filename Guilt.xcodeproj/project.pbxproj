@@ -21,6 +21,7 @@
 		8E00AAE818182E9700BB32E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AACA18182E9700BB32E4 /* UIKit.framework */; };
 		8E00AAF018182E9700BB32E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E00AAEE18182E9700BB32E4 /* InfoPlist.strings */; };
 		8E00AAF218182E9700BB32E4 /* GuiltTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00AAF118182E9700BB32E4 /* GuiltTests.m */; };
+		8E2186ED1819847B00A0A89D /* CharityImpactViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2186EC1819847B00A0A89D /* CharityImpactViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		8E00AAED18182E9700BB32E4 /* GuiltTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GuiltTests-Info.plist"; sourceTree = "<group>"; };
 		8E00AAEF18182E9700BB32E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8E00AAF118182E9700BB32E4 /* GuiltTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuiltTests.m; sourceTree = "<group>"; };
+		8E2186EB1819847B00A0A89D /* CharityImpactViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharityImpactViewCell.h; sourceTree = "<group>"; };
+		8E2186EC1819847B00A0A89D /* CharityImpactViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharityImpactViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,8 @@
 		8E00AACC18182E9700BB32E4 /* Guilt */ = {
 			isa = PBXGroup;
 			children = (
+				8E2186EB1819847B00A0A89D /* CharityImpactViewCell.h */,
+				8E2186EC1819847B00A0A89D /* CharityImpactViewCell.m */,
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
@@ -252,6 +257,7 @@
 				8E00AADD18182E9700BB32E4 /* ViewController.m in Sources */,
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
+				8E2186ED1819847B00A0A89D /* CharityImpactViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +466,7 @@
 				8E00AAF718182E9700BB32E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E00AAF818182E9700BB32E4 /* Build configuration list for PBXNativeTarget "GuiltTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +475,7 @@
 				8E00AAFA18182E9700BB32E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
