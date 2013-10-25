@@ -10,13 +10,10 @@
 #import "CharityImpactViewCell.h"
 
 @interface ViewController (){
-    NSMutableDictionary* charityImpactGoodsSuingularDictionary;
-    NSMutableDictionary* charityImpactGoodsPluralDictionary;
-    
-    NSArray* charitableDescriptionsSingularArray;
-    NSArray* charitableDescriptionsPluralArray;
+    NSDictionary* charityImpactGoodsDictionary;
+    NSArray* charitableDescriptionsArray;
     NSMutableArray *convertedCharitableGoods;
-    NSMutableArray* inputtedValueArray;
+    CharityImpactViewCell* cell;
 }
 
 @end
@@ -27,58 +24,73 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    charityImpactGoodsDictionary = @{@"1": @"animal meals through The Animal Rescue Site",
+                                     @"50":@"military care package through Soildier's Angels",
+                                     @"19":@"month of food, water, education, and medical supplies for a student through Feed The Children",
+                                     @"500":@"natural spring catchment serving 250 people through African Well Fund",
+                                     @"10":@"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef"};
+    
+    charitableDescriptionsArray = @[@"animal meals through The Animal Rescue Site",
+                                    @"military care package through Soildier's Angels",
+                                    @"month of food, water, education, and medical supplies for a student through Feed The Children",
+                                    @"natural spring catchment serving 250 people through African Well Fund",
+                                    @"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef"];
 }
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 1;
+    return charitableDescriptionsArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    CharityImpactViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CharityImpact" forIndexPath:indexPath];
-    
-    int randomCharityDisplay = arc4random() % 5;
-    
-    cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"%@ %@", convertedCharitableGoods[randomCharityDisplay], charitableDescriptionsSingularArray[randomCharityDisplay]];
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CharityImpact" forIndexPath:indexPath];
                                          
     return cell;
 }
 
 - (IBAction)conversionButton:(id)sender {
+    
     [self calculateCharitableImpactValue];
+    
 }
 
 - (void) calculateCharitableImpactValue {
-    NSNumberFormatter * inputtedValue = [[NSNumberFormatter alloc] init];
-    [inputtedValue setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSNumber * inputtedValueNumber = [inputtedValue numberFromString:userEnterDollarAmountTextField.text];
     
-    float convertToFloat = [inputtedValueNumber floatValue];
-    float lowestCommonDenominatorTARS = 1;
-    float lowestCommonDenominatorSA = 50;
-    float lowestCommonDenominatorFTC = 19;
-    float lowestCommonDenominatorAWF = 500;
-    float lowestCommonDenominatorU = 10;
+    float convertToFloat = [userEnterDollarAmountTextField.text floatValue];
     
-    float numberOfAnimalMeals = convertToFloat / lowestCommonDenominatorTARS * 20;
-    float numberOfCarePackages = convertToFloat / lowestCommonDenominatorSA;
-    float numberOfMonthsToFeedChildren = convertToFloat / lowestCommonDenominatorFTC;
-    float numberOfSpringCatchments = convertToFloat / lowestCommonDenominatorAWF;
-    float numberOfMonthsHelpingChildren = convertToFloat / lowestCommonDenominatorU;
+        if (convertToFloat >= 1) {
+            float numberOfAnimalMeals = (convertToFloat / 1) * 20;
+            [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.0f, ", numberOfAnimalMeals]];
+            NSLog(@"Number of animal meals = %.2f", numberOfAnimalMeals);
+        }
+        if (convertToFloat >= 10) {
+            float numberOfMonthsHelpingChildren = convertToFloat / 10;
+            [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfMonthsHelpingChildren]];
+            NSLog(@"number of months = %f", numberOfMonthsHelpingChildren);
+        }
+        if (convertToFloat >= 19) {
+            float numberOfMonthsToFeedChildren = convertToFloat / 19;
+            [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfMonthsToFeedChildren]];
+            NSLog(@"Number of Months = %f", numberOfMonthsToFeedChildren);
+        }
+        if (convertToFloat >= 50) {
+            float numberOfCarePackages = convertToFloat / 50;
+            [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.0f", numberOfCarePackages]];
+            NSLog(@"Number of care packages is %.2f", numberOfCarePackages);
+        }
+        if (convertToFloat >= 500) {
+            float numberOfSpringCatchments = convertToFloat / 500;
+            [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfSpringCatchments]];
+            NSLog(@"Number of Natiral Spring Cathcments %f", numberOfSpringCatchments);
+        }
+    
+    
+    NSLog(@"in the charitable good array %@", convertedCharitableGoods);
+    cell.charityImpactValueLabel.text = [charityImpactGoodsDictionary objectForKey:userEnterDollarAmountTextField.text];
 
-    [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfAnimalMeals]];
-    [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfCarePackages]];
-    [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfMonthsToFeedChildren]];
-    [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfSpringCatchments]];
-    [convertedCharitableGoods addObject:[NSString stringWithFormat:@"%.2f", numberOfMonthsHelpingChildren]];
-    
-    charitableDescriptionsSingularArray = @[@"animal meals through The Animal Rescue Site", @"military care package through Soildier's Angels", @"month of food, water, education, and medical supplies for a student through Feed The Children", @"natural spring catchment that serves 250 people per a catchment through Africa Well Fund", @"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef"];
-
-    
     [userEnterDollarAmountTextField resignFirstResponder];
-    
-
 }
 
 @end
