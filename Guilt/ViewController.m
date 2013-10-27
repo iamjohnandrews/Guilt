@@ -21,7 +21,7 @@
 @end
 
 @implementation ViewController
-@synthesize userEnterDollarAmountTextField;
+@synthesize userEnterDollarAmountTextField, charityCollectionView;
 
 - (void)viewDidLoad
 {
@@ -46,19 +46,6 @@
 }
 
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    
-    return charitableDescriptionsSingularArray.count;
-    //how do I make views appear only when they are needed? Like they follow the count of the convertedCharitableGoodsArray
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CharityImpact" forIndexPath:indexPath];
-    //I need this method to get called everytime the button is pressed and have the view's labels change
-    return cell;
-}
-
 - (IBAction)conversionButton:(id)sender {
     convertedCharitableGoodsArray = [NSMutableArray new];
     
@@ -69,7 +56,7 @@
 - (void) calculateCharitableImpactValue {
     
     float convertToFloat = [userEnterDollarAmountTextField.text floatValue];
-//put below logic in a method
+
     if (convertToFloat >= 1) {
         float numberOfAnimalMeals = (convertToFloat / 1) * 20;
         NSLog(@"Number of animal meals = %.2f", numberOfAnimalMeals);
@@ -100,22 +87,56 @@
         NSString* floatToAString500 = [NSString stringWithFormat:@"%.2f",numberOfSpringCatchments];
         [convertedCharitableGoodsArray addObject:floatToAString500];
     }
-    
-    int pullFromArray = convertedCharitableGoodsArray.count-1;
+/*    int pullFromArray = convertedCharitableGoodsArray.count-1;
+    int randomCharityDisplay = arc4random() % pullFromArray;
     NSLog(@"in the charitable good array %@",convertedCharitableGoodsArray);
     
+    //put in arcrandom function here in the if statement
     if (![[convertedCharitableGoodsArray objectAtIndex:pullFromArray] isEqualToString:@"1.00"]) {
-        cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"%@ %@", [convertedCharitableGoodsArray objectAtIndex:pullFromArray], [charitableDescriptionsPluralArray objectAtIndex:pullFromArray]];
+        cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"%@ %@", [convertedCharitableGoodsArray objectAtIndex:randomCharityDisplay], [charitableDescriptionsPluralArray objectAtIndex:randomCharityDisplay]];
     } else {
         cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"One %@",[charitableDescriptionsSingularArray objectAtIndex:pullFromArray]];
-        }
-
+        }*/
+    [self placeCharitableConversionsInToViews:convertedCharitableGoodsArray];
     [userEnterDollarAmountTextField resignFirstResponder];
 }
 
-- (void) placeCharitableConversionsInToViews{
+- (void) placeCharitableConversionsInToViews:(NSMutableArray*)valuesOfConvertedCharitableGoods
+{
+    int pullFromArray = valuesOfConvertedCharitableGoods.count-1;
+//    int randomCharityDisplay = arc4random() % valuesOfConvertedCharitableGoods.count;
+    NSLog(@"the different values of charitable goods = %@",valuesOfConvertedCharitableGoods);
     
-    
+    //cant use arcrandom function because it does repeats. Placeholder for now
+    if (![[valuesOfConvertedCharitableGoods objectAtIndex:pullFromArray] isEqualToString:@"1.00"]) {
+        NSLog(@"stuff in the array = %@", valuesOfConvertedCharitableGoods);
+        cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"%@ %@", valuesOfConvertedCharitableGoods [pullFromArray], charitableDescriptionsPluralArray [pullFromArray]];
+        [self.charityCollectionView reloadData];
+    } else {
+        cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"One %@",charitableDescriptionsSingularArray [pullFromArray]];
+        [self.charityCollectionView reloadData];
+    }
 }
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return charitableDescriptionsSingularArray.count;
+    //how do I make views appear only when they are needed? Like they follow the count of the convertedCharitableGoodsArray
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CharityImpact" forIndexPath:indexPath];
+    //I need this method to get called everytime the button is pressed and have the view's labels change
+    //[self placeCharitableConversionsInToViews];
+    // should I call the placeCharitableConversionsInToViews here because conertedCharitableGoodsArray is not filled with nything yet?
+    
+//    int random = arc4random() % 5;
+//    NSLog(@"random's order is %d", random);
+//    cell.charityImpactValueLabel.text = charitableDescriptionsSingularArray [random];
+    
+    return cell;
+}
+
 
 @end

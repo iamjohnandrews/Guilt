@@ -23,11 +23,11 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        UIView* charityBackgroundColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        UIView* charityBackgroundColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 315, 147)];
         self.backgroundView = charityBackgroundColor;
         self.backgroundView.backgroundColor = [UIColor lightGrayColor];
         
-        UIView* selectedCharityBackgroundColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        UIView* selectedCharityBackgroundColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 315, 147)];
         self.selectedBackgroundView = selectedCharityBackgroundColor ;
         self.selectedBackgroundView.backgroundColor = [UIColor blueColor];
     }

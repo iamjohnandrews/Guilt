@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@property (weak, nonatomic) IBOutlet UICollectionView *charityCollectionView;
 
 @property (weak, nonatomic) IBOutlet UITextField *userEnterDollarAmountTextField;
+
+
 
 - (IBAction)conversionButton:(id)sender;
 
