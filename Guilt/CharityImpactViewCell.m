@@ -19,13 +19,21 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (id)initWithCoder:(NSCoder *)coder
 {
-    // Drawing code
+    self = [super initWithCoder:coder];
+    if (self) {
+        UIView* charityBackgroundColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        self.backgroundView = charityBackgroundColor;
+        self.backgroundView.backgroundColor = [UIColor lightGrayColor];
+        
+        UIView* selectedCharityBackgroundColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        self.selectedBackgroundView = selectedCharityBackgroundColor ;
+        self.selectedBackgroundView.backgroundColor = [UIColor blueColor];
+    }
+    return self;
 }
-*/
+//use nonprofit's logo as the .backgroundView of the CollectionViews
+
 
 @end

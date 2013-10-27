@@ -45,6 +45,7 @@
                                             @"natural spring catchments serving 250 people through African Well Fund"];
 }
 
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     return charitableDescriptionsSingularArray.count;
@@ -54,7 +55,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CharityImpact" forIndexPath:indexPath];
-                                         
+    //I need this method to get called everytime the button is pressed and have the view's labels change
     return cell;
 }
 
@@ -68,16 +69,13 @@
 - (void) calculateCharitableImpactValue {
     
     float convertToFloat = [userEnterDollarAmountTextField.text floatValue];
-    
+//put below logic in a method
     if (convertToFloat >= 1) {
         float numberOfAnimalMeals = (convertToFloat / 1) * 20;
         NSLog(@"Number of animal meals = %.2f", numberOfAnimalMeals);
         NSString* floatToAString1 = [NSString stringWithFormat:@"%.2f", numberOfAnimalMeals];
         [convertedCharitableGoodsArray addObject:floatToAString1];
     }
-//write an if statement to fill gap
-
-
     if (convertToFloat >= 10) {
         float numberOfMonthsHelpingChildren = convertToFloat / 10;
         NSLog(@"number of months = %.2f", numberOfMonthsHelpingChildren);
@@ -113,6 +111,11 @@
         }
 
     [userEnterDollarAmountTextField resignFirstResponder];
+}
+
+- (void) placeCharitableConversionsInToViews{
+    
+    
 }
 
 @end
