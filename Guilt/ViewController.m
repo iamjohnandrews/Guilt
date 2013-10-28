@@ -5,14 +5,11 @@
 //  Created by John Andrews on 10/23/13.
 //  Copyright (c) 2013 John Andrews. All rights reserved.
 //
-
 #import "ViewController.h"
 #import "CharityImpactViewCell.h"
 
 @interface ViewController (){
     NSDictionary* charityImpactGoodsDictionary;
-    NSArray* charitableDescriptionsSingularArray;
-    NSArray* charitableDescriptionsPluralArray;
     CharityImpactViewCell* cell;
     
     NSMutableArray *convertedCharitableGoodsArray;
@@ -27,22 +24,11 @@
 {
     [super viewDidLoad];
     
-    charityImpactGoodsDictionary = @{@"1": @"animal meals through The Animal Rescue Site",
-                                     @"50":@"military care package through Soildier's Angels",
-                                     @"19":@"month of food, water, education, and medical supplies for a student through Feed The Children",
-                                     @"500":@"natural spring catchment serving 250 people through African Well Fund",
-                                     @"10":@"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef"};
-    
-    charitableDescriptionsSingularArray = @[@"animal meals through The Animal Rescue Site",
-                                            @"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef",
-                                            @"month of food, water, education, and medical supplies for a student through Feed The Children",
-                                            @"military care package through Soildier's Angels",
-                                            @"natural spring catchment serving 250 people through African Well Fund"];
-    charitableDescriptionsPluralArray = @[@"animal meals through The Animal Rescue Site",
-                                            @"months of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef",
-                                            @"months of food, water, education, and medical supplies for a student through Feed The Children",
-                                            @"military care packages through Soildier's Angels",
-                                            @"natural spring catchments serving 250 people through African Well Fund"];
+    charityImpactGoodsDictionary = @{@1: @"animal meals through The Animal Rescue Site",
+                                     @50:@"military care package through Soildier's Angels",
+                                     @19:@"month of food, water, education, and medical supplies for a student through Feed The Children",
+                                     @500:@"natural spring catchment serving 250 people through African Well Fund",
+                                     @10:@"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef"};
 }
 
 
@@ -87,16 +73,7 @@
         NSString* floatToAString500 = [NSString stringWithFormat:@"%.2f",numberOfSpringCatchments];
         [convertedCharitableGoodsArray addObject:floatToAString500];
     }
-/*    int pullFromArray = convertedCharitableGoodsArray.count-1;
-    int randomCharityDisplay = arc4random() % pullFromArray;
-    NSLog(@"in the charitable good array %@",convertedCharitableGoodsArray);
-    
-    //put in arcrandom function here in the if statement
-    if (![[convertedCharitableGoodsArray objectAtIndex:pullFromArray] isEqualToString:@"1.00"]) {
-        cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"%@ %@", [convertedCharitableGoodsArray objectAtIndex:randomCharityDisplay], [charitableDescriptionsPluralArray objectAtIndex:randomCharityDisplay]];
-    } else {
-        cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"One %@",[charitableDescriptionsSingularArray objectAtIndex:pullFromArray]];
-        }*/
+
     [self placeCharitableConversionsInToViews:convertedCharitableGoodsArray];
     [userEnterDollarAmountTextField resignFirstResponder];
 }
@@ -104,23 +81,23 @@
 - (void) placeCharitableConversionsInToViews:(NSMutableArray*)valuesOfConvertedCharitableGoods
 {
     int pullFromArray = valuesOfConvertedCharitableGoods.count-1;
-//    int randomCharityDisplay = arc4random() % valuesOfConvertedCharitableGoods.count;
     NSLog(@"the different values of charitable goods = %@",valuesOfConvertedCharitableGoods);
     
-    //cant use arcrandom function because it does repeats. Placeholder for now
-    if (![[valuesOfConvertedCharitableGoods objectAtIndex:pullFromArray] isEqualToString:@"1.00"]) {
+    
+    
+    if (![[valuesOfConvertedCharitableGoods objectAtIndex:pullFromArray] == 1]) {
         NSLog(@"stuff in the array = %@", valuesOfConvertedCharitableGoods);
-        cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"%@ %@", valuesOfConvertedCharitableGoods [pullFromArray], charitableDescriptionsPluralArray [pullFromArray]];
+        cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"%@ %@", valuesOfConvertedCharitableGoods [pullFromArray], [charityImpactGoodsDictionary objectForKey:[NSNumber numberWithInt:pullFromArray]]];
         [self.charityCollectionView reloadData];
     } else {
-        cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"One %@",charitableDescriptionsSingularArray [pullFromArray]];
+        cell.charityImpactValueLabel.text = [NSString stringWithFormat:@"One %@",[charityImpactGoodsDictionary objectForKey:[NSNumber numberWithInt:pullFromArray]]];
         [self.charityCollectionView reloadData];
     }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return charitableDescriptionsSingularArray.count;
+    return charityImpactGoodsDictionary.count;
     //how do I make views appear only when they are needed? Like they follow the count of the convertedCharitableGoodsArray
 }
 
