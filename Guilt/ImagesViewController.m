@@ -8,6 +8,7 @@
 
 #import "ImagesViewController.h"
 #import "ConversionViewController.h"
+#import "Cell.h"
 
 @interface ImagesViewController (){
     NSArray* charityImagesArray;
@@ -65,11 +66,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CharityDisplay";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     cell.imageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
     
-    //cell.charityValueDisplayLabel.text = [NSString stringWithFormat:@"%@ %@", [resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
+    cell.cellLabel.text = [NSString stringWithFormat:@"%@ %@", [resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
     
     return cell;
 }

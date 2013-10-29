@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ImagesViewController : UITableViewController
+
 @property (weak, nonatomic) IBOutlet UILabel *charityValueDisplayLabel;
 
 @property NSMutableArray *resultOfCharitableConversionsArray;
