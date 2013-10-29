@@ -39,7 +39,7 @@
 
 - (IBAction)conversionButton:(id)sender {
     convertedCharitableGoodsArray = [NSMutableArray new];
-    
+    // comment!
     [self calculateCharitableImpactValue];
 }
 
