@@ -10,6 +10,12 @@
 
 @interface ConversionViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *userEnterDollarAmountTextField;
+@property (weak, nonatomic) IBOutlet UILabel *valueQuestionLabel;
+
+@property (weak, nonatomic) IBOutlet UITextField *userEnterDollarAmountTextField;
+
+- (IBAction)scannerButton:(id)sender;
+
+- (IBAction)conversionButton:(id)sender;
 
 @end
