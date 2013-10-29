@@ -22,6 +22,7 @@
 		8E00AAF018182E9700BB32E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E00AAEE18182E9700BB32E4 /* InfoPlist.strings */; };
 		8E00AAF218182E9700BB32E4 /* GuiltTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00AAF118182E9700BB32E4 /* GuiltTests.m */; };
 		8E2186ED1819847B00A0A89D /* CharityImpactViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2186EC1819847B00A0A89D /* CharityImpactViewCell.m */; };
+		8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE7B72182006A7001BDC08 /* ConversionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,9 @@
 		8E00AAF118182E9700BB32E4 /* GuiltTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuiltTests.m; sourceTree = "<group>"; };
 		8E2186EB1819847B00A0A89D /* CharityImpactViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharityImpactViewCell.h; sourceTree = "<group>"; };
 		8E2186EC1819847B00A0A89D /* CharityImpactViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharityImpactViewCell.m; sourceTree = "<group>"; };
+		8EAE7B71182006A7001BDC08 /* ConversionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversionViewController.h; sourceTree = "<group>"; };
+		8EAE7B72182006A7001BDC08 /* ConversionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversionViewController.m; sourceTree = "<group>"; };
+		8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vintage_fair.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,8 @@
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
+				8EAE7B71182006A7001BDC08 /* ConversionViewController.h */,
+				8EAE7B72182006A7001BDC08 /* ConversionViewController.m */,
 				8E00AADB18182E9700BB32E4 /* ViewController.h */,
 				8E00AADC18182E9700BB32E4 /* ViewController.m */,
 				8E00AADE18182E9700BB32E4 /* Images.xcassets */,
@@ -131,6 +137,7 @@
 		8E00AACD18182E9700BB32E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */,
 				8E00AACE18182E9700BB32E4 /* Guilt-Info.plist */,
 				8E00AACF18182E9700BB32E4 /* InfoPlist.strings */,
 				8E00AAD218182E9700BB32E4 /* main.m */,
@@ -256,6 +263,7 @@
 			files = (
 				8E00AADD18182E9700BB32E4 /* ViewController.m in Sources */,
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
+				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
 				8E2186ED1819847B00A0A89D /* CharityImpactViewCell.m in Sources */,
 			);
