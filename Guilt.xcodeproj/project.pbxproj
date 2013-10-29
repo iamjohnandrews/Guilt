@@ -22,6 +22,7 @@
 		8E00AAF218182E9700BB32E4 /* GuiltTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00AAF118182E9700BB32E4 /* GuiltTests.m */; };
 		8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE7B72182006A7001BDC08 /* ConversionViewController.m */; };
 		8EB17BF618201238000DDFCC /* Vintage_fair.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */; };
+		8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17BF818201F00000DDFCC /* ImagesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		8EAE7B71182006A7001BDC08 /* ConversionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversionViewController.h; sourceTree = "<group>"; };
 		8EAE7B72182006A7001BDC08 /* ConversionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversionViewController.m; sourceTree = "<group>"; };
 		8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vintage_fair.ttf; sourceTree = "<group>"; };
+		8EB17BF718201F00000DDFCC /* ImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesViewController.h; sourceTree = "<group>"; };
+		8EB17BF818201F00000DDFCC /* ImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
+				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
+				8EB17BF818201F00000DDFCC /* ImagesViewController.m */,
 				8EAE7B71182006A7001BDC08 /* ConversionViewController.h */,
 				8EAE7B72182006A7001BDC08 /* ConversionViewController.m */,
 				8E00AADE18182E9700BB32E4 /* Images.xcassets */,
@@ -255,6 +260,7 @@
 			files = (
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
+				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
