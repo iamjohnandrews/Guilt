@@ -14,6 +14,13 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *userEnterDollarAmountTextField;
 
+@property   (weak,nonatomic)NSString* productName;
+
+@property   (nonatomic)float productPrice;
+
+@property   (weak,nonatomic)NSString* urlForProduct;
+
+
 - (IBAction)scannerButton:(id)sender;
 
 - (IBAction)conversionButton:(id)sender;
