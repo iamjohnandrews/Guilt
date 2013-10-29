@@ -7,10 +7,10 @@
 //
 
 #import "ConversionViewController.h"
+#import "ImagesViewController.h"
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
-    NSArray* charityDiscriptionsArray;
 }
 
 @end
@@ -24,12 +24,6 @@
     valueQuestionLabel.font = [UIFont fontWithName:@"Vintage_fair" size:36];
     
     [super viewDidLoad];
-    
-    charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
-                                     @"military care package through Soildier's Angels",
-                                     @"month of food, water, education, and medical supplies for a student through Feed The Children",
-                                     @"natural spring catchment serving 250 people through African Well Fund",
-                                     @"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef"];
 }
 
 - (IBAction)scannerButton:(id)sender {
@@ -39,7 +33,7 @@
 
 - (IBAction)conversionButton:(id)sender {
     convertedCharitableGoodsArray = [NSMutableArray new];
-    // comment!
+    
     [self calculateCharitableImpactValue];
 }
 
@@ -80,6 +74,17 @@
     NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
     [userEnterDollarAmountTextField resignFirstResponder];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"ConversionToImagesSegue"]) {
+        ImagesViewController* imagesVC = [segue destinationViewController];
+        
+    imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
+        
+    NSLog(@"contents passed along are %@", imagesVC.resultOfCharitableConversionsArray);
+    }
+}
+
 
 
 @end

@@ -22,6 +22,12 @@
 		8E00AAF218182E9700BB32E4 /* GuiltTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00AAF118182E9700BB32E4 /* GuiltTests.m */; };
 		8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE7B72182006A7001BDC08 /* ConversionViewController.m */; };
 		8EB17BF618201238000DDFCC /* Vintage_fair.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */; };
+		8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17BF818201F00000DDFCC /* ImagesViewController.m */; };
+		8EB17C001820205C000DDFCC /* africanWellFund.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFB1820205C000DDFCC /* africanWellFund.jpg */; };
+		8EB17C011820205C000DDFCC /* feedTheChildren2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFC1820205C000DDFCC /* feedTheChildren2.jpg */; };
+		8EB17C021820205C000DDFCC /* soldiers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFD1820205C000DDFCC /* soldiers.jpg */; };
+		8EB17C031820205C000DDFCC /* TheAnimalRescueSite.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFE1820205C000DDFCC /* TheAnimalRescueSite.jpg */; };
+		8EB17C041820205C000DDFCC /* Unicef.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFF1820205C000DDFCC /* Unicef.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +61,13 @@
 		8EAE7B71182006A7001BDC08 /* ConversionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversionViewController.h; sourceTree = "<group>"; };
 		8EAE7B72182006A7001BDC08 /* ConversionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversionViewController.m; sourceTree = "<group>"; };
 		8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vintage_fair.ttf; sourceTree = "<group>"; };
+		8EB17BF718201F00000DDFCC /* ImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesViewController.h; sourceTree = "<group>"; };
+		8EB17BF818201F00000DDFCC /* ImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesViewController.m; sourceTree = "<group>"; };
+		8EB17BFB1820205C000DDFCC /* africanWellFund.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = africanWellFund.jpg; sourceTree = "<group>"; };
+		8EB17BFC1820205C000DDFCC /* feedTheChildren2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = feedTheChildren2.jpg; sourceTree = "<group>"; };
+		8EB17BFD1820205C000DDFCC /* soldiers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = soldiers.jpg; sourceTree = "<group>"; };
+		8EB17BFE1820205C000DDFCC /* TheAnimalRescueSite.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TheAnimalRescueSite.jpg; sourceTree = "<group>"; };
+		8EB17BFF1820205C000DDFCC /* Unicef.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Unicef.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +130,8 @@
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
+				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
+				8EB17BF818201F00000DDFCC /* ImagesViewController.m */,
 				8EAE7B71182006A7001BDC08 /* ConversionViewController.h */,
 				8EAE7B72182006A7001BDC08 /* ConversionViewController.m */,
 				8E00AADE18182E9700BB32E4 /* Images.xcassets */,
@@ -128,6 +143,7 @@
 		8E00AACD18182E9700BB32E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8EB17BFA1820205C000DDFCC /* testImages */,
 				8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */,
 				8E00AACE18182E9700BB32E4 /* Guilt-Info.plist */,
 				8E00AACF18182E9700BB32E4 /* InfoPlist.strings */,
@@ -153,6 +169,18 @@
 				8E00AAEE18182E9700BB32E4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8EB17BFA1820205C000DDFCC /* testImages */ = {
+			isa = PBXGroup;
+			children = (
+				8EB17BFB1820205C000DDFCC /* africanWellFund.jpg */,
+				8EB17BFC1820205C000DDFCC /* feedTheChildren2.jpg */,
+				8EB17BFD1820205C000DDFCC /* soldiers.jpg */,
+				8EB17BFE1820205C000DDFCC /* TheAnimalRescueSite.jpg */,
+				8EB17BFF1820205C000DDFCC /* Unicef.jpeg */,
+			);
+			path = testImages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +260,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E00AADF18182E9700BB32E4 /* Images.xcassets in Resources */,
+				8EB17C011820205C000DDFCC /* feedTheChildren2.jpg in Resources */,
 				8E00AAD118182E9700BB32E4 /* InfoPlist.strings in Resources */,
+				8EB17C021820205C000DDFCC /* soldiers.jpg in Resources */,
+				8EB17C001820205C000DDFCC /* africanWellFund.jpg in Resources */,
+				8EB17C031820205C000DDFCC /* TheAnimalRescueSite.jpg in Resources */,
+				8EB17C041820205C000DDFCC /* Unicef.jpeg in Resources */,
 				8E00AADA18182E9700BB32E4 /* Main.storyboard in Resources */,
 				8EB17BF618201238000DDFCC /* Vintage_fair.ttf in Resources */,
 			);
@@ -255,6 +288,7 @@
 			files = (
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
+				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
