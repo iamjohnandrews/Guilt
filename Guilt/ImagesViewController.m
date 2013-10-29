@@ -9,7 +9,9 @@
 #import "ImagesViewController.h"
 #import "ConversionViewController.h"
 
-@interface ImagesViewController ()
+@interface ImagesViewController (){
+    NSArray* charityImagesArray;
+}
 
 @end
 
@@ -27,6 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    charityImagesArray = @[@"africanWellFund.jpg", @"feedTheChildren2.jpg", @"soldiers.jpg", @"TheAnimalRescueSite.jpg", @"Unicef.jpeg"];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
