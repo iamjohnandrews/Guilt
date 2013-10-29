@@ -35,7 +35,7 @@
 {
     [super viewDidLoad];
     
-    flag = NO;
+    
     
     highlightView = [[UIView alloc] init];
     highlightView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
@@ -80,6 +80,14 @@
     [self.view bringSubviewToFront:label];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    flag = NO;
+    
+
+}
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
     CGRect highlightViewRect = CGRectZero;
@@ -106,7 +114,7 @@
             
             //find product information
             
-            NSLog(@"UPC %@",detectionString);
+            //NSLog(@"UPC %@",detectionString);
             
             if (flag==NO) {
                 
@@ -129,10 +137,10 @@
 {
     
     
-    // upc = @"883974958450";
-    //  upc = @"24126008931";
+    //upc = @"883974958450";
+upc = @"016000504929";
     
-    
+   // NSLog(@"UPC = %@",upc);
     
     //  NSString *tempString = [NSString stringWithFormat:@"\"upc\":%@}",upc];
     //  NSLog(@"tempString = %@", tempString);
@@ -175,6 +183,20 @@
          NSDictionary* dictionary= [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
          
          NSLog(@" Dictionary: %@", dictionary);
+         
+         NSString* code =[dictionary objectForKey:@"code"];
+         
+         if ([code isEqualToString:@"APIError" ]) {
+             
+             NSLog(@"API Error occurred");
+             [self.navigationController popToRootViewControllerAnimated:YES];
+             
+             
+             
+             
+             
+             
+         }
          NSArray *tempArray = [dictionary objectForKey:@"results"];
          
          NSLog(@" tempArray: %@", tempArray);
