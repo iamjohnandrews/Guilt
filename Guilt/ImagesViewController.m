@@ -11,11 +11,14 @@
 
 @interface ImagesViewController (){
     NSArray* charityImagesArray;
+    NSArray* charityDiscriptionsArray;
+
 }
 
 @end
 
 @implementation ImagesViewController
+@synthesize charityValueDisplayLabel, resultOfCharitableConversionsArray;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,9 +32,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"content of the resultOfCharitableConversionsArray %@", resultOfCharitableConversionsArray);
     
     charityImagesArray = @[@"africanWellFund.jpg", @"feedTheChildren2.jpg", @"soldiers.jpg", @"TheAnimalRescueSite.jpg", @"Unicef.jpeg"];
-
+    
+    charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
+                                 @"military care package through Soildier's Angels",
+                                 @"month of food, water, education, and medical supplies for a student through Feed The Children",
+                                 @"natural spring catchment serving 250 people through African Well Fund",
+                                 @"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -39,34 +48,28 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return resultOfCharitableConversionsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"CharityDisplay";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.imageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
+    
+    //cell.charityValueDisplayLabel.text = [NSString stringWithFormat:@"%@ %@", [resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
     
     return cell;
 }

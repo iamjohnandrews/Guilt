@@ -265,8 +265,8 @@
 				8EB17C021820205C000DDFCC /* soldiers.jpg in Resources */,
 				8EB17C001820205C000DDFCC /* africanWellFund.jpg in Resources */,
 				8EB17C031820205C000DDFCC /* TheAnimalRescueSite.jpg in Resources */,
-				8E00AADA18182E9700BB32E4 /* Main.storyboard in Resources */,
 				8EB17C041820205C000DDFCC /* Unicef.jpeg in Resources */,
+				8E00AADA18182E9700BB32E4 /* Main.storyboard in Resources */,
 				8EB17BF618201238000DDFCC /* Vintage_fair.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
