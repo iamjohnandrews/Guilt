@@ -35,6 +35,8 @@
 - (IBAction)scannerButton:(id)sender {
 }
 
+
+
 - (IBAction)conversionButton:(id)sender {
     convertedCharitableGoodsArray = [NSMutableArray new];
     // comment!
