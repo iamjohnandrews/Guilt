@@ -12,5 +12,6 @@
 @property   (weak,nonatomic)NSString* productName;
 @property   (nonatomic)float productPrice;
 @property   (weak,nonatomic)NSString* urlForProduct;
+@property   (retain) id errorAlertDelegate;
 
 @end
