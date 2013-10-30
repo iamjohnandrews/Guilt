@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		771BCD80182023DD000264A8 /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771BCD7F182023DD000264A8 /* ScannerViewController.m */; };
 		8E00AAC718182E9700BB32E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC618182E9700BB32E4 /* Foundation.framework */; };
 		8E00AAC918182E9700BB32E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */; };
 		8E00AACB18182E9700BB32E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AACA18182E9700BB32E4 /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		771BCD7E182023DD000264A8 /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
+		771BCD7F182023DD000264A8 /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
 		8E00AAC318182E9700BB32E4 /* Guilt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guilt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E00AAC618182E9700BB32E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
+				771BCD7E182023DD000264A8 /* ScannerViewController.h */,
+				771BCD7F182023DD000264A8 /* ScannerViewController.m */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
 				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
@@ -290,6 +295,7 @@
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
+				771BCD80182023DD000264A8 /* ScannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

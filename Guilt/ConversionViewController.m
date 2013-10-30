@@ -8,16 +8,20 @@
 
 #import "ConversionViewController.h"
 #import "ImagesViewController.h"
+#import "ScannerViewController.h"
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
 }
 
+
 @end
 
 @implementation ConversionViewController
 @synthesize userEnterDollarAmountTextField, valueQuestionLabel;
-
+@synthesize productName;
+@synthesize productPrice;
+@synthesize urlForProduct;
 
 - (void)viewDidLoad
 {
@@ -27,6 +31,12 @@
 }
 
 - (IBAction)scannerButton:(id)sender {
+    
+    
+    [self performSegueWithIdentifier:@"ScannerSegue" sender:self];
+    
+    
+    
 }
 
 
@@ -86,5 +96,22 @@
 }
 
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    NSLog(@"Segue");
+    
+    // Make sure we're referring to the correct segue
+    if ([[segue identifier] isEqualToString:@"ScannerSegue"]) {
+        
+        // Get reference to the destination view controller
+        ScannerViewController *svc = [segue destinationViewController];
+        svc.productPrice = productPrice;
+        svc.urlForProduct = urlForProduct;
+        svc.productName = productName;
+
+    }
+}
 
 @end
