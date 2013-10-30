@@ -140,10 +140,10 @@
     productName = @"ARGO fuck yourself";
     productPrice = 12.34;
     
-    //upc = @"883974958450";
-    //upc = @"016000504929";
+    // upc = @"883974958450";
+   //upc = @"0049000028904";
     
-   // NSLog(@"UPC = %@",upc);
+   NSLog(@"UPC = %@",upc);
     
     //  NSString *tempString = [NSString stringWithFormat:@"\"upc\":%@}",upc];
     //  NSLog(@"tempString = %@", tempString);
@@ -151,11 +151,14 @@
     NSString * escapedUrlString =(NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                                                        NULL,
                                                                                                        //(CFStringRef)@"{\"search\":\"Apple iPad*\"}",
-                                                                                                       //  (CFStringRef)@"{\"upc\":636926047593}",
-                                                                                                       (CFStringRef)[NSString stringWithFormat:@"{\"upc\":%@}",upc],
+                                                                                                       (CFStringRef)@"{\"ean\":0049000028904}",
+                                                                                                       //(CFStringRef)[NSString stringWithFormat:@"{\"upc\":%@}",upc],
                                                                                                        NULL,
                                                                                                        (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                                        kCFStringEncodingUTF8 ));
+    
+    NSLog(@"escapedURLString %@",escapedUrlString);
+    
     
 	// Do any additional setup after loading the view, typically from a nib.
     //   NSURL * url = [NSURL URLWithString:@"https://alpha-api.app.net/stream/0/posts/stream/global"];
