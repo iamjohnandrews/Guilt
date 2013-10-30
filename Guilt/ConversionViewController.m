@@ -9,6 +9,7 @@
 #import "ConversionViewController.h"
 #import "ImagesViewController.h"
 #import "ScannerViewController.h"
+#import <Parse/Parse.h>
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
@@ -26,6 +27,9 @@
 - (void)viewDidLoad
 {
     valueQuestionLabel.font = [UIFont fontWithName:@"Vintage_fair" size:36];
+    
+    
+
     
     [super viewDidLoad];
 }
