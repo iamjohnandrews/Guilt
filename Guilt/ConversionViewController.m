@@ -92,26 +92,15 @@
     imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
         
     NSLog(@"contents passed along are %@", imagesVC.resultOfCharitableConversionsArray);
-    }
-}
-
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    
-    NSLog(@"Segue");
-    
-    // Make sure we're referring to the correct segue
-    if ([[segue identifier] isEqualToString:@"ScannerSegue"]) {
-        
+    } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller
         ScannerViewController *svc = [segue destinationViewController];
         svc.productPrice = productPrice;
         svc.urlForProduct = urlForProduct;
         svc.productName = productName;
-
     }
 }
+
+
 
 @end
