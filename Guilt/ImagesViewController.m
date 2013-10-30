@@ -9,11 +9,13 @@
 #import "ImagesViewController.h"
 #import "ConversionViewController.h"
 #import "CharityAndProductDisplayCell.h"
+#import "ScannerViewController.h"
 
 @interface ImagesViewController (){
     NSArray* charityImagesArray;
     NSArray* charityDiscriptionsArray;
 
+    ScannerViewController* scannerVC;
 }
 
 @end
@@ -35,13 +37,14 @@
     [super viewDidLoad];
     NSLog(@"content of the resultOfCharitableConversionsArray %@", resultOfCharitableConversionsArray);
     
-    charityImagesArray = @[@"africanWellFund.jpg", @"feedTheChildren2.jpg", @"soldiers.jpg", @"TheAnimalRescueSite.jpg", @"Unicef.jpeg"];
+    charityImagesArray = @[@"TheAnimalRescueSite.jpg", @"Unicef.jpeg", @"feedTheChildren2.jpg", @"soldiers.jpg", @"africanWellFund.jpg"];
     
     charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
-                                 @"military care package through Soildier's Angels",
+                                 @"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef",
                                  @"month of food, water, education, and medical supplies for a student through Feed The Children",
-                                 @"natural spring catchment serving 250 people through African Well Fund",
-                                 @"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef"];
+                                 @"military care package through Soildier's Angels",
+                                 @"natural spring catchment serving 250 people through African Well Fund"
+                                 ];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -66,15 +69,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CharityDisplay";
-    CharityAndProductDisplayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
+    charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
     
-    cell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@", [resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
+    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@", [resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
 
-    [cell bringSubviewToFront:cell.charityConversionDetailsLabel];
+    [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
     
-    return cell;
+    return charityCell;
 }
 
 /*

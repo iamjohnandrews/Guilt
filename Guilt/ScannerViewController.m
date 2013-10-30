@@ -115,7 +115,7 @@
             
             //find product information
             
-            //NSLog(@"UPC %@",detectionString);
+            NSLog(@"UPC %@",detectionString);
             
             if (flag==NO) {
                 

@@ -81,7 +81,7 @@
         NSString* floatToAString500 = [NSString stringWithFormat:@"%.2f",numberOfSpringCatchments];
         [convertedCharitableGoodsArray addObject:floatToAString500];
     }
-    NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
+    //NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
     [userEnterDollarAmountTextField resignFirstResponder];
 }
 
