@@ -9,6 +9,7 @@
 #import "ImagesViewController.h"
 #import "ConversionViewController.h"
 #import "CharityAndProductDisplayCell.h"
+#import "ProductDisplayCell.h"
 #import "ScannerViewController.h"
 
 @interface ImagesViewController (){
@@ -68,8 +69,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"CharityDisplay";
-    CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //Code to dosplay product
+    static NSString *productCellIdentifier = @"ProductDisplay";
+    ProductDisplayCell* productCell = [tableView dequeueReusableCellWithIdentifier:productCellIdentifier];
+    
+    productCell.productNameDisplayLabel.text = scannerVC.productName;
+    productCell.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"%f", scannerVC.productPrice];
+    productCell.urlDisplayLabel.text = scannerVC.urlForProduct;
+    
+    //Code to display Charities
+    static NSString *charityCellIdentifier = @"CharityDisplay";
+    CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:charityCellIdentifier];
     
     charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
     

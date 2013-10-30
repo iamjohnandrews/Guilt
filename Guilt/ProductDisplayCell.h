@@ -14,8 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *onlinePriceDisplayLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *priceSavingsDisplayLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *urlDisplayLabel;
 
 @end

@@ -9,7 +9,7 @@
 #import "ProductDisplayCell.h"
 
 @implementation ProductDisplayCell
-@synthesize productNameDisplayLabel, onlinePriceDisplayLabel, urlDisplayLabel, priceSavingsDisplayLabel;
+@synthesize productNameDisplayLabel, onlinePriceDisplayLabel, urlDisplayLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
