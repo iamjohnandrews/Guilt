@@ -29,6 +29,7 @@
 		8EB17C021820205C000DDFCC /* soldiers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFD1820205C000DDFCC /* soldiers.jpg */; };
 		8EB17C031820205C000DDFCC /* TheAnimalRescueSite.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFE1820205C000DDFCC /* TheAnimalRescueSite.jpg */; };
 		8EB17C041820205C000DDFCC /* Unicef.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFF1820205C000DDFCC /* Unicef.jpeg */; };
+		8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		8EB17BFD1820205C000DDFCC /* soldiers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = soldiers.jpg; sourceTree = "<group>"; };
 		8EB17BFE1820205C000DDFCC /* TheAnimalRescueSite.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TheAnimalRescueSite.jpg; sourceTree = "<group>"; };
 		8EB17BFF1820205C000DDFCC /* Unicef.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Unicef.jpeg; sourceTree = "<group>"; };
+		8EB17C1118217A85000DDFCC /* CharityAndProductDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharityAndProductDisplayCell.h; sourceTree = "<group>"; };
+		8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharityAndProductDisplayCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
 				771BCD7E182023DD000264A8 /* ScannerViewController.h */,
 				771BCD7F182023DD000264A8 /* ScannerViewController.m */,
+				8EB17C1118217A85000DDFCC /* CharityAndProductDisplayCell.h */,
+				8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
 				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
@@ -296,6 +301,7 @@
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
 				771BCD80182023DD000264A8 /* ScannerViewController.m in Sources */,
+				8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 
 #import "ImagesViewController.h"
 #import "ConversionViewController.h"
-#import "Cell.h"
+#import "CharityAndProductDisplayCell.h"
 
 @interface ImagesViewController (){
     NSArray* charityImagesArray;
@@ -19,7 +19,7 @@
 @end
 
 @implementation ImagesViewController
-@synthesize charityValueDisplayLabel, resultOfCharitableConversionsArray;
+@synthesize resultOfCharitableConversionsArray;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -66,11 +66,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CharityDisplay";
-    Cell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CharityAndProductDisplayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.imageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
+    cell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
     
-    cell.cellLabel.text = [NSString stringWithFormat:@"%@ %@", [resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
+    cell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@", [resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
+
+    [cell bringSubviewToFront:cell.charityConversionDetailsLabel];
     
     return cell;
 }

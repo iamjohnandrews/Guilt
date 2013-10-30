@@ -10,8 +10,6 @@
 
 @interface ImagesViewController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *charityValueDisplayLabel;
-
 @property NSMutableArray *resultOfCharitableConversionsArray;
 
 @end
