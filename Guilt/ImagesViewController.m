@@ -77,6 +77,10 @@
     productCell.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"%f", scannerVC.productPrice];
     productCell.urlDisplayLabel.text = scannerVC.urlForProduct;
     
+    NSLog(@"the product name is %@", productCell.productNameDisplayLabel.text);
+    NSLog(@"the product's online price is %@", productCell.onlinePriceDisplayLabel.text);
+    NSLog(@"the URL of product is %@", productCell.urlDisplayLabel.text);
+    
     //Code to display Charities
     static NSString *charityCellIdentifier = @"CharityDisplay";
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:charityCellIdentifier];

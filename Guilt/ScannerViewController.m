@@ -136,7 +136,9 @@
 
 -(void)findProductInfo: (NSString*)upc
 {
-    
+    urlForProduct = @"www.test.com";
+    productName = @"ARGO fuck yourself";
+    productPrice = 12.34;
     
     //upc = @"883974958450";
     //upc = @"016000504929";
@@ -216,7 +218,8 @@
          NSLog(@" latestOffers: %@", latestOffers);
          NSLog(@"URL for this is: %@", [latestOffers objectForKey:@"url"]);
          
-         urlForProduct =[latestOffers objectForKey:@"url"];
+         urlForProduct = [latestOffers objectForKey:@"url"];
+         
          
          NSArray *ltArray = [latestOffers objectForKey:@"latestoffers"];
          for (int i = 0; i < [ltArray count]; i++) {
@@ -235,6 +238,7 @@
     
     
 }
+
 
 
 
