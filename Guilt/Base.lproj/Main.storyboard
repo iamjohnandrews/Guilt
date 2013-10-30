@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Rqn-qV-cz8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Rqn-qV-cz8">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
+        <!--Scanner View Controller-->
+        <scene sceneID="tns-2g-PPZ">
+            <objects>
+                <viewController id="MTG-0y-bA3" customClass="ScannerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ryw-GZ-zqh"/>
+                        <viewControllerLayoutGuide type="bottom" id="2TF-35-aJd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ggx-bR-QlC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2Zf-QT-2Dy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dcr-Y9-AYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="542" y="653"/>
+        </scene>
         <!--Conversion View Controller-->
         <scene sceneID="hZI-jX-yMH">
             <objects>
@@ -59,6 +78,7 @@
                     <connections>
                         <outlet property="userEnterDollarAmountTextField" destination="M98-zr-X80" id="goV-UA-J6A"/>
                         <outlet property="valueQuestionLabel" destination="SID-dl-CTO" id="Rcc-MS-0yQ"/>
+                        <segue destination="MTG-0y-bA3" kind="push" identifier="ScannerSegue" id="ycJ-3G-aUL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXu-5J-mrC" userLabel="First Responder" sceneMemberID="firstResponder"/>

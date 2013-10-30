@@ -30,6 +30,7 @@
 @synthesize productName;
 @synthesize  productPrice;
 @synthesize  urlForProduct;
+@synthesize errorAlertDelegate;
 
 - (void)viewDidLoad
 {
