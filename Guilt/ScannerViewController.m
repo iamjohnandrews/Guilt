@@ -137,20 +137,16 @@
 -(void)findProductInfo: (NSString*)upc
 {
     
-    
-    // upc = @"883974958450";
-   //upc = @"0049000028904";
+  
     
    NSLog(@"UPC = %@",upc);
     
-    //  NSString *tempString = [NSString stringWithFormat:@"\"upc\":%@}",upc];
-    //  NSLog(@"tempString = %@", tempString);
+
     
     NSString * escapedUrlString =(NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                                                        NULL,
-                                                                                                       //(CFStringRef)@"{\"search\":\"Apple iPad*\"}",
-                                                                                                       (CFStringRef)@"{\"ean\":0049000028904}",
-                                                                                                       //(CFStringRef)[NSString stringWithFormat:@"{\"upc\":%@}",upc],
+
+                                                                                                       (CFStringRef)[NSString stringWithFormat:@"{\"upc\":\"%@\"}",upc],
                                                                                                        NULL,
                                                                                                        (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                                        kCFStringEncodingUTF8 ));
@@ -208,13 +204,12 @@
          NSDictionary *tempDict1 = [tempArray objectAtIndex:0];
          
          
-         //         NSLog(@" tempDictionary: %@", tempDict1);
          
          NSArray *tempArray2 = [tempDict1 objectForKey:@"sitedetails"];
          
          NSLog(@" tempArray2: %@", tempArray2);
          
-         NSDictionary* latestOffers = [tempArray2 objectAtIndex:2];
+         NSDictionary* latestOffers = [tempArray2 objectAtIndex:0];
          
          NSLog(@" latestOffers: %@", latestOffers);
          NSLog(@"URL for this is: %@", [latestOffers objectForKey:@"url"]);
