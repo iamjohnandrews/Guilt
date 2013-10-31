@@ -32,7 +32,7 @@
     //code for alert message if scanner doesn't work
     scannerVC.delegate = self;
     
-}
+}   
 
 - (IBAction)scannerButton:(id)sender {
     

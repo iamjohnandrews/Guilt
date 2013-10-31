@@ -17,6 +17,7 @@
 		771BCD8E18219B0C000264A8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD8D18219B0C000264A8 /* Security.framework */; };
 		771BCD9018219B15000264A8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD8F18219B15000264A8 /* StoreKit.framework */; };
 		771BCD9218219B24000264A8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD9118219B24000264A8 /* SystemConfiguration.framework */; };
+		771BCD951822D48E000264A8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771BCD941822D48E000264A8 /* LoginViewController.m */; };
 		8E00AAC718182E9700BB32E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC618182E9700BB32E4 /* Foundation.framework */; };
 		8E00AAC918182E9700BB32E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */; };
 		8E00AACB18182E9700BB32E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AACA18182E9700BB32E4 /* UIKit.framework */; };
@@ -64,6 +65,8 @@
 		771BCD8D18219B0C000264A8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		771BCD8F18219B15000264A8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		771BCD9118219B24000264A8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		771BCD931822D48E000264A8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		771BCD941822D48E000264A8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		8E00AAC318182E9700BB32E4 /* Guilt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guilt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E00AAC618182E9700BB32E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -182,6 +185,8 @@
 				8EB17C141821977C000DDFCC /* ProductDisplayCell.h */,
 				8EB17C151821977C000DDFCC /* ProductDisplayCell.m */,
 				8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */,
+				771BCD931822D48E000264A8 /* LoginViewController.h */,
+				771BCD941822D48E000264A8 /* LoginViewController.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
 				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
 				8EB17BF818201F00000DDFCC /* ImagesViewController.m */,
@@ -347,6 +352,7 @@
 				8EB17C161821977C000DDFCC /* ProductDisplayCell.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
+				771BCD951822D48E000264A8 /* LoginViewController.m in Sources */,
 				771BCD80182023DD000264A8 /* ScannerViewController.m in Sources */,
 				8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */,
 			);
