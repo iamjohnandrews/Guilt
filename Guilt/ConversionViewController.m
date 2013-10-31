@@ -9,10 +9,11 @@
 #import "ConversionViewController.h"
 #import "ImagesViewController.h"
 #import "ScannerViewController.h"
-#import <Parse/Parse.h>
+//#import <Parse/Parse.h>
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
+    ScannerViewController* scannerVC;
 }
 
 
@@ -27,11 +28,10 @@
 - (void)viewDidLoad
 {
     valueQuestionLabel.font = [UIFont fontWithName:@"Vintage_fair" size:36];
-    
-    
-
-    
     [super viewDidLoad];
+    //code for alert message if scanner doesn't work
+    scannerVC.delegate = self;
+    
 }
 
 - (IBAction)scannerButton:(id)sender {
@@ -55,6 +55,7 @@
     
     float convertToFloat = [userEnterDollarAmountTextField.text floatValue];
     
+    //logic to compare scanner/user's entry to Charities' conversions
     if (convertToFloat >= 1) {
         float numberOfAnimalMeals = (convertToFloat / 1) * 20;
         NSLog(@"Number of animal meals = %.2f", numberOfAnimalMeals);

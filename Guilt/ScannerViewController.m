@@ -30,7 +30,7 @@
 @synthesize productName;
 @synthesize  productPrice;
 @synthesize  urlForProduct;
-@synthesize errorAlertDelegate;
+@synthesize delegate;
 
 - (void)viewDidLoad
 {
@@ -196,7 +196,7 @@
              
              NSLog(@"API Error occurred");
              [self.navigationController popToRootViewControllerAnimated:YES];
-             
+             //above code sends user to ConversionViewController
              
              
              

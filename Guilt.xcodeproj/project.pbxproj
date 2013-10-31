@@ -95,6 +95,7 @@
 		8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharityAndProductDisplayCell.m; sourceTree = "<group>"; };
 		8EB17C141821977C000DDFCC /* ProductDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDisplayCell.h; sourceTree = "<group>"; };
 		8EB17C151821977C000DDFCC /* ProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDisplayCell.m; sourceTree = "<group>"; };
+		8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScannerDidNotWorkDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,13 +174,14 @@
 			isa = PBXGroup;
 			children = (
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
+				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				771BCD7E182023DD000264A8 /* ScannerViewController.h */,
 				771BCD7F182023DD000264A8 /* ScannerViewController.m */,
+				8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */,
 				8EB17C1118217A85000DDFCC /* CharityAndProductDisplayCell.h */,
 				8EB17C141821977C000DDFCC /* ProductDisplayCell.h */,
 				8EB17C151821977C000DDFCC /* ProductDisplayCell.m */,
 				8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */,
-				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
 				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
 				8EB17BF818201F00000DDFCC /* ImagesViewController.m */,

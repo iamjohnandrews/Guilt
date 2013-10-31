@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScannerDidNotWorkDelegate.h"
 
 @interface ScannerViewController : UIViewController
 @property   (weak,nonatomic)NSString* productName;
 @property   (nonatomic)float productPrice;
 @property   (weak,nonatomic)NSString* urlForProduct;
-@property   (retain) id errorAlertDelegate;
+@property   (retain) id <ScannerDidNotWorkDelegate> delegate;
 
 @end
