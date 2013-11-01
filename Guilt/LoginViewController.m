@@ -10,7 +10,6 @@
 #import <Parse/Parse.h>
 @interface LoginViewController ()
 
-- (IBAction)startNow:(id)sender;
 @end
 
 @implementation LoginViewController
@@ -24,25 +23,40 @@
     return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor orangeColor];
+    
+    self.logInView.logo = nil;
+                                 
+                                 //colorWithPatternImage:
+                                 //[UIImage imageNamed:@"myBackgroundImage.png"]];
+//    label.text = @"My Logo";
+//    [label sizeToFit];
+//    self.logInView.logo = label; // logo can be any UIView
+}
+
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (![PFUser currentUser]) { // No user logged in
-        // Create the log in view controller
-        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
-        [logInViewController setDelegate:self]; // Set ourselves as the delegate
-        
-        // Create the sign up view controller
-        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
-        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
-        
-        // Assign our sign up controller to be displayed from the login controller
-        [logInViewController setSignUpController:signUpViewController];
-        
-        // Present the log in view controller
-        [self presentViewController:logInViewController animated:YES completion:NULL];
-    }
-    else
+
+//    if (![PFUser currentUser]) { // No user logged in
+//        // Create the log in view controller
+//        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+//        [logInViewController setDelegate:self]; // Set ourselves as the delegate
+//        
+//        // Create the sign up view controller
+//        PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+//        [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+//        
+//        // Assign our sign up controller to be displayed from the login controller
+//        [logInViewController setSignUpController:signUpViewController];
+//        
+//        // Present the log in view controller
+//        [self presentViewController:logInViewController animated:YES completion:NULL];
+//    }
+    if ([PFUser currentUser])
     {
         [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
 
@@ -83,7 +97,11 @@
 
 // Sent to the delegate when the log in screen is dismissed.
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
+
+    
+    //[self.navigationController popViewControllerAnimated:YES]; <--original code
 }
 
 // Sent to the delegate to determine whether the sign up request should be submitted to the server.

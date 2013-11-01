@@ -30,9 +30,17 @@
     valueQuestionLabel.font = [UIFont fontWithName:@"Vintage_fair" size:36];
     [super viewDidLoad];
     //code for alert message if scanner doesn't work
-    scannerVC.delegate = self;
+   // scannerVC.delegate = self;
     
-}   
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    self.navigationItem.hidesBackButton = YES;
+
+}
 
 - (IBAction)scannerButton:(id)sender {
     
