@@ -233,7 +233,7 @@
      }];
     
     
-    
+    [delegate calculateCharitableImpactValue];
     
     
 }

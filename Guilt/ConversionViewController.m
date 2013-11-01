@@ -9,7 +9,7 @@
 #import "ConversionViewController.h"
 #import "ImagesViewController.h"
 #import "ScannerViewController.h"
-//#import <Parse/Parse.h>
+#import <Parse/Parse.h>
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
@@ -30,7 +30,6 @@
     valueQuestionLabel.font = [UIFont fontWithName:@"Vintage_fair" size:36];
     [super viewDidLoad];
     //code for alert message if scanner doesn't work
-    scannerVC.delegate = self;
     
 }   
 
@@ -100,9 +99,12 @@
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller
         ScannerViewController *svc = [segue destinationViewController];
-        svc.productPrice = productPrice;
+        
+        svc.productPrice = productPrice; //Not sure if this will work since product price is a float & not a pointer.
         svc.urlForProduct = urlForProduct;
         svc.productName = productName;
+        svc.delegate = self;
+        
     }
 }
 
