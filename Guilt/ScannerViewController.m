@@ -121,7 +121,7 @@
                 
                 [self findProductInfo:detectionString];
                 flag=YES; //ensures that only one look per scan takes place
-                
+#warning the above if statement is not working. Should we put timer on scanner fo after 3 seconds it gives up?
             }
             
             break;
@@ -162,7 +162,7 @@
     //    NSURL * url = [NSURL URLWithString:@"https://api.semantics3.com/test/v1/products?q={\"search\":\"Apple iPad*\"}"];
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.semantics3.com/test/v1/products?q=%@",escapedUrlString]];
     
-    //    NSLog(@"URL: %@",url);
+        NSLog(@"URL: %@",url);
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
     //Create a mutable copy of the immutable request & and add more headers
@@ -172,7 +172,7 @@
     //////
     request = [mutableRequest copy];
     
-    //    NSLog(@"Request is %@", request);
+        NSLog(@"Request is %@", request);
     
     // api_key: SEM3B4375C1733AA1EB425CD175E9449D509" https://api.semantics3.com/test/v1/products --data-urlencode 'q={"search":"Apple iPad*"}
     
@@ -227,6 +227,8 @@
              NSLog(@"Price is item %i is $%@", i,  price);
              
              productPrice = [price floatValue];
+             [self.navigationController popToRootViewControllerAnimated:YES];
+             //gotta call the calculateconversion method from ConversionVC on product price
          }
          
          
