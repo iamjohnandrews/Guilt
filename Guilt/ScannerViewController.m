@@ -227,6 +227,9 @@
              NSLog(@"Price is item %i is $%@", i,  price);
              
              productPrice = [price floatValue];
+             [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] name:productName url:urlForProduct];
+             
+#warning how do i send user to imageVC             
              [self.navigationController popToRootViewControllerAnimated:YES];
              //gotta call the calculateconversion method from ConversionVC on product price
          }

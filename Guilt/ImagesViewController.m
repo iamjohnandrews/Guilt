@@ -92,6 +92,7 @@
     [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
     
     return charityCell;
+#warning how to return two different views to two prototype cells 
 }
 
 /*

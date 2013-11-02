@@ -55,12 +55,12 @@
 - (IBAction)conversionButton:(id)sender {
     convertedCharitableGoodsArray = [NSMutableArray new];
     
-    [self calculateCharitableImpactValue];
+    [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
 }
 
-- (void) calculateCharitableImpactValue {
+- (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {
     
-    float convertToFloat = [userEnterDollarAmountTextField.text floatValue];
+    float convertToFloat = [dollarAmount floatValue];
     
     //logic to compare scanner/user's entry to Charities' conversions
     if (convertToFloat >= 1) {
@@ -118,6 +118,13 @@
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Scan Did Not Work" message:@"Please input price into text field. Sorry for the manual labor." delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
     [alert show];
     [alert dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+- (void)productInfoReturned:(NSNumber*)returnedPrice name:(NSString*)returnedProductName url:(NSString*)returnedProductURL
+{
+    [self calculateCharitableImpactValue:returnedPrice];
+    returnedProductName = productName;
+    returnedProductURL = urlForProduct;
 }
 
 
