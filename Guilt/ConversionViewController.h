@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ScannerDidNotWorkDelegate.h"
+#import "ScannerViewController.h"
 
-@interface ConversionViewController : UIViewController
+@interface ConversionViewController : UIViewController <ScannerDidNotWorkDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *valueQuestionLabel;
 

@@ -10,6 +10,6 @@
 
 @protocol ScannerDidNotWorkDelegate <NSObject>
 
-- (void)willPresentAlertView:(UIAlertView *)alertView;
+- (void) productDatabaseReturnedNothing;
 
 @end

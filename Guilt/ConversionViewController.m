@@ -9,11 +9,10 @@
 #import "ConversionViewController.h"
 #import "ImagesViewController.h"
 #import "ScannerViewController.h"
-//#import <Parse/Parse.h>
+#import <Parse/Parse.h>
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
-    ScannerViewController* scannerVC;
 }
 
 
@@ -30,8 +29,8 @@
     valueQuestionLabel.font = [UIFont fontWithName:@"Vintage_fair" size:36];
     [super viewDidLoad];
     //code for alert message if scanner doesn't work
-   // scannerVC.delegate = self;
-    
+    ScannerViewController* scannerVC = [[ScannerViewController alloc] init];
+    scannerVC.delegate = self;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -112,6 +111,13 @@
         svc.urlForProduct = urlForProduct;
         svc.productName = productName;
     }
+}
+
+-(void)productDatabaseReturnedNothing
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Scan Did Not Work" message:@"Please input price into text field. Sorry for the manual labor." delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
+    [alert show];
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 
