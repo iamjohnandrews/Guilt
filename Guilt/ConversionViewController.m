@@ -95,6 +95,7 @@
     }
     //NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
     [userEnterDollarAmountTextField resignFirstResponder];
+    productPrice = convertToFloat;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -107,9 +108,9 @@
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller
         ScannerViewController *svc = [segue destinationViewController];
-        svc.productPrice = productPrice;
-        svc.urlForProduct = urlForProduct;
-        svc.productName = productName;
+        productPrice = svc.productPrice;
+        urlForProduct = svc.urlForProduct;
+        productName = svc.productName;
     }
 }
 
@@ -123,8 +124,10 @@
 - (void)productInfoReturned:(NSNumber*)returnedPrice name:(NSString*)returnedProductName url:(NSString*)returnedProductURL
 {
     [self calculateCharitableImpactValue:returnedPrice];
-    returnedProductName = productName;
-    returnedProductURL = urlForProduct;
+    productName = returnedProductName;
+    urlForProduct = returnedProductURL;
+    
+    NSLog(@"Get Hype MOTHA FUCKA, Product name = %@, URL = %@, Product Price = %@", productName, urlForProduct, returnedPrice);
 }
 
 

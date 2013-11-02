@@ -8,6 +8,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "ScannerViewController.h"
+#import "ImagesViewController.h"
 
 @interface ScannerViewController ()  <AVCaptureMetadataOutputObjectsDelegate>
 {
@@ -231,7 +232,7 @@
              
 #warning how do i send user to imageVC             
              [self.navigationController popToRootViewControllerAnimated:YES];
-             //gotta call the calculateconversion method from ConversionVC on product price
+              //gotta call the calculateconversion method from ConversionVC on product price
          }
          
          
