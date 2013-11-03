@@ -97,9 +97,10 @@
     NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
     [userEnterDollarAmountTextField resignFirstResponder];
     
+    convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
+
     [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
     
-    convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -114,6 +115,7 @@
         productsDC.productNameDisplayLabel.text = productName;
 
     NSLog(@"contents passed along are %@", imagesVC.resultOfCharitableConversionsArray);
+        
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller
         ScannerViewController *svc = [segue destinationViewController];
@@ -138,6 +140,9 @@
 - (void)productInfoReturned:(NSNumber*)returnedPrice 
 {
     NSLog(@"Get Hype, Product name = %@, URL = %@, Product Price = %@", productName, urlForProduct, returnedPrice);
+    
+    
+    //[self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
     
     [self calculateCharitableImpactValue:returnedPrice];
     

@@ -237,7 +237,9 @@
              productPrice = [price floatValue];
              
              
-             [self.navigationController popViewControllerAnimated:YES];
+             //[self.navigationController popViewControllerAnimated:YES];
+             [self dismissViewControllerAnimated:YES completion:nil];
+             
              [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice]];
              NSLog(@"the URL of the product is %@", urlForProduct);
              
@@ -248,10 +250,6 @@
          }  
      }];
     
-     
-    
-    
-    
 }
 
 
@@ -259,6 +257,8 @@
 {
 
     [self.delegate productDatabaseReturnedNothing];
+    
+    
     
     [self.navigationController popViewControllerAnimated:YES];
     

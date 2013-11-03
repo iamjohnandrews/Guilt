@@ -70,11 +70,11 @@
     //Code to dosplay product
     static NSString *productCellIdentifier = @"ProductDisplay";
     ProductDisplayCell* productCell = [tableView dequeueReusableCellWithIdentifier:productCellIdentifier];
-    ConversionViewController* conversionVC = [[ConversionViewController alloc] init];
-    
-    productCell.productNameDisplayLabel.text = conversionVC.productName;
-    productCell.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"%f", conversionVC.productPrice];
-    productCell.urlDisplayLabel.text = conversionVC.urlForProduct;
+//    ConversionViewController* conversionVC = [[ConversionViewController alloc] init];
+//    
+//    productCell.productNameDisplayLabel.text = conversionVC.productName;
+//    productCell.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"%f", conversionVC.productPrice];
+//    productCell.urlDisplayLabel.text = conversionVC.urlForProduct;
     
     NSLog(@"the product name is %@", productCell.productNameDisplayLabel.text);
     NSLog(@"the product's online price is %@", productCell.onlinePriceDisplayLabel.text);

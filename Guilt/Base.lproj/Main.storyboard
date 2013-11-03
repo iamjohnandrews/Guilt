@@ -21,7 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcr-Y9-AYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066" y="1109"/>
+            <point key="canvasLocation" x="1324" y="517"/>
         </scene>
         <!--Conversion View Controller-->
         <scene sceneID="hZI-jX-yMH">
@@ -57,7 +57,6 @@
                                 </state>
                                 <connections>
                                     <action selector="conversionButton:" destination="gGE-l0-Oez" eventType="touchUpInside" id="647-dd-8QG"/>
-                                    <segue destination="tEc-0u-6AV" kind="push" identifier="ConversionToImagesSegue" id="9u0-hc-qNF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8d-DX-YuI">
@@ -69,6 +68,7 @@
                                 </state>
                                 <connections>
                                     <action selector="scannerButton:" destination="gGE-l0-Oez" eventType="touchUpInside" id="zV2-aL-if6"/>
+                                    <segue destination="MTG-0y-bA3" kind="modal" identifier="ScannerSegue" id="cYE-fG-TCA"/>
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PQ7-Ec-01l">
@@ -83,7 +83,7 @@
                         <outlet property="progressActivityIndicatorSpinner" destination="PQ7-Ec-01l" id="HuU-GT-aZM"/>
                         <outlet property="userEnterDollarAmountTextField" destination="M98-zr-X80" id="goV-UA-J6A"/>
                         <outlet property="valueQuestionLabel" destination="SID-dl-CTO" id="Rcc-MS-0yQ"/>
-                        <segue destination="MTG-0y-bA3" kind="push" identifier="ScannerSegue" id="ycJ-3G-aUL"/>
+                        <segue destination="tEc-0u-6AV" kind="push" identifier="ConversionToImagesSegue" id="OJS-g9-g91"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXu-5J-mrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
