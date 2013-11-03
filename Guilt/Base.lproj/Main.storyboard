@@ -71,7 +71,7 @@
                                     <action selector="scannerButton:" destination="gGE-l0-Oez" eventType="touchUpInside" id="zV2-aL-if6"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="D2Y-Qh-kCi">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PQ7-Ec-01l">
                                 <rect key="frame" x="150" y="401" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
@@ -80,7 +80,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hWj-3D-t99"/>
                     <connections>
-                        <outlet property="progressSctivityIndicatorSpinner" destination="D2Y-Qh-kCi" id="qrx-xq-kIL"/>
+                        <outlet property="progressActivityIndicatorSpinner" destination="PQ7-Ec-01l" id="HuU-GT-aZM"/>
                         <outlet property="userEnterDollarAmountTextField" destination="M98-zr-X80" id="goV-UA-J6A"/>
                         <outlet property="valueQuestionLabel" destination="SID-dl-CTO" id="Rcc-MS-0yQ"/>
                         <segue destination="MTG-0y-bA3" kind="push" identifier="ScannerSegue" id="ycJ-3G-aUL"/>

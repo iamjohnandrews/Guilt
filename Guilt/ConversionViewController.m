@@ -28,7 +28,8 @@
 {
     valueQuestionLabel.font = [UIFont fontWithName:@"Vintage_fair" size:36];
     [super viewDidLoad];
-    //code for alert message if scanner doesn't work
+        
+    //code for alert message if scanner doesn't work    
     ScannerViewController* scannerVC = [[ScannerViewController alloc] init];
     scannerVC.delegate = self;
 }
@@ -111,11 +112,14 @@
         productPrice = svc.productPrice;
         urlForProduct = svc.urlForProduct;
         productName = svc.productName;
+        //@JR how did you envision this segue working? It looks like you want it to "work" both ways?
     }
 }
 
 -(void)productDatabaseReturnedNothing
 {
+    NSLog(@"the productDatabaseReturnedNothing method is firing!");
+    
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Scan Did Not Work" message:@"Please input price into text field. Sorry for the manual labor." delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
     [alert show];
     [alert dismissWithClickedButtonIndex:0 animated:YES];
@@ -124,7 +128,9 @@
 - (void)productInfoReturned:(NSNumber*)returnedPrice name:(NSString*)returnedProductName url:(NSString*)returnedProductURL
 {
     //code for spinny thing
-    
+    UIActivityIndicatorView* progress = [[UIActivityIndicatorView alloc] init];
+    progress.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    [progress startAnimating];
     
     [self calculateCharitableImpactValue:returnedPrice];
     productName = returnedProductName;
@@ -132,7 +138,7 @@
     
     NSLog(@"Get Hype, Product name = %@, URL = %@, Product Price = %@", productName, urlForProduct, returnedPrice);
     
-    [self performSegueWithIdentifier:"ConversionToImagesSegue" sender:(id)];
+    [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
 }
 
 

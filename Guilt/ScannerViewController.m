@@ -191,11 +191,12 @@
          NSString* code =[dictionary objectForKey:@"code"];
          
          if ([code isEqualToString:@"APIError" ]) {
-             
+             [self.delegate productDatabaseReturnedNothing];
+
              NSLog(@"API Error occurred");
+
              [self.navigationController popToRootViewControllerAnimated:YES];
              //above code sends user to ConversionViewController
-             [self.delegate productDatabaseReturnedNothing];
              
              
              
@@ -230,9 +231,7 @@
              productPrice = [price floatValue];
              [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] name:productName url:urlForProduct];
              
-#warning how do i send user to imageVC             
              [self.navigationController popToRootViewControllerAnimated:YES];
-              //gotta call the calculateconversion method from ConversionVC on product price
          }
          
          
