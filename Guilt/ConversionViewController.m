@@ -51,7 +51,6 @@
 
 
 - (IBAction)conversionButton:(id)sender {
-    convertedCharitableGoodsArray = [NSMutableArray new];
     
     [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
 }
@@ -60,6 +59,8 @@
     
     float convertToFloat = [dollarAmount floatValue];
     
+    convertedCharitableGoodsArray = [NSMutableArray new];
+
     //logic to compare scanner/user's entry to Charities' conversions
     if (convertToFloat >= 1) {
         float numberOfAnimalMeals = (convertToFloat / 1) * 20;
@@ -91,17 +92,21 @@
         NSString* floatToAString500 = [NSString stringWithFormat:@"%.2f",numberOfSpringCatchments];
         [convertedCharitableGoodsArray addObject:floatToAString500];
     }
-    //NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
+    NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
     [userEnterDollarAmountTextField resignFirstResponder];
-    productPrice = convertToFloat;
+    
+    [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"ConversionToImagesSegue"]) {
         ImagesViewController* imagesVC = [segue destinationViewController];
-        
-    imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
-        
+        imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
+
+        ScannerViewController *svc = [segue destinationViewController];
+        productPrice = svc.productPrice;
+        urlForProduct = svc.urlForProduct;
+        productName = svc.productName;
     NSLog(@"contents passed along are %@", imagesVC.resultOfCharitableConversionsArray);
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller
@@ -124,21 +129,14 @@
     [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
-- (void)productInfoReturned:(NSNumber*)returnedPrice name:(NSString*)returnedProductName url:(NSString*)returnedProductURL
+- (void)productInfoReturned:(NSNumber*)returnedPrice 
 {
     NSLog(@"Get Hype, Product name = %@, URL = %@, Product Price = %@", productName, urlForProduct, returnedPrice);
-
-    //code for spinny thing
-    UIActivityIndicatorView* progress = [[UIActivityIndicatorView alloc] init];
-    progress.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-    [progress startAnimating];
     
     [self calculateCharitableImpactValue:returnedPrice];
-    productName = returnedProductName;
-    urlForProduct = returnedProductURL;
     
+   // NSLog(@"the url passed through is %@", urlForProduct);
     
-    [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
 }
 
 

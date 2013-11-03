@@ -238,7 +238,8 @@
              
              
              [self.navigationController popViewControllerAnimated:YES];
-             [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] name:productName url:urlForProduct];
+             [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice]];
+             NSLog(@"the URL of the product is %@", urlForProduct);
              
              NSLog(@"at end of scanner");	
              break;

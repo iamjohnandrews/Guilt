@@ -11,5 +11,5 @@
 @protocol ScannerDidNotWorkDelegate <NSObject>
 
 - (void) productDatabaseReturnedNothing;
-- (void)productInfoReturned:(NSNumber*)returnedPrice name:(NSString*)returnedProductName url:(NSString*)returnedProductURL;
+- (void)productInfoReturned:(NSNumber*)returnedPrice; 
 @end
