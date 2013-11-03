@@ -102,11 +102,9 @@
     if ([segue.identifier isEqualToString:@"ConversionToImagesSegue"]) {
         ImagesViewController* imagesVC = [segue destinationViewController];
         imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
-
-        ScannerViewController *svc = [segue destinationViewController];
-        productPrice = svc.productPrice;
-        urlForProduct = svc.urlForProduct;
-        productName = svc.productName;
+        imagesVC.productPrice = productPrice;
+        imagesVC.urlForProduct = urlForProduct;
+        imagesVC. = productPrice;
     NSLog(@"contents passed along are %@", imagesVC.resultOfCharitableConversionsArray);
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller
