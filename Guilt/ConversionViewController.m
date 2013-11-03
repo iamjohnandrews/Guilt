@@ -19,7 +19,7 @@
 @end
 
 @implementation ConversionViewController
-@synthesize userEnterDollarAmountTextField, valueQuestionLabel;
+@synthesize userEnterDollarAmountTextField, valueQuestionLabel, conversionButtonOutlet, scannerButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
 @synthesize urlForProduct;
@@ -31,6 +31,12 @@
     //code for alert message if scanner doesn't work
     ScannerViewController* scannerVC = [[ScannerViewController alloc] init];
     scannerVC.delegate = self;
+    
+    conversionButtonOutlet.layer.cornerRadius = 8;
+    conversionButtonOutlet.layer.borderWidth = 2;
+    conversionButtonOutlet.layer.borderColor = [UIColor blueColor].CGColor;
+    conversionButtonOutlet.clipsToBounds = YES;
+    conversionButtonOutlet.layer.backgroundColor = [UIColor cyanColor].CGColor;
 }
 
 -(void)viewDidAppear:(BOOL)animated
