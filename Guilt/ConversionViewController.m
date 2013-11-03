@@ -111,9 +111,24 @@
         imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
         
         productsDC.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"%@",convertedProductPrice];
+        
+        NSLog(@"This is convertedProductPrice %@", [NSString stringWithFormat:@"%@",convertedProductPrice]);
+        
         productsDC.urlDisplayLabel.text = urlForProduct;
+        
+        NSLog(@"This is URL %@ ", urlForProduct);
+        
         productsDC.productNameDisplayLabel.text = productName;
 
+        imagesVC.productCellTemp = productsDC;
+        
+        
+        imagesVC.productName = productName;
+        imagesVC.productPrice = [NSNumber numberWithFloat:productPrice];
+        imagesVC.productProductURL = urlForProduct;
+        
+        
+        
     NSLog(@"contents passed along are %@", imagesVC.resultOfCharitableConversionsArray);
         
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
@@ -137,9 +152,12 @@
     [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
-- (void)productInfoReturned:(NSNumber*)returnedPrice 
+- (void)productInfoReturned:(NSNumber*)returnedPrice urlS:(NSString*) urlForProductTemp productNameNow:(NSString*)productNameNow
 {
-    NSLog(@"Get Hype, Product name = %@, URL = %@, Product Price = %@", productName, urlForProduct, returnedPrice);
+    NSLog(@"Get Hype, Product name = %@, URL = %@, Product Price = %@", productNameNow, urlForProductTemp, returnedPrice);
+    
+    urlForProduct = urlForProductTemp;
+    productName = productNameNow;
     
     
     //[self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];

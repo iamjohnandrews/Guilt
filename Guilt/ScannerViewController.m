@@ -227,6 +227,8 @@
          
          urlForProduct = [latestOffers objectForKey:@"url"];
          
+             NSLog(@"This is after the assignment of urlForProduct: %@", urlForProduct);
+             
          
          NSArray *ltArray = [latestOffers objectForKey:@"latestoffers"];
          for (int i = 0; i < [ltArray count]; i++) {
@@ -239,8 +241,13 @@
              
              //[self.navigationController popViewControllerAnimated:YES];
              [self dismissViewControllerAnimated:YES completion:nil];
+    
+             //temp for testing         
+   productName = @"Bic Pens";
              
-             [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice]];
+             [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] urlS: urlForProduct productNameNow: productName];
+             
+             
              NSLog(@"the URL of the product is %@", urlForProduct);
              
              NSLog(@"at end of scanner");	

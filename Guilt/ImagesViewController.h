@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductDisplayCell.h"
 
 @interface ImagesViewController : UITableViewController
 
 @property NSMutableArray *resultOfCharitableConversionsArray;
+@property (strong,nonatomic) ProductDisplayCell* productCellTemp;
+@property (strong,nonatomic) NSString* productName;
+@property (strong,nonatomic) NSString* productProductURL;
+@property  (weak,nonatomic) NSNumber* productPrice;
+
+
 
 @end

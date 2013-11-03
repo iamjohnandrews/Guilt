@@ -9,7 +9,6 @@
 #import "ImagesViewController.h"
 #import "ConversionViewController.h"
 #import "CharityAndProductDisplayCell.h"
-#import "ProductDisplayCell.h"
 #import "ScannerViewController.h"
 
 @interface ImagesViewController (){
@@ -70,17 +69,18 @@
     //Code to dosplay product
     static NSString *productCellIdentifier = @"ProductDisplay";
     ProductDisplayCell* productCell = [tableView dequeueReusableCellWithIdentifier:productCellIdentifier];
-//    ConversionViewController* conversionVC = [[ConversionViewController alloc] init];
-//    
-//    productCell.productNameDisplayLabel.text = conversionVC.productName;
-//    productCell.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"%f", conversionVC.productPrice];
-//    productCell.urlDisplayLabel.text = conversionVC.urlForProduct;
+
     
-    NSLog(@"the product name is %@", productCell.productNameDisplayLabel.text);
-    NSLog(@"the product's online price is %@", productCell.onlinePriceDisplayLabel.text);
-    NSLog(@"the URL of product is %@", productCell.urlDisplayLabel.text);
+    productCell.productNameDisplayLabel.text =_productName;
+    productCell.onlinePriceDisplayLabel.text = _productCellTemp.onlinePriceDisplayLabel.text;
+    productCell.urlDisplayLabel.text = _productProductURL;
+    
+    NSLog(@"the ImagesVC product name is %@", _productName);
+    NSLog(@"the ImagesVC product's online price is %@", _productPrice);
+    NSLog(@"the ImagesVC URL of product is %@", _productProductURL);
     
     //Code to display Charities
+    
     static NSString *charityCellIdentifier = @"CharityDisplay";
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:charityCellIdentifier];
     
