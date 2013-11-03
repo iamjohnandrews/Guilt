@@ -10,9 +10,11 @@
 #import "ImagesViewController.h"
 #import "ScannerViewController.h"
 #import <Parse/Parse.h>
+#import "ProductDisplayCell.h"
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
+    NSNumber* convertedProductPrice;
 }
 
 
@@ -96,15 +98,21 @@
     [userEnterDollarAmountTextField resignFirstResponder];
     
     [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
+    
+    convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"ConversionToImagesSegue"]) {
         ImagesViewController* imagesVC = [segue destinationViewController];
+        ProductDisplayCell* productsDC = [ProductDisplayCell new];
+        
         imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
-        imagesVC.productPrice = productPrice;
-        imagesVC.urlForProduct = urlForProduct;
-        imagesVC. = productPrice;
+        
+        productsDC.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"%@",convertedProductPrice];
+        productsDC.urlDisplayLabel.text = urlForProduct;
+        productsDC.productNameDisplayLabel.text = productName;
+
     NSLog(@"contents passed along are %@", imagesVC.resultOfCharitableConversionsArray);
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller
