@@ -19,7 +19,7 @@
 @end
 
 @implementation ConversionViewController
-@synthesize userEnterDollarAmountTextField, valueQuestionLabel;
+@synthesize userEnterDollarAmountTextField, valueQuestionLabel, progressActivityIndicatorSpinner;
 @synthesize productName;
 @synthesize productPrice;
 @synthesize urlForProduct;
@@ -123,11 +123,16 @@
 
 - (void)productInfoReturned:(NSNumber*)returnedPrice name:(NSString*)returnedProductName url:(NSString*)returnedProductURL
 {
+    //code for spinny thing
+    
+    
     [self calculateCharitableImpactValue:returnedPrice];
     productName = returnedProductName;
     urlForProduct = returnedProductURL;
     
-    NSLog(@"Get Hype MOTHA FUCKA, Product name = %@, URL = %@, Product Price = %@", productName, urlForProduct, returnedPrice);
+    NSLog(@"Get Hype, Product name = %@, URL = %@, Product Price = %@", productName, urlForProduct, returnedPrice);
+    
+    [self performSegueWithIdentifier:"ConversionToImagesSegue" sender:(id)];
 }
 
 

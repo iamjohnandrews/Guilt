@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="UbV-A1-fRm">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Scanner View Controller-->
@@ -71,11 +71,16 @@
                                     <action selector="scannerButton:" destination="gGE-l0-Oez" eventType="touchUpInside" id="zV2-aL-if6"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="D2Y-Qh-kCi">
+                                <rect key="frame" x="150" y="401" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="hWj-3D-t99"/>
                     <connections>
+                        <outlet property="progressSctivityIndicatorSpinner" destination="D2Y-Qh-kCi" id="qrx-xq-kIL"/>
                         <outlet property="userEnterDollarAmountTextField" destination="M98-zr-X80" id="goV-UA-J6A"/>
                         <outlet property="valueQuestionLabel" destination="SID-dl-CTO" id="Rcc-MS-0yQ"/>
                         <segue destination="MTG-0y-bA3" kind="push" identifier="ScannerSegue" id="ycJ-3G-aUL"/>
