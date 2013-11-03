@@ -13,6 +13,6 @@
 @property   (weak,nonatomic)NSString* productName;
 @property   (nonatomic)float productPrice;
 @property   (weak,nonatomic)NSString* urlForProduct;
-@property   (retain) id <ScannerDidNotWorkDelegate> delegate;
+@property   (nonatomic, weak) id <ScannerDidNotWorkDelegate> delegate;
 
 @end

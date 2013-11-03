@@ -29,9 +29,6 @@
     valueQuestionLabel.font = [UIFont fontWithName:@"Vintage_fair" size:36];
     [super viewDidLoad];
         
-    //code for alert message if scanner doesn't work    
-    ScannerViewController* scannerVC = [[ScannerViewController alloc] init];
-    scannerVC.delegate = self;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -112,6 +109,8 @@
         productPrice = svc.productPrice;
         urlForProduct = svc.urlForProduct;
         productName = svc.productName;
+        
+        svc.delegate = self;
         //@JR how did you envision this segue working? It looks like you want it to "work" both ways?
     }
 }
@@ -127,6 +126,8 @@
 
 - (void)productInfoReturned:(NSNumber*)returnedPrice name:(NSString*)returnedProductName url:(NSString*)returnedProductURL
 {
+    NSLog(@"Get Hype, Product name = %@, URL = %@, Product Price = %@", productName, urlForProduct, returnedPrice);
+
     //code for spinny thing
     UIActivityIndicatorView* progress = [[UIActivityIndicatorView alloc] init];
     progress.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
@@ -136,7 +137,6 @@
     productName = returnedProductName;
     urlForProduct = returnedProductURL;
     
-    NSLog(@"Get Hype, Product name = %@, URL = %@, Product Price = %@", productName, urlForProduct, returnedPrice);
     
     [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
 }

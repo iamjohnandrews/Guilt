@@ -88,7 +88,7 @@
     
     flag = NO;
     
-
+    
 }
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
@@ -137,19 +137,19 @@
 
 -(void)findProductInfo: (NSString*)upc
 {
-//    urlForProduct = @"www.test.com";
-//    productName = @"ARGO fuck yourself";
-//    productPrice = 12.34;
+    //    urlForProduct = @"www.test.com";
+    //    productName = @"ARGO fuck yourself";
+    //    productPrice = 12.34;
     
     // upc = @"883974958450";
-   //upc = @"0049000028904";
-   NSLog(@"UPC = %@",upc);
+    //upc = @"0049000028904";
+    NSLog(@"UPC = %@",upc);
     
-
+    
     
     NSString * escapedUrlString =(NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                                                        NULL,
-
+                                                                                                       
                                                                                                        (CFStringRef)[NSString stringWithFormat:@"{\"upc\":\"%@\"}",upc],
                                                                                                        NULL,
                                                                                                        (CFStringRef)@"!*'();:@&=+$,/?%#[]",
@@ -163,7 +163,7 @@
     //    NSURL * url = [NSURL URLWithString:@"https://api.semantics3.com/test/v1/products?q={\"search\":\"Apple iPad*\"}"];
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.semantics3.com/test/v1/products?q=%@",escapedUrlString]];
     
-        NSLog(@"URL: %@",url);
+    NSLog(@"URL: %@",url);
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
     //Create a mutable copy of the immutable request & and add more headers
@@ -173,7 +173,7 @@
     //////
     request = [mutableRequest copy];
     
-        NSLog(@"Request is %@", request);
+    NSLog(@"Request is %@", request);
     
     // api_key: SEM3B4375C1733AA1EB425CD175E9449D509" https://api.semantics3.com/test/v1/products --data-urlencode 'q={"search":"Apple iPad*"}
     
@@ -190,18 +190,24 @@
          
          NSString* code =[dictionary objectForKey:@"code"];
          
-         if ([code isEqualToString:@"APIError" ]) {
-             [self.delegate productDatabaseReturnedNothing];
+         NSString *message =[dictionary objectForKey:@"message" ];
+         
+         
+         if ([code isEqualToString:@"APIError" ] || [message isEqualToString:@"No results found; please modify your search."]) {
+             
+             NSLog(@"API Error occurred or No Results found");
+             
+             [self exit];
 
-             NSLog(@"API Error occurred");
-
-             [self.navigationController popToRootViewControllerAnimated:YES];
+             NSLog(@"after popToRootViewControllerAnimated is called ");
              //above code sends user to ConversionViewController
              
              
-             
-             
          }
+
+         else
+         {
+         
          NSArray *tempArray = [dictionary objectForKey:@"results"];
          
          NSLog(@" tempArray: %@", tempArray);
@@ -229,22 +235,35 @@
              NSLog(@"Price is item %i is $%@", i,  price);
              
              productPrice = [price floatValue];
+             
+             
+             [self.navigationController popViewControllerAnimated:YES];
              [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] name:productName url:urlForProduct];
              
-             [self.navigationController popToRootViewControllerAnimated:YES];
+             NSLog(@"at end of scanner");	
+             break;
          }
          
-         
+         }  
      }];
     
-    
+     
     
     
     
 }
 
 
+-(void)exit
+{
 
+    [self.delegate productDatabaseReturnedNothing];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    NSLog(@"we are in Exit");
+
+}
 
 
 @end
