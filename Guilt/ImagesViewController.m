@@ -64,6 +64,25 @@
     return resultOfCharitableConversionsArray.count;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,30)];
+    
+    UILabel *productNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 25, 310, 122 )];
+    productNameLabel.text = [NSString stringWithFormat:@"%@ $%@ %@", _productName, _productPrice, _productProductURL];
+    productNameLabel.backgroundColor = [UIColor lightGrayColor];
+    
+    [headerView addSubview:productNameLabel];
+    
+    return headerView;
+    
+}
+
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return  122;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //Code to dosplay product
@@ -91,7 +110,7 @@
     
     charityCell.accessoryType = UITableViewCellAccessoryDetailButton;
     
-    return charityCell;
+    return productCell;
 }
 
 /*

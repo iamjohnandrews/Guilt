@@ -127,7 +127,7 @@
             </objects>
             <point key="canvasLocation" x="96" y="-116"/>
         </scene>
-        <!--Images View Controller-->
+        <!--Images View Controller - Choose Wisely-->
         <scene sceneID="jtA-Nn-sMd">
             <objects>
                 <tableViewController id="tEc-0u-6AV" customClass="ImagesViewController" sceneMemberID="viewController">
@@ -203,7 +203,7 @@
                             <outlet property="delegate" destination="tEc-0u-6AV" id="d4U-Dt-eJf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="8Nu-S8-SXM"/>
+                    <navigationItem key="navigationItem" title="Choose Wisely" id="8Nu-S8-SXM"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yd-hQ-rRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
