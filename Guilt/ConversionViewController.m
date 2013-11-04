@@ -110,9 +110,9 @@
         
         imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
         
-        productsDC.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"%@",convertedProductPrice];
+        imagesVC.productPrice = convertedProductPrice;
         
-        NSLog(@"This is convertedProductPrice %@", [NSString stringWithFormat:@"%@",convertedProductPrice]);
+        NSLog(@"This product's price %@", imagesVC.productPrice);
         
         productsDC.urlDisplayLabel.text = urlForProduct;
         
@@ -124,7 +124,7 @@
         
         
         imagesVC.productName = productName;
-        imagesVC.productPrice = [NSNumber numberWithFloat:productPrice];
+       // imagesVC.productPrice = [NSNumber numberWithFloat:productPrice];
         imagesVC.productProductURL = urlForProduct;
         
         

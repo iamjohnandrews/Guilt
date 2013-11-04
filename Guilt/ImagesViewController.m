@@ -72,7 +72,7 @@
 
     
     productCell.productNameDisplayLabel.text =_productName;
-    productCell.onlinePriceDisplayLabel.text = _productCellTemp.onlinePriceDisplayLabel.text;
+    productCell.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"$%@",_productPrice];
     productCell.urlDisplayLabel.text = _productProductURL;
     
     NSLog(@"the ImagesVC product name is %@", _productName);
