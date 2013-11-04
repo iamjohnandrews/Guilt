@@ -67,9 +67,10 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,30)];
     
-    UILabel *productNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 25, 310, 122 )];
+    UILabel *productNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 310, 120 )];
     productNameLabel.text = [NSString stringWithFormat:@"%@ $%@ %@", _productName, _productPrice, _productProductURL];
-    productNameLabel.backgroundColor = [UIColor lightGrayColor];
+    productNameLabel.backgroundColor = [UIColor orangeColor];
+    productNameLabel.numberOfLines = 3;
     
     [headerView addSubview:productNameLabel];
     
@@ -78,8 +79,13 @@
 }
 
 -(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    NSLog(@"motha fucka %@", _productProductURL);
     
-    return  122;
+    if (!_productProductURL) {
+        return 0;
+    } else {
+        return 122;
+    }
 }
 
 
@@ -110,7 +116,7 @@
     
     charityCell.accessoryType = UITableViewCellAccessoryDetailButton;
     
-    return productCell;
+    return charityCell;
 }
 
 /*
