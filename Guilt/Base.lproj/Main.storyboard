@@ -80,12 +80,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="hWj-3D-t99"/>
                     <connections>
-<<<<<<< HEAD
-                        <outlet property="progressActivityIndicatorSpinner" destination="PQ7-Ec-01l" id="HuU-GT-aZM"/>
-=======
                         <outlet property="conversionButtonOutlet" destination="myI-Tg-Yul" id="5Ya-EZ-V4x"/>
                         <outlet property="scannerButtonOutlet" destination="M8d-DX-YuI" id="rk7-lq-kZO"/>
->>>>>>> makeButtons
                         <outlet property="userEnterDollarAmountTextField" destination="M98-zr-X80" id="goV-UA-J6A"/>
                         <outlet property="valueQuestionLabel" destination="SID-dl-CTO" id="Rcc-MS-0yQ"/>
                         <segue destination="tEc-0u-6AV" kind="push" identifier="ConversionToImagesSegue" id="OJS-g9-g91"/>
