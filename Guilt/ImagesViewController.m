@@ -79,13 +79,13 @@
 
     //headerView.backgroundColor = [UIColor blueColor];
     [urlLinkButton setTitle:@"Buy Now" forState:UIControlStateNormal];
+    [urlLinkButton addTarget:self action:@selector(purchaseProductButtonTouched) forControlEvents:UIControlEventTouchUpInside];
 
     urlLinkButton.titleLabel.textColor = [UIColor whiteColor];
 
     [headerView addSubview:productNameTextView];
     [headerView addSubview:urlLinkButton];
     [headerView bringSubviewToFront:urlLinkButton];
-    
     
     return headerView;
     
@@ -129,6 +129,11 @@
     charityCell.accessoryType = UITableViewCellAccessoryDetailButton;
     
     return charityCell;
+}
+
+- (void) purchaseProductButtonTouched
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_productProductURL]];
 }
 
 /*
