@@ -69,7 +69,6 @@
     //Code to dosplay product
     static NSString *productCellIdentifier = @"ProductDisplay";
     ProductDisplayCell* productCell = [tableView dequeueReusableCellWithIdentifier:productCellIdentifier];
-
     
     productCell.productNameDisplayLabel.text =_productName;
     productCell.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"$%@",_productPrice];
@@ -81,8 +80,8 @@
     
     //Code to display Charities
     
-    static NSString *charityCellIdentifier = @"CharityDisplay";
-    CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:charityCellIdentifier];
+    //static NSString *charityCellIdentifier = @"CharityDisplay";
+    CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
     
     charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
     
@@ -90,8 +89,9 @@
 
     [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
     
-    return productCell;
-#warning how to return two different views to two prototype cells 
+    charityCell.accessoryType = UITableViewCellAccessoryDetailButton;
+    
+    return charityCell;
 }
 
 /*

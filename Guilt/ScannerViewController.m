@@ -137,10 +137,6 @@
 
 -(void)findProductInfo: (NSString*)upc
 {
-    //    urlForProduct = @"www.test.com";
-    //    productName = @"ARGO fuck yourself";
-    //    productPrice = 12.34;
-    
     // upc = @"883974958450";
     //upc = @"0049000028904";
     NSLog(@"UPC = %@",upc);
