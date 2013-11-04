@@ -172,7 +172,7 @@
                                     <outlet property="urlDisplayLabel" destination="rBD-GI-CQq" id="2VM-g9-cR4"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell2" rowHeight="152" id="GAV-sQ-2R5" customClass="CharityAndProductDisplayCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharityDisplay" rowHeight="152" id="GAV-sQ-2R5" customClass="CharityAndProductDisplayCell">
                                 <rect key="frame" x="0.0" y="238" width="320" height="152"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GAV-sQ-2R5" id="Jlt-kH-uzD">

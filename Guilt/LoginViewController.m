@@ -83,6 +83,10 @@
 
 
 
+
+
+
+
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
@@ -132,9 +136,11 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    [self dismissModalViewControllerAnimated:YES]; // Dismiss the PFSignUpViewController
 
-    [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
+
+  //  [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
 
     
    // [self dismissModalViewControllerAnimated:YES]; // Dismiss the PFSignUpViewController
