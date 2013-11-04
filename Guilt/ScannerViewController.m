@@ -198,63 +198,67 @@
              NSLog(@"API Error occurred or No Results found");
              
              [self exit];
-
+             
              NSLog(@"after popToRootViewControllerAnimated is called ");
              //above code sends user to ConversionViewController
              
              
          }
-
+         
          else
          {
-         
-         NSArray *tempArray = [dictionary objectForKey:@"results"];
-         
-         NSLog(@" tempArray: %@", tempArray);
-         
-         NSDictionary *tempDict1 = [tempArray objectAtIndex:0];
-         
-         
-         
-         NSArray *tempArray2 = [tempDict1 objectForKey:@"sitedetails"];
-         
-         NSLog(@" tempArray2: %@", tempArray2);
-         
-         NSDictionary* latestOffers = [tempArray2 objectAtIndex:0];
-         
-         NSLog(@" latestOffers: %@", latestOffers);
-         NSLog(@"URL for this is: %@", [latestOffers objectForKey:@"url"]);
-         
-         urlForProduct = [latestOffers objectForKey:@"url"];
-         
+             
+             NSArray *tempArray = [dictionary objectForKey:@"results"];
+             
+             NSLog(@" tempArray: %@", tempArray);
+             
+             NSDictionary *tempDict1 = [tempArray objectAtIndex:0];
+             
+             
+             productName = [tempDict1 objectForKey:@"name"];
+             NSArray *tempArray2 = [tempDict1 objectForKey:@"sitedetails"];
+             
+             NSLog(@" tempArray2: %@", tempArray2);
+             
+             NSDictionary* latestOffers = [tempArray2 objectAtIndex:0];
+             
+             NSLog(@" latestOffers: %@", latestOffers);
+             NSLog(@"URL for this is: %@", [latestOffers objectForKey:@"url"]);
+             
+             urlForProduct = [latestOffers objectForKey:@"url"];
+             
+             if (urlForProduct == nil) {
+                 [self exit];
+             }
+             
              NSLog(@"This is after the assignment of urlForProduct: %@", urlForProduct);
              
-         
-         NSArray *ltArray = [latestOffers objectForKey:@"latestoffers"];
-         for (int i = 0; i < [ltArray count]; i++) {
              
-             NSString* price = [ltArray[i] objectForKey:@"price"];
-             NSLog(@"Price is item %i is $%@", i,  price);
+             NSArray *ltArray = [latestOffers objectForKey:@"latestoffers"];
+             for (int i = 0; i < [ltArray count]; i++) {
+                 
+                 NSString* price = [ltArray[i] objectForKey:@"price"];
+                 NSLog(@"Price is item %i is $%@", i,  price);
+                 
+                 productPrice = [price floatValue];
+                 
+                 
+                 //[self.navigationController popViewControllerAnimated:YES];
+                 [self dismissViewControllerAnimated:YES completion:nil];
+                 
+                 //temp for testing
+                 //productName = @"Bic Pens";
+                 
+                 [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] urlS: urlForProduct productNameNow: productName];
+                 
+                 
+                 NSLog(@"the URL of the product is %@", urlForProduct);
+                 
+                 NSLog(@"at end of scanner");
+                 break;
+             }
              
-             productPrice = [price floatValue];
-             
-             
-             //[self.navigationController popViewControllerAnimated:YES];
-             [self dismissViewControllerAnimated:YES completion:nil];
-    
-             //temp for testing         
-   productName = @"Bic Pens";
-             
-             [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] urlS: urlForProduct productNameNow: productName];
-             
-             
-             NSLog(@"the URL of the product is %@", urlForProduct);
-             
-             NSLog(@"at end of scanner");	
-             break;
          }
-         
-         }  
      }];
     
 }
@@ -262,15 +266,15 @@
 
 -(void)exit
 {
-
+    
     [self.delegate productDatabaseReturnedNothing];
     
     
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     NSLog(@"we are in Exit");
-
+    
 }
 
 
