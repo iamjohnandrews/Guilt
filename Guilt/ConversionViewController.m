@@ -21,7 +21,8 @@
 @end
 
 @implementation ConversionViewController
-@synthesize userEnterDollarAmountTextField, valueQuestionLabel, progressActivityIndicatorSpinner;
+@synthesize userEnterDollarAmountTextField, valueQuestionLabel;
+@synthesize conversionButtonOutlet, scannerButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
 @synthesize urlForProduct;
@@ -30,7 +31,12 @@
 {
     valueQuestionLabel.font = [UIFont fontWithName:@"Vintage_fair" size:36];
     [super viewDidLoad];
-        
+    
+    conversionButtonOutlet.layer.cornerRadius = 8;
+    conversionButtonOutlet.layer.borderWidth = 2;
+    conversionButtonOutlet.layer.borderColor = [UIColor blueColor].CGColor;
+    conversionButtonOutlet.clipsToBounds = YES;
+    conversionButtonOutlet.layer.backgroundColor = [UIColor cyanColor].CGColor;
 }
 
 -(void)viewDidAppear:(BOOL)animated

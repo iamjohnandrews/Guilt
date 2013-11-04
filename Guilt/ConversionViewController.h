@@ -22,7 +22,9 @@
 
 @property   (weak,nonatomic)NSString* urlForProduct;
 
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *progressActivityIndicatorSpinner;
+@property (weak, nonatomic) IBOutlet UIButton *conversionButtonOutlet;
+
+@property (weak, nonatomic) IBOutlet UIButton *scannerButtonOutlet;
 
 - (IBAction)scannerButton:(id)sender;
 
