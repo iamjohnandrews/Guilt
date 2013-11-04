@@ -65,21 +65,33 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,30)];
     
-    UILabel *productNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 310, 120 )];
-    productNameLabel.text = [NSString stringWithFormat:@"%@ $%@ %@", _productName, _productPrice, _productProductURL];
-    productNameLabel.backgroundColor = [UIColor orangeColor];
-    productNameLabel.numberOfLines = 3;
+    UITextView *productNameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 120 )];
+    productNameTextView.font = [UIFont fontWithName:@"Helvetica" size:20];
+    productNameTextView.text = [NSString stringWithFormat:@"%@\n $%@\n", _productName, _productPrice];
+    productNameTextView.backgroundColor = [UIColor orangeColor];
     
-    [headerView addSubview:productNameLabel];
+    UIButton* urlLinkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    urlLinkButton.backgroundColor = [UIColor blackColor];
+    urlLinkButton.frame = CGRectMake(220, 50, 100, 50);
+
+    //headerView.backgroundColor = [UIColor blueColor];
+    [urlLinkButton setTitle:@"Buy Now" forState:UIControlStateNormal];
+
+    urlLinkButton.titleLabel.textColor = [UIColor whiteColor];
+
+    [headerView addSubview:productNameTextView];
+    [headerView addSubview:urlLinkButton];
+    [headerView bringSubviewToFront:urlLinkButton];
+    
     
     return headerView;
     
 }
 
 -(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    NSLog(@"motha fucka %@", _productProductURL);
     
     if (!_productProductURL) {
         return 0;
