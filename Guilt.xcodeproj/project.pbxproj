@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7712EC95182805C40038F8D9 /* MySignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7712EC94182805C40038F8D9 /* MySignUpViewController.m */; };
-		7712EC9818284E770038F8D9 /* MyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7712EC9718284E770038F8D9 /* MyLoginViewController.m */; };
+		7712EC9E18285E3D0038F8D9 /* MyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7712EC9D18285E3D0038F8D9 /* MyLoginViewController.m */; };
+		7712ECAA182882740038F8D9 /* KarmaSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7712ECA9182882740038F8D9 /* KarmaSignupViewController.m */; };
 		771BCD80182023DD000264A8 /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771BCD7F182023DD000264A8 /* ScannerViewController.m */; };
 		771BCD8418219AAF000264A8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD8318219AAF000264A8 /* AudioToolbox.framework */; };
 		771BCD8618219ACF000264A8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD8518219ACF000264A8 /* CoreLocation.framework */; };
@@ -56,10 +56,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7712EC93182805C40038F8D9 /* MySignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySignUpViewController.h; sourceTree = SOURCE_ROOT; };
-		7712EC94182805C40038F8D9 /* MySignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySignUpViewController.m; sourceTree = SOURCE_ROOT; };
-		7712EC9618284E770038F8D9 /* MyLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoginViewController.h; sourceTree = "<group>"; };
-		7712EC9718284E770038F8D9 /* MyLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoginViewController.m; sourceTree = "<group>"; };
+		7712EC9C18285E3D0038F8D9 /* MyLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoginViewController.h; sourceTree = "<group>"; };
+		7712EC9D18285E3D0038F8D9 /* MyLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoginViewController.m; sourceTree = "<group>"; };
+		7712ECA8182882740038F8D9 /* KarmaSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KarmaSignupViewController.h; path = ../KarmaSignupViewController.h; sourceTree = "<group>"; };
+		7712ECA9182882740038F8D9 /* KarmaSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KarmaSignupViewController.m; path = ../KarmaSignupViewController.m; sourceTree = "<group>"; };
 		771BCD7E182023DD000264A8 /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
 		771BCD7F182023DD000264A8 /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
 		771BCD8318219AAF000264A8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -99,10 +99,10 @@
 		8EB17BFD1820205C000DDFCC /* soldiers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = soldiers.jpg; sourceTree = "<group>"; };
 		8EB17BFE1820205C000DDFCC /* TheAnimalRescueSite.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TheAnimalRescueSite.jpg; sourceTree = "<group>"; };
 		8EB17BFF1820205C000DDFCC /* Unicef.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Unicef.jpeg; sourceTree = "<group>"; };
-		8EB17C1118217A85000DDFCC /* CharityAndProductDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharityAndProductDisplayCell.h; path = ../CharityAndProductDisplayCell.h; sourceTree = "<group>"; };
-		8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharityAndProductDisplayCell.m; path = ../CharityAndProductDisplayCell.m; sourceTree = "<group>"; };
-		8EB17C141821977C000DDFCC /* ProductDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDisplayCell.h; path = ../ProductDisplayCell.h; sourceTree = "<group>"; };
-		8EB17C151821977C000DDFCC /* ProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDisplayCell.m; path = ../ProductDisplayCell.m; sourceTree = "<group>"; };
+		8EB17C1118217A85000DDFCC /* CharityAndProductDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharityAndProductDisplayCell.h; path = Guilt/CharityAndProductDisplayCell.h; sourceTree = SOURCE_ROOT; };
+		8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharityAndProductDisplayCell.m; path = Guilt/CharityAndProductDisplayCell.m; sourceTree = SOURCE_ROOT; };
+		8EB17C141821977C000DDFCC /* ProductDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDisplayCell.h; path = Guilt/ProductDisplayCell.h; sourceTree = SOURCE_ROOT; };
+		8EB17C151821977C000DDFCC /* ProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDisplayCell.m; path = Guilt/ProductDisplayCell.m; sourceTree = SOURCE_ROOT; };
 		8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScannerDidNotWorkDelegate.h; sourceTree = "<group>"; };
 		8EB17C1818246ECF000DDFCC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,14 +184,16 @@
 			children = (
 				8EB17C1A1824727D000DDFCC /* Views */,
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
+				7712ECA8182882740038F8D9 /* KarmaSignupViewController.h */,
+				7712ECA9182882740038F8D9 /* KarmaSignupViewController.m */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				771BCD7E182023DD000264A8 /* ScannerViewController.h */,
 				771BCD7F182023DD000264A8 /* ScannerViewController.m */,
 				8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */,
+				7712EC9C18285E3D0038F8D9 /* MyLoginViewController.h */,
+				7712EC9D18285E3D0038F8D9 /* MyLoginViewController.m */,
 				771BCD931822D48E000264A8 /* LoginViewController.h */,
 				771BCD941822D48E000264A8 /* LoginViewController.m */,
-				7712EC9618284E770038F8D9 /* MyLoginViewController.h */,
-				7712EC9718284E770038F8D9 /* MyLoginViewController.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
 				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
 				8EB17BF818201F00000DDFCC /* ImagesViewController.m */,
@@ -253,8 +255,6 @@
 				8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */,
 				8EB17C141821977C000DDFCC /* ProductDisplayCell.h */,
 				8EB17C151821977C000DDFCC /* ProductDisplayCell.m */,
-				7712EC93182805C40038F8D9 /* MySignUpViewController.h */,
-				7712EC94182805C40038F8D9 /* MySignUpViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -365,11 +365,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7712EC9818284E770038F8D9 /* MyLoginViewController.m in Sources */,
+				7712EC9E18285E3D0038F8D9 /* MyLoginViewController.m in Sources */,
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
 				8EB17C161821977C000DDFCC /* ProductDisplayCell.m in Sources */,
-				7712EC95182805C40038F8D9 /* MySignUpViewController.m in Sources */,
+				7712ECAA182882740038F8D9 /* KarmaSignupViewController.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
 				771BCD951822D48E000264A8 /* LoginViewController.m in Sources */,
