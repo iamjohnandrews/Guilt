@@ -122,13 +122,8 @@
     
     charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
     
-    // Set to decimal style and output to console
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];  
+    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
     
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    
-    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@", [formatter stringFromNumber:[resultOfCharitableConversionsArray objectAtIndex:indexPath.row]], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
-
     [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
     
     charityCell.accessoryType = UITableViewCellAccessoryDetailButton;

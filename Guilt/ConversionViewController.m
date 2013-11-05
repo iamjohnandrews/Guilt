@@ -64,6 +64,10 @@
 }
 
 - (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {
+    // Set to decimal style and output to console
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];  
+    
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     
     float convertToFloat = [dollarAmount floatValue];
     
@@ -73,31 +77,32 @@
     if (convertToFloat >= 1) {
         float numberOfAnimalMeals = (convertToFloat / 1) * 20;
         NSLog(@"Number of animal meals = %.2f", numberOfAnimalMeals);
-        NSString* floatToAString1 = [NSString stringWithFormat:@"%.2f", numberOfAnimalMeals];
+        NSString* floatToAString1 = [formatter stringFromNumber:[NSNumber numberWithFloat:numberOfAnimalMeals]];
+        //NSString* floatToAString1 = [NSString stringWithFormat:@"%.2f", numberOfAnimalMeals];
         [convertedCharitableGoodsArray addObject:floatToAString1];
     }
     if (convertToFloat >= 10) {
         float numberOfMonthsHelpingChildren = convertToFloat / 10;
         NSLog(@"number of months = %.2f", numberOfMonthsHelpingChildren);
-        NSString* floatToAString10 = [NSString stringWithFormat:@"%.2f",numberOfMonthsHelpingChildren];
+        NSString* floatToAString10 = [formatter stringFromNumber:[NSNumber numberWithFloat:numberOfMonthsHelpingChildren]];
         [convertedCharitableGoodsArray addObject:floatToAString10];
     }
     if (convertToFloat >= 19) {
         float numberOfMonthsToFeedChildren = convertToFloat / 19;
         NSLog(@"Number of Months = %.2f", numberOfMonthsToFeedChildren);
-        NSString* floatToAString19 = [NSString stringWithFormat:@"%.2f",numberOfMonthsToFeedChildren];
+        NSString* floatToAString19 = [formatter stringFromNumber:[NSNumber numberWithFloat:numberOfMonthsToFeedChildren]];
         [convertedCharitableGoodsArray addObject:floatToAString19];
     }
     if (convertToFloat >= 50) {
         float numberOfCarePackages = convertToFloat / 50;
         NSLog(@"Number of care packages is %.2f", numberOfCarePackages);
-        NSString* floatToAString50 = [NSString stringWithFormat:@"%.2f",numberOfCarePackages];
+        NSString* floatToAString50 = [formatter stringFromNumber:[NSNumber numberWithFloat:numberOfCarePackages]];
         [convertedCharitableGoodsArray addObject:floatToAString50];
     }
     if (convertToFloat >= 500) {
         float numberOfSpringCatchments = convertToFloat / 500;
         NSLog(@"Number of Natiral Spring Cathcments %.2f", numberOfSpringCatchments);
-        NSString* floatToAString500 = [NSString stringWithFormat:@"%.2f",numberOfSpringCatchments];
+        NSString* floatToAString500 = [formatter stringFromNumber:[NSNumber numberWithFloat:numberOfSpringCatchments]];
         [convertedCharitableGoodsArray addObject:floatToAString500];
     }
     NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
