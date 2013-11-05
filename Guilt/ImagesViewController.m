@@ -125,8 +125,10 @@
     charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
     
     [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
+    UIImageView *donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
+    charityCell.accessoryView = donationButton;
     
-    charityCell.accessoryType = UITableViewCellAccessoryDetailButton;
+    //charityCell.accessoryType = UITableViewCellAccessoryDetailButton;
     
     return charityCell;
 }

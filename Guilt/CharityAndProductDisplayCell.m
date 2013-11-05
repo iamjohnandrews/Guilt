@@ -29,4 +29,9 @@
     charityConversionDetailsLabel.shadowOffset = CGSizeMake(1, 1);
 }
 
+- (void)formatCharitiesDisplay
+{
+    
+}
+
 @end

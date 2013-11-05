@@ -56,6 +56,7 @@
 		8E959710182960E900AE29DB /* waterBuffalo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596F8182960E900AE29DB /* waterBuffalo.png */; };
 		8E959711182960E900AE29DB /* waterPump.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596F9182960E900AE29DB /* waterPump.png */; };
 		8E959712182960E900AE29DB /* waterPump2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596FA182960E900AE29DB /* waterPump2.png */; };
+		8E959714182973A400AE29DB /* donate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E959713182973A400AE29DB /* donate.png */; };
 		8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE7B72182006A7001BDC08 /* ConversionViewController.m */; };
 		8EB17BF618201238000DDFCC /* Vintage_fair.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */; };
 		8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17BF818201F00000DDFCC /* ImagesViewController.m */; };
@@ -137,6 +138,7 @@
 		8E9596F8182960E900AE29DB /* waterBuffalo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterBuffalo.png; sourceTree = "<group>"; };
 		8E9596F9182960E900AE29DB /* waterPump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterPump.png; sourceTree = "<group>"; };
 		8E9596FA182960E900AE29DB /* waterPump2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterPump2.png; sourceTree = "<group>"; };
+		8E959713182973A400AE29DB /* donate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donate.png; sourceTree = "<group>"; };
 		8EAE7B71182006A7001BDC08 /* ConversionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversionViewController.h; sourceTree = "<group>"; };
 		8EAE7B72182006A7001BDC08 /* ConversionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversionViewController.m; sourceTree = "<group>"; };
 		8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vintage_fair.ttf; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 		8E00AACD18182E9700BB32E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8E959713182973A400AE29DB /* donate.png */,
 				8E9596E2182960E900AE29DB /* CharityImages */,
 				8EB17BFA1820205C000DDFCC /* testImages */,
 				8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */,
@@ -442,6 +445,7 @@
 				8E959708182960E900AE29DB /* Llama.png in Resources */,
 				8E00AAD118182E9700BB32E4 /* InfoPlist.strings in Resources */,
 				8E95970A182960E900AE29DB /* Sheep.png in Resources */,
+				8E959714182973A400AE29DB /* donate.png in Resources */,
 				8E959703182960E900AE29DB /* heifer.png in Resources */,
 				8E95970C182960E900AE29DB /* Soldiers.png in Resources */,
 				8EB17C021820205C000DDFCC /* soldiers.jpg in Resources */,
