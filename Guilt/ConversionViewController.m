@@ -34,9 +34,11 @@
     
     conversionButtonOutlet.layer.cornerRadius = 8;
     conversionButtonOutlet.layer.borderWidth = 2;
-    conversionButtonOutlet.layer.borderColor = [UIColor blueColor].CGColor;
+    //conversionButtonOutlet.layer.borderColor = [UIColor blueColor].CGColor;
+    conversionButtonOutlet.layer.shadowColor = [UIColor darkGrayColor].CGColor;
+    conversionButtonOutlet.layer.shadowOffset = CGSizeMake(3, 5);
     conversionButtonOutlet.clipsToBounds = YES;
-    conversionButtonOutlet.layer.backgroundColor = [UIColor cyanColor].CGColor;
+    //conversionButtonOutlet.layer.backgroundColor = [UIColor cyanColor].CGColor;
 }
 
 -(void)viewDidAppear:(BOOL)animated

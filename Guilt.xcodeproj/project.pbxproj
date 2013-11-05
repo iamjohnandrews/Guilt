@@ -32,6 +32,30 @@
 		8E00AAE818182E9700BB32E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AACA18182E9700BB32E4 /* UIKit.framework */; };
 		8E00AAF018182E9700BB32E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E00AAEE18182E9700BB32E4 /* InfoPlist.strings */; };
 		8E00AAF218182E9700BB32E4 /* GuiltTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00AAF118182E9700BB32E4 /* GuiltTests.m */; };
+		8E9596C918285C1600AE29DB /* army2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596B118285C1600AE29DB /* army2.png */; };
+		8E9596CA18285C1600AE29DB /* camel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596B218285C1600AE29DB /* camel.png */; };
+		8E9596CB18285C1600AE29DB /* ducklingsFlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596B318285C1600AE29DB /* ducklingsFlock.png */; };
+		8E9596CC18285C1600AE29DB /* feedTheHungry.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596B418285C1600AE29DB /* feedTheHungry.png */; };
+		8E9596CD18285C1600AE29DB /* flockOfChicks.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596B518285C1600AE29DB /* flockOfChicks.png */; };
+		8E9596CE18285C1600AE29DB /* foodDonation.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596B618285C1600AE29DB /* foodDonation.png */; };
+		8E9596CF18285C1600AE29DB /* Goat.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596B718285C1600AE29DB /* Goat.png */; };
+		8E9596D018285C1600AE29DB /* HabitatForHumanity.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596B818285C1600AE29DB /* HabitatForHumanity.png */; };
+		8E9596D118285C1600AE29DB /* heifer.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596B918285C1600AE29DB /* heifer.png */; };
+		8E9596D218285C1600AE29DB /* homeless dogs.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596BA18285C1600AE29DB /* homeless dogs.png */; };
+		8E9596D318285C1600AE29DB /* homelessFamily.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596BB18285C1600AE29DB /* homelessFamily.png */; };
+		8E9596D418285C1600AE29DB /* honeybee.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596BC18285C1600AE29DB /* honeybee.png */; };
+		8E9596D518285C1600AE29DB /* Hunger.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596BD18285C1600AE29DB /* Hunger.png */; };
+		8E9596D618285C1600AE29DB /* Llama.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596BE18285C1600AE29DB /* Llama.png */; };
+		8E9596D718285C1600AE29DB /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596BF18285C1600AE29DB /* pig.png */; };
+		8E9596D818285C1600AE29DB /* Sheep.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596C018285C1600AE29DB /* Sheep.png */; };
+		8E9596D918285C1600AE29DB /* skidRow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596C118285C1600AE29DB /* skidRow.png */; };
+		8E9596DA18285C1600AE29DB /* Soldiers.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596C218285C1600AE29DB /* Soldiers.png */; };
+		8E9596DB18285C1600AE29DB /* soldierXmas.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596C318285C1600AE29DB /* soldierXmas.png */; };
+		8E9596DC18285C1600AE29DB /* strayDog.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596C418285C1600AE29DB /* strayDog.png */; };
+		8E9596DD18285C1600AE29DB /* trioOfRabbits.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596C518285C1600AE29DB /* trioOfRabbits.png */; };
+		8E9596DE18285C1600AE29DB /* waterBuffalo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596C618285C1600AE29DB /* waterBuffalo.png */; };
+		8E9596DF18285C1600AE29DB /* waterPump.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596C718285C1600AE29DB /* waterPump.png */; };
+		8E9596E018285C1600AE29DB /* waterPump2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596C818285C1600AE29DB /* waterPump2.png */; };
 		8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE7B72182006A7001BDC08 /* ConversionViewController.m */; };
 		8EB17BF618201238000DDFCC /* Vintage_fair.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */; };
 		8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17BF818201F00000DDFCC /* ImagesViewController.m */; };
@@ -89,6 +113,30 @@
 		8E00AAED18182E9700BB32E4 /* GuiltTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GuiltTests-Info.plist"; sourceTree = "<group>"; };
 		8E00AAEF18182E9700BB32E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8E00AAF118182E9700BB32E4 /* GuiltTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuiltTests.m; sourceTree = "<group>"; };
+		8E9596B118285C1600AE29DB /* army2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = army2.png; sourceTree = "<group>"; };
+		8E9596B218285C1600AE29DB /* camel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camel.png; sourceTree = "<group>"; };
+		8E9596B318285C1600AE29DB /* ducklingsFlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ducklingsFlock.png; sourceTree = "<group>"; };
+		8E9596B418285C1600AE29DB /* feedTheHungry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedTheHungry.png; sourceTree = "<group>"; };
+		8E9596B518285C1600AE29DB /* flockOfChicks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flockOfChicks.png; sourceTree = "<group>"; };
+		8E9596B618285C1600AE29DB /* foodDonation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foodDonation.png; sourceTree = "<group>"; };
+		8E9596B718285C1600AE29DB /* Goat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Goat.png; sourceTree = "<group>"; };
+		8E9596B818285C1600AE29DB /* HabitatForHumanity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HabitatForHumanity.png; sourceTree = "<group>"; };
+		8E9596B918285C1600AE29DB /* heifer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heifer.png; sourceTree = "<group>"; };
+		8E9596BA18285C1600AE29DB /* homeless dogs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeless dogs.png"; sourceTree = "<group>"; };
+		8E9596BB18285C1600AE29DB /* homelessFamily.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homelessFamily.png; sourceTree = "<group>"; };
+		8E9596BC18285C1600AE29DB /* honeybee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = honeybee.png; sourceTree = "<group>"; };
+		8E9596BD18285C1600AE29DB /* Hunger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hunger.png; sourceTree = "<group>"; };
+		8E9596BE18285C1600AE29DB /* Llama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Llama.png; sourceTree = "<group>"; };
+		8E9596BF18285C1600AE29DB /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
+		8E9596C018285C1600AE29DB /* Sheep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sheep.png; sourceTree = "<group>"; };
+		8E9596C118285C1600AE29DB /* skidRow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skidRow.png; sourceTree = "<group>"; };
+		8E9596C218285C1600AE29DB /* Soldiers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Soldiers.png; sourceTree = "<group>"; };
+		8E9596C318285C1600AE29DB /* soldierXmas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soldierXmas.png; sourceTree = "<group>"; };
+		8E9596C418285C1600AE29DB /* strayDog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = strayDog.png; sourceTree = "<group>"; };
+		8E9596C518285C1600AE29DB /* trioOfRabbits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trioOfRabbits.png; sourceTree = "<group>"; };
+		8E9596C618285C1600AE29DB /* waterBuffalo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterBuffalo.png; sourceTree = "<group>"; };
+		8E9596C718285C1600AE29DB /* waterPump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterPump.png; sourceTree = "<group>"; };
+		8E9596C818285C1600AE29DB /* waterPump2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterPump2.png; sourceTree = "<group>"; };
 		8EAE7B71182006A7001BDC08 /* ConversionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversionViewController.h; sourceTree = "<group>"; };
 		8EAE7B72182006A7001BDC08 /* ConversionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversionViewController.m; sourceTree = "<group>"; };
 		8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vintage_fair.ttf; sourceTree = "<group>"; };
@@ -206,6 +254,7 @@
 		8E00AACD18182E9700BB32E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8E9596B018285C1600AE29DB /* Karma Pictures Final */,
 				8EB17BFA1820205C000DDFCC /* testImages */,
 				8EAE7B74182006E6001BDC08 /* Vintage_fair.ttf */,
 				8E00AACE18182E9700BB32E4 /* Guilt-Info.plist */,
@@ -232,6 +281,37 @@
 				8E00AAEE18182E9700BB32E4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8E9596B018285C1600AE29DB /* Karma Pictures Final */ = {
+			isa = PBXGroup;
+			children = (
+				8E9596B118285C1600AE29DB /* army2.png */,
+				8E9596B218285C1600AE29DB /* camel.png */,
+				8E9596B318285C1600AE29DB /* ducklingsFlock.png */,
+				8E9596B418285C1600AE29DB /* feedTheHungry.png */,
+				8E9596B518285C1600AE29DB /* flockOfChicks.png */,
+				8E9596B618285C1600AE29DB /* foodDonation.png */,
+				8E9596B718285C1600AE29DB /* Goat.png */,
+				8E9596B818285C1600AE29DB /* HabitatForHumanity.png */,
+				8E9596B918285C1600AE29DB /* heifer.png */,
+				8E9596BA18285C1600AE29DB /* homeless dogs.png */,
+				8E9596BB18285C1600AE29DB /* homelessFamily.png */,
+				8E9596BC18285C1600AE29DB /* honeybee.png */,
+				8E9596BD18285C1600AE29DB /* Hunger.png */,
+				8E9596BE18285C1600AE29DB /* Llama.png */,
+				8E9596BF18285C1600AE29DB /* pig.png */,
+				8E9596C018285C1600AE29DB /* Sheep.png */,
+				8E9596C118285C1600AE29DB /* skidRow.png */,
+				8E9596C218285C1600AE29DB /* Soldiers.png */,
+				8E9596C318285C1600AE29DB /* soldierXmas.png */,
+				8E9596C418285C1600AE29DB /* strayDog.png */,
+				8E9596C518285C1600AE29DB /* trioOfRabbits.png */,
+				8E9596C618285C1600AE29DB /* waterBuffalo.png */,
+				8E9596C718285C1600AE29DB /* waterPump.png */,
+				8E9596C818285C1600AE29DB /* waterPump2.png */,
+			);
+			path = "Karma Pictures Final";
 			sourceTree = "<group>";
 		};
 		8EB17BFA1820205C000DDFCC /* testImages */ = {
@@ -338,15 +418,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E9596CB18285C1600AE29DB /* ducklingsFlock.png in Resources */,
 				8E00AADF18182E9700BB32E4 /* Images.xcassets in Resources */,
+				8E9596DD18285C1600AE29DB /* trioOfRabbits.png in Resources */,
+				8E9596C918285C1600AE29DB /* army2.png in Resources */,
+				8E9596D318285C1600AE29DB /* homelessFamily.png in Resources */,
+				8E9596DF18285C1600AE29DB /* waterPump.png in Resources */,
+				8E9596D518285C1600AE29DB /* Hunger.png in Resources */,
 				8EB17C011820205C000DDFCC /* feedTheChildren2.jpg in Resources */,
+				8E9596CA18285C1600AE29DB /* camel.png in Resources */,
+				8E9596CD18285C1600AE29DB /* flockOfChicks.png in Resources */,
+				8E9596CF18285C1600AE29DB /* Goat.png in Resources */,
+				8E9596D218285C1600AE29DB /* homeless dogs.png in Resources */,
+				8E9596DE18285C1600AE29DB /* waterBuffalo.png in Resources */,
+				8E9596D618285C1600AE29DB /* Llama.png in Resources */,
 				8E00AAD118182E9700BB32E4 /* InfoPlist.strings in Resources */,
+				8E9596D818285C1600AE29DB /* Sheep.png in Resources */,
+				8E9596D118285C1600AE29DB /* heifer.png in Resources */,
+				8E9596DA18285C1600AE29DB /* Soldiers.png in Resources */,
 				8EB17C021820205C000DDFCC /* soldiers.jpg in Resources */,
+				8E9596D918285C1600AE29DB /* skidRow.png in Resources */,
+				8E9596DC18285C1600AE29DB /* strayDog.png in Resources */,
+				8E9596D418285C1600AE29DB /* honeybee.png in Resources */,
 				8EB17C001820205C000DDFCC /* africanWellFund.jpg in Resources */,
 				8EB17C031820205C000DDFCC /* TheAnimalRescueSite.jpg in Resources */,
+				8E9596E018285C1600AE29DB /* waterPump2.png in Resources */,
 				8EB17C041820205C000DDFCC /* Unicef.jpeg in Resources */,
+				8E9596DB18285C1600AE29DB /* soldierXmas.png in Resources */,
+				8E9596D718285C1600AE29DB /* pig.png in Resources */,
+				8E9596D018285C1600AE29DB /* HabitatForHumanity.png in Resources */,
 				8E00AADA18182E9700BB32E4 /* Main.storyboard in Resources */,
+				8E9596CE18285C1600AE29DB /* foodDonation.png in Resources */,
 				8EB17BF618201238000DDFCC /* Vintage_fair.ttf in Resources */,
+				8E9596CC18285C1600AE29DB /* feedTheHungry.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
