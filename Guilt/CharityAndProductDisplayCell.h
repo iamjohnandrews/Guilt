@@ -14,4 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *charityConversionDetailsLabel;
 
+@property (nonatomic) UIImageView *donationButton;
+
 @end
