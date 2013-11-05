@@ -39,6 +39,13 @@
 	// Do any additional setup after loading the view.
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+
+    [password resignFirstResponder];
+
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -61,7 +68,6 @@
         }
     }];
     
-    [self.password resignFirstResponder];
 
 }
 @end
