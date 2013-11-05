@@ -9,6 +9,7 @@
 #import "CharityAndProductDisplayCell.h"
 
 @implementation CharityAndProductDisplayCell
+@synthesize charityConversionDetailsLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -23,7 +24,9 @@
 {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+    // Configure the view for the selected stat
+    charityConversionDetailsLabel.shadowColor = [UIColor blackColor];
+    charityConversionDetailsLabel.shadowOffset = CGSizeMake(1, 1);
 }
 
 @end
