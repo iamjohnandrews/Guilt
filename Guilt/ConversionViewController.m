@@ -101,8 +101,9 @@
         [convertedCharitableGoodsArray addObject:floatToAString500];
     }
     NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
-    [userEnterDollarAmountTextField resignFirstResponder];
     
+    [userEnterDollarAmountTextField resignFirstResponder];
+     
     convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
 
     [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
@@ -145,7 +146,6 @@
         productName = svc.productName;
         
         svc.delegate = self;
-        //@JR how did you envision this segue working? It looks like you want it to "work" both ways?
     }
 }
 

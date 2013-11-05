@@ -56,10 +56,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7712EC9C18285E3D0038F8D9 /* MyLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoginViewController.h; sourceTree = "<group>"; };
-		7712EC9D18285E3D0038F8D9 /* MyLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoginViewController.m; sourceTree = "<group>"; };
-		7712ECA8182882740038F8D9 /* KarmaSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KarmaSignupViewController.h; path = ../KarmaSignupViewController.h; sourceTree = "<group>"; };
-		7712ECA9182882740038F8D9 /* KarmaSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KarmaSignupViewController.m; path = ../KarmaSignupViewController.m; sourceTree = "<group>"; };
+		7712EC9C18285E3D0038F8D9 /* MyLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLoginViewController.h; path = ../MyLoginViewController.h; sourceTree = "<group>"; };
+		7712EC9D18285E3D0038F8D9 /* MyLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLoginViewController.m; path = ../MyLoginViewController.m; sourceTree = "<group>"; };
+		7712ECA8182882740038F8D9 /* KarmaSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KarmaSignupViewController.h; path = ../../KarmaSignupViewController.h; sourceTree = "<group>"; };
+		7712ECA9182882740038F8D9 /* KarmaSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KarmaSignupViewController.m; path = ../../KarmaSignupViewController.m; sourceTree = "<group>"; };
 		771BCD7E182023DD000264A8 /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
 		771BCD7F182023DD000264A8 /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
 		771BCD8318219AAF000264A8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -70,8 +70,8 @@
 		771BCD8D18219B0C000264A8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		771BCD8F18219B15000264A8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		771BCD9118219B24000264A8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		771BCD931822D48E000264A8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		771BCD941822D48E000264A8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		771BCD931822D48E000264A8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
+		771BCD941822D48E000264A8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
 		8E00AAC318182E9700BB32E4 /* Guilt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guilt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E00AAC618182E9700BB32E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -182,18 +182,13 @@
 		8E00AACC18182E9700BB32E4 /* Guilt */ = {
 			isa = PBXGroup;
 			children = (
+				8E9596E11829554E00AE29DB /* Login:Signup */,
 				8EB17C1A1824727D000DDFCC /* Views */,
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
-				7712ECA8182882740038F8D9 /* KarmaSignupViewController.h */,
-				7712ECA9182882740038F8D9 /* KarmaSignupViewController.m */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				771BCD7E182023DD000264A8 /* ScannerViewController.h */,
 				771BCD7F182023DD000264A8 /* ScannerViewController.m */,
 				8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */,
-				7712EC9C18285E3D0038F8D9 /* MyLoginViewController.h */,
-				7712EC9D18285E3D0038F8D9 /* MyLoginViewController.m */,
-				771BCD931822D48E000264A8 /* LoginViewController.h */,
-				771BCD941822D48E000264A8 /* LoginViewController.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
 				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
 				8EB17BF818201F00000DDFCC /* ImagesViewController.m */,
@@ -234,6 +229,19 @@
 				8E00AAEE18182E9700BB32E4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8E9596E11829554E00AE29DB /* Login:Signup */ = {
+			isa = PBXGroup;
+			children = (
+				7712ECA8182882740038F8D9 /* KarmaSignupViewController.h */,
+				7712ECA9182882740038F8D9 /* KarmaSignupViewController.m */,
+				7712EC9C18285E3D0038F8D9 /* MyLoginViewController.h */,
+				7712EC9D18285E3D0038F8D9 /* MyLoginViewController.m */,
+				771BCD931822D48E000264A8 /* LoginViewController.h */,
+				771BCD941822D48E000264A8 /* LoginViewController.m */,
+			);
+			path = "Login:Signup";
 			sourceTree = "<group>";
 		};
 		8EB17BFA1820205C000DDFCC /* testImages */ = {
