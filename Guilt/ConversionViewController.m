@@ -67,6 +67,24 @@
 
 - (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {
     
+    // Get access to a file manager as our means
+    // to perform file operations
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    // Using the application home directory, get dictionary of attributes
+    NSDictionary *attributesDict = [fileManager attributesOfFileSystemForPath:NSHomeDirectory() error:NULL];
+
+    // Create formatter
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];  
+    
+    //--------------------------------------------
+    // Set to decimal style and output to console
+    //--------------------------------------------
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSString *formattedOutput = [formatter stringFromNumber:[attributesDict objectForKey:NSFileSystemFreeSize]];
+    NSLog(@"System free space: %@", formattedOutput);
+
+    
     float convertToFloat = [dollarAmount floatValue];
     
     convertedCharitableGoodsArray = [NSMutableArray new];
