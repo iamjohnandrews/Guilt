@@ -30,6 +30,21 @@
     charityConversionDetailsLabel.shadowOffset = CGSizeMake(1, 1);
 }
 
-
+- (void)charityDisplay:(NSMutableArray*)arrayOfCharities andIndexPath:(NSIndexPath*)indexPath
+{
+//    self.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[arrayOfCharities objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
+//    NSLog(@"the First index.row = %li", (long)indexPath.row);
+//    
+//    [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
+//    
+//    self.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
+//    self.accessoryView = charityCell.donationButton;
+//    
+//    [self.donationButton setUserInteractionEnabled:YES];
+//    
+//    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDonationButtonTapped:)];
+//    [charityCell.donationButton addGestureRecognizer:recognizer];
+//    [self.view addSubview:charityCell.donationButton];
+}
 
 @end

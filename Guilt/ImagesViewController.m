@@ -10,6 +10,7 @@
 #import "ConversionViewController.h"
 #import "CharityAndProductDisplayCell.h"
 #import "ScannerViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ImagesViewController (){
     NSArray* charityImagesArray;
@@ -20,7 +21,7 @@
 @end
 
 @implementation ImagesViewController
-@synthesize resultOfCharitableConversionsArray;
+@synthesize resultOfCharitableConversionsArray, makeImagesLean;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -49,6 +50,16 @@
                             @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate", 
                             @"http://soldiersangels.org/donate.html", 
                             @"http://www.africanwellfund.org/donate.html"];
+    
+    CGFloat rotationAngleDegrees = -15;
+    CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
+    CGPoint offsetPositioning = CGPointMake(-20, -20);
+    
+    CATransform3D transform = CATransform3DIdentity;
+    transform = CATransform3DRotate(transform, rotationAngleRadians, 0.0, 0.0, 1.0);
+    transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
+    makeImagesLean = transform;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -57,6 +68,11 @@
 }
 
 #pragma mark - Table view data source
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -107,26 +123,21 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //Code to dosplay product
-    static NSString *productCellIdentifier = @"ProductDisplay";
-    ProductDisplayCell* productCell = [tableView dequeueReusableCellWithIdentifier:productCellIdentifier];
-    
-    productCell.productNameDisplayLabel.text =_productName;
-    productCell.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"$%@",_productPrice];
-    productCell.urlDisplayLabel.text = _productProductURL;
-    
-    NSLog(@"the ImagesVC product name is %@", _productName);
-    NSLog(@"the ImagesVC product's online price is %@", _productPrice);
-    NSLog(@"the ImagesVC URL of product is %@", _productProductURL);
-    
+{    
     //Code to display Charities
     
-    //static NSString *charityCellIdentifier = @"CharityDisplay";
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
     
-    charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
+    //Lean with it, Rock with it
+    charityCell.layer.transform = self.makeImagesLean;
+    charityCell.layer.opacity = 0.2;
+    [UIView animateWithDuration:0.4 animations:^{
+        charityCell.layer.transform = CATransform3DIdentity;
+        charityCell.layer.opacity = 1;
+    }];
     
+    charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
+        
     charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
     NSLog(@"the First index.row = %li", (long)indexPath.row);
     

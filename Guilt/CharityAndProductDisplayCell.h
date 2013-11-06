@@ -16,4 +16,8 @@
 
 @property (nonatomic) UIImageView *donationButton;
 
+@property (weak, nonatomic) IBOutlet UIView *mainView;
+
+- (void)charityDisplay:(NSMutableArray*)arrayOfCharities andIndexPath:(NSIndexPath*)indexPath;
+
 @end
