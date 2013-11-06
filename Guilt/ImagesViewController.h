@@ -23,4 +23,6 @@
 
 @property (assign, nonatomic) CATransform3D makeImagesLean;
 
+-(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity;
+
 @end
