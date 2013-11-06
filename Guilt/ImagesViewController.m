@@ -17,6 +17,7 @@
     NSArray* charityImagesArray;
     NSArray* charityDiscriptionsArray;
     NSArray* charityDonationPage;
+    NSArray* charityNames;
     NSNumber* currPoints;
 }
 
@@ -52,6 +53,7 @@
                             @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate", 
                             @"http://soldiersangels.org/donate.html", 
                             @"http://www.africanwellfund.org/donate.html"];
+    charityNames = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Soilder's Angels", @"African Well Fund"];
     
     CGFloat rotationAngleDegrees = -15;
     CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
@@ -110,6 +112,11 @@
     [headerView addSubview:urlLinkButton];
     [headerView bringSubviewToFront:urlLinkButton];
     
+    [urlLinkButton setUserInteractionEnabled:YES];
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBuyNowButtonTapped)];
+    [urlLinkButton addGestureRecognizer:recognizer];
+    
     return headerView;
     
 }
@@ -162,15 +169,26 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)gestureRecognizer.view.superview.superview];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[charityDonationPage objectAtIndex:indexPath.row]]];
     NSLog(@"the Second index.row = %li", (long)indexPath.row);
+    
+    [self didUpdateKarmaPoints:YES charity:[charityNames objectAtIndex:indexPath.row]];
+    
 }
 
+- (void)onBuyNowButtonTapped
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_productProductURL]];
+    NSLog(@"sending user to purchase product at %@", _productProductURL);
+    
+    [self didUpdateKarmaPoints:YES charity:@"made a purchase"];
+    
+}
 
--(void)didUpdateKarmaPoints: (BOOL)flag charity:(PFObject*)recipientCharity
+-(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity
 {
     
     PFObject *donation = [PFObject objectWithClassName:@"Donation"];
     donation[@"donor"] = [PFUser currentUser];
-    donation[@"charityRecipient"] = recipientCharity;
+    donation[@"recipientCharity"] = recipientCharity;
     
     donation[@"donationAmount"]= _productPrice;
     
@@ -192,7 +210,9 @@
         user[@"points"] = [NSNumber numberWithInt:tempPoints];
         
         [user saveInBackground];
-    }else if(flag==NO){
+        
+    }else if(flag==NO)
+    {
         int tempPoints =  (-10 + [currPoints integerValue]);
         
         user[@"points"] = [NSNumber numberWithInt:tempPoints];
