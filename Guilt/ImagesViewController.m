@@ -37,6 +37,10 @@
 
 - (void)viewDidLoad
 {
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
+    
     [super viewDidLoad];
     NSLog(@"content of the resultOfCharitableConversionsArray %@", resultOfCharitableConversionsArray);
     
