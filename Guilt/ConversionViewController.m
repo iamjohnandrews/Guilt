@@ -29,6 +29,9 @@
 
 - (void)viewDidLoad
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+
     UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
     [self.view addSubview:backgroundImage];
     [self.view sendSubviewToBack:backgroundImage];
@@ -54,7 +57,7 @@
     conversionButtonOutlet.layer.borderWidth = 1;
     conversionButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
     conversionButtonOutlet.clipsToBounds = YES;
-    conversionButtonOutlet.titleLabel.text = @"Social Value";
+    conversionButtonOutlet.titleLabel.text = @"Get Social Value";
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -191,93 +194,15 @@
     
 }
 
-/*
--(void)keyboardWillShow {
-    // Animate the current view out of the way
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
-}
-
--(void)keyboardWillHide {
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
-}
-
--(void)textFieldDidBeginEditing:(UITextField *)sender
+- (void)keyboardDidShow:(NSNotification *)notification
 {
-    if ([sender isEqual:mailTf])
-    {
-        //move the main view, so that the keyboard does not hide it.
-        if  (self.view.frame.origin.y >= 0)
-        {
-            [self setViewMovedUp:YES];
-        }
-    }
+    //Assign new frame to your view 
+    [self.view setFrame:CGRectMake(0, -200, 320, 460)]; //here taken -20 for example i.e. your view will be scrolled to -20. change its value according to your requirement.
 }
 
-//method to move the view up/down whenever the keyboard is shown/dismissed
--(void)setViewMovedUp:(BOOL)movedUp
+-(void)keyboardDidHide:(NSNotification *)notification
 {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
-    
-    CGRect rect = self.view.frame;
-    if (movedUp)
-    {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard 
-        // 2. increase the size of the view so that the area behind the keyboard is covered up.
-        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
-        rect.size.height += kOFFSET_FOR_KEYBOARD;
-    }
-    else
-    {
-        // revert back to the normal state.
-        rect.origin.y += kOFFSET_FOR_KEYBOARD;
-        rect.size.height -= kOFFSET_FOR_KEYBOARD;
-    }
-    self.view.frame = rect;
-    
-    [UIView commitAnimations];
+    [self.view setFrame:CGRectMake(0,0,320,460)];
 }
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    // unregister for keyboard notifications while not visible.
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-}
-*/
 
 @end
