@@ -18,8 +18,9 @@
 		771BCD8E18219B0C000264A8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD8D18219B0C000264A8 /* Security.framework */; };
 		771BCD9018219B15000264A8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD8F18219B15000264A8 /* StoreKit.framework */; };
 		771BCD9218219B24000264A8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD9118219B24000264A8 /* SystemConfiguration.framework */; };
-		771BCD951822D48E000264A8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771BCD941822D48E000264A8 /* LoginViewController.m */; };
+		771BCD951822D48E000264A8 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		772B828E1829683300128190 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B828D1829683300128190 /* UserProfileViewController.m */; };
+		772B82911829864E00128190 /* DonationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B82901829864E00128190 /* DonationsTableViewController.m */; };
 		8E00AAC718182E9700BB32E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC618182E9700BB32E4 /* Foundation.framework */; };
 		8E00AAC918182E9700BB32E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */; };
 		8E00AACB18182E9700BB32E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AACA18182E9700BB32E4 /* UIKit.framework */; };
@@ -98,6 +99,8 @@
 		771BCD9118219B24000264A8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		772B828C1829683300128190 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		772B828D1829683300128190 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		772B828F1829864E00128190 /* DonationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonationsTableViewController.h; sourceTree = "<group>"; };
+		772B82901829864E00128190 /* DonationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonationsTableViewController.m; sourceTree = "<group>"; };
 		8E00AAC318182E9700BB32E4 /* Guilt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guilt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E00AAC618182E9700BB32E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -241,6 +244,8 @@
 				771BCD7F182023DD000264A8 /* ScannerViewController.m */,
 				8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
+				772B828F1829864E00128190 /* DonationsTableViewController.h */,
+				772B82901829864E00128190 /* DonationsTableViewController.m */,
 				772B828C1829683300128190 /* UserProfileViewController.h */,
 				772B828D1829683300128190 /* UserProfileViewController.m */,
 				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
@@ -293,8 +298,6 @@
 				7712ECA9182882740038F8D9 /* KarmaSignupViewController.m */,
 				7712EC9C18285E3D0038F8D9 /* MyLoginViewController.h */,
 				7712EC9D18285E3D0038F8D9 /* MyLoginViewController.m */,
-				771BCD931822D48E000264A8 /* LoginViewController.h */,
-				771BCD941822D48E000264A8 /* LoginViewController.m */,
 			);
 			path = "Login:Signup";
 			sourceTree = "<group>";
@@ -487,12 +490,13 @@
 				7712EC9E18285E3D0038F8D9 /* MyLoginViewController.m in Sources */,
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
+				772B82911829864E00128190 /* DonationsTableViewController.m in Sources */,
 				8EB17C161821977C000DDFCC /* ProductDisplayCell.m in Sources */,
 				7712ECAA182882740038F8D9 /* KarmaSignupViewController.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
 				772B828E1829683300128190 /* UserProfileViewController.m in Sources */,
-				771BCD951822D48E000264A8 /* LoginViewController.m in Sources */,
+				771BCD951822D48E000264A8 /* (null) in Sources */,
 				771BCD80182023DD000264A8 /* ScannerViewController.m in Sources */,
 				8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */,
 			);
