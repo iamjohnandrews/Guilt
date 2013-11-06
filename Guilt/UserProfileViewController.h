@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface UserProfileViewController : UIViewController
+#import <Parse/Parse.h>
+@interface UserProfileViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
 @end
