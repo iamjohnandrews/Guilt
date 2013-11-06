@@ -1,18 +1,18 @@
 //
-//  MySignUpViewController.m
+//  DonationsTableViewController.m
 //  Guilt
 //
-//  Created by Agnt86 on 11/4/13.
+//  Created by Agnt86 on 11/5/13.
 //  Copyright (c) 2013 John Andrews. All rights reserved.
 //
 
-#import "MySignUpViewController.h"
+#import "DonationsTableViewController.h"
 
-@interface MySignUpViewController ()
+@interface DonationsTableViewController ()
 
 @end
 
-@implementation MySignUpViewController
+@implementation DonationsTableViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

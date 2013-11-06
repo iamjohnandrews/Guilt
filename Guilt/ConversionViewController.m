@@ -64,7 +64,9 @@
 }
 
 - (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {
-    
+    NSNumberFormatter* addCommasFormatter = [[NSNumberFormatter alloc] init];
+    [addCommasFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+
     float convertToFloat = [dollarAmount floatValue];
     
     convertedCharitableGoodsArray = [NSMutableArray new];
@@ -73,36 +75,40 @@
     if (convertToFloat >= 1) {
         float numberOfAnimalMeals = (convertToFloat / 1) * 20;
         NSLog(@"Number of animal meals = %.2f", numberOfAnimalMeals);
-        NSString* floatToAString1 = [NSString stringWithFormat:@"%.2f", numberOfAnimalMeals];
+        int roundUp1 = ceilf(numberOfAnimalMeals);
+        NSString* floatToAString1 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp1]];
         [convertedCharitableGoodsArray addObject:floatToAString1];
     }
     if (convertToFloat >= 10) {
         float numberOfMonthsHelpingChildren = convertToFloat / 10;
         NSLog(@"number of months = %.2f", numberOfMonthsHelpingChildren);
-        NSString* floatToAString10 = [NSString stringWithFormat:@"%.2f",numberOfMonthsHelpingChildren];
+        int roundUp10 = ceilf(numberOfMonthsHelpingChildren);
+        NSString* floatToAString10 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp10]];
         [convertedCharitableGoodsArray addObject:floatToAString10];
     }
     if (convertToFloat >= 19) {
         float numberOfMonthsToFeedChildren = convertToFloat / 19;
         NSLog(@"Number of Months = %.2f", numberOfMonthsToFeedChildren);
-        NSString* floatToAString19 = [NSString stringWithFormat:@"%.2f",numberOfMonthsToFeedChildren];
+        int roundUp19 = ceilf(numberOfMonthsToFeedChildren);
+        NSString* floatToAString19 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp19]];
         [convertedCharitableGoodsArray addObject:floatToAString19];
     }
     if (convertToFloat >= 50) {
         float numberOfCarePackages = convertToFloat / 50;
         NSLog(@"Number of care packages is %.2f", numberOfCarePackages);
-        NSString* floatToAString50 = [NSString stringWithFormat:@"%.2f",numberOfCarePackages];
-        [convertedCharitableGoodsArray addObject:floatToAString50];
+        int roundUp50 = ceilf(numberOfCarePackages);
+        NSString* floatToAString50 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp50]];        [convertedCharitableGoodsArray addObject:floatToAString50];
     }
     if (convertToFloat >= 500) {
         float numberOfSpringCatchments = convertToFloat / 500;
         NSLog(@"Number of Natiral Spring Cathcments %.2f", numberOfSpringCatchments);
-        NSString* floatToAString500 = [NSString stringWithFormat:@"%.2f",numberOfSpringCatchments];
-        [convertedCharitableGoodsArray addObject:floatToAString500];
+        int roundUp500 = ceilf(numberOfSpringCatchments);
+        NSString* floatToAString500 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp500]];        [convertedCharitableGoodsArray addObject:floatToAString500];
     }
     NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
-    [userEnterDollarAmountTextField resignFirstResponder];
     
+    [userEnterDollarAmountTextField resignFirstResponder];
+     
     convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
 
     [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
@@ -145,7 +151,6 @@
         productName = svc.productName;
         
         svc.delegate = self;
-        //@JR how did you envision this segue working? It looks like you want it to "work" both ways?
     }
 }
 

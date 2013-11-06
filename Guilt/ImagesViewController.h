@@ -12,11 +12,15 @@
 @interface ImagesViewController : UITableViewController
 
 @property NSMutableArray *resultOfCharitableConversionsArray;
+
 @property (strong,nonatomic) ProductDisplayCell* productCellTemp;
+
 @property (strong,nonatomic) NSString* productName;
+
 @property (strong,nonatomic) NSString* productProductURL;
+
 @property  (weak,nonatomic) NSNumber* productPrice;
 
-
+@property (assign, nonatomic) CATransform3D makeImagesLean;
 
 @end

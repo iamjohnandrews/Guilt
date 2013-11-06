@@ -10,16 +10,18 @@
 #import "ConversionViewController.h"
 #import "CharityAndProductDisplayCell.h"
 #import "ScannerViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ImagesViewController (){
     NSArray* charityImagesArray;
     NSArray* charityDiscriptionsArray;
+    NSArray* charityDonationPage;
 }
 
 @end
 
 @implementation ImagesViewController
-@synthesize resultOfCharitableConversionsArray;
+@synthesize resultOfCharitableConversionsArray, makeImagesLean;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -43,6 +45,21 @@
                                  @"military care package through Soildier's Angels",
                                  @"natural spring catchment serving 250 people through African Well Fund"
                                  ];
+    charityDonationPage = @[@"https://theanimalrescuesite.greatergood.com/store/ars/item/32249/contribute-to-animal-rescue?source=12-32132-3#productInfo",
+                            @"http://www.supportunicef.org/site/c.dvKUI9OWInJ6H/b.7677883/k.2C8F/Donate_now.htm", 
+                            @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate", 
+                            @"http://soldiersangels.org/donate.html", 
+                            @"http://www.africanwellfund.org/donate.html"];
+    
+    CGFloat rotationAngleDegrees = -15;
+    CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
+    CGPoint offsetPositioning = CGPointMake(-20, -20);
+    
+    CATransform3D transform = CATransform3DIdentity;
+    transform = CATransform3DRotate(transform, rotationAngleRadians, 0.0, 0.0, 1.0);
+    transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
+    makeImagesLean = transform;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -51,6 +68,11 @@
 }
 
 #pragma mark - Table view data source
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -86,13 +108,12 @@
     [headerView addSubview:urlLinkButton];
     [headerView bringSubviewToFront:urlLinkButton];
     
-    
     return headerView;
     
 }
 
--(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section 
+{
     if (!_productProductURL) {
         return 0;
     } else {
@@ -102,34 +123,46 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //Code to dosplay product
-    static NSString *productCellIdentifier = @"ProductDisplay";
-    ProductDisplayCell* productCell = [tableView dequeueReusableCellWithIdentifier:productCellIdentifier];
-    
-    productCell.productNameDisplayLabel.text =_productName;
-    productCell.onlinePriceDisplayLabel.text = [NSString stringWithFormat:@"$%@",_productPrice];
-    productCell.urlDisplayLabel.text = _productProductURL;
-    
-    NSLog(@"the ImagesVC product name is %@", _productName);
-    NSLog(@"the ImagesVC product's online price is %@", _productPrice);
-    NSLog(@"the ImagesVC URL of product is %@", _productProductURL);
-    
+{    
     //Code to display Charities
     
-    //static NSString *charityCellIdentifier = @"CharityDisplay";
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
     
-    charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
+    //Lean with it, Rock with it
+    charityCell.layer.transform = self.makeImagesLean;
+    charityCell.layer.opacity = 0.2;
+    [UIView animateWithDuration:0.4 animations:^{
+        charityCell.layer.transform = CATransform3DIdentity;
+        charityCell.layer.opacity = 1;
+    }];
     
-    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@", [resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
-
+    charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
+        
+    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
+    NSLog(@"the First index.row = %li", (long)indexPath.row);
+    
     [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
     
-    charityCell.accessoryType = UITableViewCellAccessoryDetailButton;
+    charityCell.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
+    charityCell.accessoryView = charityCell.donationButton;
     
+    [charityCell.donationButton setUserInteractionEnabled:YES];
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDonationButtonTapped:)];
+    [charityCell.donationButton addGestureRecognizer:recognizer];
+    [self.view addSubview:charityCell.donationButton];
+        
     return charityCell;
 }
+
+- (void)onDonationButtonTapped:(UITapGestureRecognizer *)gestureRecognizer
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)gestureRecognizer.view.superview.superview];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[charityDonationPage objectAtIndex:indexPath.row]]];
+    NSLog(@"the Second index.row = %li", (long)indexPath.row);
+}
+
+
 
 /*
 // Override to support conditional editing of the table view.
