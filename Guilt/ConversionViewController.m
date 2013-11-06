@@ -21,7 +21,7 @@
 @end
 
 @implementation ConversionViewController
-@synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel, scanButtonLabel;
+@synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel, scanButtonLabel, explanationTextLabel;
 @synthesize conversionButtonOutlet, scannerButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
@@ -36,14 +36,16 @@
     [self.view addSubview:backgroundImage];
     [self.view sendSubviewToBack:backgroundImage];
 
-    valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:30];
+    valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:28];
     valueQuestionLabel.textColor = [UIColor whiteColor];
+    valueQuestionLabel.text = @"Make a Purchase  Make a Difference";
     
-    orLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:40];
+    orLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:25];
     orLabel.textColor = [UIColor whiteColor];
     
-    scanButtonLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:15];
-    scanButtonLabel.backgroundColor = [UIColor whiteColor];
+    explanationTextLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:15];
+    explanationTextLabel.textColor = [UIColor whiteColor];
+    explanationTextLabel.text = @"Find a product's price & discover your potential impact";
     
     scannerButtonOutlet.layer.cornerRadius = 8;
     scannerButtonOutlet.layer.borderWidth = 1;
@@ -57,7 +59,10 @@
     conversionButtonOutlet.layer.borderWidth = 1;
     conversionButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
     conversionButtonOutlet.clipsToBounds = YES;
-    conversionButtonOutlet.titleLabel.text = @"Get Social Value";
+    conversionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:28];
+    UIColor* orangeKindaColor = [UIColor colorWithRed:247.0/255 green:150.0/255 blue:0.0/255 alpha:1];
+    [conversionButtonOutlet setTitleColor:orangeKindaColor forState:UIControlStateNormal];
+    [conversionButtonOutlet setTitle:@"Social Value" forState:UIControlStateNormal];
 }
 
 -(void)viewDidAppear:(BOOL)animated

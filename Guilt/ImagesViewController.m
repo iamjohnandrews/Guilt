@@ -44,7 +44,7 @@
     [super viewDidLoad];
     NSLog(@"content of the resultOfCharitableConversionsArray %@", resultOfCharitableConversionsArray);
     
-    charityImagesArray = @[@"homeless dog.png", @"feedTheHungry.png", @"homelessFamily.png", @"Soldiers.png", @"waterPump.png"];
+    charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png", @"Soldiers.png", @"waterPump.png"];
     
     charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
                                  @"month(s) of providing vaccines, relief after natural disasters & schooling through Unicef",

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scanButtonLabel;
 @property (weak, nonatomic) IBOutlet UILabel *orLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *explanationTextLabel;
 @property   (weak,nonatomic)NSString* productName;
 
 @property   (nonatomic)float productPrice;
