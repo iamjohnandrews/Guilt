@@ -40,13 +40,13 @@
     [super viewDidLoad];
     NSLog(@"content of the resultOfCharitableConversionsArray %@", resultOfCharitableConversionsArray);
     
-    charityImagesArray = @[@"TheAnimalRescueSite.jpg", @"Unicef.jpeg", @"feedTheChildren2.jpg", @"soldiers.jpg", @"africanWellFund.jpg"];
+    charityImagesArray = @[@"homeless dog.png", @"feedTheHungry.png", @"homelessFamily.png", @"Soldiers.png", @"waterPump.png"];
     
     charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
-                                 @"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef",
-                                 @"month of food, water, education, and medical supplies for a student through Feed The Children",
-                                 @"military care package through Soildier's Angels",
-                                 @"natural spring catchment serving 250 people through African Well Fund"
+                                 @"month(s) of providing vaccines, relief after natural disasters & schooling through Unicef",
+                                 @"month(s) of food, water, education, and medical supplies through Feed The Children",
+                                 @"military care package(s) through Soildier's Angels",
+                                 @"natural spring catchment(s) serving 250 people through African Well Fund"
                                  ];
     charityDonationPage = @[@"https://theanimalrescuesite.greatergood.com/store/ars/item/32249/contribute-to-animal-rescue?source=12-32132-3#productInfo",
                             @"http://www.supportunicef.org/site/c.dvKUI9OWInJ6H/b.7677883/k.2C8F/Donate_now.htm", 
@@ -55,6 +55,7 @@
                             @"http://www.africanwellfund.org/donate.html"];
     charityNames = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Soilder's Angels", @"African Well Fund"];
     
+    //Part of code to get images to animate when appear
     CGFloat rotationAngleDegrees = -15;
     CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
     CGPoint offsetPositioning = CGPointMake(-20, -20);

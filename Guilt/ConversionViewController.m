@@ -21,7 +21,7 @@
 @end
 
 @implementation ConversionViewController
-@synthesize userEnterDollarAmountTextField, valueQuestionLabel;
+@synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel, scanButtonLabel;
 @synthesize conversionButtonOutlet, scannerButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
@@ -29,9 +29,16 @@
 
 - (void)viewDidLoad
 {
-    valueQuestionLabel.font = [UIFont fontWithName:@"Vintage_fair" size:36];
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
+
+    valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:30];
+    
+    
     [super viewDidLoad];
     
+    //code to form the button
     conversionButtonOutlet.layer.cornerRadius = 8;
     conversionButtonOutlet.layer.borderWidth = 2;
     conversionButtonOutlet.layer.borderColor = [UIColor blueColor].CGColor;
