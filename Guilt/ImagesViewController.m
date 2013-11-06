@@ -11,11 +11,13 @@
 #import "CharityAndProductDisplayCell.h"
 #import "ScannerViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <Parse/Parse.h>
 
 @interface ImagesViewController (){
     NSArray* charityImagesArray;
     NSArray* charityDiscriptionsArray;
     NSArray* charityDonationPage;
+    NSNumber* currPoints;
 }
 
 @end
@@ -161,6 +163,50 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[charityDonationPage objectAtIndex:indexPath.row]]];
     NSLog(@"the Second index.row = %li", (long)indexPath.row);
 }
+
+
+-(void)didUpdateKarmaPoints: (BOOL)flag charity:(PFObject*)recipientCharity
+{
+    
+    PFObject *donation = [PFObject objectWithClassName:@"Donation"];
+    donation[@"donor"] = [PFUser currentUser];
+    donation[@"charityRecipient"] = recipientCharity;
+    
+    donation[@"donationAmount"]= _productPrice;
+    
+    [donation saveInBackground]; //save the donation to Parse
+    
+    
+    PFUser *user = [PFUser currentUser];
+    
+    currPoints = user[@"points"];
+    
+    if (!currPoints){
+        
+        currPoints=0;
+    }
+    else if( flag ==YES ) {
+        
+        int tempPoints =  (10 + [currPoints integerValue]);
+        
+        user[@"points"] = [NSNumber numberWithInt:tempPoints];
+        
+        [user saveInBackground];
+    }else if(flag==NO){
+        int tempPoints =  (-10 + [currPoints integerValue]);
+        
+        user[@"points"] = [NSNumber numberWithInt:tempPoints];
+        
+    }
+    
+    [user saveInBackground]; //save user points to Parse
+
+    
+}
+
+
+
+
 
 
 
