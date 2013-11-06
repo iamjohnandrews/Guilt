@@ -46,6 +46,7 @@
 		8E05BC6B182AE43B0005BF34 /* barcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC6A182AE43B0005BF34 /* barcode.png */; };
 		8E05BC6D182AF20A0005BF34 /* QuicksandRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC6C182AEEA50005BF34 /* QuicksandRegular.otf */; };
 		8E05BC6F182B01200005BF34 /* awesomeBarcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC6E182B01200005BF34 /* awesomeBarcode.png */; };
+		8E05BC71182B08990005BF34 /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC70182B085C0005BF34 /* Quicksand-Bold.otf */; };
 		8E9596FB182960E900AE29DB /* army2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596E3182960E900AE29DB /* army2.png */; };
 		8E9596FC182960E900AE29DB /* camel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596E4182960E900AE29DB /* camel.png */; };
 		8E9596FD182960E900AE29DB /* ducklingsFlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596E5182960E900AE29DB /* ducklingsFlock.png */; };
@@ -142,6 +143,7 @@
 		8E05BC6A182AE43B0005BF34 /* barcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barcode.png; sourceTree = "<group>"; };
 		8E05BC6C182AEEA50005BF34 /* QuicksandRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuicksandRegular.otf; sourceTree = "<group>"; };
 		8E05BC6E182B01200005BF34 /* awesomeBarcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = awesomeBarcode.png; path = ../awesomeBarcode.png; sourceTree = "<group>"; };
+		8E05BC70182B085C0005BF34 /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
 		8E9596E3182960E900AE29DB /* army2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = army2.png; sourceTree = "<group>"; };
 		8E9596E4182960E900AE29DB /* camel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camel.png; sourceTree = "<group>"; };
 		8E9596E5182960E900AE29DB /* ducklingsFlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ducklingsFlock.png; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 		8E00AACD18182E9700BB32E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8E05BC70182B085C0005BF34 /* Quicksand-Bold.otf */,
 				8E05BC6C182AEEA50005BF34 /* QuicksandRegular.otf */,
 				8E05BC54182AB7F20005BF34 /* KarmaScan_logoFJ */,
 				8E959713182973A400AE29DB /* donate.png */,
@@ -448,7 +451,7 @@
 				ORGANIZATIONNAME = "John Andrews";
 				TargetAttributes = {
 					8E00AAC218182E9700BB32E4 = {
-						DevelopmentTeam = AXXSAL8636;
+						DevelopmentTeam = 835L8YFNV4;
 					};
 					8E00AAE318182E9700BB32E4 = {
 						TestTargetID = 8E00AAC218182E9700BB32E4;
@@ -480,6 +483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E9596FD182960E900AE29DB /* ducklingsFlock.png in Resources */,
+				8E05BC71182B08990005BF34 /* Quicksand-Bold.otf in Resources */,
 				8E00AADF18182E9700BB32E4 /* Images.xcassets in Resources */,
 				8E95970F182960E900AE29DB /* trioOfRabbits.png in Resources */,
 				8E9596FB182960E900AE29DB /* army2.png in Resources */,

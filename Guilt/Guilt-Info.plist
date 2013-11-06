@@ -28,6 +28,7 @@
 	<array>
 		<string>Vintage_fair.ttf</string>
 		<string>QuicksandRegular.otf</string>
+		<string>Quicksand-Bold.otf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>

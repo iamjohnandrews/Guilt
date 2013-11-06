@@ -36,16 +36,16 @@
     [self.view addSubview:backgroundImage];
     [self.view sendSubviewToBack:backgroundImage];
 
-    valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:28];
+    valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:28];
     valueQuestionLabel.textColor = [UIColor whiteColor];
     valueQuestionLabel.text = @"Make a Purchase  Make a Difference";
     
     orLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:25];
     orLabel.textColor = [UIColor whiteColor];
     
-    explanationTextLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:15];
+    explanationTextLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:15];
     explanationTextLabel.textColor = [UIColor whiteColor];
-    explanationTextLabel.text = @"Find a product's price & discover your potential impact";
+    explanationTextLabel.text = @"Find a product's price & discover your potential social impact";
     
     scannerButtonOutlet.layer.cornerRadius = 8;
     scannerButtonOutlet.layer.borderWidth = 1;
