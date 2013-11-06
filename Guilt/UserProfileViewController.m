@@ -13,6 +13,8 @@
 
 
     DonationsTableViewController *donationsTable;
+    NSMutableArray *donorInfo;
+    
 }
 
 @end
@@ -28,6 +30,13 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated]; //Required to run Apple's code for viewWillAppear
+    
+  //  [self.tableView reloadData]; //reloads data into a table
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -36,6 +45,8 @@
     donationsTable = [[DonationsTableViewController alloc]init];
     
     [self.view addSubview:donationsTable.view]; //adding the TableViewController's view
+    
+    donorInfo = [NSMutableArray new];
     
     //find screen dimensions
     CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -46,14 +57,85 @@
     donationsTable.view.frame = CGRectMake(0, 233, screenWidth, screenHeight*.33);
     
     PFQuery *donationsQuery = [PFQuery queryWithClassName:@"Donation"];
-    
     [donationsQuery whereKey:@"donor" equalTo: [PFUser currentUser] ];
+    [donationsQuery includeKey:@"donor"];
+    [donationsQuery includeKey:@"charityRecipient"];
+    [donationsQuery includeKey:@"donationAmount"];
+
     
-//    for (PFObject *object in donationsQuery) {
-//        <#statements#>
-//    }
+    [donationsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            for (PFObject *object in objects) {
+                
+                [donorInfo addObject:object];
+                
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
     
 }
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+   // NSLog(@"%lul", (unsigned long)[donorInfo count]);
+    return donorInfo.count;
+    
+}
+
+-(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDate *donationDate;
+    PFObject *charity;
+    NSString *charityName;
+    NSString *donationAmount;
+    
+    NSString* identifier =@"abc";
+    
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
+                                     reuseIdentifier:identifier];
+    }
+    
+    //Person *personTemp =self.people[indexPath.row];
+    
+    charity = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"charityRecipient"];
+    donationAmount = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"donationAmount"];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@" Charity: %@  Donation Amount: %@", charity[@"name"], donationAmount];
+    
+    
+    return cell;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -64,90 +146,9 @@
 
 
 
-// Override to customize the look of a cell representing an object. The default is to display
-// a UITableViewCellStyleDefault style cell with the label being the first key in the object.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-    // Configure the cell
-    cell.textLabel.text = [object objectForKey:@"text"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Priority: %@", [object objectForKey:@"priority"]];
-    
-    return cell;
-}
 
 
-/*
- // Override if you need to change the ordering of objects in the table.
- - (PFObject *)objectAtIndex:(NSIndexPath *)indexPath {
- return [objects objectAtIndex:indexPath.row];
- }
- */
 
-/*
- // Override to customize the look of the cell that allows the user to load the next page of objects.
- // The default implementation is a UITableViewCellStyleDefault cell with simple labels.
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForNextPageAtIndexPath:(NSIndexPath *)indexPath {
- static NSString *CellIdentifier = @"NextPage";
- 
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
- 
- if (cell == nil) {
- cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
- }
- 
- cell.selectionStyle = UITableViewCellSelectionStyleNone;
- cell.textLabel.text = @"Load more...";
- 
- return cell;
- }
- */
-
-#pragma mark - Table view data source
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
 
 #pragma mark - Table view delegate
 
