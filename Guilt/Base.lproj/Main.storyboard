@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mDS-gm-RrG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Er-qN-MxF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
@@ -196,7 +196,30 @@
             </objects>
             <point key="canvasLocation" x="553" y="-391"/>
         </scene>
-        <!--Karma Signup View Controller - Sign Up-->
+        <!--View Controller-->
+        <scene sceneID="Ly9-7z-khr">
+            <objects>
+                <viewController id="8Er-qN-MxF" customClass="MYViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x6a-nh-Pff"/>
+                        <viewControllerLayoutGuide type="bottom" id="vb2-Sv-23D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ids-7U-QgG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="b13-N8-eeV"/>
+                    <connections>
+                        <segue destination="Ebk-s5-A4g" kind="modal" identifier="LoginSegue" id="HGS-To-cBe"/>
+                        <segue destination="OOQ-r8-saD" kind="modal" identifier="ShowMeSegue2" id="NgK-1x-nIo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2qF-wf-cBp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="74" y="-384"/>
+        </scene>
+        <!--Karma Signup View Controller-->
         <scene sceneID="2Iw-Pq-BXU">
             <objects>
                 <viewController id="aqf-1Z-c1C" customClass="KarmaSignupViewController" sceneMemberID="viewController">
@@ -381,12 +404,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Ebk-s5-A4g" kind="relationship" relationship="rootViewController" id="u3A-Ex-sWc"/>
+                        <segue destination="8Er-qN-MxF" kind="push" id="beI-uT-fjM"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xch-TK-iVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="27" y="-391"/>
+            <point key="canvasLocation" x="-339" y="-374"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PaI-cK-DyX">
@@ -558,5 +581,6 @@
         <segue reference="5qz-r1-Xg0"/>
         <segue reference="eV3-BS-VXY"/>
         <segue reference="b9w-pJ-Thj"/>
+        <segue reference="NgK-1x-nIo"/>
     </inferredMetricsTieBreakers>
 </document>
