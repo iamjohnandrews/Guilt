@@ -37,24 +37,33 @@
 
 - (void)viewDidLoad
 {
-    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
-    [self.view addSubview:backgroundImage];
-    [self.view sendSubviewToBack:backgroundImage];
+    //code to change color of nav bar
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"KarnaScan_NavBar.png"] forBarMetrics:UIBarMetricsDefault];
+    
+    //code to set background to png Image    
+    /*
+     UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
+     [self.view addSubview:backgroundImage];
+     [self.view sendSubviewToBack:backgroundImage]; */
     
     [super viewDidLoad];
     NSLog(@"content of the resultOfCharitableConversionsArray %@", resultOfCharitableConversionsArray);
     
-    charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png", @"Soldiers.png", @"waterPump.png"];
+    charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png",@"ducklingsFlock.png", @"honeybee.png", @"Soldiers.png", @"waterPump.png"];
     
     charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
                                  @"month(s) of vaccines, schooling & natural disaster relief through Unicef",
                                  @"month(s) of food, water, and medical supplies through Feed The Children",
+                                 @"flock(s) of ducklings for a family",
+                                 @"gift(s) of honey bees",
                                  @"military care package(s) through Soildier's Angels",
                                  @"natural spring catchment(s) serving 250 people through African Well Fund"
                                  ];
     charityDonationPage = @[@"https://theanimalrescuesite.greatergood.com/store/ars/item/32249/contribute-to-animal-rescue?source=12-32132-3#productInfo",
                             @"http://www.supportunicef.org/site/c.dvKUI9OWInJ6H/b.7677883/k.2C8F/Donate_now.htm", 
-                            @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate", 
+                            @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate",
+                            @"http://www.heifer.org/gift-catalog/animals-nutrition/flock-of-ducks-donation.html",
+                            @"http://www.heifer.org/gift-catalog/animals-nutrition/honeybees-donation.html",
                             @"http://soldiersangels.org/donate.html", 
                             @"http://www.africanwellfund.org/donate.html"];
     charityNames = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Soilder's Angels", @"African Well Fund"];

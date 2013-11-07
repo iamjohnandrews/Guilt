@@ -39,7 +39,7 @@
 
     valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:20];
     valueQuestionLabel.textColor = [UIColor colorWithRed:117/255 green:135/255 blue:146/255 alpha:1];
-    valueQuestionLabel.text = @"Find a product's price & discover your charitable impact";
+    valueQuestionLabel.text = @"Find the best price & discover your charitable impact";
     
     orLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:25];
     orLabel.textColor = [UIColor colorWithRed:215/255 green:231/255 blue:241/255 alpha:1];
@@ -128,6 +128,20 @@
         int roundUp19 = ceilf(numberOfMonthsToFeedChildren);
         NSString* floatToAString19 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp19]];
         [convertedCharitableGoodsArray addObject:floatToAString19];
+    }
+    if (convertToFloat >= 20) {
+        float flocksOfDucks = convertToFloat / 20;
+        NSLog(@"Flock of Ducks = %.2f", flocksOfDucks);
+        int roundUp20 = ceilf(flocksOfDucks);
+        NSString* floatToAString20 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp20]];
+        [convertedCharitableGoodsArray addObject:floatToAString20];
+    }
+    if (convertToFloat >= 30) {
+        float honeyBees = convertToFloat / 30;
+        NSLog(@"Gift of Honey Beees is %.2f", honeyBees);
+        int roundUp30 = ceilf(honeyBees);
+        NSString* floatToAString30 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp30]];        
+        [convertedCharitableGoodsArray addObject:floatToAString30];
     }
     if (convertToFloat >= 50) {
         float numberOfCarePackages = convertToFloat / 50;
