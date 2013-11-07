@@ -172,7 +172,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="5vX-97-JGJ"/>
                     <connections>
+                        <outlet property="loginButtonOutlet" destination="k8N-Z5-6EX" id="nln-51-ZUg"/>
                         <outlet property="password" destination="D0t-xd-mnB" id="eBu-WP-lCT"/>
+                        <outlet property="signupButtonOutlet" destination="7Da-iS-ja6" id="f84-cS-8WD"/>
                         <outlet property="userName" destination="NCb-Ub-Rgp" id="iI7-wv-UJ8"/>
                         <segue destination="OOQ-r8-saD" kind="modal" identifier="ShowMeSegue" id="5qz-r1-Xg0"/>
                     </connections>
@@ -245,6 +247,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="addUserButtonOutlet" destination="7SB-P6-Z8m" id="hUb-Ti-ItB"/>
                         <outlet property="emailAddress" destination="cLA-eb-diG" id="2JJ-TB-g1q"/>
                         <outlet property="password" destination="qLB-vy-tof" id="Oi7-LF-bzh"/>
                         <outlet property="userName" destination="Q3T-GI-tvL" id="F97-gr-0jo"/>
@@ -458,6 +461,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5qz-r1-Xg0"/>
+        <segue reference="Ce7-9h-MM3"/>
     </inferredMetricsTieBreakers>
 </document>

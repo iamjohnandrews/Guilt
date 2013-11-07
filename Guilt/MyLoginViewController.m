@@ -13,7 +13,7 @@
 @end
 
 @implementation MyLoginViewController
-@synthesize userName, password;
+@synthesize userName, password, loginButtonOutlet, signupButtonOutlet;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -28,7 +28,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    //code to form the login button
+    loginButtonOutlet.layer.cornerRadius = 8;
+    loginButtonOutlet.layer.borderWidth = 1;
+    loginButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
+    loginButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
+    loginButtonOutlet.clipsToBounds = YES;
+    loginButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:14];
+    [loginButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [loginButtonOutlet setTitle:@"login" forState:UIControlStateNormal];
+    
+    //code to form the signup login
+    signupButtonOutlet.layer.cornerRadius = 8;
+    signupButtonOutlet.layer.borderWidth = 1;
+    signupButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
+    signupButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
+    signupButtonOutlet.clipsToBounds = YES;
+    signupButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:14];
+    [signupButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [signupButtonOutlet setTitle:@"signup" forState:UIControlStateNormal];
 }
 
 -(void)viewDidAppear:(BOOL)animated
