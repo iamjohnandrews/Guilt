@@ -75,6 +75,13 @@
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+    
+    //code to disable conversionButton until user inputs value into textField
+    [super viewDidLoad];
+    [self.conversionButtonOutlet setEnabled:NO];
+    [userEnterDollarAmountTextField addTarget:self 
+                                       action:@selector(textFieldDidChange)
+                             forControlEvents:UIControlEventEditingChanged];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -95,7 +102,19 @@
     [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
 }
 
+- (void)textFieldDidChange
+{
+    if ([self.userEnterDollarAmountTextField.text isEqualToString:@""]) {
+        [self.conversionButtonOutlet setEnabled:NO];
+    }
+    else {
+        [self.conversionButtonOutlet setEnabled:YES];
+    }
+    
+}
+
 - (IBAction)backToIntroductionButton:(id)sender {
+    //code to send user to begining of Introduction wizard
 }
 
 
