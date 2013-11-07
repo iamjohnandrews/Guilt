@@ -25,4 +25,8 @@
 
 -(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity;
 
+- (IBAction)userProfileButton:(id)sender;
+
+- (IBAction)logoutButton:(id)sender;
+
 @end

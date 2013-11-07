@@ -21,7 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcr-Y9-AYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2376" y="517"/>
+            <point key="canvasLocation" x="3048" y="521"/>
         </scene>
         <!--Conversion View Controller-->
         <scene sceneID="hZI-jX-yMH">
@@ -92,8 +92,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="hWj-3D-t99">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="22b-4f-1iy">
+                        <barButtonItem key="leftBarButtonItem" title="logout" id="dOa-Ip-diV">
                             <connections>
+                                <action selector="logoutButton:" destination="gGE-l0-Oez" id="P77-J2-YMG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="ic_profile_white.png" id="22b-4f-1iy">
+                            <connections>
+                                <action selector="userProfileButton:" destination="gGE-l0-Oez" id="6wn-ze-Sd1"/>
                                 <segue destination="Ovb-PQ-Y1M" kind="push" id="eV3-BS-VXY"/>
                             </connections>
                         </barButtonItem>
@@ -101,6 +107,7 @@
                     <connections>
                         <outlet property="backToIntroductionButtonOutlet" destination="Lqg-F1-S72" id="wZG-si-CR1"/>
                         <outlet property="conversionButtonOutlet" destination="myI-Tg-Yul" id="5Ya-EZ-V4x"/>
+                        <outlet property="logoutButtonOutlet" destination="dOa-Ip-diV" id="1av-TP-PKb"/>
                         <outlet property="orLabel" destination="i1k-go-TSo" id="fiL-CX-xmi"/>
                         <outlet property="scannerButtonOutlet" destination="M8d-DX-YuI" id="rk7-lq-kZO"/>
                         <outlet property="userEnterDollarAmountTextField" destination="M98-zr-X80" id="goV-UA-J6A"/>
@@ -110,9 +117,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXu-5J-mrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1681" y="-108"/>
+            <point key="canvasLocation" x="2207" y="-108"/>
         </scene>
-        <!--My Login View Controller-->
+        <!--My Login View Controller - Welcome-->
         <scene sceneID="dS1-6B-dos">
             <objects>
                 <viewController id="Ebk-s5-A4g" customClass="MyLoginViewController" sceneMemberID="viewController">
@@ -150,10 +157,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8N-Z5-6EX">
-                                <rect key="frame" x="28" y="217" width="44" height="30"/>
+                                <rect key="frame" x="28" y="217" width="54" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <state key="normal" title="Login">
+                                <state key="normal" title="Sign In">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -162,21 +169,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Da-iS-ja6">
-                                <rect key="frame" x="246" y="217" width="41" height="30"/>
+                                <rect key="frame" x="213" y="217" width="62" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <state key="normal" title="Join">
+                                <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="aqf-1Z-c1C" kind="modal" identifier="SignupSegue" id="n0j-T2-6ay"/>
+                                    <segue destination="znS-G8-ODZ" kind="modal" identifier="SignupSegue" id="n0j-T2-6ay"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5vX-97-JGJ"/>
+                    <navigationItem key="navigationItem" title="Welcome" id="5vX-97-JGJ"/>
                     <connections>
                         <outlet property="loginButtonOutlet" destination="k8N-Z5-6EX" id="nln-51-ZUg"/>
                         <outlet property="password" destination="D0t-xd-mnB" id="eBu-WP-lCT"/>
@@ -189,7 +196,7 @@
             </objects>
             <point key="canvasLocation" x="553" y="-391"/>
         </scene>
-        <!--Karma Signup View Controller-->
+        <!--Karma Signup View Controller - Sign Up-->
         <scene sceneID="2Iw-Pq-BXU">
             <objects>
                 <viewController id="aqf-1Z-c1C" customClass="KarmaSignupViewController" sceneMemberID="viewController">
@@ -252,6 +259,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Sign Up" id="MGq-AC-jaF"/>
                     <connections>
                         <outlet property="addUserButtonOutlet" destination="7SB-P6-Z8m" id="hUb-Ti-ItB"/>
                         <outlet property="emailAddress" destination="cLA-eb-diG" id="2JJ-TB-g1q"/>
@@ -262,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tTL-Du-RXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="147" y="465"/>
+            <point key="canvasLocation" x="673" y="465"/>
         </scene>
         <!--Images View Controller - Choose Wisely-->
         <scene sceneID="jtA-Nn-sMd">
@@ -342,8 +350,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Choose Wisely" id="8Nu-S8-SXM">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="42M-M9-whS">
+                        <barButtonItem key="leftBarButtonItem" title="logout" id="ijy-OJ-lGF">
                             <connections>
+                                <action selector="logoutButton:" destination="tEc-0u-6AV" id="i4J-S9-k22"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="ic_profile_white.png" id="42M-M9-whS">
+                            <connections>
+                                <action selector="userProfileButton:" destination="tEc-0u-6AV" id="XI8-fi-xz3"/>
                                 <segue destination="Ovb-PQ-Y1M" kind="push" id="b9w-pJ-Thj"/>
                             </connections>
                         </barButtonItem>
@@ -351,7 +365,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yd-hQ-rRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2422" y="-140"/>
+            <point key="canvasLocation" x="2948" y="-140"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kga-sS-r7f">
@@ -361,6 +375,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YWc-C6-dvS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -387,9 +404,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pK-jm-oPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1155" y="-108"/>
+            <point key="canvasLocation" x="1681" y="-108"/>
         </scene>
-        <!--User Profile View Controller-->
+        <!--User Profile View Controller - Profile-->
         <scene sceneID="0Cq-X9-E8G">
             <objects>
                 <viewController id="Ovb-PQ-Y1M" customClass="UserProfileViewController" sceneMemberID="viewController">
@@ -409,25 +426,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Donations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-Xp-p0r">
-                                <rect key="frame" x="101" y="347" width="109" height="23"/>
+                                <rect key="frame" x="14" y="309" width="109" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2000 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3X-cL-Fdc">
-                                <rect key="frame" x="0.0" y="279" width="320" height="82"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="63"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BkH-G8-ygs">
-                                <rect key="frame" x="70" y="93" width="170" height="147"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="f03-ci-hKV">
-                                <rect key="frame" x="0.0" y="369" width="320" height="199"/>
+                                <rect key="frame" x="0.0" y="332" width="320" height="228"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -435,24 +441,74 @@
                                     <outlet property="delegate" destination="Ovb-PQ-Y1M" id="Htl-dC-Ody"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Karmic Points" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0F-ww-VS7">
-                                <rect key="frame" x="87" y="253" width="134" height="23"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Karmic Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0F-ww-VS7">
+                                <rect key="frame" x="84" y="143" width="134" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGj-PO-Bvz">
+                                <rect key="frame" x="4" y="77" width="296" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="52"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ls-zi-5Xw">
+                                <rect key="frame" x="71" y="174" width="83" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmg-eS-pH6">
+                                <rect key="frame" x="71" y="235" width="83" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A0k-lH-XV6">
+                                <rect key="frame" x="66" y="197" width="170" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4uS-90-YW6">
+                                <rect key="frame" x="66" y="256" width="170" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="_________________________________" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5G-B2-SBJ">
+                                <rect key="frame" x="14" y="280" width="316" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.51638550924313731" blue="0.16607046571497441" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="EXK-jh-2Mu"/>
+                    <navigationItem key="navigationItem" title="Profile" id="EXK-jh-2Mu">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="KhO-Ms-uWf">
+                            <connections>
+                                <action selector="saveButton:" destination="Ovb-PQ-Y1M" id="rd4-hH-XWV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="f03-ci-hKV" id="FJp-mi-IXC"/>
+                        <outlet property="emailAddressTextField" destination="2ls-zi-5Xw" id="lJr-r6-qmn"/>
+                        <outlet property="myKarmaPointsLabel" destination="zGj-PO-Bvz" id="3Va-AC-Xk8"/>
+                        <outlet property="passwordTextField" destination="f5G-B2-SBJ" id="hdn-nn-NPt"/>
+                        <outlet property="tableView" destination="f03-ci-hKV" id="5XU-Ym-nSP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLp-hP-ziC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1992" y="584"/>
+
+            <point key="canvasLocation" x="2552" y="904"/>
+
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BXc-9s-XVJ">
@@ -470,9 +526,28 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuU-1x-erw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="787" y="541"/>
+            <point key="canvasLocation" x="1313" y="541"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FsU-0I-XcN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="znS-G8-ODZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vbi-Uk-zKh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aqf-1Z-c1C" kind="relationship" relationship="rootViewController" id="40S-4T-6Yp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AjO-bx-KdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="147" y="465"/>
         </scene>
     </scenes>
+
     <color key="tintColor" red="1" green="0.96621304419999998" blue="0.043735437330000002" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -482,5 +557,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="5qz-r1-Xg0"/>
         <segue reference="eV3-BS-VXY"/>
+        <segue reference="b9w-pJ-Thj"/>
     </inferredMetricsTieBreakers>
 </document>

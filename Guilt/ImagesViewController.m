@@ -261,6 +261,16 @@
     
 }
 
+- (IBAction)userProfileButton:(id)sender {
+}
+
+- (IBAction)logoutButton:(id)sender {
+    
+    
+    [PFUser logOut];
+    
+}
+
 
 
 

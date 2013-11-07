@@ -19,6 +19,10 @@
 		771BCD9018219B15000264A8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD8F18219B15000264A8 /* StoreKit.framework */; };
 		771BCD9218219B24000264A8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD9118219B24000264A8 /* SystemConfiguration.framework */; };
 		771BCD951822D48E000264A8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		7727AD89182BF356006D01DD /* ic_profile_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727AD85182BF356006D01DD /* ic_profile_white@2x.png */; };
+		7727AD8A182BF356006D01DD /* ic_profile_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727AD86182BF356006D01DD /* ic_profile_white.png */; };
+		7727AD8B182BF356006D01DD /* ic_profile_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727AD87182BF356006D01DD /* ic_profile_black@2x.png */; };
+		7727AD8C182BF356006D01DD /* ic_profile_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727AD88182BF356006D01DD /* ic_profile_black.png */; };
 		772B828E1829683300128190 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B828D1829683300128190 /* UserProfileViewController.m */; };
 		772B82911829864E00128190 /* DonationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B82901829864E00128190 /* DonationsTableViewController.m */; };
 		8E00AAC718182E9700BB32E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC618182E9700BB32E4 /* Foundation.framework */; };
@@ -111,6 +115,10 @@
 		771BCD8D18219B0C000264A8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		771BCD8F18219B15000264A8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		771BCD9118219B24000264A8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7727AD85182BF356006D01DD /* ic_profile_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_profile_white@2x.png"; sourceTree = "<group>"; };
+		7727AD86182BF356006D01DD /* ic_profile_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_profile_white.png; sourceTree = "<group>"; };
+		7727AD87182BF356006D01DD /* ic_profile_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_profile_black@2x.png"; sourceTree = "<group>"; };
+		7727AD88182BF356006D01DD /* ic_profile_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_profile_black.png; sourceTree = "<group>"; };
 		772B828C1829683300128190 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		772B828D1829683300128190 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		772B828F1829864E00128190 /* DonationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonationsTableViewController.h; sourceTree = "<group>"; };
@@ -289,6 +297,10 @@
 		8E00AACD18182E9700BB32E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7727AD85182BF356006D01DD /* ic_profile_white@2x.png */,
+				7727AD86182BF356006D01DD /* ic_profile_white.png */,
+				7727AD87182BF356006D01DD /* ic_profile_black@2x.png */,
+				7727AD88182BF356006D01DD /* ic_profile_black.png */,
 				8E05BC70182B085C0005BF34 /* Quicksand-Bold.otf */,
 				8E05BC6C182AEEA50005BF34 /* QuicksandRegular.otf */,
 				8E05BC54182AB7F20005BF34 /* KarmaScan_logoFJ */,
@@ -485,6 +497,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7727AD89182BF356006D01DD /* ic_profile_white@2x.png in Resources */,
+				7727AD8A182BF356006D01DD /* ic_profile_white.png in Resources */,
 				8E9596FD182960E900AE29DB /* ducklingsFlock.png in Resources */,
 				8E05BC71182B08990005BF34 /* Quicksand-Bold.otf in Resources */,
 				8E05BC73182B2F6E0005BF34 /* KarnaScan_NavBar.png in Resources */,
@@ -496,6 +510,7 @@
 				8E05BC6B182AE43B0005BF34 /* barcode.png in Resources */,
 				8E959711182960E900AE29DB /* waterPump.png in Resources */,
 				8E959707182960E900AE29DB /* Hunger.png in Resources */,
+				7727AD8B182BF356006D01DD /* ic_profile_black@2x.png in Resources */,
 				8EB17C011820205C000DDFCC /* feedTheChildren2.jpg in Resources */,
 				8E9596FC182960E900AE29DB /* camel.png in Resources */,
 				8E05BC61182AB7F20005BF34 /* KarmaScan logo-FJ.psd in Resources */,
@@ -504,6 +519,7 @@
 				8E05BC5F182AB7F20005BF34 /* KarmaScan logo-FJ.pdf in Resources */,
 				8E959701182960E900AE29DB /* Goat.png in Resources */,
 				8E05BC5C182AB7F20005BF34 /* KarmaScan logo-FJ.ai in Resources */,
+				7727AD8C182BF356006D01DD /* ic_profile_black.png in Resources */,
 				8E959704182960E900AE29DB /* homeless dogs.png in Resources */,
 				8E959710182960E900AE29DB /* waterBuffalo.png in Resources */,
 				8E05BC6D182AF20A0005BF34 /* QuicksandRegular.otf in Resources */,

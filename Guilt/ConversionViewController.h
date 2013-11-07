@@ -29,10 +29,16 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *backToIntroductionButtonOutlet;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButtonOutlet;
+
 - (IBAction)scannerButton:(id)sender;
 
 - (IBAction)conversionButton:(id)sender;
 
 - (IBAction)backToIntroductionButton:(id)sender;
+
+- (IBAction)logoutButton:(id)sender;
+
+- (IBAction)userProfileButton:(id)sender;
 
 @end

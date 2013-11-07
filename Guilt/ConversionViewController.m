@@ -21,7 +21,7 @@
 
 @implementation ConversionViewController
 @synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel, backToIntroductionButtonOutlet;
-@synthesize conversionButtonOutlet, scannerButtonOutlet;
+@synthesize conversionButtonOutlet, scannerButtonOutlet, logoutButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
 @synthesize urlForProduct;
@@ -113,9 +113,18 @@
 }
 
 - (IBAction)backToIntroductionButton:(id)sender {
-    //code to send user to begining of Introduction wizard
+    //code to send user to beginning of Introduction wizard
 }
 
+- (IBAction)logoutButton:(id)sender {
+    
+    
+    
+    [PFUser logOut];
+}
+
+- (IBAction)userProfileButton:(id)sender {
+}
 
 - (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {
     NSNumberFormatter* addCommasFormatter = [[NSNumberFormatter alloc] init];

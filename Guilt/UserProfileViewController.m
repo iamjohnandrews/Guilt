@@ -15,6 +15,15 @@
     NSMutableArray *donorInfo;
     
 }
+@property (weak, nonatomic) IBOutlet UILabel *myKarmaPointsLabel;
+
+@property (weak, nonatomic) IBOutlet UITextField *emailAddressTextField;
+
+@property (weak, nonatomic) IBOutlet UILabel *passwordTextField;
+
+- (IBAction)didSaveUserUpdates:(id)sender;
+
+
 
 @end
 
@@ -52,20 +61,37 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    //size donationsTable
-  //  donationsTable.view.frame = CGRectMake(0, 233, screenWidth, screenHeight*.33);
+
     
     PFQuery *donationsQuery = [PFQuery queryWithClassName:@"Donation"];
     [donationsQuery whereKey:@"donor" equalTo: [PFUser currentUser] ];
     [donationsQuery includeKey:@"donor"];
-    //[donationsQuery includeKey:@"recipientCharity"];
-    
-   // NSLog(@"just got the recipientCharity key");
-    
-  //  [donationsQuery includeKey:@"donationAmount"];
 
-  //  NSLog(@"just got the donationAmount key");
+    PFUser *user = [PFUser currentUser];
+    
+    NSNumber *currPoints =user[@"points"];
+    int tempPoints;
+    if (!currPoints) {
+        
+        tempPoints=0;
+        
+    }
+    else{
+        
+        tempPoints = [currPoints integerValue];
+        
+        
+    }
+    
+    if (currPoints >=0) {
+        
+        _myKarmaPointsLabel.text = [NSString stringWithFormat:@"+%@",[currPoints stringValue]];
+    }
+    else{
+        _myKarmaPointsLabel.text = [NSString stringWithFormat:@"-%@",[currPoints stringValue]];
+        
 
+    }
     
     
     [donationsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -118,11 +144,14 @@
     
     charityName = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"recipientCharity"];
     NSLog(@"charity: %@", charityName);
+    
     donationAmount = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"donationAmount"];
     
-    cell.textLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:12];
+    cell.textLabel.text = [NSString stringWithFormat:@" Charity: %@ Donation Amount $%@.00", charityName, donationAmount];
     
-    cell.textLabel.text = [NSString stringWithFormat:@" Charity: %@  Donation Amount: %@", charityName, donationAmount];
+    cell.textLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:10];
+    
+    //cell.textLabel.text = [NSString stringWithFormat:@"   Donation Amount: $%@", donationAmount];
     
     
     return cell;
@@ -168,4 +197,20 @@
 
 
 
+- (IBAction)didSaveUserUpdates:(id)sender {
+    
+    
+    PFUser *user = [PFUser currentUser];
+    
+    user[@"email"] = _emailAddressTextField.text;
+    user[@"password"] = _passwordTextField.text;
+    
+    [user saveInBackground];
+    
+    
+    
+}
+
+- (IBAction)saveButton:(id)sender {
+}
 @end
