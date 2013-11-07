@@ -120,15 +120,18 @@
     UITextView *productNameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 120 )];
     productNameTextView.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     productNameTextView.text = [NSString stringWithFormat:@"%@\n $%@\n", _productName, _productPrice];
-    productNameTextView.backgroundColor = [UIColor orangeColor];
+    productNameTextView.backgroundColor = [UIColor colorWithRed:247.0/255 green:150.0/255 blue:0.0/255 alpha:1];
     
     UIButton* urlLinkButton = [UIButton buttonWithType:UIButtonTypeCustom];
     urlLinkButton.backgroundColor = [UIColor blackColor];
-    urlLinkButton.frame = CGRectMake(220, 50, 100, 50);
+    urlLinkButton.frame = CGRectMake(210, 50, 100, 50);
 
     //headerView.backgroundColor = [UIColor blueColor];
     [urlLinkButton setTitle:@"Buy Now" forState:UIControlStateNormal];
-
+    urlLinkButton.layer.cornerRadius = 8;
+    urlLinkButton.layer.borderWidth = 1;
+    urlLinkButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    urlLinkButton.clipsToBounds = YES;
     urlLinkButton.titleLabel.textColor = [UIColor whiteColor];
 
     [headerView addSubview:productNameTextView];

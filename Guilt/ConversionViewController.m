@@ -21,7 +21,7 @@
 @end
 
 @implementation ConversionViewController
-@synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel, scanButtonLabel, explanationTextLabel;
+@synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel;
 @synthesize conversionButtonOutlet, scannerButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
@@ -29,23 +29,20 @@
 
 - (void)viewDidLoad
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+//below is code for keyboard to notify us when it appears
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];     
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 
     UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
     [self.view addSubview:backgroundImage];
     [self.view sendSubviewToBack:backgroundImage];
 
-    valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:28];
+    valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:20];
     valueQuestionLabel.textColor = [UIColor whiteColor];
-    valueQuestionLabel.text = @"Make a Purchase  Make a Difference";
+    valueQuestionLabel.text = @"Find a product's price & discover your charitable impact";
     
     orLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:25];
     orLabel.textColor = [UIColor whiteColor];
-    
-    explanationTextLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:15];
-    explanationTextLabel.textColor = [UIColor whiteColor];
-    explanationTextLabel.text = @"Find a product's price & discover your potential social impact";
     
     scannerButtonOutlet.layer.cornerRadius = 8;
     scannerButtonOutlet.layer.borderWidth = 1;
@@ -55,14 +52,16 @@
     [super viewDidLoad];
     
     //code to form the button
+    //deactivate button until something entered into textField
     conversionButtonOutlet.layer.cornerRadius = 8;
     conversionButtonOutlet.layer.borderWidth = 1;
     conversionButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
+    conversionButtonOutlet.backgroundColor = [UIColor whiteColor];
     conversionButtonOutlet.clipsToBounds = YES;
     conversionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:28];
     UIColor* orangeKindaColor = [UIColor colorWithRed:247.0/255 green:150.0/255 blue:0.0/255 alpha:1];
     [conversionButtonOutlet setTitleColor:orangeKindaColor forState:UIControlStateNormal];
-    [conversionButtonOutlet setTitle:@"Social Value" forState:UIControlStateNormal];
+    [conversionButtonOutlet setTitle:@"Charity Value" forState:UIControlStateNormal];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -81,6 +80,9 @@
 - (IBAction)conversionButton:(id)sender {
     
     [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
+}
+
+- (IBAction)dissmissKeyboardButton:(id)sender {
 }
 
 - (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {

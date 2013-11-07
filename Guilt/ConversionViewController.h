@@ -15,10 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *valueQuestionLabel;
 
 @property (weak, nonatomic) IBOutlet UITextField *userEnterDollarAmountTextField;
-@property (weak, nonatomic) IBOutlet UILabel *scanButtonLabel;
 @property (weak, nonatomic) IBOutlet UILabel *orLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *explanationTextLabel;
 @property   (weak,nonatomic)NSString* productName;
 
 @property   (nonatomic)float productPrice;
@@ -32,5 +30,7 @@
 - (IBAction)scannerButton:(id)sender;
 
 - (IBAction)conversionButton:(id)sender;
+
+- (IBAction)dissmissKeyboardButton:(id)sender;
 
 @end
