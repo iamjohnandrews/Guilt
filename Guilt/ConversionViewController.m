@@ -17,7 +17,6 @@
     NSNumber* convertedProductPrice;
 }
 
-
 @end
 
 @implementation ConversionViewController
@@ -29,48 +28,52 @@
 
 - (void)viewDidLoad
 {
-//below is code for keyboard to notify us when it appears
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-
+//code to change color of nav bar
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"KarnaScan_NavBar.png"] forBarMetrics:UIBarMetricsDefault];
+    
+//code to set background to png Image    
+    /*
     UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
     [self.view addSubview:backgroundImage];
-    [self.view sendSubviewToBack:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage]; */
 
     valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:20];
-    valueQuestionLabel.textColor = [UIColor whiteColor];
+    valueQuestionLabel.textColor = [UIColor colorWithRed:117/255 green:135/255 blue:146/255 alpha:1];
     valueQuestionLabel.text = @"Find a product's price & discover your charitable impact";
     
     orLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:25];
-    orLabel.textColor = [UIColor whiteColor];
+    orLabel.textColor = [UIColor colorWithRed:215/255 green:231/255 blue:241/255 alpha:1];
     
     backToIntroductionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:15];
-    [backToIntroductionButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [backToIntroductionButtonOutlet setTitleColor:[UIColor colorWithRed:117/255 green:135/255 blue:146/255 alpha:1] forState:UIControlStateNormal];
     [backToIntroductionButtonOutlet setTitle:@"Back to Introduction" forState:UIControlStateNormal];    
     
     scannerButtonOutlet.layer.cornerRadius = 8;
     scannerButtonOutlet.layer.borderWidth = 1;
     scannerButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
+    scannerButtonOutlet.backgroundColor = [UIColor colorWithRed:117/255 green:135/255 blue:146/255 alpha:1];
     scannerButtonOutlet.clipsToBounds = YES;
+    [scannerButtonOutlet setTitle:@"Scan Item" forState:UIControlStateNormal];
+    scannerButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     
     [super viewDidLoad];
     
     //code to form the button
-    //deactivate button until something entered into textField
+#warning deactivate button until something entered into textField
     conversionButtonOutlet.layer.cornerRadius = 8;
     conversionButtonOutlet.layer.borderWidth = 1;
     conversionButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
-    conversionButtonOutlet.backgroundColor = [UIColor whiteColor];
+    conversionButtonOutlet.backgroundColor = [UIColor colorWithRed:117/255 green:135/255 blue:146/255 alpha:1];
     conversionButtonOutlet.clipsToBounds = YES;
-    conversionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:28];
-    UIColor* orangeKindaColor = [UIColor colorWithRed:247.0/255 green:150.0/255 blue:0.0/255 alpha:1];
-    [conversionButtonOutlet setTitleColor:orangeKindaColor forState:UIControlStateNormal];
-    [conversionButtonOutlet setTitle:@"Charity Value" forState:UIControlStateNormal];
+    conversionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    //UIColor* orangeKindaColor = [UIColor colorWithRed:244.0/255 green:128.0/255 blue:0.0/255 alpha:1];
+    [conversionButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [conversionButtonOutlet setTitle:@"Go Charity Value" forState:UIControlStateNormal];
     
+    //code to dismiss keyboard when user taps around textField
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
-    
     [self.view addGestureRecognizer:tap];
 }
 
