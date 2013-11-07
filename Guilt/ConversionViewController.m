@@ -21,7 +21,7 @@
 @end
 
 @implementation ConversionViewController
-@synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel;
+@synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel, backToIntroductionButtonOutlet;
 @synthesize conversionButtonOutlet, scannerButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
@@ -44,6 +44,10 @@
     orLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:25];
     orLabel.textColor = [UIColor whiteColor];
     
+    backToIntroductionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:15];
+    [backToIntroductionButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [backToIntroductionButtonOutlet setTitle:@"Back to Introduction" forState:UIControlStateNormal];    
+    
     scannerButtonOutlet.layer.cornerRadius = 8;
     scannerButtonOutlet.layer.borderWidth = 1;
     scannerButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -62,6 +66,12 @@
     UIColor* orangeKindaColor = [UIColor colorWithRed:247.0/255 green:150.0/255 blue:0.0/255 alpha:1];
     [conversionButtonOutlet setTitleColor:orangeKindaColor forState:UIControlStateNormal];
     [conversionButtonOutlet setTitle:@"Charity Value" forState:UIControlStateNormal];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -82,8 +92,9 @@
     [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
 }
 
-- (IBAction)dissmissKeyboardButton:(id)sender {
+- (IBAction)backToIntroductionButton:(id)sender {
 }
+
 
 - (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {
     NSNumberFormatter* addCommasFormatter = [[NSNumberFormatter alloc] init];
@@ -201,15 +212,8 @@
     
 }
 
-- (void)keyboardDidShow:(NSNotification *)notification
-{
-    //Assign new frame to your view 
-    [self.view setFrame:CGRectMake(0, -200, 320, 460)]; //here taken -20 for example i.e. your view will be scrolled to -20. change its value according to your requirement.
-}
-
--(void)keyboardDidHide:(NSNotification *)notification
-{
-    [self.view setFrame:CGRectMake(0,0,320,460)];
+-(void)dismissKeyboard {
+    [userEnterDollarAmountTextField resignFirstResponder];
 }
 
 @end

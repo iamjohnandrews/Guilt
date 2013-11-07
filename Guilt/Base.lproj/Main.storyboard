@@ -77,14 +77,14 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUb-Fb-5qC">
-                                <rect key="frame" x="0.0" y="67" width="320" height="219"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqg-F1-S72">
+                                <rect key="frame" x="20" y="479" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="dissmissKeyboardButton:" destination="gGE-l0-Oez" eventType="touchUpInside" id="msU-4l-MEZ"/>
+                                    <action selector="backToIntroductionButton:" destination="gGE-l0-Oez" eventType="touchUpInside" id="tmI-xB-bBe"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -92,6 +92,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hWj-3D-t99"/>
                     <connections>
+                        <outlet property="backToIntroductionButtonOutlet" destination="Lqg-F1-S72" id="wZG-si-CR1"/>
                         <outlet property="conversionButtonOutlet" destination="myI-Tg-Yul" id="5Ya-EZ-V4x"/>
                         <outlet property="orLabel" destination="i1k-go-TSo" id="fiL-CX-xmi"/>
                         <outlet property="scannerButtonOutlet" destination="M8d-DX-YuI" id="rk7-lq-kZO"/>
