@@ -27,10 +27,12 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *scannerButtonOutlet;
 
+@property (weak, nonatomic) IBOutlet UIButton *backToIntroductionButtonOutlet;
+
 - (IBAction)scannerButton:(id)sender;
 
 - (IBAction)conversionButton:(id)sender;
 
-- (IBAction)dissmissKeyboardButton:(id)sender;
+- (IBAction)backToIntroductionButton:(id)sender;
 
 @end

@@ -17,11 +17,10 @@
     NSNumber* convertedProductPrice;
 }
 
-
 @end
 
 @implementation ConversionViewController
-@synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel;
+@synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel, backToIntroductionButtonOutlet;
 @synthesize conversionButtonOutlet, scannerButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
@@ -29,39 +28,59 @@
 
 - (void)viewDidLoad
 {
-//below is code for keyboard to notify us when it appears
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-
+//code to change color of nav bar
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"KarnaScan_NavBar.png"] forBarMetrics:UIBarMetricsDefault];
+    
+//code to set background to png Image    
+    /*
     UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
     [self.view addSubview:backgroundImage];
-    [self.view sendSubviewToBack:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage]; */
 
     valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:20];
-    valueQuestionLabel.textColor = [UIColor whiteColor];
-    valueQuestionLabel.text = @"Find a product's price & discover your charitable impact";
+    valueQuestionLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
+    valueQuestionLabel.text = @"Find the best price & discover your charitable impact";
     
     orLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:25];
-    orLabel.textColor = [UIColor whiteColor];
+    orLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
+    
+    backToIntroductionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:15];
+    [backToIntroductionButtonOutlet setTitleColor:[UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1] forState:UIControlStateNormal];
+    [backToIntroductionButtonOutlet setTitle:@"Back to Introduction" forState:UIControlStateNormal];    
     
     scannerButtonOutlet.layer.cornerRadius = 8;
     scannerButtonOutlet.layer.borderWidth = 1;
     scannerButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
+    scannerButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
     scannerButtonOutlet.clipsToBounds = YES;
+    [scannerButtonOutlet setTitle:@"Scan Item" forState:UIControlStateNormal];
+    scannerButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     
     [super viewDidLoad];
     
     //code to form the button
-    //deactivate button until something entered into textField
     conversionButtonOutlet.layer.cornerRadius = 8;
     conversionButtonOutlet.layer.borderWidth = 1;
     conversionButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
-    conversionButtonOutlet.backgroundColor = [UIColor whiteColor];
+    conversionButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
     conversionButtonOutlet.clipsToBounds = YES;
-    conversionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:28];
-    UIColor* orangeKindaColor = [UIColor colorWithRed:247.0/255 green:150.0/255 blue:0.0/255 alpha:1];
-    [conversionButtonOutlet setTitleColor:orangeKindaColor forState:UIControlStateNormal];
-    [conversionButtonOutlet setTitle:@"Charity Value" forState:UIControlStateNormal];
+    conversionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    //UIColor* orangeKindaColor = [UIColor colorWithRed:244.0/255 green:128.0/255 blue:0.0/255 alpha:1];
+    [conversionButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [conversionButtonOutlet setTitle:@"Go Charity Value" forState:UIControlStateNormal];
+    
+    //code to dismiss keyboard when user taps around textField
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    
+    //code to disable conversionButton until user inputs value into textField
+    [super viewDidLoad];
+    [self.conversionButtonOutlet setEnabled:NO];
+    [userEnterDollarAmountTextField addTarget:self 
+                                       action:@selector(textFieldDidChange)
+                             forControlEvents:UIControlEventEditingChanged];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -82,8 +101,21 @@
     [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
 }
 
-- (IBAction)dissmissKeyboardButton:(id)sender {
+- (void)textFieldDidChange
+{
+    if ([self.userEnterDollarAmountTextField.text isEqualToString:@""]) {
+        [self.conversionButtonOutlet setEnabled:NO];
+    }
+    else {
+        [self.conversionButtonOutlet setEnabled:YES];
+    }
+    
 }
+
+- (IBAction)backToIntroductionButton:(id)sender {
+    //code to send user to begining of Introduction wizard
+}
+
 
 - (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {
     NSNumberFormatter* addCommasFormatter = [[NSNumberFormatter alloc] init];
@@ -114,6 +146,20 @@
         int roundUp19 = ceilf(numberOfMonthsToFeedChildren);
         NSString* floatToAString19 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp19]];
         [convertedCharitableGoodsArray addObject:floatToAString19];
+    }
+    if (convertToFloat >= 20) {
+        float flocksOfDucks = convertToFloat / 20;
+        NSLog(@"Flock of Ducks = %.2f", flocksOfDucks);
+        int roundUp20 = ceilf(flocksOfDucks);
+        NSString* floatToAString20 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp20]];
+        [convertedCharitableGoodsArray addObject:floatToAString20];
+    }
+    if (convertToFloat >= 30) {
+        float honeyBees = convertToFloat / 30;
+        NSLog(@"Gift of Honey Beees is %.2f", honeyBees);
+        int roundUp30 = ceilf(honeyBees);
+        NSString* floatToAString30 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp30]];        
+        [convertedCharitableGoodsArray addObject:floatToAString30];
     }
     if (convertToFloat >= 50) {
         float numberOfCarePackages = convertToFloat / 50;
@@ -201,15 +247,8 @@
     
 }
 
-- (void)keyboardDidShow:(NSNotification *)notification
-{
-    //Assign new frame to your view 
-    [self.view setFrame:CGRectMake(0, -200, 320, 460)]; //here taken -20 for example i.e. your view will be scrolled to -20. change its value according to your requirement.
-}
-
--(void)keyboardDidHide:(NSNotification *)notification
-{
-    [self.view setFrame:CGRectMake(0,0,320,460)];
+-(void)dismissKeyboard {
+    [userEnterDollarAmountTextField resignFirstResponder];
 }
 
 @end

@@ -245,8 +245,7 @@
                  //temp for testing
                  //productName = @"Bic Pens";
                  
-                 [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] urlS: urlForProduct productNameNow: productName];
-                 
+                 [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] urlS: urlForProduct productNameNow: productName];                 
                  
                  NSLog(@"the URL of the product is %@", urlForProduct);
                  

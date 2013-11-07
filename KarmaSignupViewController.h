@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *emailAddress;
 
-
+@property (weak, nonatomic) IBOutlet UIButton *addUserButtonOutlet;
 
 @property (weak, nonatomic) IBOutlet UITextField *userName;
 @property (weak, nonatomic) IBOutlet UITextField *password;

@@ -15,6 +15,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *password;
 
+@property (weak, nonatomic) IBOutlet UIButton *loginButtonOutlet;
+
+@property (weak, nonatomic) IBOutlet UIButton *signupButtonOutlet;
+
 
 - (IBAction)didLogin:(id)sender;
 
