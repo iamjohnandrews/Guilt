@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7712EC9E18285E3D0038F8D9 /* MyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7712EC9D18285E3D0038F8D9 /* MyLoginViewController.m */; };
-		7712ECAA182882740038F8D9 /* KarmaSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7712ECA9182882740038F8D9 /* KarmaSignupViewController.m */; };
 		771BCD80182023DD000264A8 /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771BCD7F182023DD000264A8 /* ScannerViewController.m */; };
 		771BCD8418219AAF000264A8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD8318219AAF000264A8 /* AudioToolbox.framework */; };
 		771BCD8618219ACF000264A8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771BCD8518219ACF000264A8 /* CoreLocation.framework */; };
@@ -82,6 +80,21 @@
 		8EB17C041820205C000DDFCC /* Unicef.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFF1820205C000DDFCC /* Unicef.jpeg */; };
 		8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */; };
 		8EB17C161821977C000DDFCC /* ProductDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17C151821977C000DDFCC /* ProductDisplayCell.m */; };
+		E00CB83F182B287400A497C3 /* AMBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB83E182B287400A497C3 /* AMBlurView.m */; };
+		E00CB842182B289100A497C3 /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB841182B289100A497C3 /* MYBlurIntroductionView.m */; };
+		E00CB845182B28A700A497C3 /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB844182B28A700A497C3 /* MYIntroductionPanel.m */; };
+		E00CB848182B28B500A497C3 /* MYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB847182B28B500A497C3 /* MYAppDelegate.m */; };
+		E00CB84B182B28D400A497C3 /* MYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB84A182B28D400A497C3 /* MYViewController.m */; };
+		E00CB84D182B28F000A497C3 /* TestHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E00CB84C182B28F000A497C3 /* TestHeader.xib */; };
+		E00CB84F182B28FD00A497C3 /* KarmaScan logo-FJ.png in Resources */ = {isa = PBXBuildFile; fileRef = E00CB84E182B28FD00A497C3 /* KarmaScan logo-FJ.png */; };
+		E00CB852182B291400A497C3 /* KarnaScan_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = E00CB851182B291400A497C3 /* KarnaScan_Background.png */; };
+		E00CB854182B291D00A497C3 /* MYCustomPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB853182B291D00A497C3 /* MYCustomPanel.m */; };
+		E00CB856182B292900A497C3 /* MYCustomPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = E00CB855182B292900A497C3 /* MYCustomPanel.xib */; };
+		E00CB859182B316F00A497C3 /* KarmaSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB858182B316F00A497C3 /* KarmaSignupViewController.m */; };
+		E00CB85C182B318A00A497C3 /* MyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB85B182B318A00A497C3 /* MyLoginViewController.m */; };
+		E00CB85E182B400400A497C3 /* donation.png in Resources */ = {isa = PBXBuildFile; fileRef = E00CB85D182B400400A497C3 /* donation.png */; };
+		E00CB860182B400F00A497C3 /* karmaScan1.png in Resources */ = {isa = PBXBuildFile; fileRef = E00CB85F182B400F00A497C3 /* karmaScan1.png */; };
+		E00CB862182B412C00A497C3 /* CheckMarkWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = E00CB861182B412C00A497C3 /* CheckMarkWhite.png */; };
 		E0D7DEC418284091000FFBDA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0D7DEC218284061000FFBDA /* Parse.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,10 +109,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7712EC9C18285E3D0038F8D9 /* MyLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLoginViewController.h; path = ../MyLoginViewController.h; sourceTree = "<group>"; };
-		7712EC9D18285E3D0038F8D9 /* MyLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLoginViewController.m; path = ../MyLoginViewController.m; sourceTree = "<group>"; };
-		7712ECA8182882740038F8D9 /* KarmaSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KarmaSignupViewController.h; path = ../../KarmaSignupViewController.h; sourceTree = "<group>"; };
-		7712ECA9182882740038F8D9 /* KarmaSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KarmaSignupViewController.m; path = ../../KarmaSignupViewController.m; sourceTree = "<group>"; };
 		771BCD7E182023DD000264A8 /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
 		771BCD7F182023DD000264A8 /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
 		771BCD8318219AAF000264A8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -184,6 +193,30 @@
 		8EB17C141821977C000DDFCC /* ProductDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDisplayCell.h; path = Guilt/ProductDisplayCell.h; sourceTree = SOURCE_ROOT; };
 		8EB17C151821977C000DDFCC /* ProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDisplayCell.m; path = Guilt/ProductDisplayCell.m; sourceTree = SOURCE_ROOT; };
 		8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScannerDidNotWorkDelegate.h; sourceTree = "<group>"; };
+		E00CB83D182B286800A497C3 /* AMBlurView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMBlurView.h; sourceTree = "<group>"; };
+		E00CB83E182B287400A497C3 /* AMBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBlurView.m; sourceTree = "<group>"; };
+		E00CB840182B287C00A497C3 /* MYBlurIntroductionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYBlurIntroductionView.h; sourceTree = "<group>"; };
+		E00CB841182B289100A497C3 /* MYBlurIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYBlurIntroductionView.m; sourceTree = "<group>"; };
+		E00CB843182B28A300A497C3 /* MYIntroductionPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYIntroductionPanel.h; sourceTree = "<group>"; };
+		E00CB844182B28A700A497C3 /* MYIntroductionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYIntroductionPanel.m; sourceTree = "<group>"; };
+		E00CB846182B28AF00A497C3 /* MYAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYAppDelegate.h; sourceTree = "<group>"; };
+		E00CB847182B28B500A497C3 /* MYAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYAppDelegate.m; sourceTree = "<group>"; };
+		E00CB849182B28CC00A497C3 /* MYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYViewController.h; sourceTree = "<group>"; };
+		E00CB84A182B28D400A497C3 /* MYViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYViewController.m; sourceTree = "<group>"; };
+		E00CB84C182B28F000A497C3 /* TestHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestHeader.xib; sourceTree = "<group>"; };
+		E00CB84E182B28FD00A497C3 /* KarmaScan logo-FJ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KarmaScan logo-FJ.png"; sourceTree = "<group>"; };
+		E00CB850182B290600A497C3 /* MYCustomPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYCustomPanel.h; sourceTree = "<group>"; };
+		E00CB851182B291400A497C3 /* KarnaScan_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KarnaScan_Background.png; sourceTree = "<group>"; };
+		E00CB853182B291D00A497C3 /* MYCustomPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYCustomPanel.m; sourceTree = "<group>"; };
+		E00CB855182B292900A497C3 /* MYCustomPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MYCustomPanel.xib; sourceTree = "<group>"; };
+		E00CB857182B316800A497C3 /* KarmaSignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KarmaSignupViewController.h; sourceTree = SOURCE_ROOT; };
+		E00CB858182B316F00A497C3 /* KarmaSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KarmaSignupViewController.m; sourceTree = SOURCE_ROOT; };
+		E00CB85A182B318000A497C3 /* MyLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyLoginViewController.h; path = Guilt/MyLoginViewController.h; sourceTree = SOURCE_ROOT; };
+		E00CB85B182B318A00A497C3 /* MyLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLoginViewController.m; path = Guilt/MyLoginViewController.m; sourceTree = SOURCE_ROOT; };
+		E00CB85D182B400400A497C3 /* donation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donation.png; sourceTree = "<group>"; };
+		E00CB85F182B400F00A497C3 /* karmaScan1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = karmaScan1.png; sourceTree = "<group>"; };
+		E00CB861182B412C00A497C3 /* CheckMarkWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckMarkWhite.png; sourceTree = "<group>"; };
+		E00CB863182B4FD100A497C3 /* SwitchToLoginDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchToLoginDelegate.h; sourceTree = "<group>"; };
 		E0D7DEC218284061000FFBDA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -270,6 +303,7 @@
 				771BCD7F182023DD000264A8 /* ScannerViewController.m */,
 				8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
+				E00CB863182B4FD100A497C3 /* SwitchToLoginDelegate.h */,
 				772B828F1829864E00128190 /* DonationsTableViewController.h */,
 				772B82901829864E00128190 /* DonationsTableViewController.m */,
 				772B828C1829683300128190 /* UserProfileViewController.h */,
@@ -278,6 +312,25 @@
 				8EB17BF818201F00000DDFCC /* ImagesViewController.m */,
 				8EAE7B71182006A7001BDC08 /* ConversionViewController.h */,
 				8EAE7B72182006A7001BDC08 /* ConversionViewController.m */,
+				E00CB83D182B286800A497C3 /* AMBlurView.h */,
+				E00CB841182B289100A497C3 /* MYBlurIntroductionView.m */,
+				E00CB840182B287C00A497C3 /* MYBlurIntroductionView.h */,
+				E00CB844182B28A700A497C3 /* MYIntroductionPanel.m */,
+				E00CB843182B28A300A497C3 /* MYIntroductionPanel.h */,
+				E00CB83E182B287400A497C3 /* AMBlurView.m */,
+				E00CB84C182B28F000A497C3 /* TestHeader.xib */,
+				E00CB849182B28CC00A497C3 /* MYViewController.h */,
+				E00CB851182B291400A497C3 /* KarnaScan_Background.png */,
+				E00CB85F182B400F00A497C3 /* karmaScan1.png */,
+				E00CB861182B412C00A497C3 /* CheckMarkWhite.png */,
+				E00CB85D182B400400A497C3 /* donation.png */,
+				E00CB84E182B28FD00A497C3 /* KarmaScan logo-FJ.png */,
+				E00CB846182B28AF00A497C3 /* MYAppDelegate.h */,
+				E00CB850182B290600A497C3 /* MYCustomPanel.h */,
+				E00CB855182B292900A497C3 /* MYCustomPanel.xib */,
+				E00CB853182B291D00A497C3 /* MYCustomPanel.m */,
+				E00CB84A182B28D400A497C3 /* MYViewController.m */,
+				E00CB847182B28B500A497C3 /* MYAppDelegate.m */,
 				8E00AADE18182E9700BB32E4 /* Images.xcassets */,
 				8E00AACD18182E9700BB32E4 /* Supporting Files */,
 			);
@@ -341,10 +394,10 @@
 		8E9596E11829554E00AE29DB /* Login:Signup */ = {
 			isa = PBXGroup;
 			children = (
-				7712ECA8182882740038F8D9 /* KarmaSignupViewController.h */,
-				7712ECA9182882740038F8D9 /* KarmaSignupViewController.m */,
-				7712EC9C18285E3D0038F8D9 /* MyLoginViewController.h */,
-				7712EC9D18285E3D0038F8D9 /* MyLoginViewController.m */,
+				E00CB85A182B318000A497C3 /* MyLoginViewController.h */,
+				E00CB857182B316800A497C3 /* KarmaSignupViewController.h */,
+				E00CB85B182B318A00A497C3 /* MyLoginViewController.m */,
+				E00CB858182B316F00A497C3 /* KarmaSignupViewController.m */,
 			);
 			path = "Login:Signup";
 			sourceTree = "<group>";
@@ -488,8 +541,14 @@
 				8E95970F182960E900AE29DB /* trioOfRabbits.png in Resources */,
 				8E9596FB182960E900AE29DB /* army2.png in Resources */,
 				8E05BC62182AB7F20005BF34 /* KarmaScan logo-FJ.tif in Resources */,
+				E00CB856182B292900A497C3 /* MYCustomPanel.xib in Resources */,
+				E00CB84F182B28FD00A497C3 /* KarmaScan logo-FJ.png in Resources */,
 				8E959705182960E900AE29DB /* homelessFamily.png in Resources */,
+				E00CB862182B412C00A497C3 /* CheckMarkWhite.png in Resources */,
 				8E05BC6B182AE43B0005BF34 /* barcode.png in Resources */,
+				E00CB860182B400F00A497C3 /* karmaScan1.png in Resources */,
+				E00CB84D182B28F000A497C3 /* TestHeader.xib in Resources */,
+				E00CB85E182B400400A497C3 /* donation.png in Resources */,
 				8E959711182960E900AE29DB /* waterPump.png in Resources */,
 				8E959707182960E900AE29DB /* Hunger.png in Resources */,
 				8EB17C011820205C000DDFCC /* feedTheChildren2.jpg in Resources */,
@@ -508,6 +567,7 @@
 				8E05BC60182AB7F20005BF34 /* KarmaScan logo-FJ.png in Resources */,
 				8E00AAD118182E9700BB32E4 /* InfoPlist.strings in Resources */,
 				8E95970A182960E900AE29DB /* Sheep.png in Resources */,
+				E00CB852182B291400A497C3 /* KarnaScan_Background.png in Resources */,
 				8E05BC68182AE1E80005BF34 /* KarnaScan_Background_i4.png in Resources */,
 				8E959714182973A400AE29DB /* donate.png in Resources */,
 				8E959703182960E900AE29DB /* heifer.png in Resources */,
@@ -547,18 +607,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7712EC9E18285E3D0038F8D9 /* MyLoginViewController.m in Sources */,
+				E00CB85C182B318A00A497C3 /* MyLoginViewController.m in Sources */,
+				E00CB83F182B287400A497C3 /* AMBlurView.m in Sources */,
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
 				772B82911829864E00128190 /* DonationsTableViewController.m in Sources */,
+				E00CB859182B316F00A497C3 /* KarmaSignupViewController.m in Sources */,
 				8EB17C161821977C000DDFCC /* ProductDisplayCell.m in Sources */,
-				7712ECAA182882740038F8D9 /* KarmaSignupViewController.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
+				E00CB845182B28A700A497C3 /* MYIntroductionPanel.m in Sources */,
 				772B828E1829683300128190 /* UserProfileViewController.m in Sources */,
 				771BCD951822D48E000264A8 /* (null) in Sources */,
+				E00CB848182B28B500A497C3 /* MYAppDelegate.m in Sources */,
+				E00CB842182B289100A497C3 /* MYBlurIntroductionView.m in Sources */,
 				771BCD80182023DD000264A8 /* ScannerViewController.m in Sources */,
+				E00CB84B182B28D400A497C3 /* MYViewController.m in Sources */,
 				8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */,
+				E00CB854182B291D00A497C3 /* MYCustomPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
