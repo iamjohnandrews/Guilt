@@ -59,7 +59,6 @@
     [super viewDidLoad];
     
     //code to form the button
-#warning deactivate button until something entered into textField
     conversionButtonOutlet.layer.cornerRadius = 8;
     conversionButtonOutlet.layer.borderWidth = 1;
     conversionButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
