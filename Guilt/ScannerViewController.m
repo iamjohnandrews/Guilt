@@ -51,7 +51,7 @@
     label.backgroundColor = [UIColor colorWithWhite:0.15 alpha:0.65];
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"(none)";
+    label.text = @"UPC Code Will Appear Here";
     [self.view addSubview:label];
     
     _session = [[AVCaptureSession alloc] init];
