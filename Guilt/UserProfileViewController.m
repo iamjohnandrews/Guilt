@@ -7,12 +7,11 @@
 //
 
 #import "UserProfileViewController.h"
-#import "DonationsTableViewController.h"
 
 @interface UserProfileViewController () {
 
 
-    DonationsTableViewController *donationsTable;
+  //  DonationsTableViewController *donationsTable;
     NSMutableArray *donorInfo;
     
 }
@@ -42,9 +41,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    donationsTable = [[DonationsTableViewController alloc]init];
+//donationsTable = [[DonationsTableViewController alloc]init];
     
-    [self.view addSubview:donationsTable.view]; //adding the TableViewController's view
+  //  [self.view addSubview:donationsTable.view]; //adding the TableViewController's view
     
     donorInfo = [NSMutableArray new];
     
@@ -54,14 +53,20 @@
     CGFloat screenHeight = screenRect.size.height;
     
     //size donationsTable
-    donationsTable.view.frame = CGRectMake(0, 233, screenWidth, screenHeight*.33);
+  //  donationsTable.view.frame = CGRectMake(0, 233, screenWidth, screenHeight*.33);
     
     PFQuery *donationsQuery = [PFQuery queryWithClassName:@"Donation"];
     [donationsQuery whereKey:@"donor" equalTo: [PFUser currentUser] ];
     [donationsQuery includeKey:@"donor"];
-    [donationsQuery includeKey:@"charityRecipient"];
-    [donationsQuery includeKey:@"donationAmount"];
+    //[donationsQuery includeKey:@"recipientCharity"];
+    
+   // NSLog(@"just got the recipientCharity key");
+    
+  //  [donationsQuery includeKey:@"donationAmount"];
 
+  //  NSLog(@"just got the donationAmount key");
+
+    
     
     [donationsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -75,6 +80,8 @@
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
+        
+        [_tableView reloadData];
     }];
     
 }
@@ -83,16 +90,19 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    // NSLog(@"%lul", (unsigned long)[donorInfo count]);
+    if (donorInfo.count == 0) {
+        return 0;
+    }
     return donorInfo.count;
     
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDate *donationDate;
-    PFObject *charity;
+   // NSDate *donationDate;
+   // PFObject *charity;
     NSString *charityName;
-    NSString *donationAmount;
+    NSNumber *donationAmount;
     
     NSString* identifier =@"abc";
     
@@ -106,10 +116,13 @@
     
     //Person *personTemp =self.people[indexPath.row];
     
-    charity = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"charityRecipient"];
+    charityName = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"recipientCharity"];
+    NSLog(@"charity: %@", charityName);
     donationAmount = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"donationAmount"];
     
-    cell.textLabel.text = [NSString stringWithFormat:@" Charity: %@  Donation Amount: %@", charity[@"name"], donationAmount];
+    cell.textLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:12];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@" Charity: %@  Donation Amount: %@", charityName, donationAmount];
     
     
     return cell;

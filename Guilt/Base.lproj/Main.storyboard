@@ -91,7 +91,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hWj-3D-t99"/>
+                    <navigationItem key="navigationItem" id="hWj-3D-t99">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="22b-4f-1iy">
+                            <connections>
+                                <segue destination="Ovb-PQ-Y1M" kind="push" id="eV3-BS-VXY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="backToIntroductionButtonOutlet" destination="Lqg-F1-S72" id="wZG-si-CR1"/>
                         <outlet property="conversionButtonOutlet" destination="myI-Tg-Yul" id="5Ya-EZ-V4x"/>
@@ -258,7 +264,7 @@
             </objects>
             <point key="canvasLocation" x="147" y="465"/>
         </scene>
-        <!--Images View Controller-->
+        <!--Images View Controller - Choose Wisely-->
         <scene sceneID="jtA-Nn-sMd">
             <objects>
                 <tableViewController id="tEc-0u-6AV" customClass="ImagesViewController" sceneMemberID="viewController">
@@ -335,11 +341,17 @@
                             <outlet property="delegate" destination="tEc-0u-6AV" id="d4U-Dt-eJf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="8Nu-S8-SXM"/>
+                    <navigationItem key="navigationItem" title="Choose Wisely" id="8Nu-S8-SXM">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="42M-M9-whS">
+                            <connections>
+                                <segue destination="Ovb-PQ-Y1M" kind="push" id="b9w-pJ-Thj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yd-hQ-rRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2643" y="-363"/>
+            <point key="canvasLocation" x="2422" y="-140"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kga-sS-r7f">
@@ -418,6 +430,10 @@
                                 <rect key="frame" x="0.0" y="369" width="320" height="199"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ovb-PQ-Y1M" id="iBx-4S-UI1"/>
+                                    <outlet property="delegate" destination="Ovb-PQ-Y1M" id="Htl-dC-Ody"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Karmic Points" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0F-ww-VS7">
                                 <rect key="frame" x="87" y="253" width="134" height="23"/>
@@ -430,10 +446,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="EXK-jh-2Mu"/>
+                    <connections>
+                        <outlet property="tableView" destination="f03-ci-hKV" id="FJp-mi-IXC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLp-hP-ziC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313" y="541"/>
+            <point key="canvasLocation" x="1992" y="584"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BXc-9s-XVJ">
@@ -461,6 +480,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ce7-9h-MM3"/>
+        <segue reference="5qz-r1-Xg0"/>
+        <segue reference="eV3-BS-VXY"/>
     </inferredMetricsTieBreakers>
 </document>

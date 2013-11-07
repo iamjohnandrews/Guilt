@@ -10,4 +10,6 @@
 #import <Parse/Parse.h>
 @interface UserProfileViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
