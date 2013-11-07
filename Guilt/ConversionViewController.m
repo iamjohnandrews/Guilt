@@ -21,7 +21,7 @@
 @end
 
 @implementation ConversionViewController
-@synthesize userEnterDollarAmountTextField, valueQuestionLabel;
+@synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel, scanButtonLabel;
 @synthesize conversionButtonOutlet, scannerButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
@@ -29,14 +29,31 @@
 
 - (void)viewDidLoad
 {
-    valueQuestionLabel.font = [UIFont fontWithName:@"Vintage_fair" size:36];
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
+
+    valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:50];
+    valueQuestionLabel.textColor = [UIColor whiteColor];
+    
+    orLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:60];
+    orLabel.textColor = [UIColor whiteColor];
+    
+    scanButtonLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:35];
+    scanButtonLabel.backgroundColor = [UIColor whiteColor];
+    
+    scannerButtonOutlet.layer.cornerRadius = 8;
+    scannerButtonOutlet.layer.borderWidth = 2;
+    scannerButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
+    scannerButtonOutlet.clipsToBounds = YES;
+    
     [super viewDidLoad];
     
+    //code to form the button
     conversionButtonOutlet.layer.cornerRadius = 8;
     conversionButtonOutlet.layer.borderWidth = 2;
-    conversionButtonOutlet.layer.borderColor = [UIColor blueColor].CGColor;
+    conversionButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
     conversionButtonOutlet.clipsToBounds = YES;
-    conversionButtonOutlet.layer.backgroundColor = [UIColor cyanColor].CGColor;
 }
 
 -(void)viewDidAppear:(BOOL)animated

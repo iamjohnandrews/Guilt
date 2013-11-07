@@ -11,11 +11,14 @@
 #import "CharityAndProductDisplayCell.h"
 #import "ScannerViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <Parse/Parse.h>
 
 @interface ImagesViewController (){
     NSArray* charityImagesArray;
     NSArray* charityDiscriptionsArray;
     NSArray* charityDonationPage;
+    NSArray* charityNames;
+    NSNumber* currPoints;
 }
 
 @end
@@ -37,20 +40,22 @@
     [super viewDidLoad];
     NSLog(@"content of the resultOfCharitableConversionsArray %@", resultOfCharitableConversionsArray);
     
-    charityImagesArray = @[@"TheAnimalRescueSite.jpg", @"Unicef.jpeg", @"feedTheChildren2.jpg", @"soldiers.jpg", @"africanWellFund.jpg"];
+    charityImagesArray = @[@"homeless dog.png", @"feedTheHungry.png", @"homelessFamily.png", @"Soldiers.png", @"waterPump.png"];
     
     charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
-                                 @"month of providing children with lifesaving vaccines, relief after natural disasters & schooling through Unicef",
-                                 @"month of food, water, education, and medical supplies for a student through Feed The Children",
-                                 @"military care package through Soildier's Angels",
-                                 @"natural spring catchment serving 250 people through African Well Fund"
+                                 @"month(s) of providing vaccines, relief after natural disasters & schooling through Unicef",
+                                 @"month(s) of food, water, education, and medical supplies through Feed The Children",
+                                 @"military care package(s) through Soildier's Angels",
+                                 @"natural spring catchment(s) serving 250 people through African Well Fund"
                                  ];
     charityDonationPage = @[@"https://theanimalrescuesite.greatergood.com/store/ars/item/32249/contribute-to-animal-rescue?source=12-32132-3#productInfo",
                             @"http://www.supportunicef.org/site/c.dvKUI9OWInJ6H/b.7677883/k.2C8F/Donate_now.htm", 
                             @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate", 
                             @"http://soldiersangels.org/donate.html", 
                             @"http://www.africanwellfund.org/donate.html"];
+    charityNames = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Soilder's Angels", @"African Well Fund"];
     
+    //Part of code to get images to animate when appear
     CGFloat rotationAngleDegrees = -15;
     CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
     CGPoint offsetPositioning = CGPointMake(-20, -20);
@@ -108,6 +113,11 @@
     [headerView addSubview:urlLinkButton];
     [headerView bringSubviewToFront:urlLinkButton];
     
+    [urlLinkButton setUserInteractionEnabled:YES];
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBuyNowButtonTapped)];
+    [urlLinkButton addGestureRecognizer:recognizer];
+    
     return headerView;
     
 }
@@ -160,7 +170,64 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)gestureRecognizer.view.superview.superview];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[charityDonationPage objectAtIndex:indexPath.row]]];
     NSLog(@"the Second index.row = %li", (long)indexPath.row);
+    
+    [self didUpdateKarmaPoints:YES charity:[charityNames objectAtIndex:indexPath.row]];
+    
 }
+
+- (void)onBuyNowButtonTapped
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_productProductURL]];
+    NSLog(@"sending user to purchase product at %@", _productProductURL);
+    
+    [self didUpdateKarmaPoints:YES charity:@"made a purchase"];
+    
+}
+
+-(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity
+{
+    
+    PFObject *donation = [PFObject objectWithClassName:@"Donation"];
+    donation[@"donor"] = [PFUser currentUser];
+    donation[@"recipientCharity"] = recipientCharity;
+    
+    donation[@"donationAmount"]= _productPrice;
+    
+    [donation saveInBackground]; //save the donation to Parse
+    
+    
+    PFUser *user = [PFUser currentUser];
+    
+    currPoints = user[@"points"];
+    
+    if (!currPoints){
+        
+        currPoints=0;
+    }
+    else if( flag ==YES ) {
+        
+        int tempPoints =  (10 + [currPoints integerValue]);
+        
+        user[@"points"] = [NSNumber numberWithInt:tempPoints];
+        
+        [user saveInBackground];
+        
+    }else if(flag==NO)
+    {
+        int tempPoints =  (-10 + [currPoints integerValue]);
+        
+        user[@"points"] = [NSNumber numberWithInt:tempPoints];
+        
+    }
+    
+    [user saveInBackground]; //save user points to Parse
+
+    
+}
+
+
+
+
 
 
 

@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *valueQuestionLabel;
 
 @property (weak, nonatomic) IBOutlet UITextField *userEnterDollarAmountTextField;
+@property (weak, nonatomic) IBOutlet UILabel *scanButtonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *orLabel;
 
 @property   (weak,nonatomic)NSString* productName;
 
