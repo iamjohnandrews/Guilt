@@ -13,6 +13,7 @@
 
   //  DonationsTableViewController *donationsTable;
     NSMutableArray *donorInfo;
+    int tempPoints;
     
 }
 @property (weak, nonatomic) IBOutlet UILabel *myKarmaPointsLabel;
@@ -70,7 +71,7 @@
     PFUser *user = [PFUser currentUser];
     
     NSNumber *currPoints =user[@"points"];
-    int tempPoints;
+    
     if (!currPoints) {
         
         tempPoints=0;
@@ -83,12 +84,12 @@
         
     }
     
-    if (currPoints >=0) {
+    if (tempPoints >=0) {
         
-        _myKarmaPointsLabel.text = [NSString stringWithFormat:@"+%@",[currPoints stringValue]];
+        _myKarmaPointsLabel.text = [NSString stringWithFormat:@"+%i",tempPoints];
     }
     else{
-        _myKarmaPointsLabel.text = [NSString stringWithFormat:@"-%@",[currPoints stringValue]];
+        _myKarmaPointsLabel.text = [NSString stringWithFormat:@"-%i",tempPoints];
         
 
     }
