@@ -10,6 +10,9 @@
 #import <Parse/Parse.h>
 @interface UserProfileViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (IBAction)saveButton:(id)sender;
 
 @end

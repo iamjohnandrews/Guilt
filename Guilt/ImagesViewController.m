@@ -37,14 +37,18 @@
 
 - (void)viewDidLoad
 {
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
+    
     [super viewDidLoad];
     NSLog(@"content of the resultOfCharitableConversionsArray %@", resultOfCharitableConversionsArray);
     
-    charityImagesArray = @[@"homeless dog.png", @"feedTheHungry.png", @"homelessFamily.png", @"Soldiers.png", @"waterPump.png"];
+    charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png", @"Soldiers.png", @"waterPump.png"];
     
     charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
-                                 @"month(s) of providing vaccines, relief after natural disasters & schooling through Unicef",
-                                 @"month(s) of food, water, education, and medical supplies through Feed The Children",
+                                 @"month(s) of vaccines, schooling & natural disaster relief through Unicef",
+                                 @"month(s) of food, water, and medical supplies through Feed The Children",
                                  @"military care package(s) through Soildier's Angels",
                                  @"natural spring catchment(s) serving 250 people through African Well Fund"
                                  ];
@@ -70,7 +74,25 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self setFontFamily:@"Quicksand-Regular" forView:self.view andSubViews:YES];
 }
+
+-(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews
+{
+    if ([view isKindOfClass:[UILabel class]])
+    {
+        UILabel *lbl = (UILabel *)view;
+        [lbl setFont:[UIFont fontWithName:fontFamily size:[[lbl font] pointSize]]];
+    }
+    
+    if (isSubViews)
+    {
+        for (UIView *sview in view.subviews)
+        {
+            [self setFontFamily:fontFamily forView:sview andSubViews:YES];
+        }
+    }     
+} 
 
 #pragma mark - Table view data source
 
@@ -96,17 +118,20 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,30)];
     
     UITextView *productNameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 120 )];
-    productNameTextView.font = [UIFont fontWithName:@"Helvetica" size:20];
+    productNameTextView.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     productNameTextView.text = [NSString stringWithFormat:@"%@\n $%@\n", _productName, _productPrice];
-    productNameTextView.backgroundColor = [UIColor orangeColor];
+    productNameTextView.backgroundColor = [UIColor colorWithRed:247.0/255 green:150.0/255 blue:0.0/255 alpha:1];
     
     UIButton* urlLinkButton = [UIButton buttonWithType:UIButtonTypeCustom];
     urlLinkButton.backgroundColor = [UIColor blackColor];
-    urlLinkButton.frame = CGRectMake(220, 50, 100, 50);
+    urlLinkButton.frame = CGRectMake(210, 50, 100, 50);
 
     //headerView.backgroundColor = [UIColor blueColor];
     [urlLinkButton setTitle:@"Buy Now" forState:UIControlStateNormal];
-
+    urlLinkButton.layer.cornerRadius = 8;
+    urlLinkButton.layer.borderWidth = 1;
+    urlLinkButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    urlLinkButton.clipsToBounds = YES;
     urlLinkButton.titleLabel.textColor = [UIColor whiteColor];
 
     [headerView addSubview:productNameTextView];
@@ -147,7 +172,9 @@
     }];
     
     charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
-        
+    
+    charityCell.charityConversionDetailsLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:15];
+    charityCell.charityConversionDetailsLabel.textColor = [UIColor whiteColor];    
     charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
     NSLog(@"the First index.row = %li", (long)indexPath.row);
     
@@ -222,6 +249,16 @@
     
     [user saveInBackground]; //save user points to Parse
 
+    
+}
+
+- (IBAction)userProfileButton:(id)sender {
+}
+
+- (IBAction)logoutButton:(id)sender {
+    
+    
+    [PFUser logOut];
     
 }
 
