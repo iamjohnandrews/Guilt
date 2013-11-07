@@ -25,9 +25,9 @@
 {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+    // Puts outline around white font in picture
     charityConversionDetailsLabel.shadowColor = [UIColor blackColor];
-    charityConversionDetailsLabel.shadowOffset = CGSizeMake(1, 1);
+    charityConversionDetailsLabel.shadowOffset = CGSizeMake(2, 1);
 }
 
 - (void)charityDisplay:(NSMutableArray*)arrayOfCharities andIndexPath:(NSIndexPath*)indexPath

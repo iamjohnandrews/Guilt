@@ -35,24 +35,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Make a Purchase. Make a difference." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="SID-dl-CTO">
-                                <rect key="frame" x="0.0" y="65" width="320" height="98"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="SID-dl-CTO">
+                                <rect key="frame" x="0.0" y="67" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M98-zr-X80">
-                                <rect key="frame" x="103" y="316" width="115" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Price" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M98-zr-X80">
+                                <rect key="frame" x="94" y="177" width="132" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myI-Tg-Yul">
-                                <rect key="frame" x="63" y="359" width="199" height="58"/>
+                                <rect key="frame" x="52" y="225" width="225" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Enter Amount">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -60,10 +60,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8d-DX-YuI">
-                                <rect key="frame" x="48" y="149" width="225" height="84"/>
+                                <rect key="frame" x="52" y="374" width="225" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" image="barcode.png">
+                                <state key="normal" image="awesomeBarcode.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -71,33 +71,29 @@
                                     <segue destination="MTG-0y-bA3" kind="modal" identifier="ScannerSegue" id="cYE-fG-TCA"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SCAN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7c-0j-8sp">
-                                <rect key="frame" x="109" y="158" width="107" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="- OR -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1k-go-TSo">
-                                <rect key="frame" x="118" y="259" width="85" height="49"/>
+                                <rect key="frame" x="20" y="317" width="280" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To find a product's price &amp; discover your potential social impact" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="287" translatesAutoresizingMaskIntoConstraints="NO" id="Yx1-qH-vvm">
-                                <rect key="frame" x="13" y="448" width="287" height="88"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUb-Fb-5qC">
+                                <rect key="frame" x="0.0" y="67" width="320" height="219"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dissmissKeyboardButton:" destination="gGE-l0-Oez" eventType="touchUpInside" id="msU-4l-MEZ"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="hWj-3D-t99"/>
                     <connections>
                         <outlet property="conversionButtonOutlet" destination="myI-Tg-Yul" id="5Ya-EZ-V4x"/>
                         <outlet property="orLabel" destination="i1k-go-TSo" id="fiL-CX-xmi"/>
-                        <outlet property="scanButtonLabel" destination="R7c-0j-8sp" id="hcZ-R0-gUV"/>
                         <outlet property="scannerButtonOutlet" destination="M8d-DX-YuI" id="rk7-lq-kZO"/>
                         <outlet property="userEnterDollarAmountTextField" destination="M98-zr-X80" id="goV-UA-J6A"/>
                         <outlet property="valueQuestionLabel" destination="SID-dl-CTO" id="Rcc-MS-0yQ"/>
@@ -257,7 +253,7 @@
             </objects>
             <point key="canvasLocation" x="147" y="465"/>
         </scene>
-        <!--Images View Controller - Choose Wisely-->
+        <!--Images View Controller-->
         <scene sceneID="jtA-Nn-sMd">
             <objects>
                 <tableViewController id="tEc-0u-6AV" customClass="ImagesViewController" sceneMemberID="viewController">
@@ -333,7 +329,7 @@
                             <outlet property="delegate" destination="tEc-0u-6AV" id="d4U-Dt-eJf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Choose Wisely" id="8Nu-S8-SXM"/>
+                    <navigationItem key="navigationItem" id="8Nu-S8-SXM"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yd-hQ-rRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -453,7 +449,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="barcode.png" width="300" height="102"/>
+        <image name="awesomeBarcode.png" width="250" height="120"/>
     </resources>
     <color key="tintColor" red="1" green="0.96621304419999998" blue="0.043735437330000002" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
