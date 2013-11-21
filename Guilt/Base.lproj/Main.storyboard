@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Er-qN-MxF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Scanner View Controller-->
@@ -117,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXu-5J-mrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2207" y="-108"/>
+            <point key="canvasLocation" x="2609" y="-154"/>
         </scene>
         <!--My Login View Controller - Welcome-->
         <scene sceneID="dS1-6B-dos">
@@ -189,12 +189,12 @@
                         <outlet property="password" destination="D0t-xd-mnB" id="eBu-WP-lCT"/>
                         <outlet property="signupButtonOutlet" destination="7Da-iS-ja6" id="f84-cS-8WD"/>
                         <outlet property="userName" destination="NCb-Ub-Rgp" id="iI7-wv-UJ8"/>
-                        <segue destination="OOQ-r8-saD" kind="modal" identifier="ShowMeSegue" id="5qz-r1-Xg0"/>
+                        <segue destination="bTl-MY-eFs" kind="modal" identifier="ShowMeSegue" id="eef-Rq-D6Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kd1-7R-cd4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="553" y="-391"/>
+            <point key="canvasLocation" x="481" y="-1357"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Ly9-7z-khr">
@@ -212,12 +212,12 @@
                     <navigationItem key="navigationItem" id="b13-N8-eeV"/>
                     <connections>
                         <segue destination="Ebk-s5-A4g" kind="modal" identifier="LoginSegue" id="HGS-To-cBe"/>
-                        <segue destination="OOQ-r8-saD" kind="modal" identifier="ShowMeSegue2" id="NgK-1x-nIo"/>
+                        <segue destination="bTl-MY-eFs" kind="modal" identifier="ShowMeSegue23" modalTransitionStyle="flipHorizontal" id="4GE-6g-ZXs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2qF-wf-cBp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74" y="-384"/>
+            <point key="canvasLocation" x="-902" y="-1242"/>
         </scene>
         <!--Karma Signup View Controller - Sign Up-->
         <scene sceneID="2Iw-Pq-BXU">
@@ -288,12 +288,12 @@
                         <outlet property="emailAddress" destination="cLA-eb-diG" id="2JJ-TB-g1q"/>
                         <outlet property="password" destination="qLB-vy-tof" id="Oi7-LF-bzh"/>
                         <outlet property="userName" destination="Q3T-GI-tvL" id="F97-gr-0jo"/>
-                        <segue destination="OOQ-r8-saD" kind="modal" identifier="ShowMe2Segue" id="Ce7-9h-MM3"/>
+                        <segue destination="bTl-MY-eFs" kind="modal" identifier="ShowMe2Segue" id="ruj-7L-I1I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tTL-Du-RXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="673" y="465"/>
+            <point key="canvasLocation" x="1465" y="-1351"/>
         </scene>
         <!--Images View Controller - Choose Wisely-->
         <scene sceneID="jtA-Nn-sMd">
@@ -388,7 +388,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yd-hQ-rRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2948" y="-140"/>
+            <point key="canvasLocation" x="3474" y="-140"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kga-sS-r7f">
@@ -409,25 +409,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xch-TK-iVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-339" y="-374"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="PaI-cK-DyX">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OOQ-r8-saD" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QKK-uA-rWT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="gGE-l0-Oez" kind="relationship" relationship="rootViewController" id="hEk-re-E3H"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8pK-jm-oPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1681" y="-108"/>
+            <point key="canvasLocation" x="-1505" y="-894"/>
         </scene>
         <!--User Profile View Controller - Profile-->
         <scene sceneID="0Cq-X9-E8G">
@@ -547,7 +529,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuU-1x-erw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313" y="541"/>
+            <point key="canvasLocation" x="2117" y="895"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FsU-0I-XcN">
@@ -565,7 +547,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AjO-bx-KdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="147" y="465"/>
+            <point key="canvasLocation" x="1019" y="-1357"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2UE-Lh-klg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bTl-MY-eFs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xow-N6-sTJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gGE-l0-Oez" kind="relationship" relationship="rootViewController" id="Vs7-WR-f0a"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lNU-vW-PSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1243" y="38"/>
         </scene>
     </scenes>
     <resources>
@@ -578,7 +578,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ce7-9h-MM3"/>
-        <segue reference="b9w-pJ-Thj"/>
+        <segue reference="4GE-6g-ZXs"/>
+        <segue reference="eV3-BS-VXY"/>
     </inferredMetricsTieBreakers>
 </document>

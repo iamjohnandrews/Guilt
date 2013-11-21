@@ -24,7 +24,7 @@
     
     
 
-    
+    NSLog(@"in myviewcontroller viewdidload");
     
 }
 
@@ -34,7 +34,8 @@
     
     if ([PFUser currentUser])
     {
-        [self performSegueWithIdentifier:@"ShowMeSegue2" sender:self];
+        NSLog(@"Myviewcontroller ShowMeSegue2");
+        [self performSegueWithIdentifier:@"ShowMeSegue23" sender:self];
         
         
     }

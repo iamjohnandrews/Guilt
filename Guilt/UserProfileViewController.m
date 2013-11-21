@@ -148,7 +148,7 @@
     
     donationAmount = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"donationAmount"];
     
-    cell.textLabel.text = [NSString stringWithFormat:@" Charity: %@ Donation Amount $%@.00", charityName, donationAmount];
+    cell.textLabel.text = [NSString stringWithFormat:@" Charity: %@ Donation Amount $%@", charityName, donationAmount];
     
     cell.textLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:10];
     

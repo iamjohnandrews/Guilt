@@ -240,8 +240,9 @@
         
         currPoints=0;
     }
-    else if( flag ==YES ) {
+    if( flag ==YES ) {
         
+        NSLog(@"Flag == YES");
         int tempPoints =  (10 + [currPoints integerValue]);
         
         user[@"points"] = [NSNumber numberWithInt:tempPoints];
@@ -250,6 +251,7 @@
         
     }else if(flag==NO)
     {
+        NSLog(@"Flag == no");
         int tempPoints =  (-10 + [currPoints integerValue]);
         
         user[@"points"] = [NSNumber numberWithInt:tempPoints];
