@@ -23,6 +23,7 @@
 		7727AD8C182BF356006D01DD /* ic_profile_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727AD88182BF356006D01DD /* ic_profile_black.png */; };
 		772B828E1829683300128190 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B828D1829683300128190 /* UserProfileViewController.m */; };
 		772B82911829864E00128190 /* DonationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B82901829864E00128190 /* DonationsTableViewController.m */; };
+		77F8B5D0183D4C07003A541E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F8B5CF183D4C07003A541E /* SWRevealViewController.m */; };
 		8E00AAC718182E9700BB32E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC618182E9700BB32E4 /* Foundation.framework */; };
 		8E00AAC918182E9700BB32E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */; };
 		8E00AACB18182E9700BB32E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AACA18182E9700BB32E4 /* UIKit.framework */; };
@@ -132,6 +133,8 @@
 		772B828D1829683300128190 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		772B828F1829864E00128190 /* DonationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonationsTableViewController.h; sourceTree = "<group>"; };
 		772B82901829864E00128190 /* DonationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonationsTableViewController.m; sourceTree = "<group>"; };
+		77F8B5CE183D4C07003A541E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		77F8B5CF183D4C07003A541E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		8E00AAC318182E9700BB32E4 /* Guilt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guilt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E00AAC618182E9700BB32E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -263,6 +266,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77F8B5CD183D4C07003A541E /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				77F8B5CE183D4C07003A541E /* SWRevealViewController.h */,
+				77F8B5CF183D4C07003A541E /* SWRevealViewController.m */,
+			);
+			path = SWRevealViewController;
+			sourceTree = "<group>";
+		};
 		8E00AABA18182E9700BB32E4 = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +362,7 @@
 		8E00AACD18182E9700BB32E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				77F8B5CD183D4C07003A541E /* SWRevealViewController */,
 				7727AD85182BF356006D01DD /* ic_profile_white@2x.png */,
 				7727AD86182BF356006D01DD /* ic_profile_white.png */,
 				7727AD87182BF356006D01DD /* ic_profile_black@2x.png */,
@@ -519,7 +532,7 @@
 				ORGANIZATIONNAME = "John Andrews";
 				TargetAttributes = {
 					8E00AAC218182E9700BB32E4 = {
-						DevelopmentTeam = 835L8YFNV4;
+						DevelopmentTeam = AXXSAL8636;
 					};
 					8E00AAE318182E9700BB32E4 = {
 						TestTargetID = 8E00AAC218182E9700BB32E4;
@@ -628,6 +641,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E00CB85C182B318A00A497C3 /* MyLoginViewController.m in Sources */,
+				77F8B5D0183D4C07003A541E /* SWRevealViewController.m in Sources */,
 				E00CB83F182B287400A497C3 /* AMBlurView.m in Sources */,
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,

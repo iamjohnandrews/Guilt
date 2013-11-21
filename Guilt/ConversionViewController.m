@@ -28,6 +28,9 @@
 
 - (void)viewDidLoad
 {
+    
+    NSLog(@"In Conversion");
+    
 //code to change color of nav bar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"KarnaScan_NavBar.png"] forBarMetrics:UIBarMetricsDefault];
     
@@ -86,6 +89,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    NSLog(@"In Conversion: viewDidAppear");
+
 
     self.navigationItem.hidesBackButton = YES;
 

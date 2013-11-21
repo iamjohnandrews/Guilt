@@ -27,6 +27,8 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"In viewdidload");
+    
     [super viewDidLoad];
     //code to form the login button
     loginButtonOutlet.layer.cornerRadius = 8;
@@ -52,11 +54,13 @@
 -(void)viewDidAppear:(BOOL)animated
 {
 
+    NSLog(@"in Viewdidappear");
+    
     if ([PFUser currentUser])
     {
         [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
         
-        
+        NSLog(@"Perform ShowMeSegue for logged in user");
     }
 
 }
