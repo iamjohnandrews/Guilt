@@ -11,6 +11,7 @@
 #import "ScannerViewController.h"
 #import <Parse/Parse.h>
 #import "ProductDisplayCell.h"
+#import "MYViewController.h"
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
@@ -127,6 +128,10 @@
     
     
     [PFUser logOut];
+    
+    
+    
+    [self performSegueWithIdentifier:@"LogOutSegue" sender:self];
 }
 
 - (IBAction)userProfileButton:(id)sender {
