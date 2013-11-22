@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Er-qN-MxF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Scanner View Controller-->
@@ -43,13 +43,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Price" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M98-zr-X80">
-                                <rect key="frame" x="94" y="148" width="132" height="30"/>
+                                <rect key="frame" x="94" y="132" width="132" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myI-Tg-Yul">
-                                <rect key="frame" x="52" y="197" width="225" height="70"/>
+                                <rect key="frame" x="52" y="181" width="225" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal">
@@ -72,7 +72,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="- OR -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1k-go-TSo">
-                                <rect key="frame" x="20" y="279" width="280" height="49"/>
+                                <rect key="frame" x="20" y="273" width="280" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -90,13 +90,9 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="hWj-3D-t99">
-                        <barButtonItem key="leftBarButtonItem" title="logout" id="dOa-Ip-diV">
-                            <connections>
-                                <action selector="logoutButton:" destination="gGE-l0-Oez" id="P77-J2-YMG"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_profile_white.png" id="22b-4f-1iy">
                             <connections>
                                 <action selector="userProfileButton:" destination="gGE-l0-Oez" id="6wn-ze-Sd1"/>
@@ -107,7 +103,6 @@
                     <connections>
                         <outlet property="backToIntroductionButtonOutlet" destination="Lqg-F1-S72" id="wZG-si-CR1"/>
                         <outlet property="conversionButtonOutlet" destination="myI-Tg-Yul" id="5Ya-EZ-V4x"/>
-                        <outlet property="logoutButtonOutlet" destination="dOa-Ip-diV" id="1av-TP-PKb"/>
                         <outlet property="orLabel" destination="i1k-go-TSo" id="fiL-CX-xmi"/>
                         <outlet property="scannerButtonOutlet" destination="M8d-DX-YuI" id="rk7-lq-kZO"/>
                         <outlet property="userEnterDollarAmountTextField" destination="M98-zr-X80" id="goV-UA-J6A"/>
@@ -133,32 +128,32 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6s-T9-k8f">
-                                <rect key="frame" x="30" y="145" width="79" height="21"/>
+                                <rect key="frame" x="30" y="71" width="79" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBz-n4-5uw">
-                                <rect key="frame" x="31" y="193" width="76" height="21"/>
+                                <rect key="frame" x="31" y="119" width="76" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NCb-Ub-Rgp">
-                                <rect key="frame" x="130" y="142" width="160" height="30"/>
+                                <rect key="frame" x="130" y="68" width="160" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D0t-xd-mnB">
-                                <rect key="frame" x="130" y="193" width="160" height="30"/>
+                                <rect key="frame" x="130" y="119" width="160" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8N-Z5-6EX">
-                                <rect key="frame" x="31" y="248" width="54" height="35"/>
+                                <rect key="frame" x="31" y="174" width="54" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Sign In">
@@ -170,7 +165,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Da-iS-ja6">
-                                <rect key="frame" x="216" y="248" width="62" height="35"/>
+                                <rect key="frame" x="216" y="174" width="62" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Sign Up">
@@ -181,10 +176,6 @@
                                     <segue destination="znS-G8-ODZ" kind="modal" identifier="SignupSegue" id="n0j-T2-6ay"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="KarmaScan logo-FJ.png" translatesAutoresizingMaskIntoConstraints="NO" id="tfr-bx-Tkd">
-                                <rect key="frame" x="63" y="1" width="195" height="136"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -308,6 +299,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductDisplay" rowHeight="152" id="qUF-vk-ho1" customClass="ProductDisplayCell">
                                 <rect key="frame" x="0.0" y="186" width="320" height="152"/>
@@ -378,11 +370,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Choose Wisely" id="8Nu-S8-SXM">
-                        <barButtonItem key="leftBarButtonItem" title="logout" id="ijy-OJ-lGF">
-                            <connections>
-                                <action selector="logoutButton:" destination="tEc-0u-6AV" id="i4J-S9-k22"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_profile_white.png" id="42M-M9-whS">
                             <connections>
                                 <action selector="userProfileButton:" destination="tEc-0u-6AV" id="XI8-fi-xz3"/>
@@ -574,7 +561,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="KarmaScan logo-FJ.png" width="500" height="500"/>
         <image name="ic_profile_white.png" width="44" height="44"/>
     </resources>
     <color key="tintColor" red="1" green="0.96621304419999998" blue="0.043735437330000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -586,6 +572,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="eef-Rq-D6Y"/>
         <segue reference="dvI-Cx-0PM"/>
-        <segue reference="eV3-BS-VXY"/>
+        <segue reference="b9w-pJ-Thj"/>
     </inferredMetricsTieBreakers>
 </document>

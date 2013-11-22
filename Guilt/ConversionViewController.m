@@ -41,7 +41,7 @@
     [self.view addSubview:backgroundImage];
     [self.view sendSubviewToBack:backgroundImage]; */
 
-    valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:20];
+    valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     valueQuestionLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
     valueQuestionLabel.text = @"Find the best price & discover your charitable impact";
     
