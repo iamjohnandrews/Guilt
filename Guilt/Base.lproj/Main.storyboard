@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Er-qN-MxF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Er-qN-MxF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Scanner View Controller-->
@@ -214,6 +214,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2qF-wf-cBp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-902" y="-1242"/>
+        </scene>
+        <!--Welcome View Controller-->
+        <scene sceneID="tTh-bF-LkH">
+            <objects>
+                <viewController id="2R9-eO-Y3Z" customClass="WelcomeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cD0-xZ-qyU"/>
+                        <viewControllerLayoutGuide type="bottom" id="QNl-hw-9Ku"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bC2-dN-9bp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FxA-IJ-gFM">
+                                <rect key="frame" x="0.0" y="-37" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="LSK-k8-ev0">
+                                <rect key="frame" x="141" y="526" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="introScrollView" destination="FxA-IJ-gFM" id="6fP-dT-O65"/>
+                        <outlet property="pageControl" destination="LSK-k8-ev0" id="0RH-ZY-zhc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lcr-nN-IsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-349" y="-159"/>
         </scene>
         <!--Karma Signup View Controller - Sign Up-->
         <scene sceneID="2Iw-Pq-BXU">
@@ -570,8 +602,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="HGS-To-cBe"/>
         <segue reference="eef-Rq-D6Y"/>
-        <segue reference="dvI-Cx-0PM"/>
         <segue reference="b9w-pJ-Thj"/>
     </inferredMetricsTieBreakers>
 </document>
