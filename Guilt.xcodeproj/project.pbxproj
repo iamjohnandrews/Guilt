@@ -22,7 +22,6 @@
 		7727AD8B182BF356006D01DD /* ic_profile_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727AD87182BF356006D01DD /* ic_profile_black@2x.png */; };
 		7727AD8C182BF356006D01DD /* ic_profile_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727AD88182BF356006D01DD /* ic_profile_black.png */; };
 		772B828E1829683300128190 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B828D1829683300128190 /* UserProfileViewController.m */; };
-		772B82911829864E00128190 /* DonationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B82901829864E00128190 /* DonationsTableViewController.m */; };
 		77F8B5D0183D4C07003A541E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F8B5CF183D4C07003A541E /* SWRevealViewController.m */; };
 		8E00AAC718182E9700BB32E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC618182E9700BB32E4 /* Foundation.framework */; };
 		8E00AAC918182E9700BB32E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */; };
@@ -51,6 +50,7 @@
 		8E05BC71182B08990005BF34 /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC70182B085C0005BF34 /* Quicksand-Bold.otf */; };
 		8E05BC73182B2F6E0005BF34 /* KarnaScan_NavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC72182B2F6E0005BF34 /* KarnaScan_NavBar.png */; };
 		8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */; };
+		8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FA46A18CBB3FA009E2A66 /* BaseViewController.m */; };
 		8E69AB4E183FF598000A4B4D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E69AB4D183FF598000A4B4D /* Parse.framework */; };
 		8E9596FB182960E900AE29DB /* army2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596E3182960E900AE29DB /* army2.png */; };
 		8E9596FC182960E900AE29DB /* camel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596E4182960E900AE29DB /* camel.png */; };
@@ -87,16 +87,8 @@
 		8EB17C041820205C000DDFCC /* Unicef.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFF1820205C000DDFCC /* Unicef.jpeg */; };
 		8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */; };
 		8EB17C161821977C000DDFCC /* ProductDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17C151821977C000DDFCC /* ProductDisplayCell.m */; };
-		E00CB83F182B287400A497C3 /* AMBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB83E182B287400A497C3 /* AMBlurView.m */; };
-		E00CB842182B289100A497C3 /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB841182B289100A497C3 /* MYBlurIntroductionView.m */; };
-		E00CB845182B28A700A497C3 /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB844182B28A700A497C3 /* MYIntroductionPanel.m */; };
-		E00CB848182B28B500A497C3 /* MYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB847182B28B500A497C3 /* MYAppDelegate.m */; };
-		E00CB84B182B28D400A497C3 /* MYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB84A182B28D400A497C3 /* MYViewController.m */; };
 		E00CB84D182B28F000A497C3 /* TestHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E00CB84C182B28F000A497C3 /* TestHeader.xib */; };
-		E00CB84F182B28FD00A497C3 /* KarmaScan logo-FJ.png in Resources */ = {isa = PBXBuildFile; fileRef = E00CB84E182B28FD00A497C3 /* KarmaScan logo-FJ.png */; };
 		E00CB852182B291400A497C3 /* KarnaScan_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = E00CB851182B291400A497C3 /* KarnaScan_Background.png */; };
-		E00CB854182B291D00A497C3 /* MYCustomPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB853182B291D00A497C3 /* MYCustomPanel.m */; };
-		E00CB856182B292900A497C3 /* MYCustomPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = E00CB855182B292900A497C3 /* MYCustomPanel.xib */; };
 		E00CB859182B316F00A497C3 /* KarmaSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB858182B316F00A497C3 /* KarmaSignupViewController.m */; };
 		E00CB85C182B318A00A497C3 /* MyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB85B182B318A00A497C3 /* MyLoginViewController.m */; };
 		E00CB85E182B400400A497C3 /* donation.png in Resources */ = {isa = PBXBuildFile; fileRef = E00CB85D182B400400A497C3 /* donation.png */; };
@@ -131,8 +123,6 @@
 		7727AD88182BF356006D01DD /* ic_profile_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_profile_black.png; sourceTree = "<group>"; };
 		772B828C1829683300128190 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = ../UserProfileViewController.h; sourceTree = "<group>"; };
 		772B828D1829683300128190 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = ../UserProfileViewController.m; sourceTree = "<group>"; };
-		772B828F1829864E00128190 /* DonationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DonationsTableViewController.h; path = ../DonationsTableViewController.h; sourceTree = "<group>"; };
-		772B82901829864E00128190 /* DonationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DonationsTableViewController.m; path = ../DonationsTableViewController.m; sourceTree = "<group>"; };
 		77F8B5CE183D4C07003A541E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		77F8B5CF183D4C07003A541E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		8E00AAC318182E9700BB32E4 /* Guilt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guilt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,8 +155,10 @@
 		8E05BC6E182B01200005BF34 /* awesomeBarcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = awesomeBarcode.png; path = ../awesomeBarcode.png; sourceTree = "<group>"; };
 		8E05BC70182B085C0005BF34 /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
 		8E05BC72182B2F6E0005BF34 /* KarnaScan_NavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KarnaScan_NavBar.png; sourceTree = "<group>"; };
-		8E3FA46618CB8329009E2A66 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
-		8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		8E3FA46618CB8329009E2A66 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeViewController.h; path = ../Controllers/WelcomeViewController.h; sourceTree = "<group>"; };
+		8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeViewController.m; path = ../Controllers/WelcomeViewController.m; sourceTree = "<group>"; };
+		8E3FA46918CBB3FA009E2A66 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		8E3FA46A18CBB3FA009E2A66 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		8E69AB4D183FF598000A4B4D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		8E9596E3182960E900AE29DB /* army2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = army2.png; sourceTree = "<group>"; };
 		8E9596E4182960E900AE29DB /* camel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camel.png; sourceTree = "<group>"; };
@@ -208,22 +200,8 @@
 		8EB17C141821977C000DDFCC /* ProductDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDisplayCell.h; path = Guilt/ProductDisplayCell.h; sourceTree = SOURCE_ROOT; };
 		8EB17C151821977C000DDFCC /* ProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDisplayCell.m; path = Guilt/ProductDisplayCell.m; sourceTree = SOURCE_ROOT; };
 		8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ScannerDidNotWorkDelegate.h; path = ../ScannerDidNotWorkDelegate.h; sourceTree = "<group>"; };
-		E00CB83D182B286800A497C3 /* AMBlurView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AMBlurView.h; path = ../AMBlurView.h; sourceTree = "<group>"; };
-		E00CB83E182B287400A497C3 /* AMBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMBlurView.m; path = ../AMBlurView.m; sourceTree = "<group>"; };
-		E00CB840182B287C00A497C3 /* MYBlurIntroductionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MYBlurIntroductionView.h; path = ../MYBlurIntroductionView.h; sourceTree = "<group>"; };
-		E00CB841182B289100A497C3 /* MYBlurIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MYBlurIntroductionView.m; path = ../MYBlurIntroductionView.m; sourceTree = "<group>"; };
-		E00CB843182B28A300A497C3 /* MYIntroductionPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MYIntroductionPanel.h; path = ../MYIntroductionPanel.h; sourceTree = "<group>"; };
-		E00CB844182B28A700A497C3 /* MYIntroductionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MYIntroductionPanel.m; path = ../MYIntroductionPanel.m; sourceTree = "<group>"; };
-		E00CB846182B28AF00A497C3 /* MYAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MYAppDelegate.h; path = ../MYAppDelegate.h; sourceTree = "<group>"; };
-		E00CB847182B28B500A497C3 /* MYAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MYAppDelegate.m; path = ../MYAppDelegate.m; sourceTree = "<group>"; };
-		E00CB849182B28CC00A497C3 /* MYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MYViewController.h; path = ../MYViewController.h; sourceTree = "<group>"; };
-		E00CB84A182B28D400A497C3 /* MYViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MYViewController.m; path = ../MYViewController.m; sourceTree = "<group>"; };
 		E00CB84C182B28F000A497C3 /* TestHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestHeader.xib; path = ../TestHeader.xib; sourceTree = "<group>"; };
-		E00CB84E182B28FD00A497C3 /* KarmaScan logo-FJ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "KarmaScan logo-FJ.png"; path = "../KarmaScan logo-FJ.png"; sourceTree = "<group>"; };
-		E00CB850182B290600A497C3 /* MYCustomPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MYCustomPanel.h; path = ../MYCustomPanel.h; sourceTree = "<group>"; };
 		E00CB851182B291400A497C3 /* KarnaScan_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = KarnaScan_Background.png; path = ../KarnaScan_Background.png; sourceTree = "<group>"; };
-		E00CB853182B291D00A497C3 /* MYCustomPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MYCustomPanel.m; path = ../MYCustomPanel.m; sourceTree = "<group>"; };
-		E00CB855182B292900A497C3 /* MYCustomPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MYCustomPanel.xib; path = ../MYCustomPanel.xib; sourceTree = "<group>"; };
 		E00CB857182B316800A497C3 /* KarmaSignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KarmaSignupViewController.h; sourceTree = SOURCE_ROOT; };
 		E00CB858182B316F00A497C3 /* KarmaSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KarmaSignupViewController.m; sourceTree = SOURCE_ROOT; };
 		E00CB85A182B318000A497C3 /* MyLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyLoginViewController.h; path = Guilt/MyLoginViewController.h; sourceTree = SOURCE_ROOT; };
@@ -375,6 +353,11 @@
 		8E05BC54182AB7F20005BF34 /* KarmaScan_logoFJ */ = {
 			isa = PBXGroup;
 			children = (
+				E00CB84C182B28F000A497C3 /* TestHeader.xib */,
+				E00CB851182B291400A497C3 /* KarnaScan_Background.png */,
+				E00CB85F182B400F00A497C3 /* karmaScan1.png */,
+				E00CB861182B412C00A497C3 /* CheckMarkWhite.png */,
+				E00CB85D182B400400A497C3 /* donation.png */,
 				8E05BC72182B2F6E0005BF34 /* KarnaScan_NavBar.png */,
 				8E05BC6E182B01200005BF34 /* awesomeBarcode.png */,
 				8E05BC6A182AE43B0005BF34 /* barcode.png */,
@@ -393,6 +376,8 @@
 		8E69AB4B183FF499000A4B4D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8E3FA46918CBB3FA009E2A66 /* BaseViewController.h */,
+				8E3FA46A18CBB3FA009E2A66 /* BaseViewController.m */,
 				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
 				8EB17BF818201F00000DDFCC /* ImagesViewController.m */,
 				8EAE7B71182006A7001BDC08 /* ConversionViewController.h */,
@@ -400,8 +385,6 @@
 				771BCD7E182023DD000264A8 /* ScannerViewController.h */,
 				771BCD7F182023DD000264A8 /* ScannerViewController.m */,
 				8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */,
-				8E3FA46618CB8329009E2A66 /* WelcomeViewController.h */,
-				8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -409,29 +392,10 @@
 		8E69AB4C183FF4D7000A4B4D /* Introduction */ = {
 			isa = PBXGroup;
 			children = (
-				772B828F1829864E00128190 /* DonationsTableViewController.h */,
-				772B82901829864E00128190 /* DonationsTableViewController.m */,
+				8E3FA46618CB8329009E2A66 /* WelcomeViewController.h */,
+				8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */,
 				772B828C1829683300128190 /* UserProfileViewController.h */,
 				772B828D1829683300128190 /* UserProfileViewController.m */,
-				E00CB83D182B286800A497C3 /* AMBlurView.h */,
-				E00CB841182B289100A497C3 /* MYBlurIntroductionView.m */,
-				E00CB840182B287C00A497C3 /* MYBlurIntroductionView.h */,
-				E00CB844182B28A700A497C3 /* MYIntroductionPanel.m */,
-				E00CB843182B28A300A497C3 /* MYIntroductionPanel.h */,
-				E00CB83E182B287400A497C3 /* AMBlurView.m */,
-				E00CB84C182B28F000A497C3 /* TestHeader.xib */,
-				E00CB849182B28CC00A497C3 /* MYViewController.h */,
-				E00CB851182B291400A497C3 /* KarnaScan_Background.png */,
-				E00CB85F182B400F00A497C3 /* karmaScan1.png */,
-				E00CB861182B412C00A497C3 /* CheckMarkWhite.png */,
-				E00CB85D182B400400A497C3 /* donation.png */,
-				E00CB84E182B28FD00A497C3 /* KarmaScan logo-FJ.png */,
-				E00CB846182B28AF00A497C3 /* MYAppDelegate.h */,
-				E00CB850182B290600A497C3 /* MYCustomPanel.h */,
-				E00CB855182B292900A497C3 /* MYCustomPanel.xib */,
-				E00CB853182B291D00A497C3 /* MYCustomPanel.m */,
-				E00CB84A182B28D400A497C3 /* MYViewController.m */,
-				E00CB847182B28B500A497C3 /* MYAppDelegate.m */,
 			);
 			path = Introduction;
 			sourceTree = "<group>";
@@ -590,8 +554,6 @@
 				8E95970F182960E900AE29DB /* trioOfRabbits.png in Resources */,
 				8E9596FB182960E900AE29DB /* army2.png in Resources */,
 				8E05BC62182AB7F20005BF34 /* KarmaScan logo-FJ.tif in Resources */,
-				E00CB856182B292900A497C3 /* MYCustomPanel.xib in Resources */,
-				E00CB84F182B28FD00A497C3 /* KarmaScan logo-FJ.png in Resources */,
 				8E959705182960E900AE29DB /* homelessFamily.png in Resources */,
 				E00CB862182B412C00A497C3 /* CheckMarkWhite.png in Resources */,
 				8E05BC6B182AE43B0005BF34 /* barcode.png in Resources */,
@@ -659,24 +621,18 @@
 			files = (
 				E00CB85C182B318A00A497C3 /* MyLoginViewController.m in Sources */,
 				77F8B5D0183D4C07003A541E /* SWRevealViewController.m in Sources */,
-				E00CB83F182B287400A497C3 /* AMBlurView.m in Sources */,
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
 				8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */,
-				772B82911829864E00128190 /* DonationsTableViewController.m in Sources */,
+				8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */,
 				E00CB859182B316F00A497C3 /* KarmaSignupViewController.m in Sources */,
 				8EB17C161821977C000DDFCC /* ProductDisplayCell.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
-				E00CB845182B28A700A497C3 /* MYIntroductionPanel.m in Sources */,
 				772B828E1829683300128190 /* UserProfileViewController.m in Sources */,
 				771BCD951822D48E000264A8 /* (null) in Sources */,
-				E00CB848182B28B500A497C3 /* MYAppDelegate.m in Sources */,
-				E00CB842182B289100A497C3 /* MYBlurIntroductionView.m in Sources */,
 				771BCD80182023DD000264A8 /* ScannerViewController.m in Sources */,
-				E00CB84B182B28D400A497C3 /* MYViewController.m in Sources */,
 				8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */,
-				E00CB854182B291D00A497C3 /* MYCustomPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

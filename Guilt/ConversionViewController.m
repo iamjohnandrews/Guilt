@@ -11,7 +11,6 @@
 #import "ScannerViewController.h"
 #import <Parse/Parse.h>
 #import "ProductDisplayCell.h"
-#import "MYViewController.h"
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
@@ -32,8 +31,7 @@
     
     NSLog(@"In Conversion");
     
-//code to change color of nav bar
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"KarnaScan_NavBar.png"] forBarMetrics:UIBarMetricsDefault];
+
     
 //code to set background to png Image    
     /*
