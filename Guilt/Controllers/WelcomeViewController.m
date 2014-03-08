@@ -21,7 +21,7 @@
     [self createIntroPageOne];
     
     self.introScrollView.pagingEnabled = YES;
-    self.introScrollView.contentSize = CGSizeMake(960.0, 400.0);
+    self.introScrollView.contentSize = CGSizeMake(640.0, 400.0);
     self.introScrollView.delegate = self;
 }
 
@@ -37,7 +37,7 @@
     UILabel *overallDescriptionlabel = [[UILabel alloc] init];
     overallDescriptionlabel.text = @"KarmaScan is a thoughtful app that helps you find the best deals while giving back to those in need. With a built in scanner KarmaScan allows the user to shop smart while keeping humility in check.";
     overallDescriptionlabel.numberOfLines = 0;
-    overallDescriptionlabel.textColor = [UIColor whiteColor];
+    overallDescriptionlabel.textColor = [UIColor redColor];
     [overallDescriptionlabel sizeToFit];
     overallDescriptionlabel.center = CGPointMake(self.view.center.x, self.view.center.y - 150);
     [page1 addSubview:overallDescriptionlabel];
@@ -56,14 +56,14 @@
     UIView *page2 = [[UIView alloc] initWithFrame:CGRectMake(320, 0, 320, self.view.bounds.size.height)];
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.text = @"Scan and SAVE the World";
-    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textColor = [UIColor redColor];
     [titleLabel sizeToFit];
     titleLabel.center = CGPointMake(self.view.center.x, self.view.center.y - 210);
     [page2 addSubview:titleLabel];
 
     UILabel *instructionLabel = [[UILabel alloc]init];
     instructionLabel.text = @"Use our built in scanner to check for better prices online while being informed how easy it is to help others in need.  Keep tabs on your product scans and donations with the Karma Chart!" ;
-    instructionLabel.textColor = [UIColor whiteColor];
+    instructionLabel.textColor = [UIColor redColor];
     [instructionLabel sizeToFit];
     instructionLabel.center = CGPointMake(self.view.center.x, self.view.center.y - 180);
     [page2 addSubview:instructionLabel];
@@ -74,22 +74,6 @@
     [page2 addSubview:scannerPic];
     
     [self.introScrollView addSubview:page2];
-    [self createIntroPageThree];
-}
-
-- (void)createIntroPageThree
-{
-    UIView *page3 = [[UIView alloc] initWithFrame:CGRectMake(640, 0, 320, self.view.bounds.size.height)];
-    label = [[UILabel alloc] init];
-    label.text = @"Have fun!";
-    label.textColor = [UIColor whiteColor];
-    [label sizeToFit];
-    label.center = page1.center;
-    [page3 addSubview:label];
-    
-    
-    
-    [self.introScrollView addSubview:page3];
 }
 
 @end
