@@ -21,8 +21,8 @@
     self.introScrollView.pagingEnabled = YES;
     self.introScrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2, self.view.frame.size.height);
     self.introScrollView.delegate = self;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationItem.title = @"Introduction";
+    [self.leaveIntroButtonOutlet setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
     
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background"]];
     [self.view addSubview:background];
@@ -81,6 +81,6 @@
 
 - (IBAction)leaveIntroButtonPressed:(id)sender 
 {
-    [self performSegueWithIdentifier:@"WelcomeToConversionSegue" sender:self];
+    [self performSegueWithIdentifier:@"LoginSegue" sender:self];
 }
 @end

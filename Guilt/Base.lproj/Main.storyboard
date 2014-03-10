@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Rjc-b0-24u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Rjc-b0-24u">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -128,32 +128,32 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6s-T9-k8f">
-                                <rect key="frame" x="30" y="71" width="79" height="21"/>
+                                <rect key="frame" x="30" y="126" width="79" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBz-n4-5uw">
-                                <rect key="frame" x="31" y="119" width="76" height="21"/>
+                                <rect key="frame" x="31" y="174" width="76" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NCb-Ub-Rgp">
-                                <rect key="frame" x="130" y="68" width="160" height="30"/>
+                                <rect key="frame" x="130" y="123" width="160" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D0t-xd-mnB">
-                                <rect key="frame" x="130" y="119" width="160" height="30"/>
+                                <rect key="frame" x="130" y="174" width="160" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8N-Z5-6EX">
-                                <rect key="frame" x="31" y="174" width="54" height="35"/>
+                                <rect key="frame" x="31" y="229" width="54" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Sign In">
@@ -165,7 +165,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Da-iS-ja6">
-                                <rect key="frame" x="216" y="174" width="62" height="35"/>
+                                <rect key="frame" x="216" y="229" width="62" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Sign Up">
@@ -179,18 +179,25 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Welcome" id="5vX-97-JGJ"/>
+                    <navigationItem key="navigationItem" title="Welcome" id="5vX-97-JGJ">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="rcS-3K-5li">
+                            <connections>
+                                <action selector="skipButtonPressed:" destination="Ebk-s5-A4g" id="rJX-EX-8PI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="loginButtonOutlet" destination="k8N-Z5-6EX" id="nln-51-ZUg"/>
                         <outlet property="password" destination="D0t-xd-mnB" id="eBu-WP-lCT"/>
                         <outlet property="signupButtonOutlet" destination="7Da-iS-ja6" id="f84-cS-8WD"/>
+                        <outlet property="skipButtonOutlet" destination="rcS-3K-5li" id="iLE-iZ-Tk3"/>
                         <outlet property="userName" destination="NCb-Ub-Rgp" id="iI7-wv-UJ8"/>
                         <segue destination="bTl-MY-eFs" kind="modal" identifier="ShowMeSegue" id="eef-Rq-D6Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kd1-7R-cd4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1007" y="-1357"/>
+            <point key="canvasLocation" x="769" y="-1157"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="Ly9-7z-khr">
@@ -227,9 +234,8 @@
                         <outlet property="introScrollView" destination="0OD-ce-YVT" id="RbX-SG-hnt"/>
                         <outlet property="leaveIntroButtonOutlet" destination="4ik-jK-8QV" id="Eym-3F-e00"/>
                         <outlet property="pageControl" destination="9OO-iD-PNC" id="x1D-74-RMH"/>
-                        <segue destination="Ebk-s5-A4g" kind="modal" identifier="LoginSegue" id="HGS-To-cBe"/>
+                        <segue destination="Ebk-s5-A4g" kind="push" identifier="LoginSegue" id="HGS-To-cBe"/>
                         <segue destination="bTl-MY-eFs" kind="modal" identifier="ShowMeSegue23" modalTransitionStyle="flipHorizontal" id="4GE-6g-ZXs"/>
-                        <segue destination="gGE-l0-Oez" kind="push" identifier="WelcomeToConversionSegue" id="QwE-gB-jvE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2qF-wf-cBp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -588,9 +594,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="QwE-gB-jvE"/>
+        <segue reference="eef-Rq-D6Y"/>
         <segue reference="HGS-To-cBe"/>
-        <segue reference="4GE-6g-ZXs"/>
         <segue reference="eV3-BS-VXY"/>
     </inferredMetricsTieBreakers>
 </document>

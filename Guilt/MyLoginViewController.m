@@ -40,28 +40,25 @@
     signupButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:14];
     [signupButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [signupButtonOutlet setTitle:@"signup" forState:UIControlStateNormal];
+    
+    [self.skipButtonOutlet setTitle:@"Skip"];
+    
+    [self.navigationItem setTitle:@"Login"];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-
-    NSLog(@"in Viewdidappear");
-    
     if ([PFUser currentUser])
     {
         [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
-        
-        NSLog(@"Perform ShowMeSegue for logged in user");
     }
-
 }
 
 
 - (IBAction)didLogin:(id)sender {
     NSString *user = userName.text;
     NSString *passwd = password.text;
-    
-    
+        
     if ([user length] < 2 || [passwd length] < 4) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Entry" message:@"Make sure you fill out all of the information!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
         [alert show];
@@ -78,7 +75,11 @@
             }
         }];
     }
+}
 
+- (IBAction)skipButtonPressed:(id)sender 
+{
+    [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
 }
 
 - (IBAction)didSignUp:(id)sender {

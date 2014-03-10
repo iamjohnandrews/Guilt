@@ -19,9 +19,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *signupButtonOutlet;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *skipButtonOutlet;
 
 - (IBAction)didLogin:(id)sender;
 
+- (IBAction)skipButtonPressed:(id)sender;
 
 - (IBAction)didSignUp:(id)sender;
 
