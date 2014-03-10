@@ -23,7 +23,6 @@
     self.introScrollView.delegate = self;
     self.navigationItem.title = @"Introduction";
     
-    //add background
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background"]];
     [self.view addSubview:background];
     [self.view sendSubviewToBack:background];
@@ -37,18 +36,20 @@
     UIView *page1 = [[UIView alloc] initWithFrame:self.view.bounds];
     
     UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaScan logo-Fj"]];
-    logo.center = CGPointMake(self.view.center.x, self.view.center.y - 250);
+    logo.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 10, self.view.bounds.size.width - 20, 230);
+    [logo clipsToBounds];
+//    logo.center = CGPointMake(self.view.center.x, self.view.center.y - 250);
     [page1 addSubview:logo];
     
-    UILabel *overallDescriptionlabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y - 150, 300, 100)];
+    UILabel *overallDescriptionlabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 150, 300, 200)];
     overallDescriptionlabel.text = @"KarmaScan is a thoughtful app that helps you find the best deals while giving back to those in need. With a built in scanner KarmaScan allows the user to shop smart while keeping humility in check.";
     overallDescriptionlabel.numberOfLines = 0;
     overallDescriptionlabel.textColor = [UIColor whiteColor];
-    overallDescriptionlabel.center = CGPointMake(self.view.center.x, self.view.center.y - 150);
+//    overallDescriptionlabel.center = CGPointMake(self.view.center.x, self.view.center.y - 150);
     [page1 addSubview:overallDescriptionlabel];
     
     UIImageView *soldierAndNunPic = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donation"]];
-    soldierAndNunPic.center = CGPointMake(self.view.center.x, self.view.center.y + 100);
+    soldierAndNunPic.center = CGPointMake(self.view.center.x, self.view.center.y + 150);
     [page1 addSubview:soldierAndNunPic];
     
     self.leaveIntroButtonOutlet.title = @"Skip";

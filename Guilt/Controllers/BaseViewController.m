@@ -24,11 +24,10 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
-    
-    [[UIApplication sharedApplication]setStatusBarHidden:YES];
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 
