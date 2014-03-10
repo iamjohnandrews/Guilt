@@ -21,6 +21,7 @@
     self.introScrollView.pagingEnabled = YES;
     self.introScrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2, self.view.frame.size.height);
     self.introScrollView.delegate = self;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationItem.title = @"Introduction";
     
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background"]];
@@ -38,14 +39,12 @@
     UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaScan logo-Fj"]];
     logo.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 10, self.view.bounds.size.width - 20, 230);
     [logo clipsToBounds];
-//    logo.center = CGPointMake(self.view.center.x, self.view.center.y - 250);
     [page1 addSubview:logo];
     
     UILabel *overallDescriptionlabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 150, 300, 200)];
     overallDescriptionlabel.text = @"KarmaScan is a thoughtful app that helps you find the best deals while giving back to those in need. With a built in scanner KarmaScan allows the user to shop smart while keeping humility in check.";
     overallDescriptionlabel.numberOfLines = 0;
     overallDescriptionlabel.textColor = [UIColor whiteColor];
-//    overallDescriptionlabel.center = CGPointMake(self.view.center.x, self.view.center.y - 150);
     [page1 addSubview:overallDescriptionlabel];
     
     UIImageView *soldierAndNunPic = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donation"]];
@@ -58,18 +57,17 @@
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.text = @"Scan and SAVE the World";
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.center = CGPointMake(self.view.center.x, self.view.center.y - 210);
     [page2 addSubview:titleLabel];
     
-    UILabel *instructionLabel = [[UILabel alloc]init];
+    UILabel *instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 90, 300, 200)];
+    instructionLabel.numberOfLines = 0;
     instructionLabel.text = @"Use our built in scanner to check for better prices online while being informed how easy it is to help others in need.  Keep tabs on your product scans and donations with the Karma Chart!" ;
     instructionLabel.textColor = [UIColor whiteColor];
     [instructionLabel sizeToFit];
-    instructionLabel.center = CGPointMake(self.view.center.x, self.view.center.y - 180);
     [page2 addSubview:instructionLabel];
     
     UIImageView *scannerPic = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"karmaScan1"]];
-    scannerPic.center = CGPointMake(self.view.center.x, self.view.center.y + 100);
+    scannerPic.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 250, self.view.bounds.size.width - 20, 240);
     [page2 addSubview:scannerPic];
     
     [self.introScrollView addSubview:page1];
