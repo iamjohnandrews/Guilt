@@ -153,7 +153,8 @@
     
     charityCell.charityConversionDetailsLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:15];
     charityCell.charityConversionDetailsLabel.textColor = [UIColor whiteColor];    
-    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
+    NSAttributedString *nonprofitDetails = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row]] attributes:@{NSStrokeWidthAttributeName: @-1, NSStrokeColorAttributeName: [UIColor blackColor], NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [charityCell.charityConversionDetailsLabel setAttributedText:nonprofitDetails];
     NSLog(@"the First index.row = %li", (long)indexPath.row);
     
     [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
