@@ -113,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXu-5J-mrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1797" y="-18"/>
+            <point key="canvasLocation" x="661" y="-466"/>
         </scene>
         <!--My Login View Controller - Welcome-->
         <scene sceneID="dS1-6B-dos">
@@ -192,12 +192,12 @@
                         <outlet property="signupButtonOutlet" destination="7Da-iS-ja6" id="f84-cS-8WD"/>
                         <outlet property="skipButtonOutlet" destination="rcS-3K-5li" id="iLE-iZ-Tk3"/>
                         <outlet property="userName" destination="NCb-Ub-Rgp" id="iI7-wv-UJ8"/>
-                        <segue destination="bTl-MY-eFs" kind="modal" identifier="ShowMeSegue" id="eef-Rq-D6Y"/>
+                        <segue destination="gGE-l0-Oez" kind="push" identifier="ShowMeSegue" id="DqT-8L-8h8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kd1-7R-cd4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="769" y="-1157"/>
+            <point key="canvasLocation" x="565" y="-1301"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="Ly9-7z-khr">
@@ -235,7 +235,6 @@
                         <outlet property="leaveIntroButtonOutlet" destination="4ik-jK-8QV" id="Eym-3F-e00"/>
                         <outlet property="pageControl" destination="9OO-iD-PNC" id="x1D-74-RMH"/>
                         <segue destination="Ebk-s5-A4g" kind="push" identifier="LoginSegue" id="HGS-To-cBe"/>
-                        <segue destination="bTl-MY-eFs" kind="modal" identifier="ShowMeSegue23" modalTransitionStyle="flipHorizontal" id="4GE-6g-ZXs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2qF-wf-cBp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -311,7 +310,6 @@
                         <outlet property="emailAddress" destination="cLA-eb-diG" id="2JJ-TB-g1q"/>
                         <outlet property="password" destination="qLB-vy-tof" id="Oi7-LF-bzh"/>
                         <outlet property="userName" destination="Q3T-GI-tvL" id="F97-gr-0jo"/>
-                        <segue destination="bTl-MY-eFs" kind="modal" identifier="ShowMe2Segue" id="ruj-7L-I1I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tTL-Du-RXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -329,7 +327,7 @@
                         <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductDisplay" rowHeight="152" id="qUF-vk-ho1" customClass="ProductDisplayCell">
-                                <rect key="frame" x="0.0" y="186" width="320" height="152"/>
+                                <rect key="frame" x="0.0" y="122" width="320" height="152"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qUF-vk-ho1" id="WfH-1Q-2Tx">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
@@ -365,7 +363,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharityDisplay" rowHeight="152" id="GAV-sQ-2R5" customClass="CharityAndProductDisplayCell">
-                                <rect key="frame" x="0.0" y="338" width="320" height="152"/>
+                                <rect key="frame" x="0.0" y="274" width="320" height="152"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GAV-sQ-2R5" id="Jlt-kH-uzD">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
@@ -548,24 +546,6 @@
             <point key="canvasLocation" x="1545" y="-1357"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="2UE-Lh-klg">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bTl-MY-eFs" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xow-N6-sTJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="gGE-l0-Oez" kind="relationship" relationship="rootViewController" id="Vs7-WR-f0a"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lNU-vW-PSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1031" y="-538"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="0kl-MU-TON">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Rjc-b0-24u" sceneMemberID="viewController">
@@ -594,8 +574,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eef-Rq-D6Y"/>
-        <segue reference="HGS-To-cBe"/>
+        <segue reference="dvI-Cx-0PM"/>
         <segue reference="eV3-BS-VXY"/>
     </inferredMetricsTieBreakers>
 </document>

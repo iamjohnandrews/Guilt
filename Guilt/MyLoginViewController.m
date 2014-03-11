@@ -50,7 +50,9 @@
 {
     if ([PFUser currentUser])
     {
+        self.userIsLoggedIn = YES;
         [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
+        
     }
 }
 
@@ -82,7 +84,4 @@
     [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
 }
 
-- (IBAction)didSignUp:(id)sender {
-    
-}
 @end

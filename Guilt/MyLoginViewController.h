@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *userName;
 
-
 @property (weak, nonatomic) IBOutlet UITextField *password;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButtonOutlet;
@@ -21,10 +20,10 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *skipButtonOutlet;
 
+@property (nonatomic) BOOL userIsLoggedIn;
+
 - (IBAction)didLogin:(id)sender;
 
 - (IBAction)skipButtonPressed:(id)sender;
-
-- (IBAction)didSignUp:(id)sender;
 
 @end
