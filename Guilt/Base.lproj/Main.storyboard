@@ -403,6 +403,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="userProfileButtonOutlet" destination="42M-M9-whS" id="NJf-BZ-WQT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yd-hQ-rRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -539,6 +542,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eV3-BS-VXY"/>
+        <segue reference="b9w-pJ-Thj"/>
     </inferredMetricsTieBreakers>
 </document>

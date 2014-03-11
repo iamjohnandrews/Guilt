@@ -50,6 +50,10 @@
         self.userProfileButtonOutlet.enabled = NO;
     } else {
         self.userProfileButtonOutlet.enabled = YES;
+        self.navigationItem.hidesBackButton = YES;
+        
+        UIBarButtonItem *logOutUserButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logOutUser)];
+        [self.navigationItem setLeftBarButtonItem:logOutUserButton animated:YES];
     }
     
     valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
@@ -83,6 +87,25 @@
     [conversionButtonOutlet setTitle:@"Get Impact Value" forState:UIControlStateNormal];
 }
 
+- (void)logOutUser
+{
+    self.userIsLoggedIn = NO;
+    [PFUser logOut];
+    self.navigationItem.leftBarButtonItem = nil;
+    [self createNavigationBackButton];
+    [self setupUI];
+}
+
+- (void)createNavigationBackButton
+{
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(backPressed:)];
+    self.navigationItem.leftBarButtonItem = backButton;
+}    
+
+- (void)backPressed: (id)sender
+{
+    [self.navigationController popViewControllerAnimated: YES];
+}
 
 - (IBAction)scannerButton:(id)sender {
 
@@ -186,7 +209,7 @@
         ProductDisplayCell* productsDC = [ProductDisplayCell new];
         
         imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
-        
+        imagesVC.userIsLoggedIn = self.userIsLoggedIn;
         imagesVC.productPrice = convertedProductPrice;
         
         NSLog(@"This product's price %@", imagesVC.productPrice);

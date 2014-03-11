@@ -74,9 +74,8 @@
     } else {
         [PFUser logInWithUsernameInBackground:user password:passwd block:^(PFUser *user, NSError *error) {
             if (user) {
-                
+                self.userIsLoggedIn = YES;
                 [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
-                
             } else {
                 NSLog(@"%@",error);
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed." message:@"Invalid Username and/or Password." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];

@@ -23,10 +23,12 @@
 
 @property (assign, nonatomic) CATransform3D makeImagesLean;
 
+@property (nonatomic) BOOL userIsLoggedIn;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *userProfileButtonOutlet;
+
 -(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity;
 
 - (IBAction)userProfileButton:(id)sender;
-
-- (IBAction)logoutButton:(id)sender;
 
 @end
