@@ -5,12 +5,11 @@
 //  Created by John Andrews on 10/29/13.
 //  Copyright (c) 2013 John Andrews. All rights reserved.
 //
-
 #import <UIKit/UIKit.h>
 #import "ScannerDidNotWorkDelegate.h"
 #import "ScannerViewController.h"
 
-@interface ConversionViewController : UIViewController <ScannerDidNotWorkDelegate>
+@interface ConversionViewController : BaseViewController <ScannerDidNotWorkDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *valueQuestionLabel;
 

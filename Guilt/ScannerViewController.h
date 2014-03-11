@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ScannerDidNotWorkDelegate.h"
 
-@interface ScannerViewController : UIViewController 
+@interface ScannerViewController : BaseViewController 
 @property   (weak,nonatomic)NSString* productName;
 @property   (nonatomic)float productPrice;
 @property   (weak,nonatomic)NSString* urlForProduct;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-@interface MyLoginViewController :UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface MyLoginViewController :BaseViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *userName;
 

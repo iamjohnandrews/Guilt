@@ -20,7 +20,7 @@
 	//code to change color of nav bar
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"KarnaScan_NavBar.png"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 -(void)viewWillAppear:(BOOL)animated
