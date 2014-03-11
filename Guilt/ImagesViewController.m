@@ -39,8 +39,8 @@
     charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
                                  @"month(s) of vaccines, schooling & natural disaster relief through Unicef",
                                  @"month(s) of food, water, and medical supplies through Feed The Children",
-                                 @"flock(s) of ducklings for a family",
-                                 @"gift(s) of honey bees",
+                                 @"flock(s) of ducklings per a 3rd world family through Heifer International",
+                                 @"gift(s) of honey bees per a 3rd world family through Heifer International",
                                  @"military care package(s) through Soildier's Angels",
                                  @"natural spring catchment(s) serving 250 people through African Well Fund"
                                  ];
@@ -212,7 +212,6 @@
     }
     if( flag ==YES ) {
         
-        NSLog(@"Flag == YES");
         int tempPoints =  (10 + [currPoints integerValue]);
         
         user[@"points"] = [NSNumber numberWithInt:tempPoints];
@@ -221,16 +220,11 @@
         
     }else if(flag==NO)
     {
-        NSLog(@"Flag == no");
         int tempPoints =  (-10 + [currPoints integerValue]);
         
         user[@"points"] = [NSNumber numberWithInt:tempPoints];
-        
     }
-    
     [user saveInBackground]; //save user points to Parse
-
-    
 }
 
 - (IBAction)userProfileButton:(id)sender {

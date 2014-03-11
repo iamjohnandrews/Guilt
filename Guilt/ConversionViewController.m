@@ -43,17 +43,18 @@
                              forControlEvents:UIControlEventEditingChanged];
 }
 
+
 - (void)setupUI
 {
     [self.navigationItem setTitle:@"Convert"];
-    if (self.userIsLoggedIn == NO) {
-        self.userProfileButtonOutlet.enabled = NO;
-    } else {
+    if ([PFUser currentUser]) {
         self.userProfileButtonOutlet.enabled = YES;
         self.navigationItem.hidesBackButton = YES;
         
         UIBarButtonItem *logOutUserButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logOutUser)];
         [self.navigationItem setLeftBarButtonItem:logOutUserButton animated:YES];
+    } else {
+        self.userProfileButtonOutlet.enabled = NO;
     }
     
     valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
@@ -68,7 +69,7 @@
     [backToIntroductionButtonOutlet setTitle:@"Back to Introduction" forState:UIControlStateNormal];    
     
     scannerButtonOutlet.layer.cornerRadius = 8;
-    scannerButtonOutlet.layer.borderWidth = 2;
+    scannerButtonOutlet.layer.borderWidth = 1;
     scannerButtonOutlet.layer.borderColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1].CGColor;
     scannerButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
     scannerButtonOutlet.clipsToBounds = YES;
@@ -77,7 +78,7 @@
     
     //code to form the button
     conversionButtonOutlet.layer.cornerRadius = 8;
-    conversionButtonOutlet.layer.borderWidth = 2;
+    conversionButtonOutlet.layer.borderWidth = 1;
     conversionButtonOutlet.layer.borderColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1].CGColor;
     conversionButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
     conversionButtonOutlet.clipsToBounds = YES;

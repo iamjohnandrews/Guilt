@@ -17,7 +17,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.introScrollView.pagingEnabled = YES;
     self.introScrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2, self.view.frame.size.height);
     self.introScrollView.delegate = self;
@@ -30,6 +29,7 @@
     self.view.contentMode = UIViewContentModeScaleAspectFit;
     
     [self updateUI];
+    
 }
 
 - (void)updateUI
@@ -42,7 +42,7 @@
     [page1 addSubview:logo];
     
     UILabel *overallDescriptionlabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 160, 300, 200)];
-    overallDescriptionlabel.text = @"KarmaScan is a thoughtful app that helps you find the best deals while giving back to those in need. With a built in scanner KarmaScan allows the user to shop smart while keeping humility in check.";
+    overallDescriptionlabel.text = @"KarmaScan is a thoughtful app that helps you find the best prices while giving back to those in need. With a built in scanner KarmaScan allows the user to shop smart while keeping humility in check.";
     overallDescriptionlabel.numberOfLines = 0;
     overallDescriptionlabel.textColor = [UIColor whiteColor];
     [page1 addSubview:overallDescriptionlabel];
@@ -61,7 +61,7 @@
     
     UILabel *instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 90, 300, 200)];
     instructionLabel.numberOfLines = 0;
-    instructionLabel.text = @"Use our built in scanner to check for better prices online while being informed how easy it is to help others in need.  Keep tabs on your product scans and donations with the Karma Chart!" ;
+    instructionLabel.text = @"Use your camera to scan and check for better prices online while being informed how easy it is to help others in need.  Keep tabs on your product scans and donations with the Karma Chart!" ;
     instructionLabel.textColor = [UIColor whiteColor];
     [instructionLabel sizeToFit];
     [page2 addSubview:instructionLabel];
@@ -81,6 +81,17 @@
 
 - (IBAction)leaveIntroButtonPressed:(id)sender 
 {
-    [self performSegueWithIdentifier:@"LoginSegue" sender:self];
+    if ([PFUser currentUser])
+    {
+        self.userIsLoggedIn = YES;        
+        [self performSegueWithIdentifier:@"WelcomeToConversionSegue" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"LoginSegue" sender:self];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
 }
 @end

@@ -23,9 +23,9 @@
 
 @property (assign, nonatomic) CATransform3D makeImagesLean;
 
-@property (nonatomic) BOOL userIsLoggedIn;
-
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *userProfileButtonOutlet;
+
+@property (nonatomic) BOOL userIsLoggedIn;
 
 -(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity;
 

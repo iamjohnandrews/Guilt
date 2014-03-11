@@ -30,8 +30,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *userProfileButtonOutlet;
 
-@property (nonatomic) BOOL userIsLoggedIn;
-
 - (IBAction)scannerButton:(id)sender;
 
 - (IBAction)conversionButton:(id)sender;

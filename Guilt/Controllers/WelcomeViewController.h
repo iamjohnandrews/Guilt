@@ -13,7 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leaveIntroButtonOutlet;
-
 - (IBAction)leaveIntroButtonPressed:(id)sender;
 
 @end

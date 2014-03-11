@@ -54,14 +54,14 @@
     }
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    if ([PFUser currentUser])
-    {
-        self.userIsLoggedIn = YES;        
-        [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
-    }
-}
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    if ([PFUser currentUser])
+//    {
+//        self.userIsLoggedIn = YES;        
+//        [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
+//    }
+//}
 
 
 - (IBAction)didLogin:(id)sender {

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface BaseViewController : UIViewController
+#import <Parse/Parse.h>
+@interface BaseViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@property (nonatomic) BOOL userIsLoggedIn;
 
 @end

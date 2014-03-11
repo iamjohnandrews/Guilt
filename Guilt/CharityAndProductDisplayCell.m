@@ -18,7 +18,7 @@
 
     // Puts outline around white font in picture
     charityConversionDetailsLabel.shadowColor = [UIColor blackColor];
-    charityConversionDetailsLabel.shadowOffset = CGSizeMake(2, 1);
+    charityConversionDetailsLabel.shadowOffset = CGSizeMake(1, 1);
 }
 
 - (void)charityDisplay:(NSMutableArray*)arrayOfCharities andIndexPath:(NSIndexPath*)indexPath

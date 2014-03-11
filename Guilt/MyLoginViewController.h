@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-@interface MyLoginViewController :BaseViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface MyLoginViewController :BaseViewController 
 
 @property (weak, nonatomic) IBOutlet UITextField *userName;
 
@@ -19,8 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *signupButtonOutlet;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *skipButtonOutlet;
-
-@property (nonatomic) BOOL userIsLoggedIn;
 
 - (IBAction)didLogin:(id)sender;
 
