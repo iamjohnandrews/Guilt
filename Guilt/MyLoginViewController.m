@@ -5,7 +5,7 @@
 //  Created by Agnt86 on 11/4/13.
 //  Copyright (c) 2013 John Andrews. All rights reserved.
 //
-
+#import "ConversionViewController.h"
 #import "MyLoginViewController.h"
 
 @interface MyLoginViewController ()
@@ -46,13 +46,20 @@
     [self.navigationItem setTitle:@"Login"];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ShowMeSegue"]) {
+        ConversionViewController *conversionVC = (ConversionViewController *)segue.destinationViewController;
+        conversionVC.userIsLoggedIn = self.userIsLoggedIn;
+    }
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     if ([PFUser currentUser])
     {
-        self.userIsLoggedIn = YES;
+        self.userIsLoggedIn = YES;        
         [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
-        
     }
 }
 

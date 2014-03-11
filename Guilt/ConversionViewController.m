@@ -21,24 +21,37 @@
 
 @implementation ConversionViewController
 @synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel, backToIntroductionButtonOutlet;
-@synthesize conversionButtonOutlet, scannerButtonOutlet, logoutButtonOutlet;
+@synthesize conversionButtonOutlet, scannerButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
 @synthesize urlForProduct;
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    [self setupUI];
+    //code to dismiss keyboard when user taps around textField
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
     
-    NSLog(@"In Conversion");
-    
+    //code to disable conversionButton until user inputs value into textField
+    [self.conversionButtonOutlet setEnabled:NO];
+    [userEnterDollarAmountTextField addTarget:self 
+                                       action:@selector(textFieldDidChange)
+                             forControlEvents:UIControlEventEditingChanged];
+}
 
+- (void)setupUI
+{
+    [self.navigationItem setTitle:@"Convert"];
+    if (self.userIsLoggedIn == NO) {
+        self.userProfileButtonOutlet.enabled = NO;
+    } else {
+        self.userProfileButtonOutlet.enabled = YES;
+    }
     
-//code to set background to png Image    
-    /*
-    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
-    [self.view addSubview:backgroundImage];
-    [self.view sendSubviewToBack:backgroundImage]; */
-
     valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     valueQuestionLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
     valueQuestionLabel.text = @"Find the best price & discover your charitable impact";
@@ -51,50 +64,25 @@
     [backToIntroductionButtonOutlet setTitle:@"Back to Introduction" forState:UIControlStateNormal];    
     
     scannerButtonOutlet.layer.cornerRadius = 8;
-    scannerButtonOutlet.layer.borderWidth = 1;
-    scannerButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
+    scannerButtonOutlet.layer.borderWidth = 2;
+    scannerButtonOutlet.layer.borderColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1].CGColor;
     scannerButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
     scannerButtonOutlet.clipsToBounds = YES;
     [scannerButtonOutlet setTitle:@"Scan Item" forState:UIControlStateNormal];
     scannerButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     
-    [super viewDidLoad];
-    
     //code to form the button
     conversionButtonOutlet.layer.cornerRadius = 8;
-    conversionButtonOutlet.layer.borderWidth = 1;
-    conversionButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
+    conversionButtonOutlet.layer.borderWidth = 2;
+    conversionButtonOutlet.layer.borderColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1].CGColor;
     conversionButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
     conversionButtonOutlet.clipsToBounds = YES;
     conversionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     //UIColor* orangeKindaColor = [UIColor colorWithRed:244.0/255 green:128.0/255 blue:0.0/255 alpha:1];
     [conversionButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [conversionButtonOutlet setTitle:@"Go Charity Value" forState:UIControlStateNormal];
-    
-    //code to dismiss keyboard when user taps around textField
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
-                                   initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
-    
-    //code to disable conversionButton until user inputs value into textField
-    [super viewDidLoad];
-    [self.conversionButtonOutlet setEnabled:NO];
-    [userEnterDollarAmountTextField addTarget:self 
-                                       action:@selector(textFieldDidChange)
-                             forControlEvents:UIControlEventEditingChanged];
+    [conversionButtonOutlet setTitle:@"Get Impact Value" forState:UIControlStateNormal];
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    NSLog(@"In Conversion: viewDidAppear");
-
-
-    self.navigationItem.hidesBackButton = YES;
-
-}
 
 - (IBAction)scannerButton:(id)sender {
 
@@ -108,31 +96,22 @@
 
 - (void)textFieldDidChange
 {
-    if ([self.userEnterDollarAmountTextField.text isEqualToString:@""]) {
+    if (self.userEnterDollarAmountTextField.text.length == 0) {
         [self.conversionButtonOutlet setEnabled:NO];
     }
     else {
         [self.conversionButtonOutlet setEnabled:YES];
     }
-    
 }
 
 - (IBAction)backToIntroductionButton:(id)sender {
-    //code to send user to beginning of Introduction wizard
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (IBAction)logoutButton:(id)sender {
-    
-    
-    
-    [PFUser logOut];
-    
-    
-    
-    [self performSegueWithIdentifier:@"LogOutSegue" sender:self];
-}
 
-- (IBAction)userProfileButton:(id)sender {
+- (IBAction)userProfileButton:(id)sender 
+{
+    
 }
 
 - (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {
@@ -194,11 +173,11 @@
     NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
     
     [userEnterDollarAmountTextField resignFirstResponder];
+    userEnterDollarAmountTextField.text = nil;
      
     convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
 
     [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
-    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

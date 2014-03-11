@@ -37,7 +37,7 @@
     UIView *page1 = [[UIView alloc] initWithFrame:self.view.bounds];
     
     UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaScan logo-Fj"]];
-    logo.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 10, self.view.bounds.size.width - 20, 230);
+    logo.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 10, self.view.bounds.size.width - 20, 240);
     [logo clipsToBounds];
     [page1 addSubview:logo];
     

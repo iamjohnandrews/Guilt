@@ -28,7 +28,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *backToIntroductionButtonOutlet;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButtonOutlet;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *userProfileButtonOutlet;
 
 @property (nonatomic) BOOL userIsLoggedIn;
 
@@ -37,8 +37,6 @@
 - (IBAction)conversionButton:(id)sender;
 
 - (IBAction)backToIntroductionButton:(id)sender;
-
-- (IBAction)logoutButton:(id)sender;
 
 - (IBAction)userProfileButton:(id)sender;
 

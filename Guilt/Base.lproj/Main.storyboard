@@ -21,7 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcr-Y9-AYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3048" y="521"/>
+            <point key="canvasLocation" x="1548" y="-1399"/>
         </scene>
         <!--Conversion View Controller-->
         <scene sceneID="hZI-jX-yMH">
@@ -51,6 +51,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myI-Tg-Yul">
                                 <rect key="frame" x="52" y="181" width="225" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -106,14 +107,14 @@
                         <outlet property="orLabel" destination="i1k-go-TSo" id="fiL-CX-xmi"/>
                         <outlet property="scannerButtonOutlet" destination="M8d-DX-YuI" id="rk7-lq-kZO"/>
                         <outlet property="userEnterDollarAmountTextField" destination="M98-zr-X80" id="goV-UA-J6A"/>
+                        <outlet property="userProfileButtonOutlet" destination="22b-4f-1iy" id="tUq-vS-HHh"/>
                         <outlet property="valueQuestionLabel" destination="SID-dl-CTO" id="Rcc-MS-0yQ"/>
                         <segue destination="tEc-0u-6AV" kind="push" identifier="ConversionToImagesSegue" id="OJS-g9-g91"/>
-                        <segue destination="Ebk-s5-A4g" kind="modal" identifier="LogOutSegue" id="dvI-Cx-0PM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXu-5J-mrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="661" y="-466"/>
+            <point key="canvasLocation" x="705" y="-650"/>
         </scene>
         <!--My Login View Controller - Welcome-->
         <scene sceneID="dS1-6B-dos">
@@ -173,7 +174,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="znS-G8-ODZ" kind="modal" identifier="SignupSegue" id="n0j-T2-6ay"/>
+                                    <segue destination="aqf-1Z-c1C" kind="modal" identifier="SignupSegue" id="Cva-kP-Old"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -197,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kd1-7R-cd4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="565" y="-1301"/>
+            <point key="canvasLocation" x="157" y="-1242"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="Ly9-7z-khr">
@@ -296,7 +297,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qLB-vy-tof">
-                                <rect key="frame" x="132" y="180" width="183" height="30"/>
+                                <rect key="frame" x="129" y="180" width="183" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -314,7 +315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tTL-Du-RXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1991" y="-1351"/>
+            <point key="canvasLocation" x="715" y="-1431"/>
         </scene>
         <!--Images View Controller - Choose Wisely-->
         <scene sceneID="jtA-Nn-sMd">
@@ -327,7 +328,7 @@
                         <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductDisplay" rowHeight="152" id="qUF-vk-ho1" customClass="ProductDisplayCell">
-                                <rect key="frame" x="0.0" y="122" width="320" height="152"/>
+                                <rect key="frame" x="0.0" y="186" width="320" height="152"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qUF-vk-ho1" id="WfH-1Q-2Tx">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
@@ -363,7 +364,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharityDisplay" rowHeight="152" id="GAV-sQ-2R5" customClass="CharityAndProductDisplayCell">
-                                <rect key="frame" x="0.0" y="274" width="320" height="152"/>
+                                <rect key="frame" x="0.0" y="338" width="320" height="152"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GAV-sQ-2R5" id="Jlt-kH-uzD">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
@@ -405,7 +406,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yd-hQ-rRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3474" y="-140"/>
+            <point key="canvasLocation" x="1534" y="-660"/>
         </scene>
         <!--User Profile View Controller - Profile-->
         <scene sceneID="0Cq-X9-E8G">
@@ -507,43 +508,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLp-hP-ziC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2552" y="904"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="BXc-9s-XVJ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EqO-Z5-vyj" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kWj-lR-7uX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Ovb-PQ-Y1M" kind="relationship" relationship="rootViewController" id="uZT-7H-85d"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vuU-1x-erw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2117" y="895"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="FsU-0I-XcN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="znS-G8-ODZ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vbi-Uk-zKh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="aqf-1Z-c1C" kind="relationship" relationship="rootViewController" id="40S-4T-6Yp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AjO-bx-KdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1545" y="-1357"/>
+            <point key="canvasLocation" x="1988" y="100"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0kl-MU-TON">
@@ -574,7 +539,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dvI-Cx-0PM"/>
         <segue reference="eV3-BS-VXY"/>
     </inferredMetricsTieBreakers>
 </document>
