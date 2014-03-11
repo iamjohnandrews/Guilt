@@ -155,8 +155,8 @@
 		8E05BC6E182B01200005BF34 /* awesomeBarcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = awesomeBarcode.png; path = ../awesomeBarcode.png; sourceTree = "<group>"; };
 		8E05BC70182B085C0005BF34 /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
 		8E05BC72182B2F6E0005BF34 /* KarnaScan_NavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KarnaScan_NavBar.png; sourceTree = "<group>"; };
-		8E3FA46618CB8329009E2A66 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeViewController.h; path = ../Controllers/WelcomeViewController.h; sourceTree = "<group>"; };
-		8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeViewController.m; path = ../Controllers/WelcomeViewController.m; sourceTree = "<group>"; };
+		8E3FA46618CB8329009E2A66 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		8E3FA46918CBB3FA009E2A66 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		8E3FA46A18CBB3FA009E2A66 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		8E69AB4D183FF598000A4B4D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -299,7 +299,6 @@
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
-				8E69AB4C183FF4D7000A4B4D /* Introduction */,
 				8E69AB4B183FF499000A4B4D /* Controllers */,
 				8E9596E11829554E00AE29DB /* Login:Signup */,
 				8EB17C1A1824727D000DDFCC /* Views */,
@@ -378,26 +377,19 @@
 			children = (
 				8E3FA46918CBB3FA009E2A66 /* BaseViewController.h */,
 				8E3FA46A18CBB3FA009E2A66 /* BaseViewController.m */,
-				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
-				8EB17BF818201F00000DDFCC /* ImagesViewController.m */,
-				8EAE7B71182006A7001BDC08 /* ConversionViewController.h */,
-				8EAE7B72182006A7001BDC08 /* ConversionViewController.m */,
-				771BCD7E182023DD000264A8 /* ScannerViewController.h */,
-				771BCD7F182023DD000264A8 /* ScannerViewController.m */,
-				8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		8E69AB4C183FF4D7000A4B4D /* Introduction */ = {
-			isa = PBXGroup;
-			children = (
 				8E3FA46618CB8329009E2A66 /* WelcomeViewController.h */,
 				8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */,
+				8EAE7B71182006A7001BDC08 /* ConversionViewController.h */,
+				8EAE7B72182006A7001BDC08 /* ConversionViewController.m */,
+				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
+				8EB17BF818201F00000DDFCC /* ImagesViewController.m */,
+				771BCD7F182023DD000264A8 /* ScannerViewController.m */,
+				771BCD7E182023DD000264A8 /* ScannerViewController.h */,
+				8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */,
 				772B828C1829683300128190 /* UserProfileViewController.h */,
 				772B828D1829683300128190 /* UserProfileViewController.m */,
 			);
-			path = Introduction;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		8E9596E11829554E00AE29DB /* Login:Signup */ = {
