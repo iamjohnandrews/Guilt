@@ -222,15 +222,9 @@
         productsDC.productNameDisplayLabel.text = productName;
 
         imagesVC.productCellTemp = productsDC;
-        
-        
-        imagesVC.productName = productName;
+                imagesVC.productName = productName;
        // imagesVC.productPrice = [NSNumber numberWithFloat:productPrice];
         imagesVC.productProductURL = urlForProduct;
-        
-        
-        
-    NSLog(@"contents passed along are %@", imagesVC.resultOfCharitableConversionsArray);
         
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller

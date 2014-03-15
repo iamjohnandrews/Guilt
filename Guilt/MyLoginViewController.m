@@ -44,6 +44,9 @@
     [self.skipButtonOutlet setTitle:@"Skip"];
     
     [self.navigationItem setTitle:@"Login"];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -54,14 +57,14 @@
     }
 }
 
-//-(void)viewDidAppear:(BOOL)animated
-//{
+-(void)viewDidAppear:(BOOL)animated
+{
 //    if ([PFUser currentUser])
 //    {
 //        self.userIsLoggedIn = YES;        
 //        [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
 //    }
-//}
+}
 
 
 - (IBAction)didLogin:(id)sender {
@@ -88,6 +91,11 @@
 - (IBAction)skipButtonPressed:(id)sender 
 {
     [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    [[self view] endEditing:TRUE];
 }
 
 @end
