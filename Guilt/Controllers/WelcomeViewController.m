@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.introScrollView.pagingEnabled = YES;
     self.introScrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2, self.view.frame.size.height);
     self.introScrollView.delegate = self;
@@ -29,14 +30,13 @@
     self.view.contentMode = UIViewContentModeScaleAspectFit;
     
     [self updateUI];
-    
 }
 
 - (void)updateUI
 {
     UIView *page1 = [[UIView alloc] initWithFrame:self.view.bounds];
     
-    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaScan logo-Fj"]];
+    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaScan logo-FJ"]];
     logo.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 5, self.view.bounds.size.width - 20, 250);
     [logo clipsToBounds];
     [page1 addSubview:logo];
