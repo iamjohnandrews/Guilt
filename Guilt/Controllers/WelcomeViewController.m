@@ -17,7 +17,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.introScrollView.pagingEnabled = YES;
     self.introScrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2, self.view.frame.size.height);
     self.introScrollView.delegate = self;
@@ -33,22 +32,23 @@
 }
 
 - (void)updateUI
-{
+{    
     UIView *page1 = [[UIView alloc] initWithFrame:self.view.bounds];
     
     UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaScan logo-FJ"]];
-    logo.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 5, self.view.bounds.size.width - 20, 250);
+    logo.frame = CGRectMake(self.view.bounds.origin.x + 30, self.view.bounds.origin.y, self.view.bounds.size.width - 60, 200);
     [logo clipsToBounds];
     [page1 addSubview:logo];
     
-    UILabel *overallDescriptionlabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 160, 300, 200)];
-    overallDescriptionlabel.text = @"KarmaScan is a thoughtful app that helps you find the best prices while giving back to those in need. With a built in scanner KarmaScan allows the user to shop smart while keeping humility in check.";
+    UILabel *overallDescriptionlabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 90, 300, 200)];
+    overallDescriptionlabel.text = @"KarmaScan helps you find the best prices while giving back to those in need. Use your iPhone's camera to scan products and shop smarter while keeping humility in check.";
+    overallDescriptionlabel.font  = [overallDescriptionlabel.font fontWithSize:12.0f];
     overallDescriptionlabel.numberOfLines = 0;
     overallDescriptionlabel.textColor = [UIColor whiteColor];
     [page1 addSubview:overallDescriptionlabel];
     
     UIImageView *soldierAndNunPic = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donation"]];
-    soldierAndNunPic.center = CGPointMake(self.view.center.x, self.view.center.y + 150);
+    soldierAndNunPic.center = CGPointMake(self.view.center.x, self.view.center.y + 90);
     [page1 addSubview:soldierAndNunPic];
     
     self.leaveIntroButtonOutlet.title = @"Skip";
@@ -59,24 +59,35 @@
     titleLabel.textColor = [UIColor whiteColor];
     [page2 addSubview:titleLabel];
     
-    UILabel *instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 90, 300, 200)];
+    UILabel *instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 60, 300, 200)];
     instructionLabel.numberOfLines = 0;
-    instructionLabel.text = @"Use your camera to scan and check for better prices online while being informed how easy it is to help others in need.  Keep tabs on your product scans and donations with the Karma Chart!" ;
+    instructionLabel.text = @"Use your camera to scan and we'll check for better prices online, then be informed how easy it is to help others in need.  Keep tabs on your product scans and donations with the Karma Chart!" ;
     instructionLabel.textColor = [UIColor whiteColor];
+    instructionLabel.font = [instructionLabel.font fontWithSize:14.0f];
     [instructionLabel sizeToFit];
     [page2 addSubview:instructionLabel];
     
     UIImageView *scannerPic = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"karmaScan1"]];
-    scannerPic.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 250, self.view.bounds.size.width - 20, 240);
+    scannerPic.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 180, self.view.bounds.size.width - 20, 240);
     [page2 addSubview:scannerPic];
     
     [self.introScrollView addSubview:page1];
     [self.introScrollView addSubview:page2];
 }
 
+#pragma mark - Scroll View Delegate
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    self.leaveIntroButtonOutlet.title = @"Let's Go";
+    if (self.introScrollView.contentOffset.x == 320.0f) {
+        self.leaveIntroButtonOutlet.title = @"Let's Go";
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSInteger pageNumber = (NSInteger)round(scrollView.contentOffset.x / 320.0f);
+    self.pageControl.currentPage = pageNumber;
 }
 
 - (IBAction)leaveIntroButtonPressed:(id)sender 
