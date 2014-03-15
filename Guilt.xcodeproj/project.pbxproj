@@ -299,8 +299,8 @@
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
+				8E29F29F18D4C4F9007AFA4C /* Model */,
 				8E69AB4B183FF499000A4B4D /* Controllers */,
-				8E9596E11829554E00AE29DB /* Login:Signup */,
 				8EB17C1A1824727D000DDFCC /* Views */,
 				8E00AADE18182E9700BB32E4 /* Images.xcassets */,
 				8E00AACD18182E9700BB32E4 /* Supporting Files */,
@@ -372,9 +372,17 @@
 			path = KarmaScan_logoFJ;
 			sourceTree = "<group>";
 		};
+		8E29F29F18D4C4F9007AFA4C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		8E69AB4B183FF499000A4B4D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8E9596E11829554E00AE29DB /* Login:Signup */,
 				8E3FA46918CBB3FA009E2A66 /* BaseViewController.h */,
 				8E3FA46A18CBB3FA009E2A66 /* BaseViewController.m */,
 				8E3FA46618CB8329009E2A66 /* WelcomeViewController.h */,
@@ -401,7 +409,8 @@
 				E00CB857182B316800A497C3 /* KarmaSignupViewController.h */,
 				E00CB858182B316F00A497C3 /* KarmaSignupViewController.m */,
 			);
-			path = "Login:Signup";
+			name = "Login:Signup";
+			path = "../Login:Signup";
 			sourceTree = "<group>";
 		};
 		8E9596E2182960E900AE29DB /* CharityImages */ = {
