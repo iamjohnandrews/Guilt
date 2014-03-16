@@ -220,10 +220,10 @@
         NSLog(@"This is URL %@ ", urlForProduct);
         
         productsDC.productNameDisplayLabel.text = productName;
-
+        
         imagesVC.productCellTemp = productsDC;
-                imagesVC.productName = productName;
-       // imagesVC.productPrice = [NSNumber numberWithFloat:productPrice];
+        imagesVC.productName = productName;
+        // imagesVC.productPrice = [NSNumber numberWithFloat:productPrice];
         imagesVC.productProductURL = urlForProduct;
         
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){

@@ -12,5 +12,6 @@
 @property (nonatomic, strong) NSArray *Images;
 @property (nonatomic, strong) NSString *descriptionsPlural;
 @property (nonatomic, strong) NSString *descriptionsSingular;
-@property (nonatomic, strong) NSString *logoURL;
+@property (strong, nonatomic) NSURL *logoImageUrl;
+
 @end

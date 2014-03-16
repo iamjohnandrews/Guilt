@@ -67,8 +67,13 @@
     [self setFontFamily:@"Quicksand-Regular" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
     
-    //pull data from Parse
+    [self retrieveDataFromParse];
+}
+
+- (void)retrieveDataFromParse
+{
     PFQuery *charityImageAndDescriptionQuery = [PFQuery queryWithClassName:@"Charity"];
+    [charityImageAndDescriptionQuery queryWithClassName:@"Charity"];
     [charityImageAndDescriptionQuery getObjectInBackgroundWithId:@"xWMyZ4YEGZ" block:^(PFObject *gameScore, NSError *error) {
         // Do something with the returned PFObject in the gameScore variable.
         NSLog(@"%@", gameScore);
