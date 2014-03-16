@@ -49,6 +49,7 @@
 		8E05BC6F182B01200005BF34 /* awesomeBarcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC6E182B01200005BF34 /* awesomeBarcode.png */; };
 		8E05BC71182B08990005BF34 /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC70182B085C0005BF34 /* Quicksand-Bold.otf */; };
 		8E05BC73182B2F6E0005BF34 /* KarnaScan_NavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC72182B2F6E0005BF34 /* KarnaScan_NavBar.png */; };
+		8E29F2A218D626A4007AFA4C /* Charity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E29F2A118D626A4007AFA4C /* Charity.m */; };
 		8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */; };
 		8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FA46A18CBB3FA009E2A66 /* BaseViewController.m */; };
 		8E69AB4E183FF598000A4B4D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E69AB4D183FF598000A4B4D /* Parse.framework */; };
@@ -155,6 +156,8 @@
 		8E05BC6E182B01200005BF34 /* awesomeBarcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = awesomeBarcode.png; path = ../awesomeBarcode.png; sourceTree = "<group>"; };
 		8E05BC70182B085C0005BF34 /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
 		8E05BC72182B2F6E0005BF34 /* KarnaScan_NavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KarnaScan_NavBar.png; sourceTree = "<group>"; };
+		8E29F2A018D626A4007AFA4C /* Charity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Charity.h; sourceTree = "<group>"; };
+		8E29F2A118D626A4007AFA4C /* Charity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Charity.m; sourceTree = "<group>"; };
 		8E3FA46618CB8329009E2A66 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		8E3FA46918CBB3FA009E2A66 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -375,6 +378,8 @@
 		8E29F29F18D4C4F9007AFA4C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8E29F2A018D626A4007AFA4C /* Charity.h */,
+				8E29F2A118D626A4007AFA4C /* Charity.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -624,6 +629,7 @@
 				77F8B5D0183D4C07003A541E /* SWRevealViewController.m in Sources */,
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
+				8E29F2A218D626A4007AFA4C /* Charity.m in Sources */,
 				8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */,
 				8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */,
 				E00CB859182B316F00A497C3 /* KarmaSignupViewController.m in Sources */,

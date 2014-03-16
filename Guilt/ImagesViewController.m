@@ -34,6 +34,7 @@
     } else {
         self.userProfileButtonOutlet.enabled = YES;
     }    
+    /*
     charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png",@"ducklingsFlock.png", @"honeybee.png", @"Soldiers.png", @"waterPump.png"];
     
     charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
@@ -52,7 +53,7 @@
                             @"http://soldiersangels.org/donate.html", 
                             @"http://www.africanwellfund.org/donate.html"];
     charityNames = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Soilder's Angels", @"African Well Fund"];
-    
+    */
     //Part of code to get images to animate when appear
     CGFloat rotationAngleDegrees = -15;
     CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
@@ -65,6 +66,13 @@
     
     [self setFontFamily:@"Quicksand-Regular" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
+    
+    //pull data from Parse
+    PFQuery *charityImageAndDescriptionQuery = [PFQuery queryWithClassName:@"Charity"];
+    [charityImageAndDescriptionQuery getObjectInBackgroundWithId:@"xWMyZ4YEGZ" block:^(PFObject *gameScore, NSError *error) {
+        // Do something with the returned PFObject in the gameScore variable.
+        NSLog(@"%@", gameScore);
+    }];
 }
 
 -(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews
