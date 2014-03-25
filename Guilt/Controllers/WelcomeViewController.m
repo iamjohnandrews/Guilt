@@ -23,6 +23,12 @@
     self.navigationItem.title = @"Introduction";
     [self.leaveIntroButtonOutlet setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
     
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(141.0f, self.view.bounds.size.height - 35.0f, 40.0f, 35.0f)];  
+    self.pageControl.numberOfPages = 2; 
+    self.pageControl.currentPage = 0; 
+    self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    [self.view addSubview:self.pageControl];
+    
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background"]];
     [self.view addSubview:background];
     [self.view sendSubviewToBack:background];

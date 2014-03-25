@@ -73,7 +73,7 @@
 - (void)retrieveDataFromParse
 {
     PFQuery *charityImageAndDescriptionQuery = [PFQuery queryWithClassName:@"Charity"];
-    [charityImageAndDescriptionQuery queryWithClassName:@"Charity"];
+//    [charityImageAndDescriptionQuery queryWithClassName:@"Charity"];
     [charityImageAndDescriptionQuery getObjectInBackgroundWithId:@"xWMyZ4YEGZ" block:^(PFObject *gameScore, NSError *error) {
         // Do something with the returned PFObject in the gameScore variable.
         NSLog(@"%@", gameScore);
