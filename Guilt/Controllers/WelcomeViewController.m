@@ -46,15 +46,15 @@
     [logo clipsToBounds];
     [page1 addSubview:logo];
     
-    UILabel *overallDescriptionlabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 90, 300, 200)];
+    UILabel *overallDescriptionlabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 100, 300, 200)];
     overallDescriptionlabel.text = @"KarmaScan helps you find the best prices while giving back to those in need. Use your iPhone's camera to scan products and shop smarter while keeping humility in check.";
-    overallDescriptionlabel.font  = [overallDescriptionlabel.font fontWithSize:12.0f];
+    overallDescriptionlabel.font  = [overallDescriptionlabel.font fontWithSize:14.0f];
     overallDescriptionlabel.numberOfLines = 0;
     overallDescriptionlabel.textColor = [UIColor whiteColor];
     [page1 addSubview:overallDescriptionlabel];
     
     UIImageView *soldierAndNunPic = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donation"]];
-    soldierAndNunPic.center = CGPointMake(self.view.center.x, self.view.center.y + 90);
+    soldierAndNunPic.center = CGPointMake(self.view.center.x, self.view.center.y + 110);
     [page1 addSubview:soldierAndNunPic];
     
     self.leaveIntroButtonOutlet.title = @"Skip";

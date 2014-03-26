@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ProductDisplayCell.h"
+#import "Charity.h"
 
 @interface ImagesViewController : UITableViewController
 

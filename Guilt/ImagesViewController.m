@@ -20,7 +20,7 @@
     NSArray* charityNames;
     NSNumber* currPoints;
 }
-
+@property (strong, nonatomic) NSMutableArray *nonprofitInfoArray;
 @end
 
 @implementation ImagesViewController
@@ -68,15 +68,30 @@
     [self.navigationItem setTitle:@"Impact"];
     
     [self retrieveDataFromParse];
+    //create progress view that will get dismiss in Parse callback
 }
 
 - (void)retrieveDataFromParse
 {
+    self.nonprofitInfoArray = [NSMutableArray array];
+    
     PFQuery *charityImageAndDescriptionQuery = [PFQuery queryWithClassName:@"Charity"];
-//    [charityImageAndDescriptionQuery queryWithClassName:@"Charity"];
-    [charityImageAndDescriptionQuery getObjectInBackgroundWithId:@"xWMyZ4YEGZ" block:^(PFObject *gameScore, NSError *error) {
-        // Do something with the returned PFObject in the gameScore variable.
-        NSLog(@"%@", gameScore);
+    [charityImageAndDescriptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                Charity *nonprofit = [[Charity alloc] init];
+                nonprofit.Images = [object objectForKey:@"@CharityImages"];
+                nonprofit.descriptionsPlural = [object objectForKey:@"DescriptionsPlural"];
+                nonprofit.descriptionsSingular = [object objectForKey:@"DescriptionsSingular"];
+                nonprofit.logoImageUrl = [object objectForKey:@"LogoURL"];
+                [self.nonprofitInfoArray addObject:nonprofit];
+            }
+//            NSLog(@"Should've retrieved 7 charity objects. Actually retreived %d", self.nonprofitInfoArray.count);   
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
     }];
 }
 
