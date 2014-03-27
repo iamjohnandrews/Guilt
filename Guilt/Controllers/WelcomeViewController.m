@@ -42,11 +42,11 @@
     UIView *page1 = [[UIView alloc] initWithFrame:self.view.bounds];
     
     UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaScan logo-FJ"]];
-    logo.frame = CGRectMake(self.view.bounds.origin.x + 30, self.view.bounds.origin.y, self.view.bounds.size.width - 60, 200);
+    logo.frame = CGRectMake(self.view.bounds.origin.x + 30, self.view.bounds.origin.y, self.view.bounds.size.width - 60, 220);
     [logo clipsToBounds];
     [page1 addSubview:logo];
     
-    UILabel *overallDescriptionlabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 100, 300, 200)];
+    UILabel *overallDescriptionlabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x + 15, self.view.bounds.origin.y + 105, 300, 200)];
     overallDescriptionlabel.text = @"KarmaScan helps you find the best prices while giving back to those in need. Use your iPhone's camera to scan products and shop smarter while keeping humility in check.";
     overallDescriptionlabel.font  = [overallDescriptionlabel.font fontWithSize:14.0f];
     overallDescriptionlabel.numberOfLines = 0;

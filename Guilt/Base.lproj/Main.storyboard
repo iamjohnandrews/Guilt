@@ -102,7 +102,7 @@
                         <outlet property="userEnterDollarAmountTextField" destination="M98-zr-X80" id="goV-UA-J6A"/>
                         <outlet property="userProfileButtonOutlet" destination="22b-4f-1iy" id="tUq-vS-HHh"/>
                         <outlet property="valueQuestionLabel" destination="SID-dl-CTO" id="Rcc-MS-0yQ"/>
-                        <segue destination="tEc-0u-6AV" kind="push" identifier="ConversionToImagesSegue" id="OJS-g9-g91"/>
+                        <segue destination="FQJ-0F-BmM" kind="push" identifier="ConversionToImagesSegue" id="6k4-0G-7Bx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXu-5J-mrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -303,10 +303,10 @@
             </objects>
             <point key="canvasLocation" x="715" y="-1431"/>
         </scene>
-        <!--Images View Controller - Choose Wisely-->
+        <!--Table View Controller - Choose Wisely-->
         <scene sceneID="jtA-Nn-sMd">
             <objects>
-                <tableViewController id="tEc-0u-6AV" customClass="ImagesViewController" sceneMemberID="viewController">
+                <tableViewController id="tEc-0u-6AV" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="152" sectionHeaderHeight="122" sectionFooterHeight="22" id="9cK-GU-7u3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -314,7 +314,7 @@
                         <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductDisplay" rowHeight="152" id="qUF-vk-ho1" customClass="ProductDisplayCell">
-                                <rect key="frame" x="0.0" y="186" width="320" height="152"/>
+                                <rect key="frame" x="0.0" y="122" width="320" height="152"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qUF-vk-ho1" id="WfH-1Q-2Tx">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
@@ -350,7 +350,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharityDisplay" rowHeight="210" id="GAV-sQ-2R5" customClass="CharityAndProductDisplayCell">
-                                <rect key="frame" x="0.0" y="338" width="320" height="210"/>
+                                <rect key="frame" x="0.0" y="274" width="320" height="210"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GAV-sQ-2R5" id="Jlt-kH-uzD">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="209"/>
@@ -370,10 +370,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="charityConversionDetailsLabel" destination="Pqp-Hk-sNB" id="EHH-eW-nG6"/>
-                                    <outlet property="displayImageView" destination="z3C-yC-hDS" id="dqT-c8-nhh"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -385,7 +381,6 @@
                         <barButtonItem key="rightBarButtonItem" image="ic_profile_white.png" id="42M-M9-whS">
                             <connections>
                                 <action selector="userProfileButton:" destination="tEc-0u-6AV" id="XI8-fi-xz3"/>
-                                <segue destination="Ovb-PQ-Y1M" kind="push" id="b9w-pJ-Thj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -395,7 +390,69 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yd-hQ-rRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1234" y="-820"/>
+            <point key="canvasLocation" x="1610" y="-790"/>
+        </scene>
+        <!--Images View Controller-->
+        <scene sceneID="vf5-iz-sLn">
+            <objects>
+                <viewController id="FQJ-0F-BmM" customClass="ImagesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JOT-w4-9Pj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="212" sectionHeaderHeight="22" sectionFooterHeight="22" id="4oH-wW-rn3">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharityDisplay" rowHeight="212" id="c09-L8-5FD" customClass="CharityAndProductDisplayCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="212"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c09-L8-5FD" id="LvV-wU-hvc">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="211"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="v0g-qK-9jy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="211"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NHP-YN-cce">
+                                                    <rect key="frame" x="0.0" y="166" width="320" height="45"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="charityConversionDetailsLabel" destination="NHP-YN-cce" id="ZfH-xv-SJ4"/>
+                                            <outlet property="displayImageView" destination="v0g-qK-9jy" id="N56-hE-edX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Eio-wx-ZVg">
+                        <barButtonItem key="rightBarButtonItem" image="ic_profile_white.png" id="NDw-pw-GiX">
+                            <connections>
+                                <action selector="userProfileButton:" destination="FQJ-0F-BmM" id="90P-N9-VD1"/>
+                                <segue destination="Ovb-PQ-Y1M" kind="push" id="ykt-Gs-ZaS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imagesTableView" destination="4oH-wW-rn3" id="b6j-w2-83i"/>
+                        <outlet property="userProfileButtonOutlet" destination="NDw-pw-GiX" id="fXQ-5V-OVz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uRO-fs-BD3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1119" y="-596"/>
         </scene>
         <!--User Profile View Controller - Profile-->
         <scene sceneID="0Cq-X9-E8G">
@@ -500,6 +557,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="9Q5-j6-Spv"/>
-        <segue reference="eV3-BS-VXY"/>
+        <segue reference="ykt-Gs-ZaS"/>
     </inferredMetricsTieBreakers>
 </document>

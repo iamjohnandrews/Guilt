@@ -16,7 +16,7 @@
     NSMutableArray* convertedCharitableGoodsArray;
     NSNumber* convertedProductPrice;
 }
-
+@property (nonatomic, strong) NSMutableArray *parseNonprofitInfoArray;
 @end
 
 @implementation ConversionViewController
@@ -113,8 +113,9 @@
     [self performSegueWithIdentifier:@"ScannerSegue" sender:self];
 }
 
-- (IBAction)conversionButton:(id)sender {
-    
+- (IBAction)conversionButton:(id)sender 
+{
+    [self retrieveDataFromParse];
     [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
 }
 
@@ -212,18 +213,13 @@
         imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
         imagesVC.userIsLoggedIn = self.userIsLoggedIn;
         imagesVC.productPrice = convertedProductPrice;
-        
-        NSLog(@"This product's price %@", imagesVC.productPrice);
+        imagesVC.parseNonprofitInfoArray = self.parseNonprofitInfoArray;
         
         productsDC.urlDisplayLabel.text = urlForProduct;
-        
-        NSLog(@"This is URL %@ ", urlForProduct);
-        
         productsDC.productNameDisplayLabel.text = productName;
         
         imagesVC.productCellTemp = productsDC;
         imagesVC.productName = productName;
-        // imagesVC.productPrice = [NSNumber numberWithFloat:productPrice];
         imagesVC.productProductURL = urlForProduct;
         
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
@@ -264,6 +260,30 @@
 
 -(void)dismissKeyboard {
     [userEnterDollarAmountTextField resignFirstResponder];
+}
+
+- (void)retrieveDataFromParse
+{
+    self.parseNonprofitInfoArray = [NSMutableArray array];
+    
+    PFQuery *charityImageAndDescriptionQuery = [PFQuery queryWithClassName:@"Charity"];
+    [charityImageAndDescriptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                Charity *nonprofit = [[Charity alloc] init];
+                nonprofit.Images = [object objectForKey:@"@CharityImages"];
+                nonprofit.descriptionsPlural = [object objectForKey:@"DescriptionsPlural"];
+                nonprofit.descriptionsSingular = [object objectForKey:@"DescriptionsSingular"];
+                nonprofit.logoImageUrl = [object objectForKey:@"LogoURL"];
+                [self.parseNonprofitInfoArray addObject:nonprofit];
+            }
+            NSLog(@"Should've retrieved 7 charity objects. Actually retreived %d", self.parseNonprofitInfoArray.count);   
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 @end

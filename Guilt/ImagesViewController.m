@@ -13,14 +13,15 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
 
-@interface ImagesViewController (){
+@interface ImagesViewController () <UITableViewDataSource, UITableViewDelegate>
+{
     NSArray* charityImagesArray;
     NSArray* charityDiscriptionsArray;
     NSArray* charityDonationPage;
     NSArray* charityNames;
     NSNumber* currPoints;
 }
-@property (strong, nonatomic) NSMutableArray *nonprofitInfoArray;
+
 @end
 
 @implementation ImagesViewController
@@ -34,6 +35,14 @@
     } else {
         self.userProfileButtonOutlet.enabled = YES;
     }    
+    self.imagesTableView.dataSource = self;
+    self.imagesTableView.delegate = self;
+    
+    UIActivityIndicatorView *parseBuffering = [[UIActivityIndicatorView alloc]  
+                                   initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [parseBuffering startAnimating];
+//    [self.tableView.tableHeaderView addSubview:parseBuffering];
+    [self.view addSubview:parseBuffering];
     /*
     charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png",@"ducklingsFlock.png", @"honeybee.png", @"Soldiers.png", @"waterPump.png"];
     
@@ -66,33 +75,7 @@
     
     [self setFontFamily:@"Quicksand-Regular" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
-    
-    [self retrieveDataFromParse];
     //create progress view that will get dismiss in Parse callback
-}
-
-- (void)retrieveDataFromParse
-{
-    self.nonprofitInfoArray = [NSMutableArray array];
-    
-    PFQuery *charityImageAndDescriptionQuery = [PFQuery queryWithClassName:@"Charity"];
-    [charityImageAndDescriptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *object in objects) {
-                Charity *nonprofit = [[Charity alloc] init];
-                nonprofit.Images = [object objectForKey:@"@CharityImages"];
-                nonprofit.descriptionsPlural = [object objectForKey:@"DescriptionsPlural"];
-                nonprofit.descriptionsSingular = [object objectForKey:@"DescriptionsSingular"];
-                nonprofit.logoImageUrl = [object objectForKey:@"LogoURL"];
-                [self.nonprofitInfoArray addObject:nonprofit];
-            }
-//            NSLog(@"Should've retrieved 7 charity objects. Actually retreived %d", self.nonprofitInfoArray.count);   
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
 }
 
 -(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews
@@ -177,13 +160,22 @@
         charityCell.layer.opacity = 1;
     }];
     
-    charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
+//    charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
+    Charity *nonprofit = [[Charity alloc] init];
+    nonprofit = [self.parseNonprofitInfoArray objectAtIndex:indexPath.row];
+    int randomNumber = arc4random() % nonprofit.Images.count;
+    charityCell.displayImageView.image = [nonprofit.Images objectAtIndex:randomNumber];
     
     charityCell.charityConversionDetailsLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:15];
-    charityCell.charityConversionDetailsLabel.textColor = [UIColor whiteColor];    
-    NSAttributedString *nonprofitDetails = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row]] attributes:@{NSStrokeWidthAttributeName: @-1, NSStrokeColorAttributeName: [UIColor blackColor], NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    charityCell.charityConversionDetailsLabel.textColor = [UIColor whiteColor];
+    NSString *charityDescription = [[NSString alloc] init];
+    if ([[resultOfCharitableConversionsArray objectAtIndex:indexPath.row] integerValue] == 1) {
+        charityDescription = nonprofit.descriptionsSingular;
+    } else {
+        charityDescription = nonprofit.descriptionsPlural;
+    }
+    NSAttributedString *nonprofitDetails = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], charityDescription] attributes:@{NSStrokeWidthAttributeName: @-1, NSStrokeColorAttributeName: [UIColor blackColor], NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [charityCell.charityConversionDetailsLabel setAttributedText:nonprofitDetails];
-    NSLog(@"the First index.row = %li", (long)indexPath.row);
     
     [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
     
@@ -201,7 +193,7 @@
 
 - (void)onDonationButtonTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)gestureRecognizer.view.superview.superview];
+    NSIndexPath *indexPath = [self.imagesTableView indexPathForCell:(UITableViewCell *)gestureRecognizer.view.superview.superview];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[charityDonationPage objectAtIndex:indexPath.row]]];
     NSLog(@"the Second index.row = %li", (long)indexPath.row);
     

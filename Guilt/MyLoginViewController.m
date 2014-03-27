@@ -27,7 +27,7 @@
     loginButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
     loginButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
     loginButtonOutlet.clipsToBounds = YES;
-    loginButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:14];
+    loginButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:18];
     [loginButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [loginButtonOutlet setTitle:@"login" forState:UIControlStateNormal];
     
@@ -37,7 +37,7 @@
     signupButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
     signupButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
     signupButtonOutlet.clipsToBounds = YES;
-    signupButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:14];
+    signupButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:18];
     [signupButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [signupButtonOutlet setTitle:@"signup" forState:UIControlStateNormal];
     
