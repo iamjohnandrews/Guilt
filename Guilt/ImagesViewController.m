@@ -38,11 +38,6 @@
     self.imagesTableView.dataSource = self;
     self.imagesTableView.delegate = self;
     
-//    UIActivityIndicatorView *parseBuffering = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y - 100, 50, 50)];
-//    parseBuffering.color = [UIColor orangeColor];
-//    [parseBuffering startAnimating];
-//    [self.view addSubview:parseBuffering];
-
     //Part of code to get images to animate when appear
     CGFloat rotationAngleDegrees = -15;
     CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);

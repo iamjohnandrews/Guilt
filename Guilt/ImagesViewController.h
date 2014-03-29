@@ -7,14 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProductDisplayCell.h"
 #import "Charity.h"
 
 @interface ImagesViewController : BaseViewController
 
 @property NSMutableArray *resultOfCharitableConversionsArray;
-
-@property (strong,nonatomic) ProductDisplayCell* productCellTemp;
 
 @property (weak, nonatomic) IBOutlet UITableView *imagesTableView;
 @property (strong,nonatomic) NSString* productName;

@@ -16,6 +16,7 @@
     NSNumber* convertedProductPrice;
 }
 @property (nonatomic, strong) NSMutableArray *parseNonprofitInfoArray;
+@property (nonatomic, strong)  UIActivityIndicatorView *parseBuffering;
 @end
 
 @implementation ConversionViewController
@@ -40,7 +41,6 @@
     [userEnterDollarAmountTextField addTarget:self 
                                        action:@selector(textFieldDidChange)
                              forControlEvents:UIControlEventEditingChanged];
-    [self retrieveDataFromParse];
 }
 
 
@@ -115,8 +115,11 @@
 
 - (IBAction)conversionButton:(id)sender 
 {
-    
-    [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
+    [self retrieveDataFromParse];
+    self.parseBuffering = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x - 25, self.view.bounds.origin.y + 35, 50, 50)];
+    self.parseBuffering.color = [UIColor orangeColor];
+    [self.parseBuffering startAnimating];
+    [self.view addSubview:self.parseBuffering];
 }
 
 - (void)textFieldDidChange
@@ -201,7 +204,7 @@
     userEnterDollarAmountTextField.text = nil;
      
     convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
-
+    [self.parseBuffering stopAnimating];
     [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
 }
 
@@ -282,7 +285,7 @@
                 [self.parseNonprofitInfoArray addObject:nonprofit];
                 NSLog(@"Inside nonprofit.Images %@", nonprofit.Images);
             }
-            
+            [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]]; 
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
