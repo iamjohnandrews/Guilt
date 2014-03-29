@@ -17,6 +17,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([PFUser currentUser]) {
+        [self performSegueWithIdentifier:@"WelcomeToConversionSegue" sender:self];
+    }
+    
     self.introScrollView.pagingEnabled = YES;
     self.introScrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2, self.view.frame.size.height);
     self.introScrollView.delegate = self;
@@ -98,9 +102,7 @@
 
 - (IBAction)leaveIntroButtonPressed:(id)sender 
 {
-    if ([PFUser currentUser])
-    {
-        self.userIsLoggedIn = YES;        
+    if ([PFUser currentUser]) {
         [self performSegueWithIdentifier:@"WelcomeToConversionSegue" sender:self];
     } else {
         [self performSegueWithIdentifier:@"LoginSegue" sender:self];
