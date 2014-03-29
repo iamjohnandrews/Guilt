@@ -87,7 +87,6 @@
 		8EB17C031820205C000DDFCC /* TheAnimalRescueSite.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFE1820205C000DDFCC /* TheAnimalRescueSite.jpg */; };
 		8EB17C041820205C000DDFCC /* Unicef.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8EB17BFF1820205C000DDFCC /* Unicef.jpeg */; };
 		8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */; };
-		8EB17C161821977C000DDFCC /* ProductDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17C151821977C000DDFCC /* ProductDisplayCell.m */; };
 		E00CB84D182B28F000A497C3 /* TestHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E00CB84C182B28F000A497C3 /* TestHeader.xib */; };
 		E00CB852182B291400A497C3 /* KarnaScan_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = E00CB851182B291400A497C3 /* KarnaScan_Background.png */; };
 		E00CB859182B316F00A497C3 /* KarmaSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E00CB858182B316F00A497C3 /* KarmaSignupViewController.m */; };
@@ -200,8 +199,6 @@
 		8EB17BFF1820205C000DDFCC /* Unicef.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Unicef.jpeg; sourceTree = "<group>"; };
 		8EB17C1118217A85000DDFCC /* CharityAndProductDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharityAndProductDisplayCell.h; path = Guilt/CharityAndProductDisplayCell.h; sourceTree = SOURCE_ROOT; };
 		8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharityAndProductDisplayCell.m; path = Guilt/CharityAndProductDisplayCell.m; sourceTree = SOURCE_ROOT; };
-		8EB17C141821977C000DDFCC /* ProductDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDisplayCell.h; path = Guilt/ProductDisplayCell.h; sourceTree = SOURCE_ROOT; };
-		8EB17C151821977C000DDFCC /* ProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDisplayCell.m; path = Guilt/ProductDisplayCell.m; sourceTree = SOURCE_ROOT; };
 		8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ScannerDidNotWorkDelegate.h; path = ../ScannerDidNotWorkDelegate.h; sourceTree = "<group>"; };
 		E00CB84C182B28F000A497C3 /* TestHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestHeader.xib; path = ../TestHeader.xib; sourceTree = "<group>"; };
 		E00CB851182B291400A497C3 /* KarnaScan_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = KarnaScan_Background.png; path = ../KarnaScan_Background.png; sourceTree = "<group>"; };
@@ -466,8 +463,6 @@
 			children = (
 				8EB17C1118217A85000DDFCC /* CharityAndProductDisplayCell.h */,
 				8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */,
-				8EB17C141821977C000DDFCC /* ProductDisplayCell.h */,
-				8EB17C151821977C000DDFCC /* ProductDisplayCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -633,7 +628,6 @@
 				8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */,
 				8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */,
 				E00CB859182B316F00A497C3 /* KarmaSignupViewController.m in Sources */,
-				8EB17C161821977C000DDFCC /* ProductDisplayCell.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
 				772B828E1829683300128190 /* UserProfileViewController.m in Sources */,

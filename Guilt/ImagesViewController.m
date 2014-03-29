@@ -38,30 +38,11 @@
     self.imagesTableView.dataSource = self;
     self.imagesTableView.delegate = self;
     
-    UIActivityIndicatorView *parseBuffering = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y - 100, 50, 50)];
-    parseBuffering.color = [UIColor orangeColor];
-    [parseBuffering startAnimating];
-    [self.view addSubview:parseBuffering];
-    /*
-    charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png",@"ducklingsFlock.png", @"honeybee.png", @"Soldiers.png", @"waterPump.png"];
-    
-    charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
-                                 @"month(s) of vaccines, schooling & natural disaster relief through Unicef",
-                                 @"month(s) of food, water, and medical supplies through Feed The Children",
-                                 @"flock(s) of ducklings per a 3rd world family through Heifer International",
-                                 @"gift(s) of honey bees per a 3rd world family through Heifer International",
-                                 @"military care package(s) through Soildier's Angels",
-                                 @"natural spring catchment(s) serving 250 people through African Well Fund"
-                                 ];
-    charityDonationPage = @[@"https://theanimalrescuesite.greatergood.com/store/ars/item/32249/contribute-to-animal-rescue?source=12-32132-3#productInfo",
-                            @"http://www.supportunicef.org/site/c.dvKUI9OWInJ6H/b.7677883/k.2C8F/Donate_now.htm", 
-                            @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate",
-                            @"http://www.heifer.org/gift-catalog/animals-nutrition/flock-of-ducks-donation.html",
-                            @"http://www.heifer.org/gift-catalog/animals-nutrition/honeybees-donation.html",
-                            @"http://soldiersangels.org/donate.html", 
-                            @"http://www.africanwellfund.org/donate.html"];
-    charityNames = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Soilder's Angels", @"African Well Fund"];
-    */
+//    UIActivityIndicatorView *parseBuffering = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y - 100, 50, 50)];
+//    parseBuffering.color = [UIColor orangeColor];
+//    [parseBuffering startAnimating];
+//    [self.view addSubview:parseBuffering];
+
     //Part of code to get images to animate when appear
     CGFloat rotationAngleDegrees = -15;
     CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
@@ -249,5 +230,25 @@
 - (IBAction)userProfileButton:(id)sender {
 }
 
+/*
+ charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png",@"ducklingsFlock.png", @"honeybee.png", @"Soldiers.png", @"waterPump.png"];
+ 
+ charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
+ @"month(s) of vaccines, schooling & natural disaster relief through Unicef",
+ @"month(s) of food, water, and medical supplies through Feed The Children",
+ @"flock(s) of ducklings per a 3rd world family through Heifer International",
+ @"gift(s) of honey bees per a 3rd world family through Heifer International",
+ @"military care package(s) through Soildier's Angels",
+ @"natural spring catchment(s) serving 250 people through African Well Fund"
+ ];
+ charityDonationPage = @[@"https://theanimalrescuesite.greatergood.com/store/ars/item/32249/contribute-to-animal-rescue?source=12-32132-3#productInfo",
+ @"http://www.supportunicef.org/site/c.dvKUI9OWInJ6H/b.7677883/k.2C8F/Donate_now.htm", 
+ @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate",
+ @"http://www.heifer.org/gift-catalog/animals-nutrition/flock-of-ducks-donation.html",
+ @"http://www.heifer.org/gift-catalog/animals-nutrition/honeybees-donation.html",
+ @"http://soldiersangels.org/donate.html", 
+ @"http://www.africanwellfund.org/donate.html"];
+ charityNames = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Soilder's Angels", @"African Well Fund"];
+ */
 
 @end

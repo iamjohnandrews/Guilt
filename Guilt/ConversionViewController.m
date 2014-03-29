@@ -10,7 +10,6 @@
 #import "ImagesViewController.h"
 #import "ScannerViewController.h"
 #import <Parse/Parse.h>
-#import "ProductDisplayCell.h"
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
@@ -116,6 +115,7 @@
 
 - (IBAction)conversionButton:(id)sender 
 {
+    
     [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
 }
 
@@ -208,17 +208,12 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"ConversionToImagesSegue"]) {
         ImagesViewController* imagesVC = [segue destinationViewController];
-        ProductDisplayCell* productsDC = [ProductDisplayCell new];
         
         imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
         imagesVC.userIsLoggedIn = self.userIsLoggedIn;
         imagesVC.productPrice = convertedProductPrice;
         imagesVC.parseNonprofitInfoArray = self.parseNonprofitInfoArray;
         
-        productsDC.urlDisplayLabel.text = urlForProduct;
-        productsDC.productNameDisplayLabel.text = productName;
-        
-        imagesVC.productCellTemp = productsDC;
         imagesVC.productName = productName;
         imagesVC.productProductURL = urlForProduct;
         
