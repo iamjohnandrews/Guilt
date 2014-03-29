@@ -59,6 +59,13 @@
     
     UIImageView *soldierAndNunPic = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donation"]];
     soldierAndNunPic.center = CGPointMake(self.view.center.x, self.view.center.y + 110);
+    
+    UIGraphicsBeginImageContextWithOptions(soldierAndNunPic.bounds.size, NO, [UIScreen mainScreen].scale);
+    [[UIBezierPath bezierPathWithRoundedRect:soldierAndNunPic.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(25, 25)] addClip];
+    [soldierAndNunPic.image drawInRect:soldierAndNunPic.bounds];
+    soldierAndNunPic.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
     [page1 addSubview:soldierAndNunPic];
     
     self.leaveIntroButtonOutlet.title = @"Skip";
@@ -79,6 +86,13 @@
     
     UIImageView *scannerPic = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"karmaScan1"]];
     scannerPic.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 180, self.view.bounds.size.width - 20, 240);
+    
+    UIGraphicsBeginImageContextWithOptions(scannerPic.bounds.size, NO, [UIScreen mainScreen].scale);
+    [[UIBezierPath bezierPathWithRoundedRect:scannerPic.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(25, 25)] addClip];
+    [scannerPic.image drawInRect:scannerPic.bounds];
+    scannerPic.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
     [page2 addSubview:scannerPic];
     
     [self.introScrollView addSubview:page1];
