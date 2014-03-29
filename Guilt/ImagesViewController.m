@@ -38,10 +38,9 @@
     self.imagesTableView.dataSource = self;
     self.imagesTableView.delegate = self;
     
-    UIActivityIndicatorView *parseBuffering = [[UIActivityIndicatorView alloc]  
-                                   initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    UIActivityIndicatorView *parseBuffering = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y - 100, 50, 50)];
+    parseBuffering.color = [UIColor orangeColor];
     [parseBuffering startAnimating];
-//    [self.tableView.tableHeaderView addSubview:parseBuffering];
     [self.view addSubview:parseBuffering];
     /*
     charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png",@"ducklingsFlock.png", @"honeybee.png", @"Soldiers.png", @"waterPump.png"];
@@ -163,8 +162,8 @@
 //    charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
     Charity *nonprofit = [[Charity alloc] init];
     nonprofit = [self.parseNonprofitInfoArray objectAtIndex:indexPath.row];
-    int randomNumber = arc4random() % nonprofit.Images.count;
-    charityCell.displayImageView.image = [nonprofit.Images objectAtIndex:randomNumber];
+    int randomNumber = arc4random() % 5;
+    charityCell.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[nonprofit.Images objectAtIndex:randomNumber]]]];
     
     charityCell.charityConversionDetailsLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:15];
     charityCell.charityConversionDetailsLabel.textColor = [UIColor whiteColor];

@@ -41,6 +41,7 @@
     [userEnterDollarAmountTextField addTarget:self 
                                        action:@selector(textFieldDidChange)
                              forControlEvents:UIControlEventEditingChanged];
+    [self retrieveDataFromParse];
 }
 
 
@@ -115,7 +116,6 @@
 
 - (IBAction)conversionButton:(id)sender 
 {
-    [self retrieveDataFromParse];
     [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
 }
 
@@ -266,18 +266,27 @@
 {
     self.parseNonprofitInfoArray = [NSMutableArray array];
     
-    PFQuery *charityImageAndDescriptionQuery = [PFQuery queryWithClassName:@"Charity"];
-    [charityImageAndDescriptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    PFQuery *charityImagesQuery = [PFUser query];
+    [charityImagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSNumber *totalCount = [NSNumber numberWithInt:0];
+        for (PFObject *obj in objects) {
+            totalCount = [NSNumber numberWithInt:[totalCount intValue] + [(NSArray *)[obj objectForKey:@"arrayColumnName"] count]];
+        }
+        // do something with totalCount here...
+    }];
+    
+    PFQuery *charityLogoAndDescriptionQuery = [PFQuery queryWithClassName:@"Charity"];
+    [charityLogoAndDescriptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             for (PFObject *object in objects) {
                 Charity *nonprofit = [[Charity alloc] init];
-                nonprofit.Images = [object objectForKey:@"@CharityImages"];
+                nonprofit.Images = [object objectForKey:@"CharityImages"];
                 nonprofit.descriptionsPlural = [object objectForKey:@"DescriptionsPlural"];
                 nonprofit.descriptionsSingular = [object objectForKey:@"DescriptionsSingular"];
                 nonprofit.logoImageUrl = [object objectForKey:@"LogoURL"];
                 [self.parseNonprofitInfoArray addObject:nonprofit];
+                NSLog(@"Inside nonprofit.Images %@", nonprofit.Images);
             }
-            NSLog(@"Should've retrieved 7 charity objects. Actually retreived %d", self.parseNonprofitInfoArray.count);   
             
         } else {
             // Log details of the failure
@@ -285,5 +294,6 @@
         }
     }];
 }
+
 
 @end
