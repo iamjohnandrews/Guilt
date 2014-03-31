@@ -13,7 +13,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
 
-@interface ImagesViewController (){
+@interface ImagesViewController () <UITableViewDataSource, UITableViewDelegate>
+{
     NSArray* charityImagesArray;
     NSArray* charityDiscriptionsArray;
     NSArray* charityDonationPage;
@@ -26,47 +27,16 @@
 @implementation ImagesViewController
 @synthesize resultOfCharitableConversionsArray, makeImagesLean;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
-    //code to change color of nav bar
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"KarnaScan_NavBar.png"] forBarMetrics:UIBarMetricsDefault];
-    
-    //code to set background to png Image    
-    /*
-     UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
-     [self.view addSubview:backgroundImage];
-     [self.view sendSubviewToBack:backgroundImage]; */
-    
     [super viewDidLoad];
-    NSLog(@"content of the resultOfCharitableConversionsArray %@", resultOfCharitableConversionsArray);
-    
-    charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png",@"ducklingsFlock.png", @"honeybee.png", @"Soldiers.png", @"waterPump.png"];
-    
-    charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
-                                 @"month(s) of vaccines, schooling & natural disaster relief through Unicef",
-                                 @"month(s) of food, water, and medical supplies through Feed The Children",
-                                 @"flock(s) of ducklings for a family",
-                                 @"gift(s) of honey bees",
-                                 @"military care package(s) through Soildier's Angels",
-                                 @"natural spring catchment(s) serving 250 people through African Well Fund"
-                                 ];
-    charityDonationPage = @[@"https://theanimalrescuesite.greatergood.com/store/ars/item/32249/contribute-to-animal-rescue?source=12-32132-3#productInfo",
-                            @"http://www.supportunicef.org/site/c.dvKUI9OWInJ6H/b.7677883/k.2C8F/Donate_now.htm", 
-                            @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate",
-                            @"http://www.heifer.org/gift-catalog/animals-nutrition/flock-of-ducks-donation.html",
-                            @"http://www.heifer.org/gift-catalog/animals-nutrition/honeybees-donation.html",
-                            @"http://soldiersangels.org/donate.html", 
-                            @"http://www.africanwellfund.org/donate.html"];
-    charityNames = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Soilder's Angels", @"African Well Fund"];
+    if (self.userIsLoggedIn == NO) {
+        self.userProfileButtonOutlet.enabled = NO;
+    } else {
+        self.userProfileButtonOutlet.enabled = YES;
+    }    
+    self.imagesTableView.dataSource = self;
+    self.imagesTableView.delegate = self;
     
     //Part of code to get images to animate when appear
     CGFloat rotationAngleDegrees = -15;
@@ -78,12 +48,9 @@
     transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
     makeImagesLean = transform;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self setFontFamily:@"Quicksand-Regular" forView:self.view andSubViews:YES];
+    [self.navigationItem setTitle:@"Impact"];
+    //create progress view that will get dismiss in Parse callback
 }
 
 -(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews
@@ -103,22 +70,10 @@
     }     
 } 
 
-#pragma mark - Table view data source
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
+#pragma mark - Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return resultOfCharitableConversionsArray.count;
 }
 
@@ -180,12 +135,22 @@
         charityCell.layer.opacity = 1;
     }];
     
-    charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
+//    charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
+    Charity *nonprofit = [[Charity alloc] init];
+    nonprofit = [self.parseNonprofitInfoArray objectAtIndex:indexPath.row];
+    int randomNumber = arc4random() % 5;
+    charityCell.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[nonprofit.Images objectAtIndex:randomNumber]]]];
     
     charityCell.charityConversionDetailsLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:15];
-    charityCell.charityConversionDetailsLabel.textColor = [UIColor whiteColor];    
-    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
-    NSLog(@"the First index.row = %li", (long)indexPath.row);
+    charityCell.charityConversionDetailsLabel.textColor = [UIColor whiteColor];
+    NSString *charityDescription = [[NSString alloc] init];
+    if ([[resultOfCharitableConversionsArray objectAtIndex:indexPath.row] integerValue] == 1) {
+        charityDescription = nonprofit.descriptionsSingular;
+    } else {
+        charityDescription = nonprofit.descriptionsPlural;
+    }
+    NSAttributedString *nonprofitDetails = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], charityDescription] attributes:@{NSStrokeWidthAttributeName: @-1, NSStrokeColorAttributeName: [UIColor blackColor], NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [charityCell.charityConversionDetailsLabel setAttributedText:nonprofitDetails];
     
     [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
     
@@ -203,7 +168,7 @@
 
 - (void)onDonationButtonTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)gestureRecognizer.view.superview.superview];
+    NSIndexPath *indexPath = [self.imagesTableView indexPathForCell:(UITableViewCell *)gestureRecognizer.view.superview.superview];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[charityDonationPage objectAtIndex:indexPath.row]]];
     NSLog(@"the Second index.row = %li", (long)indexPath.row);
     
@@ -242,7 +207,6 @@
     }
     if( flag ==YES ) {
         
-        NSLog(@"Flag == YES");
         int tempPoints =  (10 + [currPoints integerValue]);
         
         user[@"points"] = [NSNumber numberWithInt:tempPoints];
@@ -251,83 +215,35 @@
         
     }else if(flag==NO)
     {
-        NSLog(@"Flag == no");
         int tempPoints =  (-10 + [currPoints integerValue]);
         
         user[@"points"] = [NSNumber numberWithInt:tempPoints];
-        
     }
-    
     [user saveInBackground]; //save user points to Parse
-
-    
 }
 
 - (IBAction)userProfileButton:(id)sender {
 }
 
-- (IBAction)logoutButton:(id)sender {
-    
-    
-    [PFUser logOut];
-    
-}
-
-
-
-
-
-
-
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
+ charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png",@"ducklingsFlock.png", @"honeybee.png", @"Soldiers.png", @"waterPump.png"];
+ 
+ charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
+ @"month(s) of vaccines, schooling & natural disaster relief through Unicef",
+ @"month(s) of food, water, and medical supplies through Feed The Children",
+ @"flock(s) of ducklings per a 3rd world family through Heifer International",
+ @"gift(s) of honey bees per a 3rd world family through Heifer International",
+ @"military care package(s) through Soildier's Angels",
+ @"natural spring catchment(s) serving 250 people through African Well Fund"
+ ];
+ charityDonationPage = @[@"https://theanimalrescuesite.greatergood.com/store/ars/item/32249/contribute-to-animal-rescue?source=12-32132-3#productInfo",
+ @"http://www.supportunicef.org/site/c.dvKUI9OWInJ6H/b.7677883/k.2C8F/Donate_now.htm", 
+ @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate",
+ @"http://www.heifer.org/gift-catalog/animals-nutrition/flock-of-ducks-donation.html",
+ @"http://www.heifer.org/gift-catalog/animals-nutrition/honeybees-donation.html",
+ @"http://soldiersangels.org/donate.html", 
+ @"http://www.africanwellfund.org/donate.html"];
+ charityNames = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Soilder's Angels", @"African Well Fund"];
  */
 
 @end

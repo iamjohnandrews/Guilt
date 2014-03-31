@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-@interface KarmaSignupViewController :UIViewController<PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface KarmaSignupViewController :BaseViewController<PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UITextField *emailAddress;

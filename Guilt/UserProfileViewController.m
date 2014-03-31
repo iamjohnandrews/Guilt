@@ -9,8 +9,6 @@
 #import "UserProfileViewController.h"
 
 @interface UserProfileViewController () {
-
-
   //  DonationsTableViewController *donationsTable;
     NSMutableArray *donorInfo;
     int tempPoints;
@@ -24,20 +22,10 @@
 
 - (IBAction)didSaveUserUpdates:(id)sender;
 
-
-
 @end
 
 @implementation UserProfileViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -62,8 +50,6 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-
-    
     PFQuery *donationsQuery = [PFQuery queryWithClassName:@"Donation"];
     [donationsQuery whereKey:@"donor" equalTo: [PFUser currentUser] ];
     [donationsQuery includeKey:@"donor"];
@@ -71,46 +57,32 @@
     PFUser *user = [PFUser currentUser];
     
     NSNumber *currPoints =user[@"points"];
-    
     if (!currPoints) {
-        
         tempPoints=0;
-        
     }
-    else{
-        
+    else {
         tempPoints = [currPoints integerValue];
-        
-        
     }
     
     if (tempPoints >=0) {
-        
         _myKarmaPointsLabel.text = [NSString stringWithFormat:@"+%i",tempPoints];
     }
-    else{
+    else {
         _myKarmaPointsLabel.text = [NSString stringWithFormat:@"-%i",tempPoints];
-        
-
     }
-    
     
     [donationsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
             for (PFObject *object in objects) {
-                
                 [donorInfo addObject:object];
-                
             }
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
-        
         [_tableView reloadData];
     }];
-    
 }
 
 
@@ -121,7 +93,6 @@
         return 0;
     }
     return donorInfo.count;
-    
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,65 +124,22 @@
     cell.textLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:10];
     
     //cell.textLabel.text = [NSString stringWithFormat:@"   Donation Amount: $%@", donationAmount];
-    
-    
     return cell;
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
-
-
-
-
-
 #pragma mark - Table view delegate
 
-
-
-
 - (IBAction)didSaveUserUpdates:(id)sender {
-    
-    
     PFUser *user = [PFUser currentUser];
     
     user[@"email"] = _emailAddressTextField.text;
     user[@"password"] = _passwordTextField.text;
     
     [user saveInBackground];
-    
-    
-    
 }
 
 - (IBAction)saveButton:(id)sender {
 }
+
 @end

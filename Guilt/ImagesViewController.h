@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProductDisplayCell.h"
+#import "Charity.h"
 
-@interface ImagesViewController : UITableViewController
+@interface ImagesViewController : BaseViewController
 
 @property NSMutableArray *resultOfCharitableConversionsArray;
 
-@property (strong,nonatomic) ProductDisplayCell* productCellTemp;
-
+@property (weak, nonatomic) IBOutlet UITableView *imagesTableView;
 @property (strong,nonatomic) NSString* productName;
 
 @property (strong,nonatomic) NSString* productProductURL;
@@ -23,10 +22,14 @@
 
 @property (assign, nonatomic) CATransform3D makeImagesLean;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *userProfileButtonOutlet;
+
+@property (nonatomic) BOOL userIsLoggedIn;
+
+@property (strong, nonatomic) NSMutableArray *parseNonprofitInfoArray;
+
 -(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity;
 
 - (IBAction)userProfileButton:(id)sender;
-
-- (IBAction)logoutButton:(id)sender;
 
 @end

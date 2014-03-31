@@ -10,37 +10,53 @@
 #import "ImagesViewController.h"
 #import "ScannerViewController.h"
 #import <Parse/Parse.h>
-#import "ProductDisplayCell.h"
-#import "MYViewController.h"
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
     NSNumber* convertedProductPrice;
 }
-
+@property (nonatomic, strong) NSMutableArray *parseNonprofitInfoArray;
+@property (nonatomic, strong)  UIActivityIndicatorView *parseBuffering;
 @end
 
 @implementation ConversionViewController
 @synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel, backToIntroductionButtonOutlet;
-@synthesize conversionButtonOutlet, scannerButtonOutlet, logoutButtonOutlet;
+@synthesize conversionButtonOutlet, scannerButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
 @synthesize urlForProduct;
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    [self setupUI];
+    //code to dismiss keyboard when user taps around textField
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
     
-    NSLog(@"In Conversion");
-    
-//code to change color of nav bar
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"KarnaScan_NavBar.png"] forBarMetrics:UIBarMetricsDefault];
-    
-//code to set background to png Image    
-    /*
-    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background.png"]];
-    [self.view addSubview:backgroundImage];
-    [self.view sendSubviewToBack:backgroundImage]; */
+    //code to disable conversionButton until user inputs value into textField
+    [self.conversionButtonOutlet setEnabled:NO];
+    [userEnterDollarAmountTextField addTarget:self 
+                                       action:@selector(textFieldDidChange)
+                             forControlEvents:UIControlEventEditingChanged];
+}
 
+
+- (void)setupUI
+{
+    [self.navigationItem setTitle:@"Convert"];
+    if ([PFUser currentUser]) {
+        self.userProfileButtonOutlet.enabled = YES;
+        self.navigationItem.hidesBackButton = YES;
+        
+        UIBarButtonItem *logOutUserButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logOutUser)];
+        [self.navigationItem setLeftBarButtonItem:logOutUserButton animated:YES];
+    } else {
+        self.userProfileButtonOutlet.enabled = NO;
+    }
+    
     valueQuestionLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     valueQuestionLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
     valueQuestionLabel.text = @"Find the best price & discover your charitable impact";
@@ -54,48 +70,42 @@
     
     scannerButtonOutlet.layer.cornerRadius = 8;
     scannerButtonOutlet.layer.borderWidth = 1;
-    scannerButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
+    scannerButtonOutlet.layer.borderColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1].CGColor;
     scannerButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
     scannerButtonOutlet.clipsToBounds = YES;
     [scannerButtonOutlet setTitle:@"Scan Item" forState:UIControlStateNormal];
     scannerButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     
-    [super viewDidLoad];
-    
     //code to form the button
     conversionButtonOutlet.layer.cornerRadius = 8;
     conversionButtonOutlet.layer.borderWidth = 1;
-    conversionButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
+    conversionButtonOutlet.layer.borderColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1].CGColor;
     conversionButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
     conversionButtonOutlet.clipsToBounds = YES;
     conversionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     //UIColor* orangeKindaColor = [UIColor colorWithRed:244.0/255 green:128.0/255 blue:0.0/255 alpha:1];
     [conversionButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [conversionButtonOutlet setTitle:@"Go Charity Value" forState:UIControlStateNormal];
-    
-    //code to dismiss keyboard when user taps around textField
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
-                                   initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
-    
-    //code to disable conversionButton until user inputs value into textField
-    [super viewDidLoad];
-    [self.conversionButtonOutlet setEnabled:NO];
-    [userEnterDollarAmountTextField addTarget:self 
-                                       action:@selector(textFieldDidChange)
-                             forControlEvents:UIControlEventEditingChanged];
+    [conversionButtonOutlet setTitle:@"Get Impact Value" forState:UIControlStateNormal];
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)logOutUser
 {
-    [super viewWillAppear:animated];
-    
-    NSLog(@"In Conversion: viewDidAppear");
+    self.userIsLoggedIn = NO;
+    [PFUser logOut];
+    self.navigationItem.leftBarButtonItem = nil;
+    [self createNavigationBackButton];
+    [self setupUI];
+}
 
+- (void)createNavigationBackButton
+{
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(backPressed:)];
+    self.navigationItem.leftBarButtonItem = backButton;
+}    
 
-    self.navigationItem.hidesBackButton = YES;
-
+- (void)backPressed: (id)sender
+{
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 - (IBAction)scannerButton:(id)sender {
@@ -103,38 +113,38 @@
     [self performSegueWithIdentifier:@"ScannerSegue" sender:self];
 }
 
-- (IBAction)conversionButton:(id)sender {
-    
-    [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
+- (IBAction)conversionButton:(id)sender 
+{
+    [self retrieveDataFromParse];
+    self.parseBuffering = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x - 25, self.view.bounds.origin.y + 35, 50, 50)];
+    self.parseBuffering.color = [UIColor orangeColor];
+    [self.parseBuffering startAnimating];
+    [self.view addSubview:self.parseBuffering];
 }
 
 - (void)textFieldDidChange
 {
-    if ([self.userEnterDollarAmountTextField.text isEqualToString:@""]) {
+    if (self.userEnterDollarAmountTextField.text.length == 0) {
         [self.conversionButtonOutlet setEnabled:NO];
     }
     else {
         [self.conversionButtonOutlet setEnabled:YES];
     }
-    
 }
 
 - (IBAction)backToIntroductionButton:(id)sender {
-    //code to send user to beginning of Introduction wizard
+    if (self != [self.navigationController.viewControllers objectAtIndex:0])
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        [self performSegueWithIdentifier:@"BackToIntro" sender:self];
+    }
 }
 
-- (IBAction)logoutButton:(id)sender {
-    
-    
-    
-    [PFUser logOut];
-    
-    
-    
-    [self performSegueWithIdentifier:@"LogOutSegue" sender:self];
-}
 
-- (IBAction)userProfileButton:(id)sender {
+- (IBAction)userProfileButton:(id)sender 
+{
+    
 }
 
 - (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {
@@ -196,40 +206,24 @@
     NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
     
     [userEnterDollarAmountTextField resignFirstResponder];
+    userEnterDollarAmountTextField.text = nil;
      
     convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
-
+    [self.parseBuffering stopAnimating];
     [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
-    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"ConversionToImagesSegue"]) {
         ImagesViewController* imagesVC = [segue destinationViewController];
-        ProductDisplayCell* productsDC = [ProductDisplayCell new];
         
         imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
-        
+        imagesVC.userIsLoggedIn = self.userIsLoggedIn;
         imagesVC.productPrice = convertedProductPrice;
-        
-        NSLog(@"This product's price %@", imagesVC.productPrice);
-        
-        productsDC.urlDisplayLabel.text = urlForProduct;
-        
-        NSLog(@"This is URL %@ ", urlForProduct);
-        
-        productsDC.productNameDisplayLabel.text = productName;
-
-        imagesVC.productCellTemp = productsDC;
-        
+        imagesVC.parseNonprofitInfoArray = self.parseNonprofitInfoArray;
         
         imagesVC.productName = productName;
-       // imagesVC.productPrice = [NSNumber numberWithFloat:productPrice];
         imagesVC.productProductURL = urlForProduct;
-        
-        
-        
-    NSLog(@"contents passed along are %@", imagesVC.resultOfCharitableConversionsArray);
         
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller
@@ -270,5 +264,39 @@
 -(void)dismissKeyboard {
     [userEnterDollarAmountTextField resignFirstResponder];
 }
+
+- (void)retrieveDataFromParse
+{
+    self.parseNonprofitInfoArray = [NSMutableArray array];
+    
+    PFQuery *charityImagesQuery = [PFUser query];
+    [charityImagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSNumber *totalCount = [NSNumber numberWithInt:0];
+        for (PFObject *obj in objects) {
+            totalCount = [NSNumber numberWithInt:[totalCount intValue] + [(NSArray *)[obj objectForKey:@"arrayColumnName"] count]];
+        }
+        // do something with totalCount here...
+    }];
+    
+    PFQuery *charityLogoAndDescriptionQuery = [PFQuery queryWithClassName:@"Charity"];
+    [charityLogoAndDescriptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                Charity *nonprofit = [[Charity alloc] init];
+                nonprofit.Images = [object objectForKey:@"CharityImages"];
+                nonprofit.descriptionsPlural = [object objectForKey:@"DescriptionsPlural"];
+                nonprofit.descriptionsSingular = [object objectForKey:@"DescriptionsSingular"];
+                nonprofit.logoImageUrl = [object objectForKey:@"LogoURL"];
+                [self.parseNonprofitInfoArray addObject:nonprofit];
+                NSLog(@"Inside nonprofit.Images %@", nonprofit.Images);
+            }
+            [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]]; 
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 
 @end

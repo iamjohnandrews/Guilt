@@ -12,22 +12,13 @@
 @implementation CharityAndProductDisplayCell
 @synthesize charityConversionDetailsLabel, donationButton;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 
     // Puts outline around white font in picture
     charityConversionDetailsLabel.shadowColor = [UIColor blackColor];
-    charityConversionDetailsLabel.shadowOffset = CGSizeMake(2, 1);
+    charityConversionDetailsLabel.shadowOffset = CGSizeMake(1, 1);
 }
 
 - (void)charityDisplay:(NSMutableArray*)arrayOfCharities andIndexPath:(NSIndexPath*)indexPath
