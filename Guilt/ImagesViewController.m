@@ -122,12 +122,12 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
-    //Code to display Charities
-    
+{  
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
-    
-    //Lean with it, Rock with it
+    Charity *nonprofit = [[Charity alloc] init];
+    nonprofit = [self.parseNonprofitInfoArray objectAtIndex:indexPath.row];
+    charityCell.charity = nonprofit;
+
     charityCell.layer.transform = self.makeImagesLean;
     charityCell.layer.opacity = 0.2;
     [UIView animateWithDuration:0.4 animations:^{
@@ -135,14 +135,6 @@
         charityCell.layer.opacity = 1;
     }];
     
-//    charityCell.displayImageView.image = [UIImage imageNamed:[charityImagesArray objectAtIndex:indexPath.row]];
-    Charity *nonprofit = [[Charity alloc] init];
-    nonprofit = [self.parseNonprofitInfoArray objectAtIndex:indexPath.row];
-    int randomNumber = arc4random() % 5;
-    charityCell.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[nonprofit.Images objectAtIndex:randomNumber]]]];
-    
-    charityCell.charityConversionDetailsLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:15];
-    charityCell.charityConversionDetailsLabel.textColor = [UIColor whiteColor];
     NSString *charityDescription = [[NSString alloc] init];
     if ([[resultOfCharitableConversionsArray objectAtIndex:indexPath.row] integerValue] == 1) {
         charityDescription = nonprofit.descriptionsSingular;
@@ -152,16 +144,9 @@
     NSAttributedString *nonprofitDetails = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], charityDescription] attributes:@{NSStrokeWidthAttributeName: @-1, NSStrokeColorAttributeName: [UIColor blackColor], NSForegroundColorAttributeName: [UIColor whiteColor]}];
     [charityCell.charityConversionDetailsLabel setAttributedText:nonprofitDetails];
     
-    [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
-    
-    charityCell.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
-    charityCell.accessoryView = charityCell.donationButton;
-    
-    [charityCell.donationButton setUserInteractionEnabled:YES];
-    
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDonationButtonTapped:)];
     [charityCell.donationButton addGestureRecognizer:recognizer];
-    [self.view addSubview:charityCell.donationButton];
+    [charityCell addSubview:charityCell.donationButton];
         
     return charityCell;
 }

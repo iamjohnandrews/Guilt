@@ -12,30 +12,34 @@
 @implementation CharityAndProductDisplayCell
 @synthesize charityConversionDetailsLabel, donationButton;
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
 
-    // Puts outline around white font in picture
-    charityConversionDetailsLabel.shadowColor = [UIColor blackColor];
-    charityConversionDetailsLabel.shadowOffset = CGSizeMake(1, 1);
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
 }
 
-- (void)charityDisplay:(NSMutableArray*)arrayOfCharities andIndexPath:(NSIndexPath*)indexPath
+- (void)setCharity:(Charity *)charity
 {
-//    self.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[arrayOfCharities objectAtIndex:indexPath.row], [charityDiscriptionsArray objectAtIndex:indexPath.row] ];
-//    NSLog(@"the First index.row = %li", (long)indexPath.row);
-//    
-//    [charityCell bringSubviewToFront:charityCell.charityConversionDetailsLabel];
-//    
-//    self.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
-//    self.accessoryView = charityCell.donationButton;
-//    
-//    [self.donationButton setUserInteractionEnabled:YES];
-//    
-//    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDonationButtonTapped:)];
-//    [charityCell.donationButton addGestureRecognizer:recognizer];
-//    [self.view addSubview:charityCell.donationButton];
+    _charity = charity;
+    [self updateUI];
+}
+
+- (void)updateUI
+{
+    self.charityConversionDetailsLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:15];
+    self.charityConversionDetailsLabel.textColor = [UIColor whiteColor];
+    self.charityConversionDetailsLabel.layer.cornerRadius = 9;
+    self.charityConversionDetailsLabel.shadowColor = [UIColor blackColor];
+    self.charityConversionDetailsLabel.shadowOffset = CGSizeMake(1, 1);
+    
+    int randomNumber = arc4random() % self.charity.Images.count - 1;
+    self.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.charity.Images objectAtIndex:randomNumber]]]];
+        
+    self.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
+    self.accessoryView = self.donationButton;
+    
+    [self.donationButton setUserInteractionEnabled:YES];
+    
 }
 
 @end

@@ -132,13 +132,9 @@
     }
 }
 
-- (IBAction)backToIntroductionButton:(id)sender {
-    if (self != [self.navigationController.viewControllers objectAtIndex:0])
-    {
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    } else {
-        [self performSegueWithIdentifier:@"BackToIntro" sender:self];
-    }
+- (IBAction)backToIntroductionButton:(id)sender 
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

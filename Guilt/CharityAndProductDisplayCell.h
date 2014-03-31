@@ -7,17 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Charity.h"
 
 @interface CharityAndProductDisplayCell : UITableViewCell
+
+@property (strong, nonatomic) Charity *charity;
 
 @property (weak, nonatomic) IBOutlet UIImageView *displayImageView;
 
 @property (weak, nonatomic) IBOutlet UILabel *charityConversionDetailsLabel;
 
 @property (nonatomic) UIImageView *donationButton;
-
-@property (weak, nonatomic) IBOutlet UIView *mainView;
-
-- (void)charityDisplay:(NSMutableArray*)arrayOfCharities andIndexPath:(NSIndexPath*)indexPath;
 
 @end

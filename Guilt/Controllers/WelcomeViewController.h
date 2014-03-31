@@ -7,6 +7,7 @@
 //
 #import "BaseViewController.h"
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface WelcomeViewController : BaseViewController <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *introScrollView;
