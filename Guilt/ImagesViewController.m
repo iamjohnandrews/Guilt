@@ -124,9 +124,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {  
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
-    Charity *nonprofit = [[Charity alloc] init];
-    nonprofit = [self.parseNonprofitInfoArray objectAtIndex:indexPath.row];
-    charityCell.charity = nonprofit;
+    charityCell.charity = [self.parseNonprofitInfoArray objectAtIndex:indexPath.row];
 
     charityCell.layer.transform = self.makeImagesLean;
     charityCell.layer.opacity = 0.2;
@@ -137,12 +135,11 @@
     
     NSString *charityDescription = [[NSString alloc] init];
     if ([[resultOfCharitableConversionsArray objectAtIndex:indexPath.row] integerValue] == 1) {
-        charityDescription = nonprofit.descriptionsSingular;
+        charityDescription = charityCell.charity.descriptionsSingular;
     } else {
-        charityDescription = nonprofit.descriptionsPlural;
+        charityDescription = charityCell.charity.descriptionsPlural;
     }
-    NSAttributedString *nonprofitDetails = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], charityDescription] attributes:@{NSStrokeWidthAttributeName: @-1, NSStrokeColorAttributeName: [UIColor blackColor], NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    [charityCell.charityConversionDetailsLabel setAttributedText:nonprofitDetails];
+    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], charityDescription];
     
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDonationButtonTapped:)];
     [charityCell.donationButton addGestureRecognizer:recognizer];

@@ -10,6 +10,7 @@
 #import "ImagesViewController.h"
 #import "ScannerViewController.h"
 #import <Parse/Parse.h>
+#import "Charity.h"
 
 @interface ConversionViewController (){
     NSMutableArray* convertedCharitableGoodsArray;
@@ -64,7 +65,8 @@
     orLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:25];
     orLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
     
-    backToIntroductionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:15];
+    backToIntroductionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    backToIntroductionButtonOutlet.center = CGPointMake(self.view.bounds.size.width / 2.0f, self.view.bounds.size.height - 80.0f);
     [backToIntroductionButtonOutlet setTitleColor:[UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1] forState:UIControlStateNormal];
     [backToIntroductionButtonOutlet setTitle:@"Back to Introduction" forState:UIControlStateNormal];    
     

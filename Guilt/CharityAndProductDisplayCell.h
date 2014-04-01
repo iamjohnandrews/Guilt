@@ -19,4 +19,6 @@
 
 @property (nonatomic) UIImageView *donationButton;
 
+@property (strong, nonatomic) NSArray *charityImages;
+
 @end
