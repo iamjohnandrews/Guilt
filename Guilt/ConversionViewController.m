@@ -17,7 +17,7 @@
     NSNumber* convertedProductPrice;
 }
 @property (nonatomic, strong) NSMutableArray *parseNonprofitInfoArray;
-@property (nonatomic, strong)  UIActivityIndicatorView *parseBuffering;
+@property (nonatomic, strong)  UIActivityIndicatorView *spinner;
 @end
 
 @implementation ConversionViewController
@@ -117,11 +117,13 @@
 
 - (IBAction)conversionButton:(id)sender 
 {
-    [self retrieveDataFromParse];
-    self.parseBuffering = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x - 25, self.view.bounds.origin.y + 35, 50, 50)];
-    self.parseBuffering.color = [UIColor orangeColor];
-    [self.parseBuffering startAnimating];
-    [self.view addSubview:self.parseBuffering];
+//    [self retrieveDataFromParse];
+    self.spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x - 25, self.view.bounds.origin.y + 35, 50, 50)];
+    self.spinner.color = [UIColor orangeColor];
+    [self.spinner startAnimating];
+    [self.view addSubview:self.spinner];
+    [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
+
 }
 
 - (void)textFieldDidChange
@@ -142,6 +144,7 @@
 
 - (IBAction)userProfileButton:(id)sender 
 {
+    
     
 }
 
@@ -207,7 +210,7 @@
     userEnterDollarAmountTextField.text = nil;
      
     convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
-    [self.parseBuffering stopAnimating];
+    [self.spinner stopAnimating];
     [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
 }
 
@@ -286,7 +289,8 @@
                 nonprofit.descriptionsSingular = [object objectForKey:@"DescriptionsSingular"];
                 nonprofit.logoImageUrl = [object objectForKey:@"LogoURL"];
                 [self.parseNonprofitInfoArray addObject:nonprofit];
-                NSLog(@"Inside nonprofit.Images %@", nonprofit.Images);
+//                NSLog(@"PLURAL %@", nonprofit.descriptionsPlural);
+                NSLog(@"SINGULAR %@", nonprofit.descriptionsSingular);
             }
             [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]]; 
         } else {
@@ -295,6 +299,8 @@
         }
     }];
 }
+
+
 
 
 @end

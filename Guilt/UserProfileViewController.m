@@ -22,33 +22,23 @@
 
 - (IBAction)didSaveUserUpdates:(id)sender;
 
+@property (strong, nonatomic) NSDictionary *charityLogos;
 @end
 
 @implementation UserProfileViewController
 
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated]; //Required to run Apple's code for viewWillAppear
-    
-  //  [self.tableView reloadData]; //reloads data into a table
-    
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-//donationsTable = [[DonationsTableViewController alloc]init];
-    
-  //  [self.view addSubview:donationsTable.view]; //adding the TableViewController's view
-    
+    self.charityLogos = [NSDictionary dictionary];
+    self.charityLogos = @{@"African Well Fund": @"http://www.africare.org/images/galleries/awf.jpg", 
+                          @"Feed The Children": @"https://secure2.convio.net/ftc/images/lp/lpftc/FTC_Logo_white_2012-v1.png", 
+                          @"Soilder's Angels": @"http://cdn2-b.examiner.com/sites/default/files/styles/image_content_width/hash/59/bc/59bc9a519241654dacf1ca0f5ac1fa22.jpg?itok=DGti-1TU",
+                          @"The Animal Rescue Site": @"http://www.purrwv.org/assets/images/theanimalrescuesite.jpg",
+                          @"Unicef": @"http://g3ict.org/design/js/tinymce/filemanager/userfiles/Image/G3ict%20Company%20Profiles/unicef-logo.jpeg",
+                          @"Heifer International": @"http://www.heifer.org/resources/images/logo.png",
+                          @"made a purchase": @"http://www.american-apartment-owners-association.org/wp-content/uploads/2009/06/dollar-20sign-small1.jpg"};
     donorInfo = [NSMutableArray new];
-    
-    //find screen dimensions
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
     
     PFQuery *donationsQuery = [PFQuery queryWithClassName:@"Donation"];
     [donationsQuery whereKey:@"donor" equalTo: [PFUser currentUser] ];
@@ -88,7 +78,6 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   // NSLog(@"%lul", (unsigned long)[donorInfo count]);
     if (donorInfo.count == 0) {
         return 0;
     }
@@ -97,35 +86,20 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   // NSDate *donationDate;
-   // PFObject *charity;
-    NSString *charityName;
-    NSNumber *donationAmount;
+    UserHistoryCell* cell = [tableView dequeueReusableCellWithIdentifier:@"UserHistory"];
     
-    NSString* identifier =@"abc";
-    
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    if (!cell)
-    {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
-                                     reuseIdentifier:identifier];
+    NSString *charityName = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"recipientCharity"];    
+    NSNumber *donationAmount = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"donationAmount"];
+    float moneyFormat = [donationAmount floatValue];
+    NSLog(@"Getting %@", charityName);
+    if ([charityName isEqualToString:@"made a purchase"]) {
+        cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Purchase made $%.02f", moneyFormat];
+    } else {
+        cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Donation Amount $%.02f", moneyFormat];
     }
+    cell.logoImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.charityLogos objectForKey:charityName]]]];
     
-    //Person *personTemp =self.people[indexPath.row];
-    
-    charityName = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"recipientCharity"];
-    NSLog(@"charity: %@", charityName);
-    
-    donationAmount = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"donationAmount"];
-    
-    cell.textLabel.text = [NSString stringWithFormat:@" Charity: %@ Donation Amount $%@", charityName, donationAmount];
-    
-    cell.textLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:10];
-    
-    //cell.textLabel.text = [NSString stringWithFormat:@"   Donation Amount: $%@", donationAmount];
-    return cell;
-    
+    return cell;    
 }
 
 #pragma mark - Table view delegate

@@ -53,6 +53,7 @@
 		8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */; };
 		8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FA46A18CBB3FA009E2A66 /* BaseViewController.m */; };
 		8E69AB4E183FF598000A4B4D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E69AB4D183FF598000A4B4D /* Parse.framework */; };
+		8E77A87C18EA5608001470DD /* UserHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E77A87B18EA5608001470DD /* UserHistoryCell.m */; };
 		8E9596FB182960E900AE29DB /* army2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596E3182960E900AE29DB /* army2.png */; };
 		8E9596FC182960E900AE29DB /* camel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596E4182960E900AE29DB /* camel.png */; };
 		8E9596FD182960E900AE29DB /* ducklingsFlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596E5182960E900AE29DB /* ducklingsFlock.png */; };
@@ -162,6 +163,8 @@
 		8E3FA46918CBB3FA009E2A66 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		8E3FA46A18CBB3FA009E2A66 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		8E69AB4D183FF598000A4B4D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		8E77A87A18EA5608001470DD /* UserHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHistoryCell.h; sourceTree = "<group>"; };
+		8E77A87B18EA5608001470DD /* UserHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHistoryCell.m; sourceTree = "<group>"; };
 		8E9596E3182960E900AE29DB /* army2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = army2.png; sourceTree = "<group>"; };
 		8E9596E4182960E900AE29DB /* camel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camel.png; sourceTree = "<group>"; };
 		8E9596E5182960E900AE29DB /* ducklingsFlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ducklingsFlock.png; sourceTree = "<group>"; };
@@ -463,6 +466,8 @@
 			children = (
 				8EB17C1118217A85000DDFCC /* CharityAndProductDisplayCell.h */,
 				8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */,
+				8E77A87A18EA5608001470DD /* UserHistoryCell.h */,
+				8E77A87B18EA5608001470DD /* UserHistoryCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -626,6 +631,7 @@
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
 				8E29F2A218D626A4007AFA4C /* Charity.m in Sources */,
 				8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */,
+				8E77A87C18EA5608001470DD /* UserHistoryCell.m in Sources */,
 				8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */,
 				E00CB859182B316F00A497C3 /* KarmaSignupViewController.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "UserHistoryCell.h"
+
 @interface UserProfileViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 
+@property (strong, nonatomic) NSMutableArray *parseNonprofitInfoArray;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
