@@ -47,7 +47,15 @@
                              (id)[[UIColor colorWithWhite:0.0 alpha:1.0] CGColor]];
     gradientLayer.locations = @[@0.3, @0.6, @1.0];
     [self.displayImageView.layer addSublayer:gradientLayer];  
-
+    self.displayImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.displayImageView.clipsToBounds = YES;    
+    
+    self.logoImageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.logoImageView.clipsToBounds = YES;
+    self.logoImageView.layer.cornerRadius = 10.0f;
+    self.logoImageView.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
+    self.logoImageView.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
+    [self bringSubviewToFront:self.logoImageView];
 }
 
 @end

@@ -71,7 +71,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return resultOfCharitableConversionsArray.count;
+//    return resultOfCharitableConversionsArray.count;
+    NSLog(@"Counts for ARRAY =%d, and DICT =%d", resultOfCharitableConversionsArray.count, self.resultOfCharitableConversionsDict.count);
+    return self.resultOfCharitableConversionsDict.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -120,6 +122,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {  
+    NSString *charityName = [self.charityData charityNames:indexPath.row]; 
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
     charityCell.charity = [self.parseNonprofitInfoArray objectAtIndex:indexPath.row];
 
@@ -130,17 +133,27 @@
         charityCell.layer.opacity = 1;
     }];   
     
+    charityCell.logoImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[self.charityData charityLogos:charityName]]];
+    
     if (!charityCell.displayImageView.image) {
         charityCell.displayImageView.image = [self.charityData charityImageURLSForSpecifcCharity:indexPath.row];
     }
     
+//    NSString *charityDescription = [[NSString alloc] init];
+//    if ([[resultOfCharitableConversionsArray objectAtIndex:indexPath.row] integerValue] == 1) {
+//        charityDescription = [self.charityData charityDescriptionSingular:indexPath.row];
+//    } else {
+//        charityDescription = [self.charityData charityDescriptionPlural:indexPath.row];
+//    }
+//    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], charityDescription];
+    
     NSString *charityDescription = [[NSString alloc] init];
-    if ([[resultOfCharitableConversionsArray objectAtIndex:indexPath.row] integerValue] == 1) {
+    if ([[self.resultOfCharitableConversionsDict objectForKey:charityName] integerValue] == 1) {
         charityDescription = [self.charityData charityDescriptionSingular:indexPath.row];
     } else {
         charityDescription = [self.charityData charityDescriptionPlural:indexPath.row];
     }
-    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], charityDescription];
+    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[self.resultOfCharitableConversionsDict objectForKey:charityName], charityDescription];
     
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDonationButtonTapped:)];
     [charityCell.donationButton addGestureRecognizer:recognizer];

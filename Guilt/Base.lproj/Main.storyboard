@@ -336,11 +336,16 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Toz-K4-S1U">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="charityConversionDetailsLabel" destination="NHP-YN-cce" id="ZfH-xv-SJ4"/>
                                             <outlet property="displayImageView" destination="v0g-qK-9jy" id="N56-hE-edX"/>
+                                            <outlet property="logoImageView" destination="Toz-K4-S1U" id="Pgn-qT-Mc6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
