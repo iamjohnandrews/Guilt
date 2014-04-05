@@ -14,4 +14,8 @@
 @property (nonatomic, strong) NSString *descriptionsSingular;
 @property (strong, nonatomic) NSURL *logoImageUrl;
 
+- (NSString *)charityDescriptionSingular:(NSUInteger)specificCharity;
+- (NSString *)charityDescriptionPlural:(NSUInteger)specificCharity;
+- (UIImage *)charityImageURLSForSpecifcCharity:(NSUInteger)specificCharity;
+
 @end
