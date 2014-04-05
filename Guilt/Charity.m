@@ -18,7 +18,7 @@
                           @"Soilder's Angels": @"SoldiersAngels.jpg",
                           @"The Animal Rescue Site": @"AnimalRescueSite.jpeg",
                           @"Unicef": @"unicef.jpg",
-                          @"Heifer International": @"Heifer.jpg",
+                          @"Heifer Internaitonal": @"Heifer.jpg",
                           @"made a purchase": @"dollarSign.jpg"};
     return [charityLogosDict objectForKey:specificCharity];
 }

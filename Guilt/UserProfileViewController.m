@@ -100,8 +100,8 @@
     } else {
         cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Donation Amount $%.02f", moneyFormat];
     }
-    cell.logoImageView.image = [UIImage imageNamed:[self.charityData charityLogos:charityName]];
-    
+    cell.logoImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[self.charityData charityLogos:charityName]]];
+    NSLog(@"charityName =%@",charityName);
     return cell;    
 }
 

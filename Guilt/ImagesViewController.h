@@ -11,6 +11,7 @@
 @interface ImagesViewController : BaseViewController
 
 @property NSMutableArray *resultOfCharitableConversionsArray;
+@property (strong, nonatomic) NSDictionary *resultOfCharitableConversionsDict;
 
 @property (weak, nonatomic) IBOutlet UITableView *imagesTableView;
 @property (strong,nonatomic) NSString* productName;

@@ -16,6 +16,7 @@
     NSMutableArray* convertedCharitableGoodsArray;
     NSNumber* convertedProductPrice;
 }
+@property (strong, nonatomic) NSMutableDictionary *convertedCharitableGoodsDict;
 @property (nonatomic, strong) NSMutableArray *parseNonprofitInfoArray;
 @property (nonatomic, strong)  UIActivityIndicatorView *spinner;
 @end
@@ -42,6 +43,7 @@
     [userEnterDollarAmountTextField addTarget:self 
                                        action:@selector(textFieldDidChange)
                              forControlEvents:UIControlEventEditingChanged];
+    self.convertedCharitableGoodsDict = [NSMutableDictionary dictionary];
 }
 
 
@@ -163,6 +165,7 @@
         int roundUp1 = ceilf(numberOfAnimalMeals);
         NSString* floatToAString1 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp1]];
         [convertedCharitableGoodsArray addObject:floatToAString1];
+        [self. convertedCharitableGoodsDict setObject:floatToAString1 forKey:@"The Animal Rescue Site"];
     }
     if (convertToFloat >= 10) {
         float numberOfMonthsHelpingChildren = convertToFloat / 10;
@@ -170,6 +173,7 @@
         int roundUp10 = ceilf(numberOfMonthsHelpingChildren);
         NSString* floatToAString10 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp10]];
         [convertedCharitableGoodsArray addObject:floatToAString10];
+        [self. convertedCharitableGoodsDict setObject:floatToAString10 forKey:@"Unicef"];
     }
     if (convertToFloat >= 19) {
         float numberOfMonthsToFeedChildren = convertToFloat / 19;
@@ -177,6 +181,7 @@
         int roundUp19 = ceilf(numberOfMonthsToFeedChildren);
         NSString* floatToAString19 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp19]];
         [convertedCharitableGoodsArray addObject:floatToAString19];
+        [self. convertedCharitableGoodsDict setObject:floatToAString19 forKey:@"Feed The Children"];        
     }
     if (convertToFloat >= 20) {
         float flocksOfDucks = convertToFloat / 20;
@@ -184,6 +189,7 @@
         int roundUp20 = ceilf(flocksOfDucks);
         NSString* floatToAString20 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp20]];
         [convertedCharitableGoodsArray addObject:floatToAString20];
+        [self. convertedCharitableGoodsDict setObject:floatToAString20 forKey:@"Heifer Internaitonal"];
     }
     if (convertToFloat >= 30) {
         float honeyBees = convertToFloat / 30;
@@ -191,18 +197,21 @@
         int roundUp30 = ceilf(honeyBees);
         NSString* floatToAString30 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp30]];        
         [convertedCharitableGoodsArray addObject:floatToAString30];
+        [self. convertedCharitableGoodsDict setObject:floatToAString30 forKey:@"Heifer Internaitonal"];
     }
     if (convertToFloat >= 50) {
         float numberOfCarePackages = convertToFloat / 50;
         NSLog(@"Number of care packages is %.2f", numberOfCarePackages);
         int roundUp50 = ceilf(numberOfCarePackages);
         NSString* floatToAString50 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp50]];        [convertedCharitableGoodsArray addObject:floatToAString50];
+        [self. convertedCharitableGoodsDict setObject:floatToAString50 forKey:@"Soilder's Angels"];
     }
     if (convertToFloat >= 500) {
         float numberOfSpringCatchments = convertToFloat / 500;
         NSLog(@"Number of Natiral Spring Cathcments %.2f", numberOfSpringCatchments);
         int roundUp500 = ceilf(numberOfSpringCatchments);
         NSString* floatToAString500 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp500]];        [convertedCharitableGoodsArray addObject:floatToAString500];
+        [self. convertedCharitableGoodsDict setObject:floatToAString500 forKey:@"African Well Fund"];
     }
     NSLog(@"conversion values = %@", convertedCharitableGoodsArray);
     
@@ -218,6 +227,7 @@
     if ([segue.identifier isEqualToString:@"ConversionToImagesSegue"]) {
         ImagesViewController* imagesVC = [segue destinationViewController];
         
+        imagesVC.resultOfCharitableConversionsDict = [self.convertedCharitableGoodsDict copy];
         imagesVC.resultOfCharitableConversionsArray = [convertedCharitableGoodsArray copy];
         imagesVC.userIsLoggedIn = self.userIsLoggedIn;
         imagesVC.productPrice = convertedProductPrice;
