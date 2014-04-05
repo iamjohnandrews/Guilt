@@ -9,6 +9,28 @@
 #import "Charity.h"
 
 @implementation Charity
+
+- (NSString *)charityDonationPage:(NSUInteger)specificCharity
+{
+    NSArray *charityDonationPageArray = [NSArray array];
+    charityDonationPageArray = @[@"https://theanimalrescuesite.greatergood.com/store/ars/item/32249/contribute-to-animal-rescue?source=12-32132-3#productInfo",
+                            @"http://www.supportunicef.org/site/c.dvKUI9OWInJ6H/b.7677883/k.2C8F/Donate_now.htm", 
+                            @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate",
+                            @"http://www.heifer.org/gift-catalog/animals-nutrition/flock-of-ducks-donation.html",
+                            @"http://www.heifer.org/gift-catalog/animals-nutrition/honeybees-donation.html",
+                            @"http://soldiersangels.org/donate.html", 
+                            @"http://www.africanwellfund.org/donate.html"];
+    return [charityDonationPageArray objectAtIndex:specificCharity];
+}
+
+- (NSString *)charityNames:(NSUInteger)specificCharity
+{
+    NSArray *charityNamesArray = [NSArray array];
+    charityNamesArray = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Heifer Internaitonal", @"Heifer Internaitonal", @"Soilder's Angels", @"African Well Fund"];
+    
+    return [charityNamesArray objectAtIndex:specificCharity];
+}
+
 - (UIImage *)charityImageURLSForSpecifcCharity:(NSUInteger)specificCharity
 {
     NSArray *charityImagesArray = [NSArray array];

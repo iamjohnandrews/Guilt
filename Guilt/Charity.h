@@ -17,5 +17,8 @@
 - (NSString *)charityDescriptionSingular:(NSUInteger)specificCharity;
 - (NSString *)charityDescriptionPlural:(NSUInteger)specificCharity;
 - (UIImage *)charityImageURLSForSpecifcCharity:(NSUInteger)specificCharity;
+- (NSString *)charityNames:(NSUInteger)specificCharity;
+- (NSString *)charityDonationPage:(NSUInteger)specificCharity;
+
 
 @end

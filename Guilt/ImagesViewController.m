@@ -16,11 +16,9 @@
 
 @interface ImagesViewController () <UITableViewDataSource, UITableViewDelegate>
 {
-    NSArray* charityDonationPage;
-    NSArray* charityNames;
     NSNumber* currPoints;
 }
-
+@property (strong, nonatomic) Charity *charityData;
 @end
 
 @implementation ImagesViewController
@@ -49,15 +47,7 @@
     
     [self setFontFamily:@"Quicksand-Regular" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
-    
-    charityDonationPage = @[@"https://theanimalrescuesite.greatergood.com/store/ars/item/32249/contribute-to-animal-rescue?source=12-32132-3#productInfo",
-                            @"http://www.supportunicef.org/site/c.dvKUI9OWInJ6H/b.7677883/k.2C8F/Donate_now.htm", 
-                            @"https://secure2.convio.net/ftc/site/SPageServer?pagename=donate",
-                            @"http://www.heifer.org/gift-catalog/animals-nutrition/flock-of-ducks-donation.html",
-                            @"http://www.heifer.org/gift-catalog/animals-nutrition/honeybees-donation.html",
-                            @"http://soldiersangels.org/donate.html", 
-                            @"http://www.africanwellfund.org/donate.html"];
-     charityNames = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Heifer Internaitonal", @"Heifer Internaitonal", @"Soilder's Angels", @"African Well Fund"];
+    self.charityData = [[Charity alloc] init];
 }
 
 -(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews
@@ -130,7 +120,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {  
-    Charity *charityData = [[Charity alloc] init];
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
     charityCell.charity = [self.parseNonprofitInfoArray objectAtIndex:indexPath.row];
 
@@ -142,14 +131,14 @@
     }];   
     
     if (!charityCell.displayImageView.image) {
-        charityCell.displayImageView.image = [charityData charityImageURLSForSpecifcCharity:indexPath.row];
+        charityCell.displayImageView.image = [self.charityData charityImageURLSForSpecifcCharity:indexPath.row];
     }
     
     NSString *charityDescription = [[NSString alloc] init];
     if ([[resultOfCharitableConversionsArray objectAtIndex:indexPath.row] integerValue] == 1) {
-        charityDescription = [charityData charityDescriptionSingular:indexPath.row];
+        charityDescription = [self.charityData charityDescriptionSingular:indexPath.row];
     } else {
-        charityDescription = [charityData charityDescriptionPlural:indexPath.row];
+        charityDescription = [self.charityData charityDescriptionPlural:indexPath.row];
     }
     charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], charityDescription];
     
@@ -163,10 +152,10 @@
 - (void)onDonationButtonTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
     NSIndexPath *indexPath = [self.imagesTableView indexPathForCell:(UITableViewCell *)gestureRecognizer.view.superview.superview];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[charityDonationPage objectAtIndex:indexPath.row]]];
-    NSLog(@"the Second index.row = %li", (long)indexPath.row);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self.charityData charityDonationPage:indexPath.row]]];
+//    NSLog(@"the Second index.row = %li", (long)indexPath.row);
     
-    [self didUpdateKarmaPoints:YES charity:[charityNames objectAtIndex:indexPath.row]];
+    [self didUpdateKarmaPoints:YES charity:[self.charityData charityNames:indexPath.row]];
     
 }
 
