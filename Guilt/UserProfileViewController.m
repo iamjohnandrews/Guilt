@@ -7,6 +7,7 @@
 //
 
 #import "UserProfileViewController.h"
+#import "Charity.h"
 
 @interface UserProfileViewController () {
   //  DonationsTableViewController *donationsTable;
@@ -22,7 +23,8 @@
 
 - (IBAction)didSaveUserUpdates:(id)sender;
 
-@property (strong, nonatomic) NSDictionary *charityLogos;
+@property (strong, nonatomic) Charity *charityData;
+
 @end
 
 @implementation UserProfileViewController
@@ -30,14 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.charityLogos = [NSDictionary dictionary];
-    self.charityLogos = @{@"African Well Fund": @"http://www.africare.org/images/galleries/awf.jpg", 
-                          @"Feed The Children": @"https://secure2.convio.net/ftc/images/lp/lpftc/FTC_Logo_white_2012-v1.png", 
-                          @"Soilder's Angels": @"http://cdn2-b.examiner.com/sites/default/files/styles/image_content_width/hash/59/bc/59bc9a519241654dacf1ca0f5ac1fa22.jpg?itok=DGti-1TU",
-                          @"The Animal Rescue Site": @"http://www.purrwv.org/assets/images/theanimalrescuesite.jpg",
-                          @"Unicef": @"http://g3ict.org/design/js/tinymce/filemanager/userfiles/Image/G3ict%20Company%20Profiles/unicef-logo.jpeg",
-                          @"Heifer International": @"http://www.heifer.org/resources/images/logo.png",
-                          @"made a purchase": @"http://www.american-apartment-owners-association.org/wp-content/uploads/2009/06/dollar-20sign-small1.jpg"};
+    
     donorInfo = [NSMutableArray new];
     
     PFQuery *donationsQuery = [PFQuery queryWithClassName:@"Donation"];
@@ -75,7 +70,7 @@
     }];
 }
 
-
+#pragma mark - Tableview Delegate Method
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (donorInfo.count == 0) {
@@ -91,18 +86,16 @@
     NSString *charityName = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"recipientCharity"];    
     NSNumber *donationAmount = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"donationAmount"];
     float moneyFormat = [donationAmount floatValue];
-    NSLog(@"Getting %@", charityName);
+//    NSLog(@"Getting %@", charityName);
     if ([charityName isEqualToString:@"made a purchase"]) {
         cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Purchase made $%.02f", moneyFormat];
     } else {
         cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Donation Amount $%.02f", moneyFormat];
     }
-    cell.logoImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.charityLogos objectForKey:charityName]]]];
+    cell.logoImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.charityData charityLogos:charityName]]]];
     
     return cell;    
 }
-
-#pragma mark - Table view delegate
 
 - (IBAction)didSaveUserUpdates:(id)sender {
     PFUser *user = [PFUser currentUser];

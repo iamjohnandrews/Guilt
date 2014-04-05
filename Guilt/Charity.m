@@ -10,6 +10,19 @@
 
 @implementation Charity
 
+- (NSString *)charityLogos:(NSString *)specificCharity
+{
+    NSDictionary *charityLogosDict = [NSDictionary dictionary];
+    charityLogosDict = @{@"African Well Fund": @"http://www.africare.org/images/galleries/awf.jpg", 
+                          @"Feed The Children": @"https://secure2.convio.net/ftc/images/lp/lpftc/FTC_Logo_white_2012-v1.png", 
+                          @"Soilder's Angels": @"http://cdn2-b.examiner.com/sites/default/files/styles/image_content_width/hash/59/bc/59bc9a519241654dacf1ca0f5ac1fa22.jpg?itok=DGti-1TU",
+                          @"The Animal Rescue Site": @"http://www.purrwv.org/assets/images/theanimalrescuesite.jpg",
+                          @"Unicef": @"http://g3ict.org/design/js/tinymce/filemanager/userfiles/Image/G3ict%20Company%20Profiles/unicef-logo.jpeg",
+                          @"Heifer International": @"http://www.heifer.org/resources/images/logo.png",
+                          @"made a purchase": @"http://www.american-apartment-owners-association.org/wp-content/uploads/2009/06/dollar-20sign-small1.jpg"};
+    return [charityLogosDict objectForKey:specificCharity];
+}
+
 - (NSString *)charityDonationPage:(NSUInteger)specificCharity
 {
     NSArray *charityDonationPageArray = [NSArray array];
