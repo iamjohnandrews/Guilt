@@ -68,6 +68,8 @@
         }
         [_tableView reloadData];
     }];
+    self.charityData = [[Charity alloc] init];
+
 }
 
 #pragma mark - Tableview Delegate Method
@@ -79,9 +81,15 @@
     return donorInfo.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44.0f;
+}
+
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UserHistoryCell* cell = [tableView dequeueReusableCellWithIdentifier:@"UserHistory"];
+    cell.userInteractionEnabled = NO;
     
     NSString *charityName = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"recipientCharity"];    
     NSNumber *donationAmount = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"donationAmount"];
@@ -92,7 +100,7 @@
     } else {
         cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Donation Amount $%.02f", moneyFormat];
     }
-    cell.logoImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.charityData charityLogos:charityName]]]];
+    cell.logoImageView.image = [UIImage imageNamed:[self.charityData charityLogos:charityName]];
     
     return cell;    
 }

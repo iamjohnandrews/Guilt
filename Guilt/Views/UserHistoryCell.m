@@ -14,7 +14,7 @@
 - (void)awakeFromNib
 {
     self.textLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:14];
-    self.logoImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.logoImageView.clipsToBounds = YES;
 }
 

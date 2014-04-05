@@ -53,6 +53,13 @@
 		8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FA46A18CBB3FA009E2A66 /* BaseViewController.m */; };
 		8E69AB4E183FF598000A4B4D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E69AB4D183FF598000A4B4D /* Parse.framework */; };
 		8E77A87C18EA5608001470DD /* UserHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E77A87B18EA5608001470DD /* UserHistoryCell.m */; };
+		8E77A89E18F08E5D001470DD /* SoldiersAngels.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E77A89718F08E5D001470DD /* SoldiersAngels.jpg */; };
+		8E77A89F18F08E5D001470DD /* unicef.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E77A89818F08E5D001470DD /* unicef.jpg */; };
+		8E77A8A018F08E5D001470DD /* AfricanWellFund.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E77A89918F08E5D001470DD /* AfricanWellFund.jpg */; };
+		8E77A8A118F08E5D001470DD /* AnimalRescueSite.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8E77A89A18F08E5D001470DD /* AnimalRescueSite.jpeg */; };
+		8E77A8A218F08E5D001470DD /* Heifer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E77A89B18F08E5D001470DD /* Heifer.jpg */; };
+		8E77A8A318F08E5D001470DD /* feed_the_children.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E77A89C18F08E5D001470DD /* feed_the_children.jpg */; };
+		8E77A8A418F08E5D001470DD /* dollarSign.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E77A89D18F08E5D001470DD /* dollarSign.jpg */; };
 		8E9596FB182960E900AE29DB /* army2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596E3182960E900AE29DB /* army2.png */; };
 		8E9596FC182960E900AE29DB /* camel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596E4182960E900AE29DB /* camel.png */; };
 		8E9596FD182960E900AE29DB /* ducklingsFlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9596E5182960E900AE29DB /* ducklingsFlock.png */; };
@@ -162,6 +169,13 @@
 		8E69AB4D183FF598000A4B4D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		8E77A87A18EA5608001470DD /* UserHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHistoryCell.h; sourceTree = "<group>"; };
 		8E77A87B18EA5608001470DD /* UserHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHistoryCell.m; sourceTree = "<group>"; };
+		8E77A89718F08E5D001470DD /* SoldiersAngels.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SoldiersAngels.jpg; sourceTree = "<group>"; };
+		8E77A89818F08E5D001470DD /* unicef.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = unicef.jpg; sourceTree = "<group>"; };
+		8E77A89918F08E5D001470DD /* AfricanWellFund.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AfricanWellFund.jpg; sourceTree = "<group>"; };
+		8E77A89A18F08E5D001470DD /* AnimalRescueSite.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AnimalRescueSite.jpeg; sourceTree = "<group>"; };
+		8E77A89B18F08E5D001470DD /* Heifer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Heifer.jpg; sourceTree = "<group>"; };
+		8E77A89C18F08E5D001470DD /* feed_the_children.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = feed_the_children.jpg; sourceTree = "<group>"; };
+		8E77A89D18F08E5D001470DD /* dollarSign.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dollarSign.jpg; sourceTree = "<group>"; };
 		8E9596E3182960E900AE29DB /* army2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = army2.png; sourceTree = "<group>"; };
 		8E9596E4182960E900AE29DB /* camel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camel.png; sourceTree = "<group>"; };
 		8E9596E5182960E900AE29DB /* ducklingsFlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ducklingsFlock.png; sourceTree = "<group>"; };
@@ -302,6 +316,13 @@
 		8E00AACD18182E9700BB32E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8E77A89718F08E5D001470DD /* SoldiersAngels.jpg */,
+				8E77A89818F08E5D001470DD /* unicef.jpg */,
+				8E77A89918F08E5D001470DD /* AfricanWellFund.jpg */,
+				8E77A89A18F08E5D001470DD /* AnimalRescueSite.jpeg */,
+				8E77A89B18F08E5D001470DD /* Heifer.jpg */,
+				8E77A89C18F08E5D001470DD /* feed_the_children.jpg */,
+				8E77A89D18F08E5D001470DD /* dollarSign.jpg */,
 				7727AD85182BF356006D01DD /* ic_profile_white@2x.png */,
 				7727AD86182BF356006D01DD /* ic_profile_white.png */,
 				7727AD87182BF356006D01DD /* ic_profile_black@2x.png */,
@@ -548,7 +569,9 @@
 				8E9596FB182960E900AE29DB /* army2.png in Resources */,
 				8E05BC62182AB7F20005BF34 /* KarmaScan logo-FJ.tif in Resources */,
 				8E959705182960E900AE29DB /* homelessFamily.png in Resources */,
+				8E77A8A218F08E5D001470DD /* Heifer.jpg in Resources */,
 				E00CB862182B412C00A497C3 /* CheckMarkWhite.png in Resources */,
+				8E77A8A418F08E5D001470DD /* dollarSign.jpg in Resources */,
 				8E05BC6B182AE43B0005BF34 /* barcode.png in Resources */,
 				E00CB860182B400F00A497C3 /* karmaScan1.png in Resources */,
 				E00CB84D182B28F000A497C3 /* TestHeader.xib in Resources */,
@@ -556,13 +579,16 @@
 				8E959711182960E900AE29DB /* waterPump.png in Resources */,
 				8E959707182960E900AE29DB /* Hunger.png in Resources */,
 				7727AD8B182BF356006D01DD /* ic_profile_black@2x.png in Resources */,
+				8E77A8A018F08E5D001470DD /* AfricanWellFund.jpg in Resources */,
 				8EB17C011820205C000DDFCC /* feedTheChildren2.jpg in Resources */,
 				8E9596FC182960E900AE29DB /* camel.png in Resources */,
 				8E05BC61182AB7F20005BF34 /* KarmaScan logo-FJ.psd in Resources */,
 				8E05BC6F182B01200005BF34 /* awesomeBarcode.png in Resources */,
+				8E77A8A118F08E5D001470DD /* AnimalRescueSite.jpeg in Resources */,
 				8E9596FF182960E900AE29DB /* flockOfChicks.png in Resources */,
 				8E05BC5F182AB7F20005BF34 /* KarmaScan logo-FJ.pdf in Resources */,
 				8E959701182960E900AE29DB /* Goat.png in Resources */,
+				8E77A8A318F08E5D001470DD /* feed_the_children.jpg in Resources */,
 				8E05BC5C182AB7F20005BF34 /* KarmaScan logo-FJ.ai in Resources */,
 				7727AD8C182BF356006D01DD /* ic_profile_black.png in Resources */,
 				8E959704182960E900AE29DB /* homeless dogs.png in Resources */,
@@ -572,6 +598,7 @@
 				8E959708182960E900AE29DB /* Llama.png in Resources */,
 				8E05BC60182AB7F20005BF34 /* KarmaScan logo-FJ.png in Resources */,
 				8E00AAD118182E9700BB32E4 /* InfoPlist.strings in Resources */,
+				8E77A89E18F08E5D001470DD /* SoldiersAngels.jpg in Resources */,
 				8E95970A182960E900AE29DB /* Sheep.png in Resources */,
 				E00CB852182B291400A497C3 /* KarnaScan_Background.png in Resources */,
 				8E05BC68182AE1E80005BF34 /* KarnaScan_Background_i4.png in Resources */,
@@ -592,6 +619,7 @@
 				8E05BC5E182AB7F20005BF34 /* KarmaScan logo-FJ.jpg in Resources */,
 				8E00AADA18182E9700BB32E4 /* Main.storyboard in Resources */,
 				8E959700182960E900AE29DB /* foodDonation.png in Resources */,
+				8E77A89F18F08E5D001470DD /* unicef.jpg in Resources */,
 				8EB17BF618201238000DDFCC /* Vintage_fair.ttf in Resources */,
 				8E9596FE182960E900AE29DB /* feedTheHungry.png in Resources */,
 			);
