@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSMutableArray *parseNonprofitInfoArray;
 @property (nonatomic, strong) NSDictionary *oneToOneCharityURLCharityNameDict;
 @property (strong, nonatomic) Charity *charityData;
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
 @end
 
@@ -51,6 +52,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.oneToOneCharityURLCharityNameDict = [[NSDictionary alloc] init];
     self.charityData = [[Charity alloc] init];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
                                              (unsigned long)NULL), ^(void) {
@@ -164,49 +166,49 @@
     
     if (convertToFloat >= 1) {
         float numberOfAnimalMeals = (convertToFloat / 1) * 20;
-        NSLog(@"Number of animal meals = %.2f", numberOfAnimalMeals);
+//        NSLog(@"Number of animal meals = %.2f", numberOfAnimalMeals);
         int roundUp1 = ceilf(numberOfAnimalMeals);
         NSString* floatToAString1 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp1]];
         [self.convertedCharitableGoodsDict setObject:floatToAString1 forKey:@"The Animal Rescue Site"];
     }
     if (convertToFloat >= 10) {
         float numberOfMonthsHelpingChildren = convertToFloat / 10;
-        NSLog(@"number of months = %.2f", numberOfMonthsHelpingChildren);
+//        NSLog(@"number of months = %.2f", numberOfMonthsHelpingChildren);
         int roundUp10 = ceilf(numberOfMonthsHelpingChildren);
         NSString* floatToAString10 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp10]];
         [self.convertedCharitableGoodsDict setObject:floatToAString10 forKey:@"Unicef"];
     }
     if (convertToFloat >= 19) {
         float numberOfMonthsToFeedChildren = convertToFloat / 19;
-        NSLog(@"Number of Months = %.2f", numberOfMonthsToFeedChildren);
+//        NSLog(@"Number of Months = %.2f", numberOfMonthsToFeedChildren);
         int roundUp19 = ceilf(numberOfMonthsToFeedChildren);
         NSString* floatToAString19 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp19]];
         [self.convertedCharitableGoodsDict setObject:floatToAString19 forKey:@"Feed The Children"];        
     }
     if (convertToFloat >= 20) {
         float flocksOfDucks = convertToFloat / 20;
-        NSLog(@"Flock of Ducks = %.2f", flocksOfDucks);
+//        NSLog(@"Flock of Ducks = %.2f", flocksOfDucks);
         int roundUp20 = ceilf(flocksOfDucks);
         NSString* floatToAString20 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp20]];
         [self.convertedCharitableGoodsDict setObject:floatToAString20 forKey:@"Heifer Internaitonal (ducks)"];
     }
     if (convertToFloat >= 30) {
         float honeyBees = convertToFloat / 30;
-        NSLog(@"Gift of Honey Bees is %.2f", honeyBees);
+//        NSLog(@"Gift of Honey Bees is %.2f", honeyBees);
         int roundUp30 = ceilf(honeyBees);
         NSString* floatToAString30 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp30]];        
         [self.convertedCharitableGoodsDict setObject:floatToAString30 forKey:@"Heifer Internaitonal (bees)"];
     }
     if (convertToFloat >= 50) {
         float numberOfCarePackages = convertToFloat / 50;
-        NSLog(@"Number of care packages is %.2f", numberOfCarePackages);
+//        NSLog(@"Number of care packages is %.2f", numberOfCarePackages);
         int roundUp50 = ceilf(numberOfCarePackages);
         NSString* floatToAString50 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp50]];    
         [self.convertedCharitableGoodsDict setObject:floatToAString50 forKey:@"Soilder's Angels"];
     }
     if (convertToFloat >= 500) {
         float numberOfSpringCatchments = convertToFloat / 500;
-        NSLog(@"Number of Natiral Spring Cathcments %.2f", numberOfSpringCatchments);
+//        NSLog(@"Number of Natiral Spring Cathcments %.2f", numberOfSpringCatchments);
         int roundUp500 = ceilf(numberOfSpringCatchments);
         NSString* floatToAString500 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp500]];       
         [self.convertedCharitableGoodsDict setObject:floatToAString500 forKey:@"African Well Fund"];
@@ -215,7 +217,37 @@
     [userEnterDollarAmountTextField resignFirstResponder];
     convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
     userEnterDollarAmountTextField.text = nil;
-    [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
+    
+    if (self.oneToOneCharityURLCharityNameDict.count) {
+        [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];   
+    } else {
+        [self waitOnImages];
+    }
+}
+
+- (void)waitOnImages
+{
+    [self addObserver:self 
+           forKeyPath:@"self.oneToOneCharityURLCharityNameDict"
+              options:NSKeyValueObservingOptionNew
+              context:nil];
+    
+    self.spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x - 25, self.view.bounds.origin.y + 35, 50, 50)];
+    self.spinner.color = [UIColor orangeColor];
+    [self.spinner startAnimating];
+    [self.view addSubview:self.spinner]; 
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (object == self) {
+        if ([keyPath isEqualToString:@"self.oneToOneCharityURLCharityNameDict"]) {
+            if (self.oneToOneCharityURLCharityNameDict.count) {
+                [self.spinner stopAnimating];
+                [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
+            }
+        }
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -265,9 +297,8 @@
 
 - (void)startGettingImages
 {
-    
-    self.oneToOneCharityURLCharityNameDict = [[NSDictionary alloc] initWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];//this might have to go below
-    NSLog(@"oneCharityURLforOneCharityNameDict.ount =%d", self.oneToOneCharityURLCharityNameDict.count);
+    self.oneToOneCharityURLCharityNameDict = [NSDictionary dictionaryWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
+    NSLog(@"oneToOneCharityURLCharityNameDict.count =%d", self.oneToOneCharityURLCharityNameDict.count);
 }
 
 - (void)dismissKeyboard 

@@ -35,13 +35,7 @@
 		8E00AAE818182E9700BB32E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AACA18182E9700BB32E4 /* UIKit.framework */; };
 		8E00AAF018182E9700BB32E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E00AAEE18182E9700BB32E4 /* InfoPlist.strings */; };
 		8E00AAF218182E9700BB32E4 /* GuiltTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00AAF118182E9700BB32E4 /* GuiltTests.m */; };
-		8E05BC5C182AB7F20005BF34 /* KarmaScan logo-FJ.ai in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC55182AB7F20005BF34 /* KarmaScan logo-FJ.ai */; };
-		8E05BC5D182AB7F20005BF34 /* KarmaScan logo-FJ.eps in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC56182AB7F20005BF34 /* KarmaScan logo-FJ.eps */; };
-		8E05BC5E182AB7F20005BF34 /* KarmaScan logo-FJ.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC57182AB7F20005BF34 /* KarmaScan logo-FJ.jpg */; };
-		8E05BC5F182AB7F20005BF34 /* KarmaScan logo-FJ.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC58182AB7F20005BF34 /* KarmaScan logo-FJ.pdf */; };
 		8E05BC60182AB7F20005BF34 /* KarmaScan logo-FJ.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC59182AB7F20005BF34 /* KarmaScan logo-FJ.png */; };
-		8E05BC61182AB7F20005BF34 /* KarmaScan logo-FJ.psd in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC5A182AB7F20005BF34 /* KarmaScan logo-FJ.psd */; };
-		8E05BC62182AB7F20005BF34 /* KarmaScan logo-FJ.tif in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC5B182AB7F20005BF34 /* KarmaScan logo-FJ.tif */; };
 		8E05BC68182AE1E80005BF34 /* KarnaScan_Background_i4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC65182AE1E80005BF34 /* KarnaScan_Background_i4.png */; };
 		8E05BC6B182AE43B0005BF34 /* barcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC6A182AE43B0005BF34 /* barcode.png */; };
 		8E05BC6D182AF20A0005BF34 /* QuicksandRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC6C182AEEA50005BF34 /* QuicksandRegular.otf */; };
@@ -119,13 +113,7 @@
 		8E00AAED18182E9700BB32E4 /* GuiltTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GuiltTests-Info.plist"; sourceTree = "<group>"; };
 		8E00AAEF18182E9700BB32E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8E00AAF118182E9700BB32E4 /* GuiltTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuiltTests.m; sourceTree = "<group>"; };
-		8E05BC55182AB7F20005BF34 /* KarmaScan logo-FJ.ai */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "KarmaScan logo-FJ.ai"; sourceTree = "<group>"; };
-		8E05BC56182AB7F20005BF34 /* KarmaScan logo-FJ.eps */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KarmaScan logo-FJ.eps"; sourceTree = "<group>"; };
-		8E05BC57182AB7F20005BF34 /* KarmaScan logo-FJ.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "KarmaScan logo-FJ.jpg"; sourceTree = "<group>"; };
-		8E05BC58182AB7F20005BF34 /* KarmaScan logo-FJ.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "KarmaScan logo-FJ.pdf"; sourceTree = "<group>"; };
 		8E05BC59182AB7F20005BF34 /* KarmaScan logo-FJ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KarmaScan logo-FJ.png"; sourceTree = "<group>"; };
-		8E05BC5A182AB7F20005BF34 /* KarmaScan logo-FJ.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KarmaScan logo-FJ.psd"; sourceTree = "<group>"; };
-		8E05BC5B182AB7F20005BF34 /* KarmaScan logo-FJ.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "KarmaScan logo-FJ.tif"; sourceTree = "<group>"; };
 		8E05BC65182AE1E80005BF34 /* KarnaScan_Background_i4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KarnaScan_Background_i4.png; sourceTree = "<group>"; };
 		8E05BC6A182AE43B0005BF34 /* barcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barcode.png; sourceTree = "<group>"; };
 		8E05BC6C182AEEA50005BF34 /* QuicksandRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuicksandRegular.otf; sourceTree = "<group>"; };
@@ -315,13 +303,7 @@
 				8E05BC6E182B01200005BF34 /* awesomeBarcode.png */,
 				8E05BC6A182AE43B0005BF34 /* barcode.png */,
 				8E05BC65182AE1E80005BF34 /* KarnaScan_Background_i4.png */,
-				8E05BC55182AB7F20005BF34 /* KarmaScan logo-FJ.ai */,
-				8E05BC56182AB7F20005BF34 /* KarmaScan logo-FJ.eps */,
-				8E05BC57182AB7F20005BF34 /* KarmaScan logo-FJ.jpg */,
-				8E05BC58182AB7F20005BF34 /* KarmaScan logo-FJ.pdf */,
 				8E05BC59182AB7F20005BF34 /* KarmaScan logo-FJ.png */,
-				8E05BC5A182AB7F20005BF34 /* KarmaScan logo-FJ.psd */,
-				8E05BC5B182AB7F20005BF34 /* KarmaScan logo-FJ.tif */,
 			);
 			path = KarmaScan_logoFJ;
 			sourceTree = "<group>";
@@ -465,7 +447,6 @@
 				8E05BC73182B2F6E0005BF34 /* KarnaScan_NavBar.png in Resources */,
 				8E00AADF18182E9700BB32E4 /* Images.xcassets in Resources */,
 				8E77A8AC18F0909A001470DD /* SoldiersAngels.jpg in Resources */,
-				8E05BC62182AB7F20005BF34 /* KarmaScan logo-FJ.tif in Resources */,
 				E00CB862182B412C00A497C3 /* CheckMarkWhite.png in Resources */,
 				8E77A8B218F091B5001470DD /* dollarSign.jpg in Resources */,
 				8EFD979718FB4214006363E0 /* splashScreen@2x.png in Resources */,
@@ -475,23 +456,18 @@
 				E00CB85E182B400400A497C3 /* donation.png in Resources */,
 				7727AD8B182BF356006D01DD /* ic_profile_black@2x.png in Resources */,
 				8E77A8B018F0909A001470DD /* AnimalRescueSite.jpeg in Resources */,
-				8E05BC61182AB7F20005BF34 /* KarmaScan logo-FJ.psd in Resources */,
 				8E05BC6F182B01200005BF34 /* awesomeBarcode.png in Resources */,
 				8E77A8AD18F0909A001470DD /* unicef.jpg in Resources */,
 				8E77A8AB18F09099001470DD /* feed_the_children.jpg in Resources */,
-				8E05BC5F182AB7F20005BF34 /* KarmaScan logo-FJ.pdf in Resources */,
-				8E05BC5C182AB7F20005BF34 /* KarmaScan logo-FJ.ai in Resources */,
 				7727AD8C182BF356006D01DD /* ic_profile_black.png in Resources */,
 				8EFD979618FB4214006363E0 /* splashScreen.png in Resources */,
 				8E05BC6D182AF20A0005BF34 /* QuicksandRegular.otf in Resources */,
-				8E05BC5D182AB7F20005BF34 /* KarmaScan logo-FJ.eps in Resources */,
 				8E05BC60182AB7F20005BF34 /* KarmaScan logo-FJ.png in Resources */,
 				8E00AAD118182E9700BB32E4 /* InfoPlist.strings in Resources */,
 				E00CB852182B291400A497C3 /* KarnaScan_Background.png in Resources */,
 				8E05BC68182AE1E80005BF34 /* KarnaScan_Background_i4.png in Resources */,
 				8E959714182973A400AE29DB /* donate.png in Resources */,
 				8E77A8AF18F0909A001470DD /* AfricanWellFund.jpg in Resources */,
-				8E05BC5E182AB7F20005BF34 /* KarmaScan logo-FJ.jpg in Resources */,
 				8E00AADA18182E9700BB32E4 /* Main.storyboard in Resources */,
 				8E77A8AE18F0909A001470DD /* Heifer.jpg in Resources */,
 			);
