@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "UserHistoryCell.h"
+#import "BaseViewController.h"
 
-@interface UserProfileViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
+@interface UserProfileViewController : BaseViewController <UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *parseNonprofitInfoArray;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-- (IBAction)saveButton:(id)sender;
 
 @end

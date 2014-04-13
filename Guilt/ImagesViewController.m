@@ -19,6 +19,8 @@
     NSNumber* currPoints;
 }
 @property (strong, nonatomic) Charity *charityData;
+@property (nonatomic, strong) NSDictionary *namesWithCorrespondingImageURLsDict;
+
 @end
 
 @implementation ImagesViewController
@@ -48,6 +50,8 @@
     [self setFontFamily:@"Quicksand-Regular" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
     self.charityData = [[Charity alloc] init];
+    
+    self.namesWithCorrespondingImageURLsDict = [[NSDictionary alloc] initWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
 }
 
 -(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews
@@ -134,10 +138,6 @@
     }];   
     
     charityCell.logoImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[self.charityData charityLogos:charityName]]];
-    
-    if (!charityCell.displayImageView.image) {
-        charityCell.displayImageView.image = [self.charityData charityImageURLSForSpecifcCharity:indexPath.row];
-    }
     
 //    NSString *charityDescription = [[NSString alloc] init];
 //    if ([[resultOfCharitableConversionsArray objectAtIndex:indexPath.row] integerValue] == 1) {

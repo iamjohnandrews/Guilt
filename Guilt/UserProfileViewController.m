@@ -105,16 +105,5 @@
     return cell;    
 }
 
-- (IBAction)didSaveUserUpdates:(id)sender {
-    PFUser *user = [PFUser currentUser];
-    
-    user[@"email"] = _emailAddressTextField.text;
-    user[@"password"] = _passwordTextField.text;
-    
-    [user saveInBackground];
-}
-
-- (IBAction)saveButton:(id)sender {
-}
 
 @end

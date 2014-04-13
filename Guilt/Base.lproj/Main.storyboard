@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Rjc-b0-24u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Rjc-b0-24u">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -438,13 +438,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.51638550924313731" blue="0.16607046571497441" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="EXK-jh-2Mu">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="KhO-Ms-uWf">
-                            <connections>
-                                <action selector="saveButton:" destination="Ovb-PQ-Y1M" id="rd4-hH-XWV"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Profile" id="EXK-jh-2Mu"/>
                     <connections>
                         <outlet property="myKarmaPointsLabel" destination="zGj-PO-Bvz" id="3Va-AC-Xk8"/>
                         <outlet property="tableView" destination="f03-ci-hKV" id="5XU-Ym-nSP"/>
