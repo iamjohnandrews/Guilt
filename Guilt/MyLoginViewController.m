@@ -17,9 +17,7 @@
 
 
 - (void)viewDidLoad
-{
-    NSLog(@"In viewdidload");
-    
+{  
     [super viewDidLoad];
     //code to form the login button
     loginButtonOutlet.layer.cornerRadius = 8;

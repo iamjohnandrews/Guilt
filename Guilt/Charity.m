@@ -167,32 +167,21 @@
                                @"http://www.aidforafrica.org/wp-content/uploads/2011/12/world-hope-international-well2.jpg"
                                ]
                            };
-//    NSMutableArray *specificCharityImagesArray = [[NSMutableArray alloc] initWithArray:[charityImagesArray objectAtIndex:specificCharity]];
-//    int randomNumber = arc4random() % (specificCharityImagesArray.count - 1);
-//    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[specificCharityImagesArray objectAtIndex:randomNumber]]]];
     
     int randomNumber = arc4random() % ([charityImagesDict allKeys].count - 1);
     NSMutableDictionary *randomURLDict = [NSMutableDictionary dictionary];
     
-    for (int dictIteration = 0; dictIteration < [[charityImagesDict allKeys] count] - 1; dictIteration++) {
+    for (int dictIteration = 0; dictIteration < [[charityImagesDict allKeys] count]; dictIteration++) {
         NSArray *aSingleCharityURLsArray = [[NSArray alloc] initWithArray:[charityImagesDict objectForKey:[self charityNames:dictIteration]]];
-        [randomURLDict setValue:[aSingleCharityURLsArray objectAtIndex:randomNumber] forKey:[self charityNames:dictIteration]];
+        UIImage *charityImage = [UIImage imageWithData:
+                                 [NSData dataWithContentsOfURL:
+                                  [NSURL URLWithString:
+                                   [aSingleCharityURLsArray objectAtIndex:randomNumber]]]];
+        [randomURLDict setValue:charityImage forKey:[self charityNames:dictIteration]];
     }
     
     return randomURLDict;
 }
 
-/*
- charityImagesArray = @[@"homeless dogs.png", @"feedTheHungry.png", @"homelessFamily.png",@"ducklingsFlock.png", @"honeybee.png", @"Soldiers.png", @"waterPump.png"];
- 
- charityDiscriptionsArray = @[@"animal meals through The Animal Rescue Site",
- @"month(s) of vaccines, schooling & natural disaster relief through Unicef",
- @"month(s) of food, water, and medical supplies through Feed The Children",
- @"flock(s) of ducklings per a 3rd world family through Heifer International",
- @"gift(s) of honey bees per a 3rd world family through Heifer International",
- @"military care package(s) through Soildier's Angels",
- @"natural spring catchment(s) serving 250 people through African Well Fund"
- ];
- */
 
 @end

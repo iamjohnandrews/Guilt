@@ -19,12 +19,11 @@
     NSNumber* currPoints;
 }
 @property (strong, nonatomic) Charity *charityData;
-@property (nonatomic, strong) NSDictionary *oneCharityURLforOneCharityNameDict;
 
 @end
 
 @implementation ImagesViewController
-@synthesize resultOfCharitableConversionsArray, makeImagesLean;
+@synthesize makeImagesLean;
 
 - (void)viewDidLoad
 {
@@ -50,8 +49,6 @@
     [self setFontFamily:@"Quicksand-Regular" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
     self.charityData = [[Charity alloc] init];
-    
-    self.oneCharityURLforOneCharityNameDict = [[NSDictionary alloc] initWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
 }
 
 -(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews
@@ -75,8 +72,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return resultOfCharitableConversionsArray.count;
-    NSLog(@"Counts for ARRAY =%d, and DICT =%d", resultOfCharitableConversionsArray.count, self.resultOfCharitableConversionsDict.count);
     return self.resultOfCharitableConversionsDict.count;
 }
 
@@ -128,7 +123,6 @@
 {  
     NSString *charityName = [self.charityData charityNames:indexPath.row]; 
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
-    charityCell.charity = [self.parseNonprofitInfoArray objectAtIndex:indexPath.row];
 
     charityCell.layer.transform = self.makeImagesLean;
     charityCell.layer.opacity = 0.2;
@@ -137,17 +131,11 @@
         charityCell.layer.opacity = 1;
     }];   
     
-    charityCell.logoImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[self.charityData charityLogos:charityName]]];
+    charityCell.logoImageView.image = [UIImage imageNamed:
+                                       [NSString stringWithFormat:@"%@",
+                                        [self.charityData charityLogos:charityName]]];
     
-    charityCell.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.oneCharityURLforOneCharityNameDict objectForKey:charityName]]]];
-    
-//    NSString *charityDescription = [[NSString alloc] init];
-//    if ([[resultOfCharitableConversionsArray objectAtIndex:indexPath.row] integerValue] == 1) {
-//        charityDescription = [self.charityData charityDescriptionSingular:indexPath.row];
-//    } else {
-//        charityDescription = [self.charityData charityDescriptionPlural:indexPath.row];
-//    }
-//    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[resultOfCharitableConversionsArray objectAtIndex:indexPath.row], charityDescription];
+    charityCell.displayImageView.image = [self.oneCharityURLforOneCharityNameDict objectForKey:charityName];
     
     NSString *charityDescription = [[NSString alloc] init];
     if ([[self.resultOfCharitableConversionsDict objectForKey:charityName] integerValue] == 1) {

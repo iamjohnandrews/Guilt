@@ -10,12 +10,12 @@
 
 @interface ImagesViewController : BaseViewController
 
-@property NSMutableArray *resultOfCharitableConversionsArray;
 @property (strong, nonatomic) NSDictionary *resultOfCharitableConversionsDict;
+@property (nonatomic, strong) NSDictionary *oneCharityURLforOneCharityNameDict;
 
 @property (weak, nonatomic) IBOutlet UITableView *imagesTableView;
-@property (strong,nonatomic) NSString* productName;
 
+@property (strong,nonatomic) NSString* productName;
 @property (strong,nonatomic) NSString* productProductURL;
 
 @property  (weak,nonatomic) NSNumber* productPrice;
@@ -23,8 +23,6 @@
 @property (assign, nonatomic) CATransform3D makeImagesLean;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *userProfileButtonOutlet;
-
-@property (strong, nonatomic) NSMutableArray *parseNonprofitInfoArray;
 
 -(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity;
 
