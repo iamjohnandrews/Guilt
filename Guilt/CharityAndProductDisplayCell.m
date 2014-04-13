@@ -27,7 +27,7 @@
     self.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
     self.donationButton.frame = CGRectMake(self.bounds.size.width - 44, self.bounds.size.height - 46, 44, 44);
     [self.donationButton setUserInteractionEnabled:YES];
-    
+        
 //    if (!self.displayImageView.image) {
 //        int randomNumber = arc4random() % (self.charity.Images.count - 1);
 //        self.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.charity.Images objectAtIndex:randomNumber]]]];

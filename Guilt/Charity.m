@@ -41,7 +41,7 @@
 - (NSString *)charityNames:(NSUInteger)specificCharity
 {
     NSArray *charityNamesArray = [NSArray array];
-    charityNamesArray = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Heifer Internaitonal", @"Heifer Internaitonal", @"Soilder's Angels", @"African Well Fund"];
+    charityNamesArray = @[@"The Animal Rescue Site", @"Unicef", @"Feed The Children", @"Heifer Internaitonal (ducks)", @"Heifer Internaitonal (bees)", @"Soilder's Angels", @"African Well Fund"];
     
     return [charityNamesArray objectAtIndex:specificCharity];
 }
@@ -76,7 +76,7 @@
 - (NSDictionary *)charityImageURLSForSpecifcCharity
 {
     NSDictionary *charityImagesDict = [NSDictionary dictionary];
-    charityImagesDict = @{@"African Well Fund":@[
+    charityImagesDict = @{@"The Animal Rescue Site":@[
                                @"http://www.assisianimalhealth.com/news/wp-content/uploads/2012/11/Animal-Rescue.jpg",
                                @"http://designyoutrust.com/wp-content/uploads/2011/10/animal-rescue-operations-c.jpg",
                                @"http://www.bored-todeath.com/wp-content/uploads/2011/07/animal-rescue-08.jpg",
@@ -171,13 +171,12 @@
 //    int randomNumber = arc4random() % (specificCharityImagesArray.count - 1);
 //    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[specificCharityImagesArray objectAtIndex:randomNumber]]]];
     
-    NSArray *charityNamesArray = [[NSArray alloc] initWithArray:[charityImagesDict allKeys]];
-    int randomNumber = arc4random() % (charityNamesArray.count - 1);
+    int randomNumber = arc4random() % ([charityImagesDict allKeys].count - 1);
     NSMutableDictionary *randomURLDict = [NSMutableDictionary dictionary];
     
     for (int dictIteration = 0; dictIteration < [[charityImagesDict allKeys] count] - 1; dictIteration++) {
-        NSArray *charityURLsArray = [[NSArray alloc] initWithArray:[charityImagesDict objectForKey:[charityNamesArray objectAtIndex:dictIteration]]];
-        [randomURLDict setValue:[charityURLsArray objectAtIndex:randomNumber] forKey:[charityNamesArray objectAtIndex:dictIteration]];
+        NSArray *aSingleCharityURLsArray = [[NSArray alloc] initWithArray:[charityImagesDict objectForKey:[self charityNames:dictIteration]]];
+        [randomURLDict setValue:[aSingleCharityURLsArray objectAtIndex:randomNumber] forKey:[self charityNames:dictIteration]];
     }
     
     return randomURLDict;

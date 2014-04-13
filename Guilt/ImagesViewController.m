@@ -19,7 +19,7 @@
     NSNumber* currPoints;
 }
 @property (strong, nonatomic) Charity *charityData;
-@property (nonatomic, strong) NSDictionary *namesWithCorrespondingImageURLsDict;
+@property (nonatomic, strong) NSDictionary *oneCharityURLforOneCharityNameDict;
 
 @end
 
@@ -51,7 +51,7 @@
     [self.navigationItem setTitle:@"Impact"];
     self.charityData = [[Charity alloc] init];
     
-    self.namesWithCorrespondingImageURLsDict = [[NSDictionary alloc] initWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
+    self.oneCharityURLforOneCharityNameDict = [[NSDictionary alloc] initWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
 }
 
 -(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews
@@ -139,6 +139,8 @@
     
     charityCell.logoImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[self.charityData charityLogos:charityName]]];
     
+    charityCell.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[self.oneCharityURLforOneCharityNameDict objectForKey:charityName]]]];
+    
 //    NSString *charityDescription = [[NSString alloc] init];
 //    if ([[resultOfCharitableConversionsArray objectAtIndex:indexPath.row] integerValue] == 1) {
 //        charityDescription = [self.charityData charityDescriptionSingular:indexPath.row];
@@ -218,7 +220,9 @@
     [user saveInBackground]; //save user points to Parse
 }
 
-- (IBAction)userProfileButton:(id)sender {
+- (IBAction)userProfileButton:(id)sender 
+{
+    
 }
 
 
