@@ -130,12 +130,16 @@
         charityCell.layer.transform = CATransform3DIdentity;
         charityCell.layer.opacity = 1;
     }];   
-    
     charityCell.logoImageView.image = [UIImage imageNamed:
                                        [NSString stringWithFormat:@"%@",
                                         [self.charityData charityLogos:charityName]]];
     
     charityCell.displayImageView.image = [self.oneCharityURLforOneCharityNameDict objectForKey:charityName];
+    
+    charityCell.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
+    charityCell.donationButton.frame = CGRectMake(charityCell.bounds.size.width - 44, charityCell.bounds.size.height - 46, 44, 44);
+    [charityCell.donationButton setUserInteractionEnabled:YES];
+//    [charityCell.donationButton bringSubviewToFront:self.imagesTableView];
     
     NSString *charityDescription = [[NSString alloc] init];
     if ([[self.resultOfCharitableConversionsDict objectForKey:charityName] integerValue] == 1) {

@@ -24,10 +24,6 @@
     self.charityConversionDetailsLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:12];
     self.charityConversionDetailsLabel.textColor = [UIColor whiteColor];
     
-    self.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
-    self.donationButton.frame = CGRectMake(self.bounds.size.width - 44, self.bounds.size.height - 46, 44, 44);
-    [self.donationButton setUserInteractionEnabled:YES];
-    [self.donationButton bringSubviewToFront:self];
 }
 
 - (void)awakeFromNib
