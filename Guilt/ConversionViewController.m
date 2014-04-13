@@ -45,15 +45,15 @@
     [userEnterDollarAmountTextField addTarget:self 
                                        action:@selector(textFieldDidChange)
                              forControlEvents:UIControlEventEditingChanged];
-    self.convertedCharitableGoodsDict = [NSMutableDictionary dictionary];
 }
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.oneToOneCharityURLCharityNameDict = [[NSDictionary alloc] init];
+//    self.oneToOneCharityURLCharityNameDict = [[NSDictionary alloc] init];
     self.charityData = [[Charity alloc] init];
+    self.convertedCharitableGoodsDict = [NSMutableDictionary dictionary];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
                                              (unsigned long)NULL), ^(void) {
         [self startGettingImages];
@@ -187,21 +187,21 @@
     }
     if (convertToFloat >= 20) {
         float flocksOfDucks = convertToFloat / 20;
-//        NSLog(@"Flock of Ducks = %.2f", flocksOfDucks);
+        NSLog(@"Flock of Ducks = %.2f", flocksOfDucks);
         int roundUp20 = ceilf(flocksOfDucks);
         NSString* floatToAString20 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp20]];
         [self.convertedCharitableGoodsDict setObject:floatToAString20 forKey:@"Heifer Internaitonal (ducks)"];
     }
     if (convertToFloat >= 30) {
         float honeyBees = convertToFloat / 30;
-//        NSLog(@"Gift of Honey Bees is %.2f", honeyBees);
+        NSLog(@"Gift of Honey Bees is %.2f", honeyBees);
         int roundUp30 = ceilf(honeyBees);
         NSString* floatToAString30 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp30]];        
         [self.convertedCharitableGoodsDict setObject:floatToAString30 forKey:@"Heifer Internaitonal (bees)"];
     }
     if (convertToFloat >= 50) {
         float numberOfCarePackages = convertToFloat / 50;
-//        NSLog(@"Number of care packages is %.2f", numberOfCarePackages);
+        NSLog(@"Number of care packages is %.2f", numberOfCarePackages);
         int roundUp50 = ceilf(numberOfCarePackages);
         NSString* floatToAString50 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp50]];    
         [self.convertedCharitableGoodsDict setObject:floatToAString50 forKey:@"Soilder's Angels"];
@@ -227,27 +227,10 @@
 
 - (void)waitOnImages
 {
-    [self addObserver:self 
-           forKeyPath:@"self.oneToOneCharityURLCharityNameDict"
-              options:NSKeyValueObservingOptionNew
-              context:nil];
-    
     self.spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x - 25, self.view.bounds.origin.y + 35, 50, 50)];
     self.spinner.color = [UIColor orangeColor];
     [self.spinner startAnimating];
     [self.view addSubview:self.spinner]; 
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (object == self) {
-        if ([keyPath isEqualToString:@"self.oneToOneCharityURLCharityNameDict"]) {
-            if (self.oneToOneCharityURLCharityNameDict.count) {
-                [self.spinner stopAnimating];
-                [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
-            }
-        }
-    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -297,8 +280,16 @@
 
 - (void)startGettingImages
 {
-    self.oneToOneCharityURLCharityNameDict = [NSDictionary dictionaryWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
-    NSLog(@"oneToOneCharityURLCharityNameDict.count =%d", self.oneToOneCharityURLCharityNameDict.count);
+//    self.oneToOneCharityURLCharityNameDict = [NSDictionary dictionaryWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
+    self.oneToOneCharityURLCharityNameDict = [[NSDictionary alloc] initWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
+    NSLog(@"oneToOneCharityURLCharityNameDict FILLED =%d", self.oneToOneCharityURLCharityNameDict.count);
+    if (self.spinner) {
+        [self.spinner stopAnimating];
+        self.spinner = nil;
+        dispatch_async(dispatch_get_main_queue(),^{
+            [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
+        });
+    }
 }
 
 - (void)dismissKeyboard 
