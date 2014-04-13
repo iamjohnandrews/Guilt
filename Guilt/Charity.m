@@ -62,7 +62,7 @@
 - (NSString *)charityDescriptionSingular:(NSUInteger)specificCharity
 {
     NSArray *charityDescriptionSingularArray = [NSArray array];
-    charityDescriptionSingularArray = @[@"animal meal through The Animal Rescue Site",
+    charityDescriptionSingularArray = @[@"animal meals through The Animal Rescue Site",
                                         @"month of vaccines, schooling & natural disaster relief through Unicef",
                                         @"month of food, water, and medical supplies through Feed The Children",
                                         @"flocks of ducklings per a 3rd world family through Heifer International",

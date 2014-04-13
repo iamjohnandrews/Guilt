@@ -24,8 +24,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *userProfileButtonOutlet;
 
-@property (nonatomic) BOOL userIsLoggedIn;
-
 @property (strong, nonatomic) NSMutableArray *parseNonprofitInfoArray;
 
 -(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity;

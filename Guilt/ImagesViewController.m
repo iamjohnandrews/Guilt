@@ -29,11 +29,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (self.userIsLoggedIn == NO) {
-        self.userProfileButtonOutlet.enabled = NO;
-    } else {
+    if ([PFUser currentUser]) {
         self.userProfileButtonOutlet.enabled = YES;
-    }    
+    } else {
+        self.userProfileButtonOutlet.enabled = NO;
+    }
     self.imagesTableView.dataSource = self;
     self.imagesTableView.delegate = self;
     

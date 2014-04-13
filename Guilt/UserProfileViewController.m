@@ -69,7 +69,6 @@
         [_tableView reloadData];
     }];
     self.charityData = [[Charity alloc] init];
-
 }
 
 #pragma mark - Tableview Delegate Method

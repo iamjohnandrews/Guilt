@@ -357,13 +357,13 @@
                         <barButtonItem key="rightBarButtonItem" image="ic_profile_white.png" id="NDw-pw-GiX">
                             <connections>
                                 <action selector="userProfileButton:" destination="FQJ-0F-BmM" id="90P-N9-VD1"/>
-                                <segue destination="Ovb-PQ-Y1M" kind="push" id="ykt-Gs-ZaS"/>
+                                <segue destination="Ovb-PQ-Y1M" kind="push" identifier="ImagesToUserProfileSegue" id="ykt-Gs-ZaS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="imagesTableView" destination="4oH-wW-rn3" id="b6j-w2-83i"/>
-                        <outlet property="userProfileButtonOutlet" destination="NDw-pw-GiX" id="fXQ-5V-OVz"/>
+                        <outlet property="userProfileButtonOutlet" destination="NDw-pw-GiX" id="RzJ-Wa-M1N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uRO-fs-BD3" userLabel="First Responder" sceneMemberID="firstResponder"/>
