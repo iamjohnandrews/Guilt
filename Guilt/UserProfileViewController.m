@@ -21,8 +21,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *passwordTextField;
 
-- (IBAction)didSaveUserUpdates:(id)sender;
-
 @property (strong, nonatomic) Charity *charityData;
 
 @end

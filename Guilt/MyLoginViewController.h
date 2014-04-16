@@ -24,4 +24,5 @@
 
 - (IBAction)skipButtonPressed:(id)sender;
 
+- (IBAction)forgottenPWButtonPressed:(id)sender;
 @end

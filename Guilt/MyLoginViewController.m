@@ -8,8 +8,8 @@
 #import "ConversionViewController.h"
 #import "MyLoginViewController.h"
 
-@interface MyLoginViewController ()
-
+@interface MyLoginViewController () <UITextFieldDelegate>
+@property (nonatomic, strong) UITextField *emailTextField;
 @end
 
 @implementation MyLoginViewController
@@ -19,6 +19,15 @@
 - (void)viewDidLoad
 {  
     [super viewDidLoad];
+    
+    [self setupUI];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    [self.view addGestureRecognizer:tap];
+}
+
+- (void)setupUI
+{
     //code to form the login button
     loginButtonOutlet.layer.cornerRadius = 8;
     loginButtonOutlet.layer.borderWidth = 1;
@@ -42,11 +51,7 @@
     [self.skipButtonOutlet setTitle:@"Skip"];
     
     [self.navigationItem setTitle:@"Login"];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
-    [self.view addGestureRecognizer:tap];
 }
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShowMeSegue"]) {
@@ -89,6 +94,19 @@
 - (IBAction)skipButtonPressed:(id)sender 
 {
     [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
+}
+
+- (IBAction)forgottenPWButtonPressed:(id)sender 
+{
+    self.emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 200, 300, 40)];
+    self.emailTextField.borderStyle = UITextBorderStyleRoundedRect;
+    self.emailTextField.font = [UIFont systemFontOfSize:15];
+    self.emailTextField.placeholder = @"enter email";
+    self.emailTextField.keyboardType = UIKeyboardTypeDefault;
+    self.emailTextField.returnKeyType = UIReturnKeyDone;
+    self.emailTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.emailTextField.delegate = self;
+    [self.view addSubview:self.emailTextField];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
