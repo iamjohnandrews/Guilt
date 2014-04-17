@@ -67,6 +67,16 @@
 //        self.userIsLoggedIn = YES;        
 //        [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
 //    }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
 }
 
 
@@ -98,7 +108,7 @@
 
 - (IBAction)forgottenPWButtonPressed:(id)sender 
 {
-    self.emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 200, 300, 40)];
+    self.emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 360, 300, 40)];
     self.emailTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.emailTextField.font = [UIFont systemFontOfSize:15];
     self.emailTextField.placeholder = @"enter email";
@@ -112,6 +122,59 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     [[self view] endEditing:TRUE];
+}
+
+#pragma mark - Keyboard Notifications
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        
+    self.fogottenPWButtonOutlet.hidden = YES;
+    
+    CGRect newFrame = self.view.frame;
+    newFrame.origin.y = -keyboardSize.height;
+  
+    [UIView animateWithDuration:0.2
+                          delay:0.1
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.view.frame = newFrame;
+                         }
+                    completion:nil];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    CGRect newFrame = self.view.frame;
+    
+    newFrame.origin.y = 0.0f;
+    
+    [UIView animateWithDuration:0.25
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.view.frame = newFrame;
+                     } completion:nil];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.emailTextField endEditing:YES];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reset Password"
+                                                    message:@"Check your email for a link to reset your password."
+                                                   delegate:self
+                                          cancelButtonTitle:@"Go To Email"
+                                          otherButtonTitles:@"Do This Later", nil];
+    [alert show];
+    
+    return YES;
+}
+
+- (void)dismissAlertView:(UIAlertView *)alertView
+{
+    [alertView dismissWithClickedButtonIndex:1 animated:YES];
 }
 
 @end

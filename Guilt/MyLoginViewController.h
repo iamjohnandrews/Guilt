@@ -20,6 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *skipButtonOutlet;
 
+@property (weak, nonatomic) IBOutlet UIButton *fogottenPWButtonOutlet;
+
 - (IBAction)didLogin:(id)sender;
 
 - (IBAction)skipButtonPressed:(id)sender;
