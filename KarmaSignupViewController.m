@@ -15,15 +15,6 @@
 @implementation KarmaSignupViewController
 @synthesize userName,emailAddress,password, addUserButtonOutlet;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 
 -(BOOL)textFieldShouldReturn:(UITextField*)textField
 {
@@ -32,10 +23,41 @@
 
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupUI];
+}
+
+- (IBAction)addUser:(id)sender 
+{
+    UIButton *saveNewUser = sender;
+    if ([saveNewUser.titleLabel.text isEqualToString:@"Save"]) {
+        PFUser *user = [PFUser user];
+        user.username = userName.text;
+        user.password = password.text;
+        user.email = emailAddress.text;
+        
+        [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            } else {
+                NSString *errorString = [error userInfo][@"error"];
+                NSLog(@"This is what went wrong, %@", errorString);
+                
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"SignUp Did Not Work" 
+                                                                message:@"Please try again. Sorry for the manual labor." 
+                                                               delegate:self 
+                                                      cancelButtonTitle:@"Got It" 
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        }];
+    }
+}
+
+- (void)setupUI
+{
     //code to form the addUser button
     addUserButtonOutlet.layer.cornerRadius = 8;
     addUserButtonOutlet.layer.borderWidth = 1;
@@ -45,37 +67,19 @@
     addUserButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:14];
     [addUserButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addUserButtonOutlet setTitle:@"Save" forState:UIControlStateNormal];
+    
+    self.cancelSignupButtonOutlet.layer.cornerRadius = 8;
+    self.cancelSignupButtonOutlet.layer.borderWidth = 1;
+    self.cancelSignupButtonOutlet.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.cancelSignupButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
+    self.cancelSignupButtonOutlet.clipsToBounds = YES;
+    self.cancelSignupButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:14];
+    [self.cancelSignupButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.cancelSignupButtonOutlet setTitle:@"Cancel" forState:UIControlStateNormal];    
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (IBAction)cancelSignupButtonPressed:(id)sender 
 {
-
-    [password resignFirstResponder];
-
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)addUser:(id)sender {
-    PFUser *user = [PFUser user];
-    user.username = userName.text;
-    user.password = password.text;
-    user.email = emailAddress.text;
-    
-    
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            [self performSegueWithIdentifier:@"ShowMe2Segue" sender:self];
-        } else {
-            NSString *errorString = [error userInfo][@"error"];
-            // Show the errorString somewhere and let the user try again.
-        }
-    }];
-    
-
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

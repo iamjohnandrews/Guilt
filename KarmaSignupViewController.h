@@ -20,4 +20,8 @@
 
 - (IBAction)addUser:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *cancelSignupButtonOutlet;
+
+- (IBAction)cancelSignupButtonPressed:(id)sender;
+
 @end
