@@ -161,12 +161,13 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.emailTextField endEditing:YES];
+    [PFUser requestPasswordResetForEmailInBackground:textField.text];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reset Password"
                                                     message:@"Check your email for a link to reset your password."
                                                    delegate:self
-                                          cancelButtonTitle:@"Go To Email"
-                                          otherButtonTitles:@"Do This Later", nil];
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
     [alert show];
     
     return YES;
@@ -174,7 +175,8 @@
 
 - (void)dismissAlertView:(UIAlertView *)alertView
 {
-    [alertView dismissWithClickedButtonIndex:1 animated:YES];
+    self.emailTextField.text = nil;
+    [alertView dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 @end
