@@ -67,15 +67,6 @@
 //        self.userIsLoggedIn = YES;        
 //        [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
 //    }
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
     
 }
 
@@ -146,6 +137,7 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
+    
     CGRect newFrame = self.view.frame;
     
     newFrame.origin.y = 0.0f;
@@ -156,6 +148,23 @@
                      animations:^{
                          self.view.frame = newFrame;
                      } completion:nil];
+    
+    [self unregisterKeyboardNotification];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+    return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -177,6 +186,11 @@
 {
     self.emailTextField.text = nil;
     [alertView dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+- (void)unregisterKeyboardNotification
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
