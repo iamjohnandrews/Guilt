@@ -87,7 +87,8 @@
 {
     NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
     UITableViewCell *cell  = [self.imagesTableView cellForRowAtIndexPath:selectedIndexPath];
-    
+    cell.accessoryType = UITableViewCellAccessoryNone;
+
     UIGraphicsBeginImageContextWithOptions(cell.bounds.size, cell.opaque, 0.0);
     [cell.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *cellImage = UIGraphicsGetImageFromCurrentImageContext();

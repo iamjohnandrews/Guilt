@@ -7,6 +7,7 @@
 //
 
 #import "ShareImageViewController.h"
+#import <Accounts/Accounts.h>
 
 @interface ShareImageViewController ()
 
@@ -52,8 +53,18 @@
     karmaScanK.frame = CGRectMake(self.sharingImage.bounds.size.width - 44, self.sharingImage.bounds.size.height - 46, 44, 44);
     [self.sharingImage addSubview:karmaScanK];
     
+    
 }
 
+- (UIImage *)convertIntoFinalMemeToShare
+{
+    UIGraphicsBeginImageContextWithOptions(self.sharingImage.bounds.size, self.sharingImage.opaque, 0.0);
+    [self.sharingImage.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *charityMeme = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return charityMeme;
+}
 
 
 - (void)shareSetup
