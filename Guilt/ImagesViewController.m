@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
 #import "Charity.h"
+#import "ShareImageViewController.h"
 
 @interface ImagesViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -71,8 +72,13 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ImageSelectionSegue"]) {
-        ImagesViewController* imagesVC = [segue destinationViewController];
-        
+        ShareImageViewController *shareImageVC = [segue destinationViewController];
+        if (self.productPrice) {
+            shareImageVC.productPrice = [self.productPrice stringValue];
+        } else {
+            shareImageVC.productPrice = self.userImputPrice;
+        }
+    
     }
     
 }

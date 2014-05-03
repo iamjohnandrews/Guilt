@@ -403,16 +403,25 @@
             </objects>
             <point key="canvasLocation" x="1119" y="-596"/>
         </scene>
-        <!--View Controller-->
+        <!--Share Image View Controller-->
         <scene sceneID="bAL-V8-F74">
             <objects>
-                <viewController id="zrA-oB-1Yr" sceneMemberID="viewController">
+                <viewController id="zrA-oB-1Yr" customClass="ShareImageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Xi-uC-9rc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="52v-Qz-nqr">
+                                <rect key="frame" x="0.0" y="66" width="320" height="211"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="bJD-pU-7h2"/>
+                    <connections>
+                        <outlet property="sharingImage" destination="52v-Qz-nqr" id="iTh-YD-cnI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o2L-iT-nyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -240,6 +240,7 @@
         imagesVC.oneCharityURLforOneCharityNameDict = [self.oneToOneCharityURLCharityNameDict copy];
         imagesVC.productName = productName;
         imagesVC.productProductURL = urlForProduct;
+        imagesVC.userImputPrice = self.userEnterDollarAmountTextField.text;
         
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller
