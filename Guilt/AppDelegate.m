@@ -21,6 +21,10 @@
     //Parse Analytics
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    //Twitter Login
+    [PFTwitterUtils initializeWithConsumerKey:@"6HGYzIN6t2qJILEN0BlAwB0XQ"
+                               consumerSecret:@"eqip3xLUZI2Th1kZpji9Uv8MmAH7LI012aMvwjlWLZOZ6a3F7Q"];
+    
     return YES;
 }
 

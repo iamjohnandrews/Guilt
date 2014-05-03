@@ -68,6 +68,15 @@
     }     
 } 
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ImageSelectionSegue"]) {
+        ImagesViewController* imagesVC = [segue destinationViewController];
+        
+    }
+    
+}
+
 #pragma mark - Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -152,8 +161,13 @@
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDonationButtonTapped:)];
     [charityCell.donationButton addGestureRecognizer:recognizer];
     [charityCell addSubview:charityCell.donationButton];
-        
+            
     return charityCell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = [UIColor greenColor];
 }
 
 - (void)onDonationButtonTapped:(UITapGestureRecognizer *)gestureRecognizer
