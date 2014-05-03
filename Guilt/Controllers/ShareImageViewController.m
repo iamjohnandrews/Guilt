@@ -25,9 +25,13 @@
     
     [self.navigationItem setTitle:@"Let 'em Know"];
     [self setFontFamily:@"Quicksand-Regular" forView:self.view andSubViews:YES];
+    
+    self.sharingImage.image = self.unfinishedMeme;
+    
+    [self prepareImageToBecomeMeme];
 }
 
-- (void)createMemeToShare
+- (void)prepareImageToBecomeMeme
 {
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = self.sharingImage.layer.bounds;
@@ -37,11 +41,16 @@
                              (id)[[UIColor clearColor] CGColor]];
     gradientLayer.locations = @[@0.0, @0.1, @0.2];
     [self.sharingImage.layer addSublayer:gradientLayer];  
-    self.sharingImage.contentMode = UIViewContentModeScaleAspectFill;
-    self.sharingImage.clipsToBounds = YES; 
     
     UILabel *converstionAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(60.0f, 0, CGRectGetWidth(self.view.bounds) - 60.0f, 20.0f)];
     converstionAmountLabel.text = [NSString stringWithFormat:@"$%@ is equivalent to", self.productPrice];
+    converstionAmountLabel.textColor = [UIColor whiteColor];
+    converstionAmountLabel.textAlignment = NSTextAlignmentCenter;
+    [self.sharingImage addSubview:converstionAmountLabel];
+    
+    UIImageView * karmaScanK = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaSan_K_small.png"]];
+    karmaScanK.frame = CGRectMake(self.sharingImage.bounds.size.width - 44, self.sharingImage.bounds.size.height - 46, 44, 44);
+    [self.sharingImage addSubview:karmaScanK];
     
 }
 

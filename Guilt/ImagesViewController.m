@@ -20,7 +20,6 @@
     NSNumber* currPoints;
 }
 @property (strong, nonatomic) Charity *charityData;
-
 @end
 
 @implementation ImagesViewController
@@ -73,6 +72,7 @@
 {
     if ([segue.identifier isEqualToString:@"ImageSelectionSegue"]) {
         ShareImageViewController *shareImageVC = [segue destinationViewController];
+        shareImageVC.unfinishedMeme = [self convertCellIntoImage];
         if (self.productPrice) {
             shareImageVC.productPrice = [self.productPrice stringValue];
         } else {
@@ -81,6 +81,19 @@
     
     }
     
+}
+
+- (UIImage *)convertCellIntoImage
+{
+    NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
+    UITableViewCell *cell  = [self.imagesTableView cellForRowAtIndexPath:selectedIndexPath];
+    
+    UIGraphicsBeginImageContextWithOptions(cell.bounds.size, cell.opaque, 0.0);
+    [cell.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *cellImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return cellImage;
 }
 
 #pragma mark - Table View Methods

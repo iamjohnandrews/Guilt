@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 
 @interface ShareImageViewController : BaseViewController
+@property (strong, nonatomic) UIImage *unfinishedMeme;
 @property (weak, nonatomic) IBOutlet UIImageView *sharingImage;
-
 @property (weak,nonatomic) NSString* productPrice;
 @end

@@ -357,7 +357,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="v0g-qK-9jy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="211"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="212"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NHP-YN-cce">
@@ -411,8 +411,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="52v-Qz-nqr">
-                                <rect key="frame" x="0.0" y="66" width="320" height="211"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="WID-1z-79Y">
+                                <rect key="frame" x="0.0" y="50" width="320" height="212"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
@@ -420,7 +420,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bJD-pU-7h2"/>
                     <connections>
-                        <outlet property="sharingImage" destination="52v-Qz-nqr" id="iTh-YD-cnI"/>
+                        <outlet property="sharingImage" destination="WID-1z-79Y" id="85M-6Z-lVB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o2L-iT-nyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
