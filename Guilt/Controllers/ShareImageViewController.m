@@ -10,8 +10,8 @@
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
 
-@interface ShareImageViewController () <MFMailComposeViewControllerDelegate>
-@property (strong, nonatomic) ACAccount *accountStore;
+@interface ShareImageViewController () <MFMailComposeViewControllerDelegate, UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
+
 @end
 
 @implementation ShareImageViewController
@@ -31,8 +31,11 @@
     self.sharingImage.image = self.unfinishedMeme;
     
     [self prepareImageToBecomeMeme];
+    
+    [self shareActionSheet];
 }
 
+#pragma mark Create Meme
 - (void)prepareImageToBecomeMeme
 {
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
@@ -51,9 +54,8 @@
     [self.sharingImage addSubview:converstionAmountLabel];
     
     UIImageView * karmaScanK = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaSan_K_small.png"]];
-    karmaScanK.frame = CGRectMake(self.sharingImage.bounds.size.width - 44, self.sharingImage.bounds.size.height - 46, 44, 44);
+    karmaScanK.frame = CGRectMake(self.sharingImage.bounds.size.width - 45, self.sharingImage.bounds.size.height - 46, 44, 44);
     [self.sharingImage addSubview:karmaScanK];
-    
     
 }
 
@@ -67,13 +69,63 @@
     return charityMeme;
 }
 
+#pragma mark Sharing & Action
+- (void)shareActionSheet
+{
+    UIImage * finialImage = [self convertIntoFinalMemeToShare];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:@"#KarmaScanFact", finialImage, nil] applicationActivities:nil];
+    
+    [self presentViewController:activityViewController animated:YES completion:^{
+    }];
+}
+
+- (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController
+{
+    return @"Placeholder";
+}
+
+- (id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(NSString *)activityType
+{
+    if ([activityType isEqualToString:UIActivityTypePostToFacebook]) {
+        [self postToFacebook];
+        return @"facebook";
+    } else if ([activityType isEqualToString:UIActivityTypePostToTwitter]) {
+        [self postToTwitter];
+        return @"twiiter";
+    } else if ([activityType isEqualToString:UIActivityTypeMail]) {
+        [self composeEmailMessage];
+        return @"email";
+    } else if ([activityType isEqualToString:UIActivityTypeMessage]) {
+        [self composeText];
+        return @"text message";
+    }
+    
+    return @"non sharing action";
+}
+
+#pragma mark Email & Texting
+- (void)composeText
+{
+    MFMessageComposeViewController *messageComposeViewController = [[MFMessageComposeViewController alloc] init];
+    messageComposeViewController.delegate = self;
+    messageComposeViewController.recipients = @[@"mattt@nshipster•com"];
+    messageComposeViewController.body = @"Lorem ipsum dolor sit amet";
+    [self presentViewController:messageComposeViewController animated:YES completion:^{
+        // ...
+    }];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    NSLog(@"text sent");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)composeEmailMessage
 {
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *emailViewController = [[MFMailComposeViewController alloc] init];
         emailViewController.mailComposeDelegate = self;
-        [emailViewController setToRecipients:[[NSArray alloc] initWithObjects:@"johnnydrews@gmail.com", nil]];
-        [emailViewController setTitle:@"Did you know"];
         
         NSData *charityImageData = UIImagePNGRepresentation(self.sharingImage.image);
         [emailViewController addAttachmentData:charityImageData mimeType:@"KarmaScan" fileName:nil];
@@ -96,25 +148,24 @@
     
     switch (result) {
         case MFMailComposeResultCancelled:
-            NSLog(@"messaged cancelded");       
+            NSLog(@"email cancelded");       
             break;
         case MFMailComposeResultSent:
-            NSLog(@"message sent");
+            NSLog(@"email sent");
         default:
             break;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark Social Media
 - (void)postToTwitter
 {
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         SLComposeViewController *twitterViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         
         [twitterViewController addImage:self.sharingImage.image];
-        
-        [twitterViewController setInitialText:@"Did you know"];
-        
+                
         [twitterViewController setCompletionHandler:^(SLComposeViewControllerResult result)
          {
              if (result == SLComposeViewControllerResultCancelled) {
@@ -156,25 +207,6 @@
         [alert show];
         
     }
-    
-    /*
-    //get FB account
-    self.accountStore = [[ACAccount alloc] init];
-    ACAccountType *facebookAccountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-    
-    self.accountStore 
-
-    //accces FB users account
-    NSURL *requestURL = [NSURL URLWithString:@"https://graph.facebook.com/me"];
-    SLRequest * request = [SLRequest requestForServiceType:SLServiceTypeFacebook 
-                                             requestMethod:SLRequestMethodGET
-                                                       URL:requestURL
-                                                parameters:nil];
-    request.account = self.facebookAccount;
-    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-        <#code#>
-    }];
-*/
 }
 
 -(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews
@@ -194,4 +226,8 @@
     }     
 } 
 
+- (IBAction)shareButtonPressed:(id)sender 
+{
+    [self shareActionSheet];
+}
 @end

@@ -12,4 +12,6 @@
 @property (strong, nonatomic) UIImage *unfinishedMeme;
 @property (weak, nonatomic) IBOutlet UIImageView *sharingImage;
 @property (weak,nonatomic) NSString* productPrice;
+- (IBAction)shareButtonPressed:(id)sender;
+
 @end
