@@ -7,10 +7,11 @@
 //
 
 #import "ShareImageViewController.h"
-#import <Accounts/Accounts.h>
+#import <Social/Social.h>
+#import <MessageUI/MessageUI.h>
 
-@interface ShareImageViewController ()
-
+@interface ShareImageViewController () <MFMailComposeViewControllerDelegate>
+@property (strong, nonatomic) ACAccount *accountStore;
 @end
 
 @implementation ShareImageViewController
@@ -66,10 +67,114 @@
     return charityMeme;
 }
 
-
-- (void)shareSetup
+- (void)composeEmailMessage
 {
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *emailViewController = [[MFMailComposeViewController alloc] init];
+        emailViewController.mailComposeDelegate = self;
+        [emailViewController setToRecipients:[[NSArray alloc] initWithObjects:@"johnnydrews@gmail.com", nil]];
+        [emailViewController setTitle:@"Did you know"];
+        
+        NSData *charityImageData = UIImagePNGRepresentation(self.sharingImage.image);
+        [emailViewController addAttachmentData:charityImageData mimeType:@"KarmaScan" fileName:nil];
+        
+        [self presentViewController:emailViewController animated:YES completion:nil];
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter" message:@"Currently, Twitter is not available" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alert show];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    if (error) {
+        NSLog(@"Error occured %@", error.description);
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
     
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            NSLog(@"messaged cancelded");       
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"message sent");
+        default:
+            break;
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)postToTwitter
+{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        SLComposeViewController *twitterViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        
+        [twitterViewController addImage:self.sharingImage.image];
+        
+        [twitterViewController setInitialText:@"Did you know"];
+        
+        [twitterViewController setCompletionHandler:^(SLComposeViewControllerResult result)
+         {
+             if (result == SLComposeViewControllerResultCancelled) {
+                 NSLog(@"Twitter Result Cancelled");
+             } 
+         }];
+        
+        [self presentViewController:twitterViewController animated:YES completion:nil];
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter" message:@"Currently, Twitter is not available" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alert show];
+    }
+        
+}
+
+- (void)postToFacebook
+{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *facebookViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        
+        //add image
+        [facebookViewController addImage:self.sharingImage.image];
+        
+        //write message
+        [facebookViewController setInitialText:@"Did you know"];
+        
+        [facebookViewController setCompletionHandler:^(SLComposeViewControllerResult result)
+         {
+             if (result == SLComposeViewControllerResultCancelled) {
+                 NSLog(@"Facebook Result Cancelled");
+             } 
+         }];
+        
+        [self presentViewController:facebookViewController animated:YES completion:nil];
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook" message:@"Currently, Facebook is not available" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alert show];
+        
+    }
+    
+    /*
+    //get FB account
+    self.accountStore = [[ACAccount alloc] init];
+    ACAccountType *facebookAccountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    
+    self.accountStore 
+
+    //accces FB users account
+    NSURL *requestURL = [NSURL URLWithString:@"https://graph.facebook.com/me"];
+    SLRequest * request = [SLRequest requestForServiceType:SLServiceTypeFacebook 
+                                             requestMethod:SLRequestMethodGET
+                                                       URL:requestURL
+                                                parameters:nil];
+    request.account = self.facebookAccount;
+    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+        <#code#>
+    }];
+*/
 }
 
 -(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews

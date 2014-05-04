@@ -89,6 +89,7 @@
     UITableViewCell *cell  = [self.imagesTableView cellForRowAtIndexPath:selectedIndexPath];
     cell.accessoryType = UITableViewCellAccessoryNone;
 
+    //take snapshot of the cell
     UIGraphicsBeginImageContextWithOptions(cell.bounds.size, cell.opaque, 0.0);
     [cell.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *cellImage = UIGraphicsGetImageFromCurrentImageContext();
