@@ -35,24 +35,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     
-    
-    
-    highlightView = [[UIView alloc] init];
-    highlightView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
-    highlightView.layer.borderColor = [UIColor greenColor].CGColor;
-    highlightView.layer.borderWidth = 3;
-    [self.view addSubview:highlightView];
-    
-    label = [[UILabel alloc] init];
-    label.frame = CGRectMake(0, self.view.bounds.size.height - 40, self.view.bounds.size.width, 40);
-    label.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    label.backgroundColor = [UIColor colorWithWhite:0.15 alpha:0.65];
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"UPC Code Will Appear Here";
-    [self.view addSubview:label];
+    [self setupUI];
     
     _session = [[AVCaptureSession alloc] init];
     _device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
@@ -77,6 +62,27 @@
     [self.view.layer addSublayer:_prevLayer];
     
     [_session startRunning];
+}
+
+- (void)setupUI
+{
+    highlightView = [[UIView alloc] init];
+    highlightView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
+    highlightView.layer.borderColor = [UIColor greenColor].CGColor;
+    highlightView.layer.borderWidth = 3;
+    [self.view addSubview:highlightView];
+    
+    label = [[UILabel alloc] init];
+    label.frame = CGRectMake(0, self.view.bounds.size.height - 40, self.view.bounds.size.width, 40);
+    label.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    label.backgroundColor = [UIColor colorWithWhite:0.15 alpha:0.65];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.layer.borderColor = [[UIColor whiteColor] CGColor];
+    label.layer.borderWidth = 2;
+    label.layer.cornerRadius = 10;
+    label.text = @"UPC Code Will Appear Here";
+    [self.view addSubview:label];
     
     [self.view bringSubviewToFront:highlightView];
     [self.view bringSubviewToFront:label];

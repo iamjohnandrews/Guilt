@@ -10,7 +10,7 @@
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
 
-@interface ShareImageViewController () <MFMailComposeViewControllerDelegate, UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
+@interface ShareImageViewController () <UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
 
 @end
 
@@ -26,7 +26,7 @@
     self.view.contentMode = UIViewContentModeScaleAspectFit;
     
     [self.navigationItem setTitle:@"Let 'em Know"];
-    [self setFontFamily:@"Quicksand-Regular" forView:self.view andSubViews:YES];
+    [self setFontFamily:@"Quicksand-Bold" forView:self.view andSubViews:YES];
     
     self.sharingImage.image = self.unfinishedMeme;
     
@@ -107,12 +107,8 @@
 - (void)composeText
 {
     MFMessageComposeViewController *messageComposeViewController = [[MFMessageComposeViewController alloc] init];
-    messageComposeViewController.delegate = self;
-    messageComposeViewController.recipients = @[@"mattt@nshipster•com"];
-    messageComposeViewController.body = @"Lorem ipsum dolor sit amet";
-    [self presentViewController:messageComposeViewController animated:YES completion:^{
-        // ...
-    }];
+//    messageComposeViewController.delegate = self;
+    [self presentViewController:messageComposeViewController animated:YES completion:nil];
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
@@ -124,16 +120,11 @@
 - (void)composeEmailMessage
 {
     if ([MFMailComposeViewController canSendMail]) {
-        MFMailComposeViewController *emailViewController = [[MFMailComposeViewController alloc] init];
-        emailViewController.mailComposeDelegate = self;
-        
-        NSData *charityImageData = UIImagePNGRepresentation(self.sharingImage.image);
-        [emailViewController addAttachmentData:charityImageData mimeType:@"KarmaScan" fileName:nil];
-        
-        [self presentViewController:emailViewController animated:YES completion:nil];
+        MFMailComposeViewController *mailComposeViewController = [[MFMailComposeViewController alloc] init];
+        [self presentViewController:mailComposeViewController animated:YES completion:nil];
         
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter" message:@"Currently, Twitter is not available" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter" message:@"KarmaScan is unable to access your email at this time" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
     }
 }
@@ -148,7 +139,7 @@
     
     switch (result) {
         case MFMailComposeResultCancelled:
-            NSLog(@"email cancelded");       
+            NSLog(@"email cancellded");       
             break;
         case MFMailComposeResultSent:
             NSLog(@"email sent");
@@ -164,8 +155,6 @@
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         SLComposeViewController *twitterViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         
-        [twitterViewController addImage:self.sharingImage.image];
-                
         [twitterViewController setCompletionHandler:^(SLComposeViewControllerResult result)
          {
              if (result == SLComposeViewControllerResultCancelled) {
@@ -179,19 +168,12 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter" message:@"Currently, Twitter is not available" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
     }
-        
 }
 
 - (void)postToFacebook
 {
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         SLComposeViewController *facebookViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-        
-        //add image
-        [facebookViewController addImage:self.sharingImage.image];
-        
-        //write message
-        [facebookViewController setInitialText:@"Did you know"];
         
         [facebookViewController setCompletionHandler:^(SLComposeViewControllerResult result)
          {
@@ -205,7 +187,6 @@
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook" message:@"Currently, Facebook is not available" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
-        
     }
 }
 

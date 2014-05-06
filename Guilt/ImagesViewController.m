@@ -46,7 +46,7 @@
     transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
     makeImagesLean = transform;
     
-    [self setFontFamily:@"Quicksand-Regular" forView:self.view andSubViews:YES];
+    [self setFontFamily:@"Quicksand-Bold" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
     self.charityData = [[Charity alloc] init];
 }
