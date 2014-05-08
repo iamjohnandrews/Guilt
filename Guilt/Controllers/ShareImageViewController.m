@@ -26,7 +26,6 @@
     self.view.contentMode = UIViewContentModeScaleAspectFit;
     
     [self.navigationItem setTitle:@"Let 'em Know"];
-    [self setFontFamily:@"Quicksand-Bold" forView:self.view andSubViews:YES];
     
     self.sharingImage.image = self.unfinishedMeme;
     
@@ -189,23 +188,6 @@
         [alert show];
     }
 }
-
--(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews
-{
-    if ([view isKindOfClass:[UILabel class]])
-    {
-        UILabel *lbl = (UILabel *)view;
-        [lbl setFont:[UIFont fontWithName:fontFamily size:[[lbl font] pointSize]]];
-    }
-    
-    if (isSubViews)
-    {
-        for (UIView *sview in view.subviews)
-        {
-            [self setFontFamily:fontFamily forView:sview andSubViews:YES];
-        }
-    }     
-} 
 
 - (IBAction)shareButtonPressed:(id)sender 
 {

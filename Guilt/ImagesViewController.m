@@ -46,7 +46,7 @@
     transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
     makeImagesLean = transform;
     
-    [self setFontFamily:@"Quicksand-Bold" forView:self.view andSubViews:YES];
+//    [self setFontFamily:@"Quicksand-Bold" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
     self.charityData = [[Charity alloc] init];
 }
@@ -88,12 +88,17 @@
     NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
     UITableViewCell *cell  = [self.imagesTableView cellForRowAtIndexPath:selectedIndexPath];
     cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
 
     //take snapshot of the cell
     UIGraphicsBeginImageContextWithOptions(cell.bounds.size, cell.opaque, 0.0);
     [cell.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *cellImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
+    CGContextRestoreGState(context);
     
     return cellImage;
 }
@@ -177,7 +182,10 @@
     } else {
         charityDescription = [self.charityData charityDescriptionPlural:indexPath.row];
     }
-    charityCell.charityConversionDetailsLabel.text = [NSString stringWithFormat:@"%@ %@",[self.resultOfCharitableConversionsDict objectForKey:charityName], charityDescription];
+    NSAttributedString *charityDescriptionText = [[NSAttributedString alloc] initWithString:[[NSString stringWithFormat:@"%@ %@",[self.resultOfCharitableConversionsDict objectForKey:charityName], charityDescription] uppercaseString] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
+    charityCell.charityConversionDetailsLabel.attributedText = charityDescriptionText;
+    
+//    charityCell.charityConversionDetailsLabel.text = [[NSString stringWithFormat:@"%@ %@",[self.resultOfCharitableConversionsDict objectForKey:charityName], charityDescription] uppercaseString];
     
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDonationButtonTapped:)];
     [charityCell.donationButton addGestureRecognizer:recognizer];

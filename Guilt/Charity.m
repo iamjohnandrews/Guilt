@@ -49,26 +49,26 @@
 - (NSString *)charityDescriptionPlural:(NSUInteger)specificCharity
 {
     NSArray *charityDescriptionPluralArray = [NSArray array];
-    charityDescriptionPluralArray = @[@"animal meals through The Animal Rescue Site",
-                                      @"months of vaccines, schooling & disaster relief through Unicef",
-                                      @"months of food, water, & medical supplies through FTC",
-                                      @"flocks of ducklings for 3rd world families through Heifer",
-                                      @"gifts of bees for 3rd world families through Heifer",
-                                      @"military care packages through Soildier's Angels",
-                                      @"spring catchments serving 250 people through African Well Fund"];
+    charityDescriptionPluralArray = @[@"animal meals from The Animal Rescue Site",
+                                      @"months of disaster relief, vaccines & school from Unicef",
+                                      @"months of food, water, & medical supplies from FTC",
+                                      @"flocks of ducks for 3rd world families from Heifer",
+                                      @"gifts of bees for 3rd world families from Heifer",
+                                      @"military care packages from Soildier's Angels",
+                                      @"spring catchments for 250 people from African Well Fund"];
     return [charityDescriptionPluralArray objectAtIndex:specificCharity];
 }
 
 - (NSString *)charityDescriptionSingular:(NSUInteger)specificCharity
 {
     NSArray *charityDescriptionSingularArray = [NSArray array];
-    charityDescriptionSingularArray = @[@"animal meals through The Animal Rescue Site",
-                                        @"month of vaccines, schooling & disaster relief through Unicef",
-                                        @"month of food, water, & medical supplies through FTC",
-                                        @"flock of ducklings per a 3rd world family through Heifer",
-                                        @"gift of bees per a 3rd world family through Heifer",
-                                        @"military care package through Soildier's Angels",
-                                        @"spring catchment serving 250 people through African Well Fund"];
+    charityDescriptionSingularArray = @[@"animal meals from The Animal Rescue Site",
+                                        @"month of disaster relief, vaccines & school from Unicef",
+                                        @"month of food, water, & medical supplies from FTC",
+                                        @"flock of ducks per a 3rd world family from Heifer",
+                                        @"gift of bees per a 3rd world family from Heifer",
+                                        @"military care package from Soildier's Angels",
+                                        @"spring catchment for 250 people from African Well Fund"];
     return [charityDescriptionSingularArray objectAtIndex:specificCharity];
 }
 

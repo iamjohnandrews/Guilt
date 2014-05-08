@@ -21,9 +21,8 @@
 
 - (void)updateUI
 {
-    self.charityConversionDetailsLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:12];
+//    self.charityConversionDetailsLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:12];
     self.charityConversionDetailsLabel.textColor = [UIColor whiteColor];
-    
 }
 
 - (void)awakeFromNib
@@ -35,7 +34,7 @@
     gradientLayer.colors = @[(id)[[UIColor clearColor] CGColor],
                              (id)[[UIColor clearColor] CGColor],
                              (id)[[UIColor colorWithWhite:0.0 alpha:1.0] CGColor]];
-    gradientLayer.locations = @[@0.3, @0.6, @1.0];
+    gradientLayer.locations = @[@0.4, @0.7, @1.0];
     [self.displayImageView.layer addSublayer:gradientLayer];  
     self.displayImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.displayImageView.clipsToBounds = YES;    
