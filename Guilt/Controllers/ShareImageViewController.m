@@ -43,11 +43,13 @@
     gradientLayer.colors = @[(id)[[UIColor colorWithWhite:0.0 alpha:1.0] CGColor],
                              (id)[[UIColor clearColor] CGColor],
                              (id)[[UIColor clearColor] CGColor]];
-    gradientLayer.locations = @[@0.0, @0.1, @0.2];
+    gradientLayer.locations = @[@0.0, @0.05, @0.15];
     [self.sharingImage.layer addSublayer:gradientLayer];  
     
     UILabel *converstionAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(60.0f, 0, CGRectGetWidth(self.view.bounds) - 60.0f, 20.0f)];
-    converstionAmountLabel.text = [NSString stringWithFormat:@"$%@ is equivalent to", self.productPrice];
+    NSAttributedString *charityEquivalentText = [[NSAttributedString alloc] initWithString:[[NSString stringWithFormat:@"$%@ is equivalent to", self.productPrice] uppercaseString] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
+    converstionAmountLabel.attributedText = charityEquivalentText;
+    converstionAmountLabel.font = [UIFont fontWithName:@"AvenirNext-Heavy" size:14];
     converstionAmountLabel.textColor = [UIColor whiteColor];
     converstionAmountLabel.textAlignment = NSTextAlignmentCenter;
     [self.sharingImage addSubview:converstionAmountLabel];

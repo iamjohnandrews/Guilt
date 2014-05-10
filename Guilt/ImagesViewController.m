@@ -78,9 +78,7 @@
         } else {
             shareImageVC.productPrice = self.userImputPrice;
         }
-    
     }
-    
 }
 
 - (UIImage *)convertCellIntoImage
