@@ -18,6 +18,9 @@
     [Parse setApplicationId:@"HMDmp3Y7ihXmaRXw5rfjSszBTwa7I0Uc3Rl7DNZu"
                   clientKey:@"BUHidRvb464SnFmDyh0qgZ6qrL15gKI1NSUP0LLk"];
     
+    // Initialize Parse's Facebook Utilities singleton. This uses the FacebookAppID we specified in our App bundle's plist.
+    [PFFacebookUtils initializeFacebook];
+    
     //Parse Analytics
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
@@ -28,7 +31,13 @@
     return YES;
 }
 
+- (BOOL) application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [PFFacebookUtils handleOpenURL:url];
+}
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [PFFacebookUtils handleOpenURL:url];
+}
 
 
 

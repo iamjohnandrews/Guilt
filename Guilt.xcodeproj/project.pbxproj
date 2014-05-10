@@ -49,6 +49,7 @@
 		8E31BE8D191E958E00EB9032 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E31BE8C191E958E00EB9032 /* libsqlite3.dylib */; };
 		8E31BE8F191E959C00EB9032 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E31BE8E191E959C00EB9032 /* Accounts.framework */; };
 		8E31BE91191E95A600EB9032 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E31BE90191E95A600EB9032 /* AdSupport.framework */; };
+		8E31BE94191E9D0300EB9032 /* Comms.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E31BE93191E9D0300EB9032 /* Comms.m */; };
 		8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */; };
 		8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3FA46A18CBB3FA009E2A66 /* BaseViewController.m */; };
 		8E69AB4E183FF598000A4B4D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E69AB4D183FF598000A4B4D /* Parse.framework */; };
@@ -135,6 +136,8 @@
 		8E31BE8C191E958E00EB9032 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		8E31BE8E191E959C00EB9032 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8E31BE90191E95A600EB9032 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		8E31BE92191E9D0300EB9032 /* Comms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comms.h; sourceTree = "<group>"; };
+		8E31BE93191E9D0300EB9032 /* Comms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comms.m; sourceTree = "<group>"; };
 		8E3FA46618CB8329009E2A66 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		8E3FA46918CBB3FA009E2A66 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -373,6 +376,8 @@
 				E00CB85B182B318A00A497C3 /* MyLoginViewController.m */,
 				E00CB857182B316800A497C3 /* KarmaSignupViewController.h */,
 				E00CB858182B316F00A497C3 /* KarmaSignupViewController.m */,
+				8E31BE92191E9D0300EB9032 /* Comms.h */,
+				8E31BE93191E9D0300EB9032 /* Comms.m */,
 			);
 			name = "Login:Signup";
 			path = "../Login:Signup";
@@ -551,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E00CB85C182B318A00A497C3 /* MyLoginViewController.m in Sources */,
+				8E31BE94191E9D0300EB9032 /* Comms.m in Sources */,
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
 				8E29F2A218D626A4007AFA4C /* Charity.m in Sources */,

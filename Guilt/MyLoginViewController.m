@@ -7,6 +7,7 @@
 //
 #import "ConversionViewController.h"
 #import "MyLoginViewController.h"
+#import "Comms.h"
 
 @interface MyLoginViewController () <UITextFieldDelegate>
 @property (nonatomic, strong) UITextField *emailTextField;
