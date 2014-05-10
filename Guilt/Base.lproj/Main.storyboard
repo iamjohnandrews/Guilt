@@ -34,10 +34,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Price" textAlignment="center" minimumFontSize="17" id="M98-zr-X80">
-                                <rect key="frame" x="94" y="132" width="132" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert Price Here" textAlignment="center" minimumFontSize="17" id="M98-zr-X80">
+                                <rect key="frame" x="52" y="132" width="225" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="myI-Tg-Yul">
@@ -540,7 +540,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ykt-Gs-ZaS"/>
+        <segue reference="eV3-BS-VXY"/>
         <segue reference="DqT-8L-8h8"/>
     </inferredMetricsTieBreakers>
 </document>

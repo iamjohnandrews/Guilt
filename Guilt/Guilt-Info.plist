@@ -30,6 +30,8 @@
 		<string>QuicksandRegular.otf</string>
 		<string>Quicksand-Bold.otf</string>
 	</array>
+	<key>UILaunchImageFile~iphone</key>
+	<string>splashScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -38,8 +40,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>UILaunchImageFile~iphone</key>
-	<string>splashScreen</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
