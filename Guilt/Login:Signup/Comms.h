@@ -15,5 +15,7 @@
 
 @interface Comms : NSObject
 + (void) login:(id<CommsDelegate>)delegate;
+
+
 @end
 

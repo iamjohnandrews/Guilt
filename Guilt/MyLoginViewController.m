@@ -8,9 +8,12 @@
 #import "ConversionViewController.h"
 #import "MyLoginViewController.h"
 #import "Comms.h"
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface MyLoginViewController () <UITextFieldDelegate>
+@interface MyLoginViewController () <UITextFieldDelegate, CommsDelegate>
 @property (nonatomic, strong) UITextField *emailTextField;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 @end
 
 @implementation MyLoginViewController
@@ -84,9 +87,44 @@
     [self.view addSubview:self.emailTextField];
 }
 
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     [[self view] endEditing:TRUE];
+}
+
+#pragma mark - Facebook Login
+- (IBAction)facebookLoginButtonPressed:(id)sender 
+{
+    // Disable the Login button to prevent multiple touches
+    [self.facebookLoginButtonOutlet setEnabled:NO];
+    
+    // Show an activity indicator
+    [self.activityIndicator startAnimating];
+    
+    // Do the login
+    [Comms login:self];
+}
+
+- (void) commsDidLogin:(BOOL)loggedIn {
+	// Re-enable the Login button
+	[self.facebookLoginButtonOutlet setEnabled:YES];
+    
+	// Stop the activity indicator
+	[self.activityIndicator stopAnimating];
+    
+	// Did we login successfully ?
+	if (loggedIn) {
+		self.userIsLoggedIn = YES;
+		[self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
+	} else {
+		// Show error alert
+		[[[UIAlertView alloc] initWithTitle:@"Facebook Login Failed"
+                                    message:@"Please try again"
+                                   delegate:nil
+                          cancelButtonTitle:@"Ok"
+                          otherButtonTitles:nil] show];
+	}
 }
 
 #pragma mark - Keyboard Notifications
@@ -192,6 +230,7 @@
     [self.skipButtonOutlet setTitle:@"Skip"];
     
     [self.navigationItem setTitle:@"Login"];
+    
 }
 
 #pragma mark - Parse Login methods

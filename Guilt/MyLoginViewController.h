@@ -26,9 +26,14 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *fogottenPWButtonOutlet;
 
+@property (weak, nonatomic) IBOutlet UIButton *facebookLoginButtonOutlet;
+
 - (IBAction)didLogin:(id)sender;
 
 - (IBAction)skipButtonPressed:(id)sender;
 
 - (IBAction)forgottenPWButtonPressed:(id)sender;
+
+- (IBAction)facebookLoginButtonPressed:(id)sender;
+
 @end
