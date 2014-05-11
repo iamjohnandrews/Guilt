@@ -66,6 +66,15 @@
 		8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17BF818201F00000DDFCC /* ImagesViewController.m */; };
 		8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */; };
 		8EB6F6B9191FAC9A004F70C5 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6B8191FAC9A004F70C5 /* Constants.m */; };
+		8EB6F6BC191FAD7F004F70C5 /* TwitterClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6BB191FAD7F004F70C5 /* TwitterClient.m */; };
+		8EB6F6C2191FAE0D004F70C5 /* FHSTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6BF191FAE0D004F70C5 /* FHSTwitterEngine.m */; };
+		8EB6F6C3191FAE0D004F70C5 /* FHSStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6C1191FAE0D004F70C5 /* FHSStream.m */; };
+		8EB6F6C6191FAE1F004F70C5 /* PFTwitterUtils+NativeTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6C5191FAE1F004F70C5 /* PFTwitterUtils+NativeTwitter.m */; };
+		8EB6F6CD191FAE2F004F70C5 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6C8191FAE2F004F70C5 /* NSData+Base64.m */; };
+		8EB6F6CE191FAE2F004F70C5 /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6CA191FAE2F004F70C5 /* OAuth+Additions.m */; };
+		8EB6F6CF191FAE2F004F70C5 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6CC191FAE2F004F70C5 /* OAuthCore.m */; };
+		8EB6F6D4191FAE3C004F70C5 /* TWAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6D1191FAE3C004F70C5 /* TWAPIManager.m */; };
+		8EB6F6D5191FAE3C004F70C5 /* TWSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6D3191FAE3C004F70C5 /* TWSignedRequest.m */; };
 		8EFD979618FB4214006363E0 /* splashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD979418FB4214006363E0 /* splashScreen.png */; };
 		8EFD979718FB4214006363E0 /* splashScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD979518FB4214006363E0 /* splashScreen@2x.png */; };
 		E00CB84D182B28F000A497C3 /* TestHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E00CB84C182B28F000A497C3 /* TestHeader.xib */; };
@@ -163,6 +172,24 @@
 		8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ScannerDidNotWorkDelegate.h; path = ../ScannerDidNotWorkDelegate.h; sourceTree = "<group>"; };
 		8EB6F6B7191FAC9A004F70C5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8EB6F6B8191FAC9A004F70C5 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		8EB6F6BA191FAD7F004F70C5 /* TwitterClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterClient.h; sourceTree = "<group>"; };
+		8EB6F6BB191FAD7F004F70C5 /* TwitterClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterClient.m; sourceTree = "<group>"; };
+		8EB6F6BE191FAE0D004F70C5 /* FHSTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSTwitterEngine.h; sourceTree = "<group>"; };
+		8EB6F6BF191FAE0D004F70C5 /* FHSTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSTwitterEngine.m; sourceTree = "<group>"; };
+		8EB6F6C0191FAE0D004F70C5 /* FHSStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSStream.h; sourceTree = "<group>"; };
+		8EB6F6C1191FAE0D004F70C5 /* FHSStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSStream.m; sourceTree = "<group>"; };
+		8EB6F6C4191FAE1F004F70C5 /* PFTwitterUtils+NativeTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFTwitterUtils+NativeTwitter.h"; sourceTree = "<group>"; };
+		8EB6F6C5191FAE1F004F70C5 /* PFTwitterUtils+NativeTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFTwitterUtils+NativeTwitter.m"; sourceTree = "<group>"; };
+		8EB6F6C7191FAE2F004F70C5 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		8EB6F6C8191FAE2F004F70C5 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		8EB6F6C9191FAE2F004F70C5 /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+Additions.h"; sourceTree = "<group>"; };
+		8EB6F6CA191FAE2F004F70C5 /* OAuth+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+Additions.m"; sourceTree = "<group>"; };
+		8EB6F6CB191FAE2F004F70C5 /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthCore.h; sourceTree = "<group>"; };
+		8EB6F6CC191FAE2F004F70C5 /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthCore.m; sourceTree = "<group>"; };
+		8EB6F6D0191FAE3C004F70C5 /* TWAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWAPIManager.h; sourceTree = "<group>"; };
+		8EB6F6D1191FAE3C004F70C5 /* TWAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWAPIManager.m; sourceTree = "<group>"; };
+		8EB6F6D2191FAE3C004F70C5 /* TWSignedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSignedRequest.h; sourceTree = "<group>"; };
+		8EB6F6D3191FAE3C004F70C5 /* TWSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSignedRequest.m; sourceTree = "<group>"; };
 		8EFD979418FB4214006363E0 /* splashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashScreen.png; sourceTree = "<group>"; };
 		8EFD979518FB4214006363E0 /* splashScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splashScreen@2x.png"; sourceTree = "<group>"; };
 		E00CB84C182B28F000A497C3 /* TestHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestHeader.xib; path = ../TestHeader.xib; sourceTree = "<group>"; };
@@ -264,6 +291,7 @@
 		8E00AACC18182E9700BB32E4 /* Guilt */ = {
 			isa = PBXGroup;
 			children = (
+				8EB6F6BD191FADE6004F70C5 /* 3rd-Party Twitter Login Stuff */,
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
@@ -401,11 +429,36 @@
 		8EB6F6B6191FAB5A004F70C5 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				8EB6F6BA191FAD7F004F70C5 /* TwitterClient.h */,
+				8EB6F6BB191FAD7F004F70C5 /* TwitterClient.m */,
 				8E31BE92191E9D0300EB9032 /* Comms.h */,
 				8E31BE93191E9D0300EB9032 /* Comms.m */,
 			);
 			name = Networking;
 			path = "Login:Signup";
+			sourceTree = "<group>";
+		};
+		8EB6F6BD191FADE6004F70C5 /* 3rd-Party Twitter Login Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				8EB6F6D0191FAE3C004F70C5 /* TWAPIManager.h */,
+				8EB6F6D1191FAE3C004F70C5 /* TWAPIManager.m */,
+				8EB6F6D2191FAE3C004F70C5 /* TWSignedRequest.h */,
+				8EB6F6D3191FAE3C004F70C5 /* TWSignedRequest.m */,
+				8EB6F6C7191FAE2F004F70C5 /* NSData+Base64.h */,
+				8EB6F6C8191FAE2F004F70C5 /* NSData+Base64.m */,
+				8EB6F6C9191FAE2F004F70C5 /* OAuth+Additions.h */,
+				8EB6F6CA191FAE2F004F70C5 /* OAuth+Additions.m */,
+				8EB6F6CB191FAE2F004F70C5 /* OAuthCore.h */,
+				8EB6F6CC191FAE2F004F70C5 /* OAuthCore.m */,
+				8EB6F6C4191FAE1F004F70C5 /* PFTwitterUtils+NativeTwitter.h */,
+				8EB6F6C5191FAE1F004F70C5 /* PFTwitterUtils+NativeTwitter.m */,
+				8EB6F6BE191FAE0D004F70C5 /* FHSTwitterEngine.h */,
+				8EB6F6BF191FAE0D004F70C5 /* FHSTwitterEngine.m */,
+				8EB6F6C0191FAE0D004F70C5 /* FHSStream.h */,
+				8EB6F6C1191FAE0D004F70C5 /* FHSStream.m */,
+			);
+			name = "3rd-Party Twitter Login Stuff";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -569,21 +622,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EB6F6CF191FAE2F004F70C5 /* OAuthCore.m in Sources */,
 				E00CB85C182B318A00A497C3 /* MyLoginViewController.m in Sources */,
 				8E31BE94191E9D0300EB9032 /* Comms.m in Sources */,
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
+				8EB6F6CD191FAE2F004F70C5 /* NSData+Base64.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
+				8EB6F6D5191FAE3C004F70C5 /* TWSignedRequest.m in Sources */,
 				8E29F2A218D626A4007AFA4C /* Charity.m in Sources */,
 				8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */,
 				8E77A87C18EA5608001470DD /* UserHistoryCell.m in Sources */,
+				8EB6F6C3191FAE0D004F70C5 /* FHSStream.m in Sources */,
 				8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */,
+				8EB6F6C6191FAE1F004F70C5 /* PFTwitterUtils+NativeTwitter.m in Sources */,
 				8EB6F6B9191FAC9A004F70C5 /* Constants.m in Sources */,
 				E00CB859182B316F00A497C3 /* KarmaSignupViewController.m in Sources */,
+				8EB6F6C2191FAE0D004F70C5 /* FHSTwitterEngine.m in Sources */,
+				8EB6F6BC191FAD7F004F70C5 /* TwitterClient.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
 				8E31BE89191C44B900EB9032 /* ShareImageViewController.m in Sources */,
+				8EB6F6D4191FAE3C004F70C5 /* TWAPIManager.m in Sources */,
 				772B828E1829683300128190 /* UserProfileViewController.m in Sources */,
 				771BCD951822D48E000264A8 /* (null) in Sources */,
+				8EB6F6CE191FAE2F004F70C5 /* OAuth+Additions.m in Sources */,
 				771BCD80182023DD000264A8 /* ScannerViewController.m in Sources */,
 				8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */,
 			);

@@ -9,10 +9,14 @@
 #import "MyLoginViewController.h"
 #import "Comms.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "PFTwitterUtils+NativeTwitter.h"
+#import "TwitterClient.h"
+#import "FHSTwitterEngine.h"
 
-@interface MyLoginViewController () <UITextFieldDelegate, CommsDelegate>
+@interface MyLoginViewController () <UITextFieldDelegate, CommsDelegate, UIActionSheetDelegate>
 @property (nonatomic, strong) UITextField *emailTextField;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) NSArray *twitterAccounts;
 
 @end
 
