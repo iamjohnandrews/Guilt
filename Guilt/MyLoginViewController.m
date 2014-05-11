@@ -13,7 +13,7 @@
 #import "TwitterClient.h"
 #import "FHSTwitterEngine.h"
 
-@interface MyLoginViewController () <UITextFieldDelegate, CommsDelegate, UIActionSheetDelegate>
+@interface MyLoginViewController () <UITextFieldDelegate, CommsDelegate, UIActionSheetDelegate, TwitterDelegate>
 @property (nonatomic, strong) UITextField *emailTextField;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSArray *twitterAccounts;
@@ -98,18 +98,15 @@
 #pragma mark - Facebook Login
 - (IBAction)facebookLoginButtonPressed:(id)sender 
 {
-    // Disable the Login button to prevent multiple touches
     [self.facebookLoginButtonOutlet setEnabled:NO];
     
-    // Show an activity indicator
-    [self.activityIndicator startAnimating];
+    [self displayUIActivityIndicatorView];
     
-    // Do the login
     [Comms login:self];
 }
 
-- (void) commsDidLogin:(BOOL)loggedIn {
-	// Re-enable the Login button
+- (void) commsDidLogin:(BOOL)loggedIn
+{
 	[self.facebookLoginButtonOutlet setEnabled:YES];
     
 	// Stop the activity indicator
@@ -133,10 +130,31 @@
 
 - (IBAction)twitterLoginButtonPressed:(id)sender 
 {
+    [self.twitterLoginButtonOutlet setEnabled:NO];
+    [self displayUIActivityIndicatorView];
+
     __weak MyLoginViewController *weakSelf = self;
     [PFTwitterUtils getTwitterAccounts:^(BOOL accountsWereFound, NSArray *twitterAccounts) {
         [weakSelf handleTwitterAccounts:twitterAccounts];
     }];
+}
+
+- (void)userDidLogIntoTwitter:(BOOL)loggedIn 
+{
+	[self.twitterLoginButtonOutlet setEnabled:YES];
+    
+	[self.activityIndicator stopAnimating];
+    
+	if (loggedIn) {
+		self.userIsLoggedIn = YES;
+		[self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
+	} else {
+		[[[UIAlertView alloc] initWithTitle:@"Twitter Login Failed"
+                                    message:@"Please try again"
+                                   delegate:nil
+                          cancelButtonTitle:@"Ok"
+                          otherButtonTitles:nil] show];
+	}
 }
 
 - (void)handleTwitterAccounts:(NSArray *)twitterAccounts
@@ -147,7 +165,7 @@
             [[FHSTwitterEngine sharedEngine] permanentlySetConsumerKey:TWITTER_CONSUMER_KEY andSecret:TWITTER_CONSUMER_SECRET];
             UIViewController *loginController = [[FHSTwitterEngine sharedEngine] loginControllerWithCompletionHandler:^(BOOL success) {
                 if (success) {
-                    [TwitterClient loginUserWithTwitterEngine];
+                    [TwitterClient loginUserWithTwitterEngine:self];
                 }
             }];
             [self presentViewController:loginController animated:YES completion:nil];
@@ -183,16 +201,23 @@
 
 - (void)onUserTwitterAccountSelection:(ACAccount *)twitterAccount
 {
-    [TwitterClient loginUserWithAccount:twitterAccount];
+    [TwitterClient loginUserWithAccount:twitterAccount shit:self];
 }
 
-#pragma mark - UIActionSheetDelegate Methods
+#pragma mark - UIActionSheet & UIActivityIndicatorView
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != actionSheet.cancelButtonIndex) {
         [self onUserTwitterAccountSelection:self.twitterAccounts[buttonIndex]];
     }
+}
+
+- (void)displayUIActivityIndicatorView
+{
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.center.y, 50, 50)];
+    [self.activityIndicator startAnimating];
+    [self.view addSubview:self.activityIndicator]; 
 }
 
 

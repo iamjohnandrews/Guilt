@@ -8,9 +8,14 @@
 
 @class ACAccount;
 
+@protocol TwitterDelegate <NSObject>
+@optional
+- (void)userDidLogIntoTwitter:(BOOL)loggedIn;
+@end
+
 @interface TwitterClient : NSObject
 
-+ (void)loginUserWithAccount:(ACAccount *)twitterAccount;
-+ (void)loginUserWithTwitterEngine;
++ (void)loginUserWithAccount:(ACAccount *)twitterAccount shit:(id<TwitterDelegate>)twitterDelegate;
++ (void)loginUserWithTwitterEngine:(id<TwitterDelegate>)twitterDelegate;
 
 @end

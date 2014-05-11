@@ -13,23 +13,25 @@
 
 @implementation TwitterClient
 
-+ (void)loginUserWithAccount:(ACAccount *)twitterAccount
++ (void)loginUserWithAccount:(ACAccount *)twitterAccount shit:(id<TwitterDelegate>)twitterDelegate
 {
     [PFTwitterUtils initializeWithConsumerKey:TWITTER_CONSUMER_KEY consumerSecret:TWITTER_CONSUMER_SECRET];
     
     [PFTwitterUtils setNativeLogInSuccessBlock:^(PFUser *parseUser, NSString *userTwitterId, NSError *error) {
-        [self onLoginSuccess:parseUser];
+        NSLog(@"Twitter Login Success for parseUser,%@", parseUser);
+        [self keepIt:twitterDelegate MovingAlong:parseUser];
     }];
     
     [PFTwitterUtils setNativeLogInErrorBlock:^(TwitterLogInError logInError) {
         NSError *error = [[NSError alloc] initWithDomain:nil code:logInError userInfo:@{@"logInErrorCode" : @(logInError)}];
-        [self onLoginFailure:error];
+        NSLog(@"Twitter Login Failure, error:%@", error);
+        [twitterDelegate userDidLogIntoTwitter:NO];
     }];
     
     [PFTwitterUtils logInWithAccount:twitterAccount];
 }
 
-+ (void)loginUserWithTwitterEngine
++ (void)loginUserWithTwitterEngine:(id<TwitterDelegate>)twitterDelegate
 {
     [PFTwitterUtils initializeWithConsumerKey:TWITTER_CONSUMER_KEY consumerSecret:TWITTER_CONSUMER_SECRET];
     
@@ -41,24 +43,25 @@
                              authToken:token.key
                        authTokenSecret:token.secret
                                  block:^(PFUser *user, NSError *error) {
-                                     if (user) {
-                                         [self onLoginSuccess:user];
-                                     } else {
-                                         [self onLoginFailure:error];
-                                     }
+                                     [self keepIt:twitterDelegate MovingAlong:user];                                
                                  }];
 }
 
-#pragma mark - Private
-
-+ (void)onLoginSuccess:(PFUser *)user
++ (void)keepIt:(id<TwitterDelegate>)twitterDelegate MovingAlong:(PFUser *)user
 {
-    NSLog(@" Login Success");
-}
-
-+ (void)onLoginFailure:(NSError *)error
-{
-    NSLog(@" Login Failure");
+    if (user) {
+        if (user.isNew) {
+            NSLog(@"New User signed up and logged in through Twitter!");
+            [twitterDelegate userDidLogIntoTwitter:YES];
+        } else {
+            NSLog(@"User logged in through Twitter!");
+            [twitterDelegate userDidLogIntoTwitter:YES];
+        }
+        
+    } else {
+        NSLog(@"Twitter Login Failure");
+        [twitterDelegate userDidLogIntoTwitter:NO];
+    }
 }
 
 + (void)fetchDataForUser:(PFUser *)user username:(NSString *)twitterUsername
