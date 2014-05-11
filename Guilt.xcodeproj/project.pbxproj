@@ -65,6 +65,7 @@
 		8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAE7B72182006A7001BDC08 /* ConversionViewController.m */; };
 		8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17BF818201F00000DDFCC /* ImagesViewController.m */; };
 		8EB17C1318217A85000DDFCC /* CharityAndProductDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */; };
+		8EB6F6B9191FAC9A004F70C5 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6B8191FAC9A004F70C5 /* Constants.m */; };
 		8EFD979618FB4214006363E0 /* splashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD979418FB4214006363E0 /* splashScreen.png */; };
 		8EFD979718FB4214006363E0 /* splashScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD979518FB4214006363E0 /* splashScreen@2x.png */; };
 		E00CB84D182B28F000A497C3 /* TestHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E00CB84C182B28F000A497C3 /* TestHeader.xib */; };
@@ -160,6 +161,8 @@
 		8EB17C1118217A85000DDFCC /* CharityAndProductDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharityAndProductDisplayCell.h; path = Guilt/CharityAndProductDisplayCell.h; sourceTree = SOURCE_ROOT; };
 		8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharityAndProductDisplayCell.m; path = Guilt/CharityAndProductDisplayCell.m; sourceTree = SOURCE_ROOT; };
 		8EB17C171822E162000DDFCC /* ScannerDidNotWorkDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ScannerDidNotWorkDelegate.h; path = ../ScannerDidNotWorkDelegate.h; sourceTree = "<group>"; };
+		8EB6F6B7191FAC9A004F70C5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		8EB6F6B8191FAC9A004F70C5 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		8EFD979418FB4214006363E0 /* splashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashScreen.png; sourceTree = "<group>"; };
 		8EFD979518FB4214006363E0 /* splashScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splashScreen@2x.png"; sourceTree = "<group>"; };
 		E00CB84C182B28F000A497C3 /* TestHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestHeader.xib; path = ../TestHeader.xib; sourceTree = "<group>"; };
@@ -264,11 +267,14 @@
 				8E00AAD518182E9700BB32E4 /* AppDelegate.h */,
 				8E00AAD618182E9700BB32E4 /* AppDelegate.m */,
 				8E00AAD818182E9700BB32E4 /* Main.storyboard */,
+				8EB6F6B6191FAB5A004F70C5 /* Networking */,
 				8E29F29F18D4C4F9007AFA4C /* Model */,
 				8E69AB4B183FF499000A4B4D /* Controllers */,
 				8EB17C1A1824727D000DDFCC /* Views */,
 				8E00AADE18182E9700BB32E4 /* Images.xcassets */,
 				8E00AACD18182E9700BB32E4 /* Supporting Files */,
+				8EB6F6B7191FAC9A004F70C5 /* Constants.h */,
+				8EB6F6B8191FAC9A004F70C5 /* Constants.m */,
 			);
 			path = Guilt;
 			sourceTree = "<group>";
@@ -376,8 +382,6 @@
 				E00CB85B182B318A00A497C3 /* MyLoginViewController.m */,
 				E00CB857182B316800A497C3 /* KarmaSignupViewController.h */,
 				E00CB858182B316F00A497C3 /* KarmaSignupViewController.m */,
-				8E31BE92191E9D0300EB9032 /* Comms.h */,
-				8E31BE93191E9D0300EB9032 /* Comms.m */,
 			);
 			name = "Login:Signup";
 			path = "../Login:Signup";
@@ -392,6 +396,16 @@
 				8E77A87B18EA5608001470DD /* UserHistoryCell.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		8EB6F6B6191FAB5A004F70C5 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8E31BE92191E9D0300EB9032 /* Comms.h */,
+				8E31BE93191E9D0300EB9032 /* Comms.m */,
+			);
+			name = Networking;
+			path = "Login:Signup";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -563,6 +577,7 @@
 				8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */,
 				8E77A87C18EA5608001470DD /* UserHistoryCell.m in Sources */,
 				8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */,
+				8EB6F6B9191FAC9A004F70C5 /* Constants.m in Sources */,
 				E00CB859182B316F00A497C3 /* KarmaSignupViewController.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
