@@ -75,6 +75,8 @@
 		8EB6F6CF191FAE2F004F70C5 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6CC191FAE2F004F70C5 /* OAuthCore.m */; };
 		8EB6F6D4191FAE3C004F70C5 /* TWAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6D1191FAE3C004F70C5 /* TWAPIManager.m */; };
 		8EB6F6D5191FAE3C004F70C5 /* TWSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6D3191FAE3C004F70C5 /* TWSignedRequest.m */; };
+		8EB6F6DC191FD532004F70C5 /* TWSignInButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6F6DB191FD532004F70C5 /* TWSignInButton.png */; };
+		8EB6F6DE191FD53D004F70C5 /* FBSignInButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6F6DD191FD53D004F70C5 /* FBSignInButton.png */; };
 		8EFD979618FB4214006363E0 /* splashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD979418FB4214006363E0 /* splashScreen.png */; };
 		8EFD979718FB4214006363E0 /* splashScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD979518FB4214006363E0 /* splashScreen@2x.png */; };
 		E00CB84D182B28F000A497C3 /* TestHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E00CB84C182B28F000A497C3 /* TestHeader.xib */; };
@@ -190,6 +192,8 @@
 		8EB6F6D1191FAE3C004F70C5 /* TWAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWAPIManager.m; sourceTree = "<group>"; };
 		8EB6F6D2191FAE3C004F70C5 /* TWSignedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSignedRequest.h; sourceTree = "<group>"; };
 		8EB6F6D3191FAE3C004F70C5 /* TWSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSignedRequest.m; sourceTree = "<group>"; };
+		8EB6F6DB191FD532004F70C5 /* TWSignInButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TWSignInButton.png; sourceTree = "<group>"; };
+		8EB6F6DD191FD53D004F70C5 /* FBSignInButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBSignInButton.png; sourceTree = "<group>"; };
 		8EFD979418FB4214006363E0 /* splashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashScreen.png; sourceTree = "<group>"; };
 		8EFD979518FB4214006363E0 /* splashScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splashScreen@2x.png"; sourceTree = "<group>"; };
 		E00CB84C182B28F000A497C3 /* TestHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestHeader.xib; path = ../TestHeader.xib; sourceTree = "<group>"; };
@@ -310,6 +314,8 @@
 		8E00AACD18182E9700BB32E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8EB6F6DD191FD53D004F70C5 /* FBSignInButton.png */,
+				8EB6F6DB191FD532004F70C5 /* TWSignInButton.png */,
 				8E77A8B118F091B5001470DD /* dollarSign.jpg */,
 				8E77A8A518F09099001470DD /* feed_the_children.jpg */,
 				8E77A8A618F09099001470DD /* SoldiersAngels.jpg */,
@@ -542,10 +548,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EB6F6DE191FD53D004F70C5 /* FBSignInButton.png in Resources */,
 				7727AD89182BF356006D01DD /* ic_profile_white@2x.png in Resources */,
 				7727AD8A182BF356006D01DD /* ic_profile_white.png in Resources */,
 				8E05BC71182B08990005BF34 /* Quicksand-Bold.otf in Resources */,
 				8E05BC73182B2F6E0005BF34 /* KarnaScan_NavBar.png in Resources */,
+				8EB6F6DC191FD532004F70C5 /* TWSignInButton.png in Resources */,
 				8E00AADF18182E9700BB32E4 /* Images.xcassets in Resources */,
 				8E77A8AC18F0909A001470DD /* SoldiersAngels.jpg in Resources */,
 				E00CB862182B412C00A497C3 /* CheckMarkWhite.png in Resources */,

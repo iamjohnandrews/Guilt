@@ -184,20 +184,20 @@
                                     <action selector="forgottenPWButtonPressed:" destination="Ebk-s5-A4g" eventType="touchUpInside" id="tuS-1v-msm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Mpz-ai-X0m">
-                                <rect key="frame" x="11" y="447" width="146" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Facebook Login">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mpz-ai-X0m">
+                                <rect key="frame" x="71" y="453" width="179" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <state key="normal" image="FBSignInButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="facebookLoginButtonPressed:" destination="Ebk-s5-A4g" eventType="touchUpInside" id="dKe-Fg-ZFD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tOd-xT-czS">
-                                <rect key="frame" x="164" y="446" width="146" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Twitter Login">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tOd-xT-czS">
+                                <rect key="frame" x="71" y="507" width="179" height="39"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <state key="normal" image="TWSignInButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -553,6 +553,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="FBSignInButton.png" width="179" height="39"/>
+        <image name="TWSignInButton.png" width="179" height="39"/>
         <image name="ic_profile_white.png" width="44" height="44"/>
     </resources>
     <color key="tintColor" red="1" green="0.96621304419999998" blue="0.043735437330000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -562,7 +564,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eV3-BS-VXY"/>
         <segue reference="DqT-8L-8h8"/>
+        <segue reference="eV3-BS-VXY"/>
     </inferredMetricsTieBreakers>
 </document>
