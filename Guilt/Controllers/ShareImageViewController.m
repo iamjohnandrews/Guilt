@@ -9,9 +9,9 @@
 #import "ShareImageViewController.h"
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
+#import "Comms.h"
 
-@interface ShareImageViewController () <UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
-
+@interface ShareImageViewController () <UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, CommsDelegate>
 @end
 
 @implementation ShareImageViewController
@@ -76,6 +76,12 @@
     UIImage * finialImage = [self convertIntoFinalMemeToShare];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:@"#KarmaScanFact", finialImage, nil] applicationActivities:nil];
     
+    [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
+        if (completed) {
+            [self uploadImageToParse:finialImage];
+        }
+    }];
+    
     [self presentViewController:activityViewController animated:YES completion:^{
     }];
 }
@@ -108,13 +114,13 @@
 - (void)composeText
 {
     MFMessageComposeViewController *messageComposeViewController = [[MFMessageComposeViewController alloc] init];
-//    messageComposeViewController.delegate = self;
     [self presentViewController:messageComposeViewController animated:YES completion:nil];
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
     NSLog(@"text sent");
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -147,6 +153,7 @@
         default:
             break;
     }
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -164,7 +171,7 @@
          }];
         
         [self presentViewController:twitterViewController animated:YES completion:nil];
-        
+
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter" message:@"Currently, Twitter is not available" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
@@ -184,7 +191,7 @@
          }];
         
         [self presentViewController:facebookViewController animated:YES completion:nil];
-        
+
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook" message:@"Currently, Facebook is not available" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
@@ -194,5 +201,10 @@
 - (IBAction)shareButtonPressed:(id)sender 
 {
     [self shareActionSheet];
+}
+
+- (void)uploadImageToParse:(UIImage *)charityMeme
+{
+    [Comms uploadImage:charityMeme forDelegate:self];
 }
 @end
