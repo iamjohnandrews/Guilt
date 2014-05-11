@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-@interface MyLoginViewController :BaseViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface MyLoginViewController :BaseViewController
 
 @property (nonatomic) BOOL userIsLoggedIn;
 
@@ -28,6 +28,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *facebookLoginButtonOutlet;
 
+@property (weak, nonatomic) IBOutlet UIButton *twitterLoginButtonOutlet;
+
 - (IBAction)didLogin:(id)sender;
 
 - (IBAction)skipButtonPressed:(id)sender;
@@ -35,5 +37,7 @@
 - (IBAction)forgottenPWButtonPressed:(id)sender;
 
 - (IBAction)facebookLoginButtonPressed:(id)sender;
+
+- (IBAction)twitterLoginButtonPressed:(id)sender;
 
 @end

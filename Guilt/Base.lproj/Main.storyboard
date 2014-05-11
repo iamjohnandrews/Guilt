@@ -185,13 +185,23 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Mpz-ai-X0m">
-                                <rect key="frame" x="87" y="447" width="146" height="30"/>
+                                <rect key="frame" x="11" y="447" width="146" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Facebook Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="facebookLoginButtonPressed:" destination="Ebk-s5-A4g" eventType="touchUpInside" id="dKe-Fg-ZFD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tOd-xT-czS">
+                                <rect key="frame" x="164" y="446" width="146" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Twitter Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="twitterLoginButtonPressed:" destination="Ebk-s5-A4g" eventType="touchUpInside" id="5jN-as-Eg0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -215,6 +225,7 @@
                         <outlet property="password" destination="D0t-xd-mnB" id="eBu-WP-lCT"/>
                         <outlet property="signupButtonOutlet" destination="7Da-iS-ja6" id="f84-cS-8WD"/>
                         <outlet property="skipButtonOutlet" destination="rcS-3K-5li" id="iLE-iZ-Tk3"/>
+                        <outlet property="twitterLoginButtonOutlet" destination="tOd-xT-czS" id="Kuj-P3-sC2"/>
                         <outlet property="userName" destination="NCb-Ub-Rgp" id="iI7-wv-UJ8"/>
                         <segue destination="gGE-l0-Oez" kind="push" identifier="ShowMeSegue" id="DqT-8L-8h8"/>
                     </connections>

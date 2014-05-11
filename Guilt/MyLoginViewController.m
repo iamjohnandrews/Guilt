@@ -28,9 +28,7 @@
 {  
     [super viewDidLoad];
 
-    [self setupUI];
-//    [self setupParseAndSocialMediaLogins];
-    
+    [self setupUI];    
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
     [self.view addGestureRecognizer:tap];
@@ -130,6 +128,73 @@
                           otherButtonTitles:nil] show];
 	}
 }
+
+#pragma mark - Twitter Login methods
+
+- (IBAction)twitterLoginButtonPressed:(id)sender 
+{
+    __weak MyLoginViewController *weakSelf = self;
+    [PFTwitterUtils getTwitterAccounts:^(BOOL accountsWereFound, NSArray *twitterAccounts) {
+        [weakSelf handleTwitterAccounts:twitterAccounts];
+    }];
+}
+
+- (void)handleTwitterAccounts:(NSArray *)twitterAccounts
+{
+    switch ([twitterAccounts count]) {
+        case 0:
+        {
+            [[FHSTwitterEngine sharedEngine] permanentlySetConsumerKey:TWITTER_CONSUMER_KEY andSecret:TWITTER_CONSUMER_SECRET];
+            UIViewController *loginController = [[FHSTwitterEngine sharedEngine] loginControllerWithCompletionHandler:^(BOOL success) {
+                if (success) {
+                    [TwitterClient loginUserWithTwitterEngine];
+                }
+            }];
+            [self presentViewController:loginController animated:YES completion:nil];
+            
+        }
+            break;
+        case 1:
+            [self onUserTwitterAccountSelection:twitterAccounts[0]];
+            break;
+        default:
+            self.twitterAccounts = twitterAccounts;
+            [self displayTwitterAccounts:twitterAccounts];
+            break;
+    }
+    
+}
+
+- (void)displayTwitterAccounts:(NSArray *)twitterAccounts
+{
+    __block UIActionSheet *selectTwitterAccountsActionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Twitter Account"
+                                                                                          delegate:self
+                                                                                 cancelButtonTitle:nil
+                                                                            destructiveButtonTitle:nil
+                                                                                 otherButtonTitles:nil];
+    
+    [twitterAccounts enumerateObjectsUsingBlock:^(id twitterAccount, NSUInteger idx, BOOL *stop) {
+        [selectTwitterAccountsActionSheet addButtonWithTitle:[twitterAccount username]];
+    }];
+    selectTwitterAccountsActionSheet.cancelButtonIndex = [selectTwitterAccountsActionSheet addButtonWithTitle:@"Cancel"];
+    
+    [selectTwitterAccountsActionSheet showInView:self.view];
+}
+
+- (void)onUserTwitterAccountSelection:(ACAccount *)twitterAccount
+{
+    [TwitterClient loginUserWithAccount:twitterAccount];
+}
+
+#pragma mark - UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        [self onUserTwitterAccountSelection:self.twitterAccounts[buttonIndex]];
+    }
+}
+
 
 #pragma mark - Keyboard Notifications
 - (void)keyboardWillShow:(NSNotification *)notification
@@ -237,63 +302,6 @@
     
 }
 
-#pragma mark - Parse Login methods
-- (void)setupParseAndSocialMediaLogins {    
-    // Customize the Log In View Controller
-    self.logInViewController = [[PFLogInViewController alloc] init];
-//    self.logInViewController.delegate = self;
-//    self.logInViewController.signUpController.delegate = self;
-    
-    [self.logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
-    [self.logInViewController setFields: PFLogInFieldsTwitter | PFLogInFieldsFacebook | PFLogInFieldsDismissButton];
-    
-    // Present Log In View Controller
-    //        [self presentViewController:logInViewController animated:YES completion:NULL];
-    
-    //Twitter Login
-    [PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
-        if (!user) {
-            NSLog(@"Uh oh. The user cancelled the Twitter login.");
-            return;
-        } else if (user.isNew) {
-            NSLog(@"User signed up and logged in with Twitter!");
-        } else {
-            NSLog(@"User logged in with Twitter!");
-        }     
-    }];
-    
-}
 
 
-/*!
- Sent to the delegate to determine whether the log in request should be submitted to the server.
- @param username the username the user tries to log in with.
- @param password the password the user tries to log in with.
- @result a boolean indicating whether the log in should proceed.
-
-- (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password
-{
-    
-    return YES;
-}
-
-//! @name Responding to Actions 
-/// Sent to the delegate when a PFUser is logged in.
-- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
-{
-     
-}
-
-/// Sent to the delegate when the log in attempt fails.
-- (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error
-{
-    
-}
-
-/// Sent to the delegate when the log in screen is dismissed.
-- (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController
-{
-    
-}
-*/
 @end
