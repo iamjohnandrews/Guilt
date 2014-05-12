@@ -7,12 +7,14 @@
 //
 
 #pragma mark - Parse Constants
-
 extern NSString * const PARSE_APPLICATION_ID;
 extern NSString * const PARSE_CLIENT_KEY;
 
 #pragma mark - Twitter Constants
-
 extern NSString * const TWITTER_CONSUMER_KEY;
 extern NSString * const TWITTER_CONSUMER_SECRET;
 
+#pragma mark - Flickr Constants
+extern NSString * const FLICKR_API_KEY;
+extern NSString * const FLICKR_BASE_API_URL;
+extern NSString * const FLICKR_METHOD_PHOTO_SEARCH;

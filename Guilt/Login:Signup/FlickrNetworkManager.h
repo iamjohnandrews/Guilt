@@ -1,0 +1,18 @@
+//
+//  FlickrNetworkManager.h
+//  Trending Tunes
+//
+//  Created by Christopher Constable on 2/3/14.
+//
+//
+
+typedef void (^FlickrImageRequestCompletion)(NSArray *images);
+
+@interface FlickrNetworkManager : NSObject
+
++ (instancetype)sharedManager;
+
+- (void)requestImagesForQuery:(NSString *)query
+                   completion:(FlickrImageRequestCompletion)completion;
+
+@end

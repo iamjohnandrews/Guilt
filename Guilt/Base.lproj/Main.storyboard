@@ -523,7 +523,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.51638550924313731" blue="0.16607046571497441" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="EXK-jh-2Mu"/>
+                    <navigationItem key="navigationItem" title="Profile" id="EXK-jh-2Mu">
+                        <barButtonItem key="rightBarButtonItem" title="Your Archive" id="uM3-XG-797"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="myKarmaPointsLabel" destination="zGj-PO-Bvz" id="3Va-AC-Xk8"/>
                         <outlet property="tableView" destination="f03-ci-hKV" id="5XU-Ym-nSP"/>
@@ -532,20 +534,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLp-hP-ziC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1632" y="-20"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="M4x-Xw-ru0">
-            <objects>
-                <viewController id="4Wu-kq-ArB" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZFa-WX-cS0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0F0-RD-UnE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2031" y="-20"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0kl-MU-TON">

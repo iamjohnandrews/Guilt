@@ -1,13 +1,37 @@
 PODS:
+  - AFNetworking (2.2.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.2.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.2.3):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.2.3)
+  - AFNetworking/Security (2.2.3)
+  - AFNetworking/Serialization (2.2.3)
+  - AFNetworking/UIKit (2.2.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
   - Bolts (1.1.0)
   - Facebook-iOS-SDK (3.14.0):
     - Bolts
+  - RaptureXML (1.0.1)
 
 DEPENDENCIES:
+  - AFNetworking (~> 2.2)
   - Facebook-iOS-SDK (~> 3.14)
+  - RaptureXML
 
 SPEC CHECKSUMS:
+  AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
   Bolts: dc620a31cf67c29bce3e3d14a07a12e797a1a154
   Facebook-iOS-SDK: 63e19ff8d275d63b765819f492a4e71e445f9822
+  RaptureXML: ef017fda62eb95c60300108366d1f0cd0c28cbd4
 
 COCOAPODS: 0.32.1

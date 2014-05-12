@@ -77,6 +77,8 @@
 		8EB6F6D5191FAE3C004F70C5 /* TWSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6D3191FAE3C004F70C5 /* TWSignedRequest.m */; };
 		8EB6F6DC191FD532004F70C5 /* TWSignInButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6F6DB191FD532004F70C5 /* TWSignInButton.png */; };
 		8EB6F6DE191FD53D004F70C5 /* FBSignInButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6F6DD191FD53D004F70C5 /* FBSignInButton.png */; };
+		8EB6F6E119218F65004F70C5 /* CharityImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6E019218F65004F70C5 /* CharityImage.m */; };
+		8EB6F6E419218F8E004F70C5 /* FlickrNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6F6E319218F8E004F70C5 /* FlickrNetworkManager.m */; };
 		8EFD979618FB4214006363E0 /* splashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD979418FB4214006363E0 /* splashScreen.png */; };
 		8EFD979718FB4214006363E0 /* splashScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD979518FB4214006363E0 /* splashScreen@2x.png */; };
 		E00CB84D182B28F000A497C3 /* TestHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E00CB84C182B28F000A497C3 /* TestHeader.xib */; };
@@ -194,6 +196,10 @@
 		8EB6F6D3191FAE3C004F70C5 /* TWSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSignedRequest.m; sourceTree = "<group>"; };
 		8EB6F6DB191FD532004F70C5 /* TWSignInButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TWSignInButton.png; sourceTree = "<group>"; };
 		8EB6F6DD191FD53D004F70C5 /* FBSignInButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBSignInButton.png; sourceTree = "<group>"; };
+		8EB6F6DF19218F65004F70C5 /* CharityImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharityImage.h; sourceTree = "<group>"; };
+		8EB6F6E019218F65004F70C5 /* CharityImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharityImage.m; sourceTree = "<group>"; };
+		8EB6F6E219218F8E004F70C5 /* FlickrNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrNetworkManager.h; sourceTree = "<group>"; };
+		8EB6F6E319218F8E004F70C5 /* FlickrNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrNetworkManager.m; sourceTree = "<group>"; };
 		8EFD979418FB4214006363E0 /* splashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashScreen.png; sourceTree = "<group>"; };
 		8EFD979518FB4214006363E0 /* splashScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splashScreen@2x.png"; sourceTree = "<group>"; };
 		E00CB84C182B28F000A497C3 /* TestHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestHeader.xib; path = ../TestHeader.xib; sourceTree = "<group>"; };
@@ -381,6 +387,8 @@
 			children = (
 				8E29F2A018D626A4007AFA4C /* Charity.h */,
 				8E29F2A118D626A4007AFA4C /* Charity.m */,
+				8EB6F6DF19218F65004F70C5 /* CharityImage.h */,
+				8EB6F6E019218F65004F70C5 /* CharityImage.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -435,6 +443,8 @@
 		8EB6F6B6191FAB5A004F70C5 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				8EB6F6E219218F8E004F70C5 /* FlickrNetworkManager.h */,
+				8EB6F6E319218F8E004F70C5 /* FlickrNetworkManager.m */,
 				8EB6F6BA191FAD7F004F70C5 /* TwitterClient.h */,
 				8EB6F6BB191FAD7F004F70C5 /* TwitterClient.m */,
 				8E31BE92191E9D0300EB9032 /* Comms.h */,
@@ -639,7 +649,9 @@
 				8EB6F6D5191FAE3C004F70C5 /* TWSignedRequest.m in Sources */,
 				8E29F2A218D626A4007AFA4C /* Charity.m in Sources */,
 				8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */,
+				8EB6F6E419218F8E004F70C5 /* FlickrNetworkManager.m in Sources */,
 				8E77A87C18EA5608001470DD /* UserHistoryCell.m in Sources */,
+				8EB6F6E119218F65004F70C5 /* CharityImage.m in Sources */,
 				8EB6F6C3191FAE0D004F70C5 /* FHSStream.m in Sources */,
 				8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */,
 				8EB6F6C6191FAE1F004F70C5 /* PFTwitterUtils+NativeTwitter.m in Sources */,
