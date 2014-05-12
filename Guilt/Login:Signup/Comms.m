@@ -46,19 +46,17 @@
 + (void) uploadImage:(UIImage *)image forDelegate:(id<CommsDelegate>)delegate
 {
     NSData *imageData = UIImagePNGRepresentation(image);
-    
+
     PFFile *imageFile = [PFFile fileWithName:@"img" data:imageData];
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             PFObject *charityMeme = [PFObject objectWithClassName:@"charityMeme"];
             charityMeme[@"image"] = imageFile;
-            charityMeme[@"userFBId"] = [[PFUser currentUser] objectForKey:@"fbId"];
+//            charityMeme[@"userId"] = [[PFUser currentUser] objectForKey:@"Id"];
             charityMeme[@"user"] = [PFUser currentUser].username;
         }
     } progressBlock:^(int percentDone) {
-        if ([delegate respondsToSelector:@selector(commsUploadImageProgress:)]) {
-            [delegate commsUploadImageProgress:percentDone];
-        }
+
     }];
 }
 

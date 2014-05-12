@@ -11,7 +11,6 @@
 @protocol CommsDelegate <NSObject>
 @optional
 - (void) commsDidLogin:(BOOL)loggedIn;
-- (void) commsUploadImageProgress:(short)progress;
 - (void) commsUploadImageComplete:(BOOL)success;
 
 @end

@@ -15,8 +15,8 @@
 {
     //Parse
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    [Parse setApplicationId:@"HMDmp3Y7ihXmaRXw5rfjSszBTwa7I0Uc3Rl7DNZu"
-                  clientKey:@"BUHidRvb464SnFmDyh0qgZ6qrL15gKI1NSUP0LLk"];
+    [Parse setApplicationId:PARSE_APPLICATION_ID
+                  clientKey:PARSE_CLIENT_KEY];
     
     // Initialize Parse's Facebook Utilities singleton. This uses the FacebookAppID we specified in our App bundle's plist.
     [PFFacebookUtils initializeFacebook];
@@ -25,8 +25,8 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     //Twitter Login
-    [PFTwitterUtils initializeWithConsumerKey:@"6HGYzIN6t2qJILEN0BlAwB0XQ"
-                               consumerSecret:@"eqip3xLUZI2Th1kZpji9Uv8MmAH7LI012aMvwjlWLZOZ6a3F7Q"];
+    [PFTwitterUtils initializeWithConsumerKey:TWITTER_CONSUMER_KEY
+                               consumerSecret:TWITTER_CONSUMER_SECRET];
     
     return YES;
 }
