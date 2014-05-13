@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *userProfileButtonOutlet;
 
 -(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity;
-
+- (void)getImagesFromFlickr;
 - (IBAction)userProfileButton:(id)sender;
 
 @end

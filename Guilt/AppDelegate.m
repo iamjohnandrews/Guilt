@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "ImagesViewController.h"
 
 @implementation AppDelegate
 
@@ -28,6 +29,9 @@
     [PFTwitterUtils initializeWithConsumerKey:TWITTER_CONSUMER_KEY
                                consumerSecret:TWITTER_CONSUMER_SECRET];
     
+    ImagesViewController *imagesVC = [[ImagesViewController alloc] init];
+    [imagesVC getImagesFromFlickr];
+        
     return YES;
 }
 

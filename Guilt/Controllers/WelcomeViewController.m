@@ -7,7 +7,6 @@
 //
 
 #import "WelcomeViewController.h"
-#import "ImagesViewController.h"
 
 @interface WelcomeViewController ()
 
@@ -18,12 +17,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    //I think I cant use delegation because the ImagesVC has not been created yet at this point
-
-    ImagesViewController *imagesVC = [[ImagesViewController alloc] init];
-    [imagesVC getImagesFromFlickr];
-    
+    [super viewDidLoad];    
     if ([PFUser currentUser]) {
         [self performSegueWithIdentifier:@"WelcomeToConversionSegue" sender:self];
     }
