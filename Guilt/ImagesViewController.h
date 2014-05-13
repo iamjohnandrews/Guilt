@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImagesViewController : BaseViewController
+@protocol FlickrDelegate <NSObject>
+- (void) getImagesFromFlickr;
+@end
+
+@interface ImagesViewController : BaseViewController <FlickrDelegate>
 
 @property (strong, nonatomic) NSDictionary *resultOfCharitableConversionsDict;
 @property (nonatomic, strong) NSDictionary *oneCharityURLforOneCharityNameDict;

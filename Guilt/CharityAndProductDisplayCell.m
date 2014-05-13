@@ -7,7 +7,8 @@
 //
 
 #import "CharityAndProductDisplayCell.h"
-#import "ImagesViewController.h"
+#import "CharityImage.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @implementation CharityAndProductDisplayCell
 @synthesize charityConversionDetailsLabel, donationButton;
@@ -16,18 +17,30 @@
 - (void)setCharity:(Charity *)charity
 {
     _charity = charity;
-    [self updateUI];
-}
-
-- (void)updateUI
-{
-//    self.charityConversionDetailsLabel.font = [UIFont fontWithName:@"Quicksand-Bold" size:12];
-    self.charityConversionDetailsLabel.textColor = [UIColor whiteColor];
+//    [self updateUI];
 }
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    self.displayImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.displayImageView.clipsToBounds = YES;    
+    
+}
+
+- (void)setImage:(CharityImage *)image
+{
+    _image = image;
+    [self updateUI];
+}
+
+- (void)updateUI
+{
+    [self.displayImageView setImageWithURL:self.image.imageUrl
+                       placeholderImage:nil];
+    
+    self.charityConversionDetailsLabel.textColor = [UIColor whiteColor];
+    
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = self.layer.bounds;
     
@@ -35,9 +48,7 @@
                              (id)[[UIColor clearColor] CGColor],
                              (id)[[UIColor colorWithWhite:0.0 alpha:1.0] CGColor]];
     gradientLayer.locations = @[@0.4, @0.7, @1.0];
-    [self.displayImageView.layer addSublayer:gradientLayer];  
-    self.displayImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.displayImageView.clipsToBounds = YES;    
+    [self.displayImageView.layer addSublayer:gradientLayer]; 
     
     self.logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.logoImageView.clipsToBounds = YES;

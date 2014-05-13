@@ -14,12 +14,16 @@
 #import <Parse/Parse.h>
 #import "Charity.h"
 #import "ShareImageViewController.h"
+#import "FlickrNetworkManager.h"
+#import "CharityImage.h"
 
 @interface ImagesViewController () <UITableViewDataSource, UITableViewDelegate>
 {
     NSNumber* currPoints;
 }
 @property (strong, nonatomic) Charity *charityData;
+@property (strong, nonatomic) CharityImage *selectedImage;
+
 @end
 
 @implementation ImagesViewController
@@ -51,22 +55,10 @@
     self.charityData = [[Charity alloc] init];
 }
 
--(void)setFontFamily:(NSString*)fontFamily forView:(UIView*)view andSubViews:(BOOL)isSubViews
+- (void)getImagesFromFlickr
 {
-    if ([view isKindOfClass:[UILabel class]])
-    {
-        UILabel *lbl = (UILabel *)view;
-        [lbl setFont:[UIFont fontWithName:fontFamily size:[[lbl font] pointSize]]];
-    }
-    
-    if (isSubViews)
-    {
-        for (UIView *sview in view.subviews)
-        {
-            [self setFontFamily:fontFamily forView:sview andSubViews:YES];
-        }
-    }     
-} 
+    NSLog(@"impemented flickr delegation");
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

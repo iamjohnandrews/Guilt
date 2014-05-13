@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Charity.h"
+@class CharityImage;
 
 @interface CharityAndProductDisplayCell : UITableViewCell
+
+@property (strong, nonatomic) CharityImage *image;
 
 @property (strong, nonatomic) Charity *charity;
 
