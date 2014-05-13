@@ -39,6 +39,7 @@
     }
     self.imagesTableView.dataSource = self;
     self.imagesTableView.delegate = self;
+
     
     //Part of code to get images to animate when appear
     CGFloat rotationAngleDegrees = -15;
@@ -57,7 +58,11 @@
 
 - (void)getImagesFromFlickr
 {
-    NSLog(@"impemented flickr delegation");
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
+                                             (unsigned long)NULL), ^(void) {
+        NSLog(@"call FLickr API");
+    });
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

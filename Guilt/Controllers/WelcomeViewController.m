@@ -11,7 +11,7 @@
 
 @interface WelcomeViewController ()
 
-@property (nonatomic, weak) id <FlickrDelegate> delegate;
+
 @end
 
 @implementation WelcomeViewController 
@@ -19,12 +19,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //insert delegate method to call flickr here. bakground thread?
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
-                                             (unsigned long)NULL), ^(void) {
-        [self.delegate getImagesFromFlickr];
-    });
+    //I think I cant use delegation because the ImagesVC has not been created yet at this point
 
+    ImagesViewController *imagesVC = [[ImagesViewController alloc] init];
+    [imagesVC getImagesFromFlickr];
+    
     if ([PFUser currentUser]) {
         [self performSegueWithIdentifier:@"WelcomeToConversionSegue" sender:self];
     }

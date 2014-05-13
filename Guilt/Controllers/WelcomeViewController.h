@@ -11,7 +11,6 @@
 
 @interface WelcomeViewController : BaseViewController <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *introScrollView;
-
 @property (strong, nonatomic) UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *leaveIntroButtonOutlet;
 - (IBAction)leaveIntroButtonPressed:(id)sender;
