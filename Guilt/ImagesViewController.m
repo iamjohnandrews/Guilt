@@ -83,7 +83,7 @@
         }
     }
 }
-
+/*
 - (UIImage *)convertCellIntoImage
 {
     NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
@@ -102,6 +102,23 @@
     CGContextRestoreGState(context);
     
     return cellImage;
+}*/
+
+- (UIImage *)convertCellIntoImage
+{    
+    NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
+    UITableViewCell *cell  = [self.imagesTableView cellForRowAtIndexPath:selectedIndexPath];
+    
+    UIGraphicsBeginImageContextWithOptions(cell.frame.size, NO, 0.0);
+    CGContextRef c = UIGraphicsGetCurrentContext();
+    
+    CGContextConcatCTM(c, CGAffineTransformMakeTranslation(-cell.frame.origin.x, -cell.frame.origin.y));
+    [[[[UIApplication sharedApplication] keyWindow] layer] renderInContext:c];
+    
+    UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return screenshot;
 }
 
 #pragma mark - Table View Methods
