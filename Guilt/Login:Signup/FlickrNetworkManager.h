@@ -12,7 +12,6 @@ typedef void (^FlickrImageRequestCompletion)(NSArray *images);
 
 + (instancetype)sharedManager;
 
-- (void)requestImagesForQuery:(NSString *)query
-                   completion:(FlickrImageRequestCompletion)completion;
+- (void)requestCharityImagescompletion:(FlickrImageRequestCompletion)completion;
 
 @end

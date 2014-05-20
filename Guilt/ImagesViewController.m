@@ -14,7 +14,6 @@
 #import <Parse/Parse.h>
 #import "Charity.h"
 #import "ShareImageViewController.h"
-#import "FlickrNetworkManager.h"
 #import "CharityImage.h"
 
 @interface ImagesViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -54,21 +53,6 @@
 //    [self setFontFamily:@"Quicksand-Bold" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
     self.charityData = [[Charity alloc] init];
-}
-
-- (void)getImagesFromFlickr
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
-                                             (unsigned long)NULL), ^(void) {
-        NSLog(@"call FLickr API");
-        [[FlickrNetworkManager sharedManager] requestImagesForQuery:@"iOS Design"
-                                                         completion:^(NSArray *images) {
-                                                             
-//                                                             self.images = images;
-//                                                             [self.tableView reloadData];
-                                                         }];
-    });
-
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

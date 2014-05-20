@@ -8,12 +8,18 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
-#import "ImagesViewController.h"
+#import "FlickrNetworkManager.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
+                                             (unsigned long)NULL), ^(void) {
+        NSLog(@"call FLickr API");
+        [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil];
+    });
+    
     //Parse
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [Parse setApplicationId:PARSE_APPLICATION_ID
@@ -28,9 +34,6 @@
     //Twitter Login
     [PFTwitterUtils initializeWithConsumerKey:TWITTER_CONSUMER_KEY
                                consumerSecret:TWITTER_CONSUMER_SECRET];
-    
-    ImagesViewController *imagesVC = [[ImagesViewController alloc] init];
-    [imagesVC getImagesFromFlickr];
         
     return YES;
 }
