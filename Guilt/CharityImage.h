@@ -14,7 +14,7 @@
 @property (strong, nonatomic) UIImage *image;
 
 @property (strong, nonatomic) NSArray *allCharityImageArray;
-@property (strong, nonatomic) NSArray *imageURLArray;
+@property (strong, nonatomic) NSMutableArray *imageURLArray;
 
 
 @end

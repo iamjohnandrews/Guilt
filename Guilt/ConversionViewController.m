@@ -11,6 +11,7 @@
 #import "ScannerViewController.h"
 #import <Parse/Parse.h>
 #import "Charity.h"
+#import "FlickrNetworkManager.h"
 
 @interface ConversionViewController (){
     NSNumber* convertedProductPrice;
@@ -241,6 +242,12 @@
         imagesVC.productName = productName;
         imagesVC.productProductURL = urlForProduct;
         imagesVC.userImputPrice = self.userEnterDollarAmountTextField.text;
+        
+//        [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:^(NSArray *images) {
+//            imagesVC.flickrImagesUrlArray = [[NSMutableArray alloc] initWithArray:images];
+//            NSLog(@"inheritance into images array FLICKR = %d", imagesVC.flickrImagesUrlArray.count);
+//        }];
+
         
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller

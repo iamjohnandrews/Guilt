@@ -19,6 +19,7 @@
 @property (strong,nonatomic) NSString* productProductURL;
 @property (strong,nonatomic) NSString* userImputPrice;
 @property  (weak,nonatomic) NSNumber* productPrice;
+@property (strong,nonatomic) NSMutableArray *flickrImagesUrlArray;
 
 @property (assign, nonatomic) CATransform3D makeImagesLean;
 

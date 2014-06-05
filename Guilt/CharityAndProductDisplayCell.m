@@ -58,6 +58,7 @@
     [self bringSubviewToFront:self.logoImageView];
     
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
 }
 
 @end

@@ -14,20 +14,34 @@
 #import <Parse/Parse.h>
 #import "Charity.h"
 #import "ShareImageViewController.h"
-#import "CharityImage.h"
+#import "FlickrNetworkManager.h"
 
 @interface ImagesViewController () <UITableViewDataSource, UITableViewDelegate>
 {
     NSNumber* currPoints;
 }
 @property (strong, nonatomic) Charity *charityData;
-@property (strong, nonatomic) CharityImage *selectedImage;
+@property (strong, nonatomic) FlickrNetworkManager *selectedImage;
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
 @end
 
 @implementation ImagesViewController
 @synthesize makeImagesLean;
 
+/*
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        self.spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x - 25, self.view.bounds.origin.y + 35, 50, 50)];
+        self.spinner.color = [UIColor orangeColor];
+        [self.spinner startAnimating];
+        [self.view addSubview:self.spinner]; 
+    }
+    return self;
+}
+*/
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -53,6 +67,9 @@
 //    [self setFontFamily:@"Quicksand-Bold" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
     self.charityData = [[Charity alloc] init];
+    self.selectedImage = [[FlickrNetworkManager alloc] init];
+    
+    NSLog(@"[FlickrNetworkManager sharedManager].flickrCharityUrlArray.count =%d", [FlickrNetworkManager sharedManager].flickrCharityUrlArray.count);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -170,8 +187,14 @@
     charityCell.logoImageView.image = [UIImage imageNamed:
                                        [NSString stringWithFormat:@"%@",
                                         [self.charityData charityLogos:charityName]]];
+        
+//    charityCell.displayImageView.image = [self.oneCharityURLforOneCharityNameDict objectForKey:charityName];
     
-    charityCell.displayImageView.image = [self.oneCharityURLforOneCharityNameDict objectForKey:charityName];
+    NSMutableArray *tempArray = [NSMutableArray array];
+    tempArray = [[FlickrNetworkManager sharedManager].flickrCharityUrlArray objectAtIndex:indexPath.row];
+    int randomNumber = arc4random() % (tempArray.count - 1);
+    
+    charityCell.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[tempArray objectAtIndex:randomNumber]]]; 
     
     charityCell.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
     charityCell.donationButton.frame = CGRectMake(charityCell.bounds.size.width - 44, charityCell.bounds.size.height - 46, 44, 44);
