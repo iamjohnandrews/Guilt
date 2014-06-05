@@ -13,6 +13,6 @@ typedef void (^FlickrImageRequestCompletion)(NSArray *images);
 + (instancetype)sharedManager;
 
 - (void)requestCharityImagescompletion:(FlickrImageRequestCompletion)completion;
-@property (strong,nonatomic) NSMutableArray *flickrCharityUrlArray;
-
+@property (strong,nonatomic) NSMutableDictionary *flickrCharityUrlDictionary;
+@property (strong,nonatomic) NSDictionary *charitySearchTerms;
 @end

@@ -42,8 +42,8 @@ NSString * const FlickrAPIKey = @"ba09703c363c9c64279b1a1f4a2d196a";
 //- (void)requestImagesForQuery:(NSString *)query completion:(FlickrImageRequestCompletion)completion
 {
     CharityImage *imageModel = [[CharityImage alloc] init];
-    self.flickrCharityUrlArray = [NSMutableArray array];
-    NSDictionary *charities = @{@0 : @"sad pets",
+    self.flickrCharityUrlDictionary = [NSMutableDictionary dictionary];
+    self.charitySearchTerms = @{@0 : @"sad pets",
                                 @1 : @"child eyes",
                                 @2 : @"children vaccination",
                                 @3 : @"children ducklings",
@@ -51,20 +51,20 @@ NSString * const FlickrAPIKey = @"ba09703c363c9c64279b1a1f4a2d196a";
                                 @5 : @"military care package",
                                 @6 : @"children drinking water africa"};
     
-    for (int flickrCall = 0; flickrCall < charities.count; flickrCall++) {
+    for (int flickrCall = 0; flickrCall < self.charitySearchTerms.count; flickrCall++) {
         NSURLSessionDataTask *dataTask = [self.session GET:@""
                                                 parameters:@{@"method": FLICKR_METHOD_PHOTO_SEARCH,
                                                              @"api_key": FlickrAPIKey,
-                                                             @"text": [charities objectForKey:[NSNumber numberWithInt:flickrCall]],
+                                                             @"text": [self.charitySearchTerms objectForKey:[NSNumber numberWithInt:flickrCall]],
                                                              @"safe_search": @"1",
                                                              @"format": @"rest",
                                                              @"extras": @"url_l"}
                                                    success:^(NSURLSessionDataTask *task, id responseObject) {
                                                        NSArray *photos = [self parseImagesXMLRequest:responseObject];
-                                                       NSLog(@"Number photos returned from Flickr =%d", photos.count);
+                                                       NSLog(@"Flickr returned array count =%d for search %@", photos.count, [self.charitySearchTerms objectForKey:[NSNumber numberWithInt:flickrCall]]);
                                                        
                                                        [imageModel.imageURLArray addObject:photos];
-                                                       [self.flickrCharityUrlArray addObject:photos];
+                                                       [self.flickrCharityUrlDictionary setObject:photos forKey:[self.charitySearchTerms objectForKey:[NSNumber numberWithInt:flickrCall]]];
                                                        
                                                        if (completion) {
                                                            completion(photos);
