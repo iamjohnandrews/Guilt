@@ -67,8 +67,6 @@
     if (self.flickrImageUrlDictionary.count) {
         [self getFlickrImageUrl];
     }
-    
-    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -222,7 +220,8 @@
     NSAttributedString *charityDescriptionText = [[NSAttributedString alloc] initWithString:[[NSString stringWithFormat:@"%@ %@",[self.resultOfCharitableConversionsDict objectForKey:charityName], charityDescription] uppercaseString] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
     charityCell.charityConversionDetailsLabel.attributedText = charityDescriptionText;
     
-//    charityCell.charityConversionDetailsLabel.text = [[NSString stringWithFormat:@"%@ %@",[self.resultOfCharitableConversionsDict objectForKey:charityName], charityDescription] uppercaseString];
+    NSAttributedString *dollarConversionDescriptionText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ IS EQUIVALENT TO", self.productPrice] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
+    charityCell.dollarAmountConvertedLabel.attributedText = dollarConversionDescriptionText;
     
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDonationButtonTapped:)];
     [charityCell.donationButton addGestureRecognizer:recognizer];

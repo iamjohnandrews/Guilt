@@ -12,10 +12,6 @@
 
 @interface CharityAndProductDisplayCell : UITableViewCell
 
-@property (strong, nonatomic) CharityImage *image;
-
-@property (strong, nonatomic) Charity *charity;
-
 @property (weak, nonatomic) IBOutlet UIImageView *displayImageView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
@@ -24,5 +20,6 @@
 
 @property (strong, nonatomic) UIImageView *donationButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *dollarAmountConvertedLabel;
 
 @end

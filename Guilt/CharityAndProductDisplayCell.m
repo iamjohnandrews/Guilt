@@ -11,14 +11,8 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
 @implementation CharityAndProductDisplayCell
-@synthesize charityConversionDetailsLabel, donationButton;
+@synthesize charityConversionDetailsLabel, donationButton, dollarAmountConvertedLabel;
 
-
-- (void)setCharity:(Charity *)charity
-{
-    _charity = charity;
-//    [self updateUI];
-}
 
 - (void)awakeFromNib
 {
@@ -26,29 +20,31 @@
     self.displayImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.displayImageView.clipsToBounds = YES;    
     
-}
-
-- (void)setImage:(CharityImage *)image
-{
-    _image = image;
     [self updateUI];
 }
 
 - (void)updateUI
 {
-    [self.displayImageView setImageWithURL:self.image.imageUrl
-                       placeholderImage:nil];
-    
     self.charityConversionDetailsLabel.textColor = [UIColor whiteColor];
     
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = self.layer.bounds;
+    CAGradientLayer *bottomGradientLayer = [CAGradientLayer layer];
+    bottomGradientLayer.frame = self.layer.bounds;
     
-    gradientLayer.colors = @[(id)[[UIColor clearColor] CGColor],
+    bottomGradientLayer.colors = @[(id)[[UIColor clearColor] CGColor],
                              (id)[[UIColor clearColor] CGColor],
                              (id)[[UIColor colorWithWhite:0.0 alpha:1.0] CGColor]];
-    gradientLayer.locations = @[@0.4, @0.7, @1.0];
-    [self.displayImageView.layer addSublayer:gradientLayer]; 
+    bottomGradientLayer.locations = @[@0.4, @0.7, @1.0];
+    [self.displayImageView.layer addSublayer:bottomGradientLayer]; 
+    
+    CAGradientLayer *topGradientLayer = [CAGradientLayer layer];
+    topGradientLayer.frame = self.layer.bounds;
+    
+    topGradientLayer.colors = @[(id)[[UIColor colorWithWhite:0.0 alpha:1.0] CGColor],
+                                (id)[[UIColor clearColor] CGColor],
+                                (id)[[UIColor clearColor] CGColor]];
+    
+    bottomGradientLayer.locations = @[@0.1, @0.05, @0.0];
+    [self.displayImageView.layer addSublayer:topGradientLayer];
     
     self.logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.logoImageView.clipsToBounds = YES;
