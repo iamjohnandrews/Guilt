@@ -15,6 +15,8 @@
 #import "Charity.h"
 #import "ShareImageViewController.h"
 #import "FlickrNetworkManager.h"
+#import "CharityImage.h"
+
 
 @interface ImagesViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -57,7 +59,7 @@
 //    [self setFontFamily:@"Quicksand-Bold" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
     self.charityData = [[Charity alloc] init];
-
+    
     self.flickrImageUrlDictionary = [NSMutableDictionary dictionary];
     self.flickrCharitySearchTerms = [[NSDictionary alloc] initWithDictionary:[FlickrNetworkManager sharedManager].charitySearchTerms];
     self.flickrImageUrlDictionary = [FlickrNetworkManager sharedManager].flickrCharityUrlDictionary;
@@ -65,6 +67,8 @@
     if (self.flickrImageUrlDictionary.count) {
         [self getFlickrImageUrl];
     }
+    
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -77,13 +81,7 @@
         } else {
             shareImageVC.productPrice = self.userImputPrice;
         }
-        [self clearCharityImages];
     }
-}
-
-- (void)didMoveToParentViewController:(UIViewController *)parent
-{
-    [self clearCharityImages]; 
 }
 
 
@@ -92,28 +90,13 @@
     NSMutableArray *arrayOfManyImageUrls = [NSMutableArray array];
     
     for (int i = 0; i < self.flickrImageUrlDictionary.count; i++) {
-        [arrayOfManyImageUrls addObject:[[self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSNumber numberWithInt:i]]] firstObject]];
+        int top6thFlickrResults =  roundf([[self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSNumber numberWithInt:i]]] count] / 6);
+        
+        int randomNumber = arc4random() % top6thFlickrResults;
+
+        [arrayOfManyImageUrls addObject:[[self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSNumber numberWithInt:i]]] objectAtIndex:randomNumber]];
     }
     self.specificTypeOfFlickrImageUrlArray = [[NSArray alloc] initWithArray:arrayOfManyImageUrls];
-}
-
-- (void)clearCharityImages
-{
-    for (int i = 0; i < self.flickrImageUrlDictionary.count; i++) {
-            NSLog(@"BEFORE count =%d insides =%@", [[self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSString stringWithFormat:@"%d", i]]] count], [self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSString stringWithFormat:@"%d", i]]]);
-        
-        [[self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSString stringWithFormat:@"%d", i]]] removeObjectAtIndex:0];
-        
-        NSLog(@"AFTER count =%d insides =%@", [[self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSString stringWithFormat:@"%d", i]]] count], [self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSString stringWithFormat:@"%d", i]]]);
-        
-//        NSLog(@"Count of FlickrImageUrlArray %d is =%d", i, [[self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSString stringWithFormat:@"%d", i]]] count]);
-    }
-//    
-//    for (int i = 0; i < self.flickrImageUrlDictionary.count; i++) {
-//        [[[[FlickrNetworkManager sharedManager].flickrCharityUrlDictionary objectForKey:[[FlickrNetworkManager sharedManager].charitySearchTerms objectForKey:[NSString stringWithFormat:@"%d", i]]] objectAtIndex:i] removeObjectAtIndex:0];
-//        
-//        NSLog(@"Count of FlickrImageUrlArray %d =%d", i, [[[FlickrNetworkManager sharedManager].flickrCharityUrlDictionary valueForKey:[[FlickrNetworkManager sharedManager].charitySearchTerms valueForKey:[NSString stringWithFormat:@"%d", i]]] count]);
-//    }
 }
 
 /*
@@ -317,7 +300,6 @@
 
 - (IBAction)userProfileButton:(id)sender 
 {
-    [self clearCharityImages]; 
 }
 
 

@@ -13,9 +13,8 @@
 @property (strong, nonatomic) NSURL *imageUrl;
 @property (strong, nonatomic) UIImage *image;
 
-@property (strong, nonatomic) NSArray *allCharityImageArray;
-@property (strong, nonatomic) NSMutableArray *imageURLArray;
-
+@property (strong, nonatomic) NSMutableDictionary *flickrImageURLDict;
+@property (strong, nonatomic) NSMutableDictionary *flickrSearchTermsDict;
 
 @end
 
