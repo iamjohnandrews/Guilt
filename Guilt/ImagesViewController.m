@@ -283,7 +283,7 @@
     donation[@"donor"] = [PFUser currentUser];
     donation[@"recipientCharity"] = recipientCharity;
     
-    donation[@"donationAmount"]= _productPrice;
+    donation[@"donationAmount"]= self.productPrice;
     
     [donation saveInBackground]; //save the donation to Parse
     

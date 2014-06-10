@@ -206,21 +206,20 @@
 
 - (void)uploadImageToParse:(UIImage *)charityMeme
 {
-//    [Comms uploadImage:charityMeme forDelegate:self];
-    
-    //Upload a new picture
-    //1
     NSData *imageData = UIImagePNGRepresentation(charityMeme);
 
-    PFFile *file = [PFFile fileWithName:@"meme" data:imageData];
+    //Upload a new picture
+    //1
+    PFFile *file = [PFFile fileWithName:@"img" data:imageData];
     [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
         if (succeeded){
             //2
-            //Add the image to the object, and add the comment and the user
+            
             PFObject *imageObject = [PFObject objectWithClassName:@"charityMemeObject"];
+            [imageObject setObject:[PFUser currentUser] forKey:@"User"];
             [imageObject setObject:file forKey:@"image"];
-            [imageObject setObject:[PFUser currentUser].username forKey:@"user"];
+            
             //3
             [imageObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 //4
