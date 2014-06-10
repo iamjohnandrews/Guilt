@@ -9,9 +9,8 @@
 #import "ShareImageViewController.h"
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
-#import "Comms.h"
 
-@interface ShareImageViewController () <UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate, CommsDelegate>
+@interface ShareImageViewController () <UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
 @end
 
 @implementation ShareImageViewController
@@ -36,24 +35,7 @@
 
 #pragma mark Create Meme
 - (void)replaceDonateButtonWithKarmaScnaLogo
-{
-//    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-//    gradientLayer.frame = self.sharingImage.layer.bounds;
-//    
-//    gradientLayer.colors = @[(id)[[UIColor colorWithWhite:0.0 alpha:1.0] CGColor],
-//                             (id)[[UIColor clearColor] CGColor],
-//                             (id)[[UIColor clearColor] CGColor]];
-//    gradientLayer.locations = @[@0.0, @0.05, @0.15];
-//    [self.sharingImage.layer addSublayer:gradientLayer];  
-//    
-//    UILabel *converstionAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(60.0f, 0, CGRectGetWidth(self.view.bounds) - 60.0f, 20.0f)];
-//    NSAttributedString *charityEquivalentText = [[NSAttributedString alloc] initWithString:[[NSString stringWithFormat:@"$%@ is equivalent to", self.productPrice] uppercaseString] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
-//    converstionAmountLabel.attributedText = charityEquivalentText;
-//    converstionAmountLabel.font = [UIFont fontWithName:@"AvenirNext-Heavy" size:14];
-//    converstionAmountLabel.textColor = [UIColor whiteColor];
-//    converstionAmountLabel.textAlignment = NSTextAlignmentCenter;
-//    [self.sharingImage addSubview:converstionAmountLabel];
-    
+{   
     UIImageView * karmaScanK = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaSan_K_small.png"]];
     karmaScanK.frame = CGRectMake(self.sharingImage.bounds.size.width - 45, self.sharingImage.bounds.size.height - 46, 44, 44);
     [self.sharingImage addSubview:karmaScanK];
@@ -216,7 +198,7 @@
         if (succeeded){
             //2
             
-            PFObject *imageObject = [PFObject objectWithClassName:@"charityMemeObject"];
+            PFObject *imageObject = [PFObject objectWithClassName:@"CharityMemes"];
             [imageObject setObject:[PFUser currentUser] forKey:@"User"];
             [imageObject setObject:file forKey:@"image"];
             
