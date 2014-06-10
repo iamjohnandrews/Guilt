@@ -43,7 +43,7 @@
                                 (id)[[UIColor clearColor] CGColor],
                                 (id)[[UIColor clearColor] CGColor]];
     
-    bottomGradientLayer.locations = @[@0.1, @0.05, @0.0];
+    topGradientLayer.locations = @[@0.0, @0.075, @0.2];
     [self.displayImageView.layer addSublayer:topGradientLayer];
     
     self.logoImageView.contentMode = UIViewContentModeScaleAspectFit;

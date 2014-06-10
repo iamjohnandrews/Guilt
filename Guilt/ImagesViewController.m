@@ -97,7 +97,7 @@
     self.specificTypeOfFlickrImageUrlArray = [[NSArray alloc] initWithArray:arrayOfManyImageUrls];
 }
 
-/*
+/*Original
 - (UIImage *)convertCellIntoImage
 {
     NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
@@ -116,25 +116,41 @@
     CGContextRestoreGState(context);
     
     return cellImage;
-}*/
-
+}
+/* Logan
 - (UIImage *)convertCellIntoImage
 {    
     NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
     UITableViewCell *cell  = [self.imagesTableView cellForRowAtIndexPath:selectedIndexPath];
-    
+    cell.accessoryType = UITableViewCellAccessoryNone;
+
     UIGraphicsBeginImageContextWithOptions(cell.frame.size, NO, 0.0);
-    CGContextRef c = UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextConcatCTM(c, CGAffineTransformMakeTranslation(-cell.frame.origin.x, -cell.frame.origin.y));
-    [[[[UIApplication sharedApplication] keyWindow] layer] renderInContext:c];
-    
+    CGContextConcatCTM(context, CGAffineTransformMakeTranslation(-cell.frame.origin.x, -cell.frame.origin.y - self.navigationController.navigationBar.frame.size.height));
+    [[[[UIApplication sharedApplication] keyWindow] layer] renderInContext:context];
+        
     UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     return screenshot;
 }
+*/
 
+- (UIImage *)convertCellIntoImage
+{
+    NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
+    UITableViewCell *cell  = [self.imagesTableView cellForRowAtIndexPath:selectedIndexPath];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    UIGraphicsBeginImageContextWithOptions(cell.bounds.size, NO, 0.0);
+    
+    [cell.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *cellImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+        
+    return cellImage;
+}
 #pragma mark - Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -220,7 +236,7 @@
     NSAttributedString *charityDescriptionText = [[NSAttributedString alloc] initWithString:[[NSString stringWithFormat:@"%@ %@",[self.resultOfCharitableConversionsDict objectForKey:charityName], charityDescription] uppercaseString] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
     charityCell.charityConversionDetailsLabel.attributedText = charityDescriptionText;
     
-    NSAttributedString *dollarConversionDescriptionText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ IS EQUIVALENT TO", self.productPrice] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
+    NSAttributedString *dollarConversionDescriptionText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"$%@ IS EQUIVALENT TO", self.productPrice] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
     charityCell.dollarAmountConvertedLabel.attributedText = dollarConversionDescriptionText;
     
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDonationButtonTapped:)];

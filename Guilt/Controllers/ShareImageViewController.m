@@ -29,30 +29,30 @@
     
     self.sharingImage.image = self.unfinishedMeme;
     
-    [self prepareImageToBecomeMeme];
+    [self replaceDonateButtonWithKarmaScnaLogo];
     
     [self shareActionSheet];
 }
 
 #pragma mark Create Meme
-- (void)prepareImageToBecomeMeme
+- (void)replaceDonateButtonWithKarmaScnaLogo
 {
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = self.sharingImage.layer.bounds;
-    
-    gradientLayer.colors = @[(id)[[UIColor colorWithWhite:0.0 alpha:1.0] CGColor],
-                             (id)[[UIColor clearColor] CGColor],
-                             (id)[[UIColor clearColor] CGColor]];
-    gradientLayer.locations = @[@0.0, @0.05, @0.15];
-    [self.sharingImage.layer addSublayer:gradientLayer];  
-    
-    UILabel *converstionAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(60.0f, 0, CGRectGetWidth(self.view.bounds) - 60.0f, 20.0f)];
-    NSAttributedString *charityEquivalentText = [[NSAttributedString alloc] initWithString:[[NSString stringWithFormat:@"$%@ is equivalent to", self.productPrice] uppercaseString] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
-    converstionAmountLabel.attributedText = charityEquivalentText;
-    converstionAmountLabel.font = [UIFont fontWithName:@"AvenirNext-Heavy" size:14];
-    converstionAmountLabel.textColor = [UIColor whiteColor];
-    converstionAmountLabel.textAlignment = NSTextAlignmentCenter;
-    [self.sharingImage addSubview:converstionAmountLabel];
+//    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+//    gradientLayer.frame = self.sharingImage.layer.bounds;
+//    
+//    gradientLayer.colors = @[(id)[[UIColor colorWithWhite:0.0 alpha:1.0] CGColor],
+//                             (id)[[UIColor clearColor] CGColor],
+//                             (id)[[UIColor clearColor] CGColor]];
+//    gradientLayer.locations = @[@0.0, @0.05, @0.15];
+//    [self.sharingImage.layer addSublayer:gradientLayer];  
+//    
+//    UILabel *converstionAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(60.0f, 0, CGRectGetWidth(self.view.bounds) - 60.0f, 20.0f)];
+//    NSAttributedString *charityEquivalentText = [[NSAttributedString alloc] initWithString:[[NSString stringWithFormat:@"$%@ is equivalent to", self.productPrice] uppercaseString] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
+//    converstionAmountLabel.attributedText = charityEquivalentText;
+//    converstionAmountLabel.font = [UIFont fontWithName:@"AvenirNext-Heavy" size:14];
+//    converstionAmountLabel.textColor = [UIColor whiteColor];
+//    converstionAmountLabel.textAlignment = NSTextAlignmentCenter;
+//    [self.sharingImage addSubview:converstionAmountLabel];
     
     UIImageView * karmaScanK = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaSan_K_small.png"]];
     karmaScanK.frame = CGRectMake(self.sharingImage.bounds.size.width - 45, self.sharingImage.bounds.size.height - 46, 44, 44);
@@ -61,8 +61,9 @@
 }
 
 - (UIImage *)convertIntoFinalMemeToShare
-{
-    UIGraphicsBeginImageContextWithOptions(self.sharingImage.bounds.size, self.sharingImage.opaque, 0.0);
+{    
+    UIGraphicsBeginImageContextWithOptions(self.sharingImage.bounds.size, NO, 0.0);
+    
     [self.sharingImage.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *charityMeme = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -205,6 +206,42 @@
 
 - (void)uploadImageToParse:(UIImage *)charityMeme
 {
-    [Comms uploadImage:charityMeme forDelegate:self];
+//    [Comms uploadImage:charityMeme forDelegate:self];
+    
+    //Upload a new picture
+    //1
+    NSData *imageData = UIImagePNGRepresentation(charityMeme);
+
+    PFFile *file = [PFFile fileWithName:@"meme" data:imageData];
+    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        if (succeeded){
+            //2
+            //Add the image to the object, and add the comment and the user
+            PFObject *imageObject = [PFObject objectWithClassName:@"charityMemeObject"];
+            [imageObject setObject:file forKey:@"image"];
+            [imageObject setObject:[PFUser currentUser].username forKey:@"user"];
+            //3
+            [imageObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                //4
+                if (succeeded){
+                    NSLog(@"successful image upload to Parse");
+                }
+                else{
+                    NSString *errorString = [[error userInfo] objectForKey:@"error"];
+                    UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [errorAlertView show];
+                }
+            }];
+        }
+        else{
+            //5
+            NSString *errorString = [[error userInfo] objectForKey:@"error"];
+            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [errorAlertView show];
+        }        
+    } progressBlock:^(int percentDone) {
+        NSLog(@"Uploaded: %d %%", percentDone);
+    }];
 }
 @end
