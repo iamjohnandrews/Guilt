@@ -8,6 +8,7 @@
 
 #import "ArchiveTableViewController.h"
 #import <Parse/Parse.h>
+#import "ArchiveTableViewCell.h"
 
 @interface ArchiveTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSArray *archiveMemesArray;
@@ -32,9 +33,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    if (!self.archiveMemesArray) {
-        [self getArhiveMemesFromParse];
-    }
+    [self imageLoader:self];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -60,7 +59,8 @@
             self.archiveMemesArray = nil;
             self.archiveMemesArray = [[NSArray alloc] initWithArray:PFobjects];
             [self parseThroughBackEndData];
-            NSLog(@"successfully retrieved %d images from Parse =%@", self.archiveMemesArray.count, self.archiveMemesArray);
+            NSLog(@"successfully retrieved %d images from Parse createdAt=%@", self.archiveMemesArray.count, self.dates[0]);
+            [self.tableView reloadData];
             [self.refreshControl endRefreshing];
         } else {
             
@@ -102,12 +102,19 @@
     return [self.archiveMemesArray count];    
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 235.0f;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    ArchiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dateAndImage" forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.archiveImage.image = [self.images objectAtIndex:indexPath.row];
+    
+    cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.section];
     
     return cell;
 }
@@ -162,4 +169,8 @@
 }
 */
 
+- (IBAction)imageLoader:(id)sender 
+{
+    [self getArhiveMemesFromParse];
+}
 @end
