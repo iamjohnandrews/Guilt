@@ -470,33 +470,40 @@
             </objects>
             <point key="canvasLocation" x="1632" y="-701"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="VQ5-1G-FUD">
+        <!--Archive View Controller-->
+        <scene sceneID="Dh5-uT-EIZ">
             <objects>
-                <tableViewController id="8dX-Fg-TGA" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="frn-YI-Beu">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="uhs-6x-uDY" customClass="ArchiveViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="8IQ-oX-Vhl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="211" id="lPl-EE-CyA">
-                                <rect key="frame" x="0.0" y="22" width="320" height="211"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="09d-EF-0cc">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="upB-Pf-kM9">
+                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lPl-EE-CyA" id="zhS-Iv-ek2">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
                         <connections>
-                            <outlet property="dataSource" destination="8dX-Fg-TGA" id="Gxd-N9-VGo"/>
-                            <outlet property="delegate" destination="8dX-Fg-TGA" id="bCh-g5-pSL"/>
+                            <outlet property="dataSource" destination="uhs-6x-uDY" id="toF-JE-puB"/>
+                            <outlet property="delegate" destination="uhs-6x-uDY" id="IFE-Yq-nvL"/>
                         </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="03H-sT-Eb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="wb2-AU-xp8"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UwV-6A-3dT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2139" y="-286"/>
+            <point key="canvasLocation" x="2063" y="-388"/>
         </scene>
         <!--User Profile View Controller - Profile-->
         <scene sceneID="0Cq-X9-E8G">
@@ -567,7 +574,11 @@
                         <color key="backgroundColor" red="1" green="0.51638550924313731" blue="0.16607046571497441" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="EXK-jh-2Mu">
-                        <barButtonItem key="rightBarButtonItem" title="Your Archive" id="uM3-XG-797"/>
+                        <barButtonItem key="rightBarButtonItem" title="Your Archive" id="uM3-XG-797">
+                            <connections>
+                                <segue destination="uhs-6x-uDY" kind="push" identifier="ProfileToArchiveSegue" id="7nT-e3-Dph"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="myKarmaPointsLabel" destination="zGj-PO-Bvz" id="3Va-AC-Xk8"/>
