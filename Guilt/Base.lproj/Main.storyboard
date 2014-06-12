@@ -477,23 +477,46 @@
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="8IQ-oX-Vhl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="09d-EF-0cc">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="09d-EF-0cc" customClass="CSStickyHeaderFlowLayout">
                             <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="upB-Pf-kM9">
-                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="image" id="upB-Pf-kM9" customClass="ArchiveCollectionViewCell">
+                                <rect key="frame" x="0.0" y="50" width="320" height="211"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="211"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="OqN-Ga-dHu">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="211"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <size key="customSize" width="320" height="211"/>
+                                <connections>
+                                    <outlet property="archivedMemeImage" destination="OqN-Ga-dHu" id="HRj-Pg-dTU"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sectionHeader" id="tI4-AC-SYy" customClass="ArchiveCollectionViewCell">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QSh-gB-XV4">
+                                    <rect key="frame" x="20" y="14" width="280" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="uhs-6x-uDY" id="toF-JE-puB"/>
                             <outlet property="delegate" destination="uhs-6x-uDY" id="IFE-Yq-nvL"/>
@@ -503,7 +526,59 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwV-6A-3dT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2063" y="-388"/>
+            <point key="canvasLocation" x="2383" y="-869"/>
+        </scene>
+        <!--Archive Table View Controller-->
+        <scene sceneID="vLP-fg-2Rl">
+            <objects>
+                <tableViewController id="iZn-93-HH0" customClass="ArchiveTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Gyn-tk-u0M">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="235" id="Dhb-4F-1wC" customClass="ArchiveTableViewCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="235"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dhb-4F-1wC" id="Cfv-bB-oVr">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="eCA-OT-l9P">
+                                            <rect key="frame" x="0.0" y="22" width="320" height="211"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fXh-HI-eQH">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="archiveDateLabel" destination="fXh-HI-eQH" id="VuN-We-EWh"/>
+                                    <outlet property="archiveImage" destination="eCA-OT-l9P" id="G2o-0Y-0aM"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="iZn-93-HH0" id="q1L-0J-9BV"/>
+                            <outlet property="delegate" destination="iZn-93-HH0" id="DpC-Ro-xqD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="wXX-9B-xKG"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="UQs-N5-zU0">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mPN-0c-P27" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2087" y="-268"/>
         </scene>
         <!--User Profile View Controller - Profile-->
         <scene sceneID="0Cq-X9-E8G">
@@ -576,7 +651,7 @@
                     <navigationItem key="navigationItem" title="Profile" id="EXK-jh-2Mu">
                         <barButtonItem key="rightBarButtonItem" title="Your Archive" id="uM3-XG-797">
                             <connections>
-                                <segue destination="uhs-6x-uDY" kind="push" identifier="ProfileToArchiveSegue" id="7nT-e3-Dph"/>
+                                <segue destination="iZn-93-HH0" kind="push" identifier="UserToArchiveSegue" id="Jte-e4-Cc6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

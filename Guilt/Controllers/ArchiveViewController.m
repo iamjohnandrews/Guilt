@@ -7,12 +7,15 @@
 //
 
 #import "ArchiveViewController.h"
-//#import "CSStickyHeaderFlowLayout.h"
+#import "CSStickyHeaderFlowLayout.h"
 #import <Parse/Parse.h>
+#import "ArchiveCollectionViewCell.h"
 
-@interface ArchiveViewController ()
+@interface ArchiveViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *archiveMemesArray;
-
+@property (nonatomic, strong) NSMutableArray *images;
+@property (nonatomic, strong) NSMutableArray *dates;
+@property (nonatomic, strong) ArchiveCollectionViewCell *archiveCell;
 @end
 
 @implementation ArchiveViewController
@@ -21,16 +24,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
     
     if (!self.archiveMemesArray) {
         [self getArhiveMemesFromParse];
     }
     
-//    CSStickyHeaderFlowLayout *layout = (id)self.collectionViewLayout;
-//    
-//    if ([layout isKindOfClass:[CSStickyHeaderFlowLayout class]]) {
-//        layout.parallaxHeaderReferenceSize = CGSizeMake(320, 200);
-//    }
+    CSStickyHeaderFlowLayout *layout = (id)self.collectionViewLayout;
+    
+    if ([layout isKindOfClass:[CSStickyHeaderFlowLayout class]]) {
+        layout.parallaxHeaderReferenceSize = CGSizeMake(320, 44);
+        
+        // Setting the minimum size equal to the reference size results
+        // in disabled parallax effect and pushes up while scrolls
+        layout.parallaxHeaderMinimumReferenceSize = CGSizeMake(320, 44);
+    }
+    
+    self.archiveCell = [[ArchiveCollectionViewCell alloc] init];
+    
 }
 
 - (void)getArhiveMemesFromParse
@@ -42,13 +54,13 @@
     //2
     [query orderByDescending:@"createdAt"];
     query.limit = 6;
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *PFobjects, NSError *error) {
         //3 
         if (!error) {
             //Everything was correct, put the new objects and load the wall
             self.archiveMemesArray = nil;
-            self.archiveMemesArray = [[NSArray alloc] initWithArray:objects];
-            
+            self.archiveMemesArray = [[NSArray alloc] initWithArray:PFobjects];
+            [self parseThroughBackEndData];
             NSLog(@"successfully retrieved %d images from Parse =%@", self.archiveMemesArray.count, self.archiveMemesArray);
             
         } else {
@@ -61,11 +73,30 @@
     }];
 }
 
+- (void)parseThroughBackEndData
+{
+    self.dates = [NSMutableArray array];
+    self.images = [NSMutableArray array];
+    
+    for (PFObject *dateAndImageObject in self.archiveMemesArray){
+     
+        PFFile *meme = (PFFile *)[dateAndImageObject objectForKey:@"image"];
+        [self.images addObject:[UIImage imageWithData:meme.getData]];
+        
+     
+        NSDate *creationDate = dateAndImageObject.createdAt;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"HH:mm dd/MM yyyy"];
+        [self.dates addObject:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:creationDate]]];
+    }
+}
+
 #pragma mark UICollectionViewDataSource
-/*
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView 
 {
-    return [self.archiveMemesArray count];
+//    return [self.archiveMemesArray count];
+    return 2;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section 
@@ -73,38 +104,28 @@
     return 1;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+//    self.archiveCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"image" forIndexPath:indexPath];
+//    self.archiveCell.archivedMemeImage = [self.images objectAtIndex:indexPath.row];
+//    
+//    return self.archiveCell;
     
-    NSDictionary *obj = self.sections[indexPath.section];
-    
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell"
-                                                             forIndexPath:indexPath];
-    
-    cell.textLabel.text = [[obj allValues] firstObject];
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"image" forIndexPath:indexPath];
+    self.archiveCell.archivedMemeImage = [self.images objectAtIndex:indexPath.row];
     
     return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        
-        NSDictionary *obj = self.sections[indexPath.section];
-        
-        CSCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                          withReuseIdentifier:@"sectionHeader"
-                                                                 forIndexPath:indexPath];
-        
-        cell.textLabel.text = [[obj allKeys] firstObject];
-        
-        return cell;
-    } else if ([kind isEqualToString:CSStickyHeaderParallaxHeader]) {
-        UICollectionReusableView *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                                            withReuseIdentifier:@"header"
+
+    UICollectionReusableView *dateCell = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                                            withReuseIdentifier:@"sectionHeader"
                                                                                    forIndexPath:indexPath];
-        
-        return cell;
-    }
-    return nil;
+    
+    self.archiveCell.dateLadel.text = [self.dates objectAtIndex:indexPath.section];
+    
+    return dateCell;
 }
-*/
+
 @end
