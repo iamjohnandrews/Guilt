@@ -32,9 +32,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    [self imageLoader:self];
-    
+        
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -42,12 +40,23 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+
+    [self imageLoader:self];
+
+//    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
+}
+
 - (void)getArhiveMemesFromParse
 {
     [self.refreshControl beginRefreshing];
+
     //Prepare the query to get all the images in descending order
     //1
-    PFQuery *query = [PFQuery queryWithClassName:@"charityMemeObject"];
+    PFQuery *query = [PFQuery queryWithClassName:@"CharityMemes"];
     [query whereKey:@"User" equalTo:[PFUser currentUser]];
     //2
     [query orderByDescending:@"createdAt"];
@@ -84,8 +93,9 @@
         
         
         NSDate *creationDate = dateAndImageObject.createdAt;
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"HH:mm dd/MM yyyy"];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; 
+//        [dateFormatter setDateFormat:@"HH:mm dd/MM yyyy"];
+        [dateFormatter setDateFormat:@"eeee, MMMM dd, yyyy"];
         [self.dates addObject:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:creationDate]]];
     }
 }
@@ -104,7 +114,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 235.0f;
+    return 240.0f;
 }
 
 
