@@ -243,12 +243,6 @@
         imagesVC.productProductURL = urlForProduct;
         imagesVC.userImputPrice = self.userEnterDollarAmountTextField.text;
         
-//        [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:^(NSArray *images) {
-//            imagesVC.flickrImagesUrlArray = [[NSMutableArray alloc] initWithArray:images];
-//            NSLog(@"inheritance into images array FLICKR = %d", imagesVC.flickrImagesUrlArray.count);
-//        }];
-
-        
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller
         ScannerViewController *svc = [segue destinationViewController];

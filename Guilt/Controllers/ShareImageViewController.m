@@ -67,12 +67,19 @@
 - (void)shareActionSheet
 {
 
-    UIImage *finialImage = [self convertIntoFinalMemeToShare];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:@"#KarmaScanFact", finialImage, nil] applicationActivities:nil];
+//    UIImage *finialImage = [self convertIntoFinalMemeToShare];
+    CGSize newSize = CGSizeMake(320.0f, 211.0f);
+
+    UIGraphicsBeginImageContext(newSize);
+    [[self convertIntoFinalMemeToShare] drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:@"#KarmaScanFact", newImage, nil] applicationActivities:nil];
     
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
         if (completed) {
-            [self uploadImageToParse:finialImage];
+            [self uploadImageToParse:newImage];
         }
     }];
     

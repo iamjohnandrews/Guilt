@@ -225,8 +225,17 @@
     
        
     if (self.flickrImageUrlDictionary.count) {
-        charityCell.displayImageView.contentMode = UIViewContentModeScaleAspectFit;
-        charityCell.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]]];
+        CGSize newSize = CGSizeMake(320.0f, 211.0f);
+        UIImage *flickrImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]]];
+        
+//        charityCell.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]]];
+        
+        UIGraphicsBeginImageContext(newSize);
+        [flickrImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+        UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        charityCell.displayImageView.image = newImage;
         [self.view bringSubviewToFront:charityCell.displayImageView];
     } 
     
