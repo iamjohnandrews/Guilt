@@ -86,9 +86,16 @@
 - (void)getFlickrImageUrl
 {
     NSMutableArray *arrayOfManyImageUrls = [NSMutableArray array];
-    
+    int top6thFlickrResults;
     for (int i = 0; i < self.flickrImageUrlDictionary.count; i++) {
-        int top6thFlickrResults =  roundf([[self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSNumber numberWithInt:i]]] count] / 6);
+        
+        int numberOfFlickrImagesInCharityVerticalArray = [[self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSNumber numberWithInt:i]]] count];
+        
+        if (numberOfFlickrImagesInCharityVerticalArray > 5) {
+            top6thFlickrResults =  roundf(numberOfFlickrImagesInCharityVerticalArray / 6);
+        } else {
+            top6thFlickrResults =  roundf(numberOfFlickrImagesInCharityVerticalArray / 2);
+        }
         
         int randomNumber = arc4random() % top6thFlickrResults;
 
@@ -141,7 +148,6 @@
 {
     NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
     UITableViewCell *cell  = [self.imagesTableView cellForRowAtIndexPath:selectedIndexPath];
-    cell.accessoryType = UITableViewCellAccessoryNone;
     
     UIGraphicsBeginImageContextWithOptions(cell.bounds.size, NO, 0.0);
     
@@ -221,12 +227,12 @@
     if (self.flickrImageUrlDictionary.count) {
         charityCell.displayImageView.contentMode = UIViewContentModeScaleAspectFit;
         charityCell.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]]];
+        [self.view bringSubviewToFront:charityCell.displayImageView];
     } 
     
     charityCell.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
     charityCell.donationButton.frame = CGRectMake(charityCell.bounds.size.width - 44, charityCell.bounds.size.height - 46, 44, 44);
     [charityCell.donationButton setUserInteractionEnabled:YES];
-//    [charityCell.donationButton bringSubviewToFront:self.imagesTableView];
     
     NSString *charityDescription = [[NSString alloc] init];
     if ([[self.resultOfCharitableConversionsDict objectForKey:charityName] integerValue] == 1) {
@@ -247,17 +253,6 @@
     return charityCell;
 }
 
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    
-}
-
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    cell.backgroundColor = [UIColor greenColor];
-}
-
 - (void)onDonationButtonTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
     NSIndexPath *indexPath = [self.imagesTableView indexPathForCell:(UITableViewCell *)gestureRecognizer.view.superview.superview];
@@ -265,7 +260,6 @@
 //    NSLog(@"the Second index.row = %li", (long)indexPath.row);
     
     [self didUpdateKarmaPoints:YES charity:[self.charityData charityNames:indexPath.row]];
-    
 }
 
 - (void)onBuyNowButtonTapped

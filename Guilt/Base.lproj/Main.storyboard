@@ -453,9 +453,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ny1-Rx-gNG">
-                                <rect key="frame" x="118" y="278" width="85" height="53"/>
+                                <rect key="frame" x="48" y="276" width="225" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -538,13 +539,13 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwV-6A-3dT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2383" y="-869"/>
+            <point key="canvasLocation" x="2311" y="-1065"/>
         </scene>
         <!--Archive Table View Controller-->
         <scene sceneID="vLP-fg-2Rl">
             <objects>
                 <tableViewController id="iZn-93-HH0" customClass="ArchiveTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Gyn-tk-u0M">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Gyn-tk-u0M">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -553,11 +554,11 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dhb-4F-1wC" id="Cfv-bB-oVr">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="eCA-OT-l9P">
-                                            <rect key="frame" x="0.0" y="21" width="320" height="211"/>
+                                            <rect key="frame" x="0.0" y="21" width="320" height="212"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fXh-HI-eQH">
@@ -568,7 +569,6 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="archiveDateLabel" destination="fXh-HI-eQH" id="VuN-We-EWh"/>
@@ -592,6 +592,9 @@
                             <action selector="imageLoader:" destination="iZn-93-HH0" eventType="valueChanged" id="tSr-FL-3LZ"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <segue destination="GlF-pw-Rel" kind="modal" identifier="ArchiveToModalShareSegue" id="Edi-Nh-WdG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mPN-0c-P27" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -698,6 +701,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rch-5f-urD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-902" y="-1242"/>
+        </scene>
+        <!--Modal Archive View Controller-->
+        <scene sceneID="bfh-sx-HPC">
+            <objects>
+                <viewController id="GlF-pw-Rel" customClass="ModalArchiveViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C2F-Os-Ghg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wKF-Ti-LE8">
+                                <rect key="frame" x="0.0" y="1" width="320" height="212"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RGl-u8-NRl">
+                                <rect key="frame" x="48" y="221" width="225" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backToArchiveButtonPressed:" destination="GlF-pw-Rel" eventType="touchUpInside" id="fnc-Lb-dhz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="archiveImageToShare" destination="wKF-Ti-LE8" id="bc1-Hj-bcb"/>
+                        <outlet property="backToArchiveButtonOutlet" destination="RGl-u8-NRl" id="sv8-Kh-R7O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G1H-nH-gIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2484" y="-273"/>
         </scene>
     </scenes>
     <resources>

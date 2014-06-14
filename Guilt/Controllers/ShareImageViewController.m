@@ -9,6 +9,7 @@
 #import "ShareImageViewController.h"
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
+#import "ArchiveTableViewController.h"
 
 @interface ShareImageViewController () <UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
 @end
@@ -27,13 +28,14 @@
     self.archiveButtonOutlet.layer.cornerRadius = 8;
     self.archiveButtonOutlet.layer.borderWidth = 1;
     self.archiveButtonOutlet.layer.borderColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1].CGColor;
-    self.archiveButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
+    self.archiveButtonOutlet.backgroundColor = [UIColor whiteColor];
     self.archiveButtonOutlet.clipsToBounds = YES;
+    [self.archiveButtonOutlet setTitleColor:[UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1] forState:UIControlStateNormal];
     [self.archiveButtonOutlet setTitle:@"Your Archive" forState:UIControlStateNormal];
     self.archiveButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     
     [self.navigationItem setTitle:@"Let 'em Know"];
-    
+
     self.sharingImage.image = self.unfinishedMeme;
     
     [self replaceDonateButtonWithKarmaScnaLogo];
@@ -64,7 +66,8 @@
 #pragma mark Sharing & Action
 - (void)shareActionSheet
 {
-    UIImage * finialImage = [self convertIntoFinalMemeToShare];
+
+    UIImage *finialImage = [self convertIntoFinalMemeToShare];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:@"#KarmaScanFact", finialImage, nil] applicationActivities:nil];
     
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
@@ -236,4 +239,15 @@
         NSLog(@"Uploaded: %d %%", percentDone);
     }];
 }
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ShareToArchiveSegue"]) {
+        ArchiveTableViewController * archiveVC = [segue destinationViewController];
+        archiveVC.imageTransformEnabled = YES;
+    } 
+}
+
 @end

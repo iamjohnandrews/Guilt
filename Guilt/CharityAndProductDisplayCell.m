@@ -52,9 +52,7 @@
     self.logoImageView.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
     self.logoImageView.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
     [self bringSubviewToFront:self.logoImageView];
-    
-    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+        
 }
 
 @end

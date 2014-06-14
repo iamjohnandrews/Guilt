@@ -9,35 +9,25 @@
 #import "ArchiveTableViewController.h"
 #import <Parse/Parse.h>
 #import "ArchiveTableViewCell.h"
+#import "ModalArchiveViewController.h"
 
 @interface ArchiveTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSArray *archiveMemesArray;
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) NSMutableArray *dates;
-
 @property (assign, nonatomic) CATransform3D makeImagesLean;
 
 @end
 
 @implementation ArchiveTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
     [self cellVisualEffect];
-        
+            
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -52,6 +42,7 @@
     
 //    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
     [self imageLoader:self];
+
 }
 
 #pragma mark - Table View Visual Effects
@@ -66,6 +57,7 @@
     CATransform3D transform = CATransform3DIdentity;
     transform = CATransform3DRotate(transform, rotationAngleRadians, 0.0, 0.0, 1.0);
     transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
+    
     self.makeImagesLean = transform;
 }
 
@@ -142,12 +134,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ArchiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dateAndImage" forIndexPath:indexPath];
-    cell.layer.transform = self.makeImagesLean;
-    cell.layer.opacity = 0.2;
-    [UIView animateWithDuration:0.4 animations:^{
-        cell.layer.transform = CATransform3DIdentity;
-        cell.layer.opacity = 1;
-    }]; 
+    if (self.imageTransformEnabled) {
+        cell.layer.transform = self.makeImagesLean;
+        cell.layer.opacity = 0.2;
+        [UIView animateWithDuration:0.4 animations:^{
+            cell.layer.transform = CATransform3DIdentity;
+            cell.layer.opacity = 1;
+        }]; 
+        self.imageTransformEnabled = NO;
+    }
     
     cell.archiveImage.contentMode = UIViewContentModeScaleAspectFit;
     cell.archiveImage.image = [self.images objectAtIndex:indexPath.row];
@@ -157,6 +152,19 @@
     cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.section];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    ModalArchiveViewController *modalArchiveVC = [[ModalArchiveViewController alloc] init];
+//    [modalArchiveVC setSharingArchiveMeme:[self.images objectAtIndex:indexPath.row]];
+//    modalArchiveVC.activitySheetEnabled = YES;
+    
+    [self performSegueWithIdentifier:@"ArchiveToModalShareSegue" sender:self];
+//    [self presentViewController:modalArchiveVC animated:YES completion:^{
+//        NSLog(@"XXX WHen this gets called");
+//    }];
+    
 }
 
 
@@ -198,16 +206,20 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ArchiveToModalShareSegue"]) {
+        ModalArchiveViewController* modalArchiveVC = [segue destinationViewController];
+        NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+        modalArchiveVC.sharingArchiveMeme = [self.images objectAtIndex:selectedIndexPath.row];
+        modalArchiveVC.activitySheetEnabled = YES;
+        NSLog(@"image to be shared = %@", [self.images objectAtIndex:selectedIndexPath.row]);
+    } 
 }
-*/
+
 
 - (IBAction)imageLoader:(id)sender 
 {

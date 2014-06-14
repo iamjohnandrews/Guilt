@@ -8,6 +8,7 @@
 
 #import "UserProfileViewController.h"
 #import "Charity.h"
+#import "ArchiveTableViewController.h"
 
 @interface UserProfileViewController () {
   //  DonationsTableViewController *donationsTable;
@@ -102,5 +103,14 @@
     return cell;    
 }
 
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"UserToArchiveSegue"]) {
+        ArchiveTableViewController * archiveVC = [segue destinationViewController];
+        archiveVC.imageTransformEnabled = YES;
+    } 
+}
 
 @end

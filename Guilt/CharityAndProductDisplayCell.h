@@ -21,5 +21,6 @@
 @property (strong, nonatomic) UIImageView *donationButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *dollarAmountConvertedLabel;
+@property (weak, nonatomic) IBOutlet UIButton *accessoryButtonOutlet;
 
 @end
