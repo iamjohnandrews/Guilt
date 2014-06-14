@@ -219,6 +219,7 @@
     
        
     if (self.flickrImageUrlDictionary.count) {
+        charityCell.displayImageView.contentMode = UIViewContentModeScaleAspectFit;
         charityCell.displayImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]]];
     } 
     

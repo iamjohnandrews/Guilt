@@ -452,6 +452,17 @@
                                 <rect key="frame" x="0.0" y="58" width="320" height="212"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ny1-Rx-gNG">
+                                <rect key="frame" x="118" y="278" width="85" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="archiveButtonPressed:" destination="zrA-oB-1Yr" eventType="touchUpInside" id="zsB-9g-uHy"/>
+                                    <segue destination="iZn-93-HH0" kind="push" identifier="ShareToArchiveSegue" id="I5p-2b-h2H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -463,6 +474,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="archiveButtonOutlet" destination="Ny1-Rx-gNG" id="qRG-R7-qWS"/>
                         <outlet property="sharingImage" destination="WID-1z-79Y" id="85M-6Z-lVB"/>
                     </connections>
                 </viewController>
@@ -537,24 +549,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dateAndImage" rowHeight="235" id="Dhb-4F-1wC" customClass="ArchiveTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="235"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dateAndImage" rowHeight="240" id="Dhb-4F-1wC" customClass="ArchiveTableViewCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dhb-4F-1wC" id="Cfv-bB-oVr">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="eCA-OT-l9P">
-                                            <rect key="frame" x="0.0" y="22" width="320" height="211"/>
+                                            <rect key="frame" x="0.0" y="21" width="320" height="211"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fXh-HI-eQH">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                            <rect key="frame" x="5" y="0.0" width="310" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="archiveDateLabel" destination="fXh-HI-eQH" id="VuN-We-EWh"/>
@@ -700,5 +714,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="DqT-8L-8h8"/>
         <segue reference="ykt-Gs-ZaS"/>
+        <segue reference="I5p-2b-h2H"/>
     </inferredMetricsTieBreakers>
 </document>

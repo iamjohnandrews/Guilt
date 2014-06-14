@@ -304,42 +304,4 @@
     [userEnterDollarAmountTextField resignFirstResponder];
 }
 
-/*
-- (void)retrieveDataFromParse
-{
-    self.parseNonprofitInfoArray = [NSMutableArray array];
-    
-    PFQuery *charityImagesQuery = [PFUser query];
-    [charityImagesQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSNumber *totalCount = [NSNumber numberWithInt:0];
-        for (PFObject *obj in objects) {
-            totalCount = [NSNumber numberWithInt:[totalCount intValue] + [(NSArray *)[obj objectForKey:@"arrayColumnName"] count]];
-        }
-        // do something with totalCount here...
-    }];
-    
-    PFQuery *charityLogoAndDescriptionQuery = [PFQuery queryWithClassName:@"Charity"];
-    [charityLogoAndDescriptionQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *object in objects) {
-                Charity *nonprofit = [[Charity alloc] init];
-//                nonprofit.Images = [object objectForKey:@"CharityImages"];
-                nonprofit.descriptionsPlural = [object objectForKey:@"DescriptionsPlural"];
-                nonprofit.descriptionsSingular = [object objectForKey:@"DescriptionsSingular"];
-                nonprofit.logoImageUrl = [object objectForKey:@"LogoURL"];
-                [self.parseNonprofitInfoArray addObject:nonprofit];
-//                NSLog(@"PLURAL %@", nonprofit.descriptionsPlural);
-                NSLog(@"SINGULAR %@", nonprofit.descriptionsSingular);
-            }
-            [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]]; 
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-}
-
-*/
-
-
 @end

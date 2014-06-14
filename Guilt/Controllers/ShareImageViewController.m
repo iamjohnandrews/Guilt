@@ -24,6 +24,14 @@
     [self.view sendSubviewToBack:background];
     self.view.contentMode = UIViewContentModeScaleAspectFit;
     
+    self.archiveButtonOutlet.layer.cornerRadius = 8;
+    self.archiveButtonOutlet.layer.borderWidth = 1;
+    self.archiveButtonOutlet.layer.borderColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1].CGColor;
+    self.archiveButtonOutlet.backgroundColor = [UIColor colorWithRed:117.0/255 green:135.0/255 blue:146.0/255 alpha:1];
+    self.archiveButtonOutlet.clipsToBounds = YES;
+    [self.archiveButtonOutlet setTitle:@"Your Archive" forState:UIControlStateNormal];
+    self.archiveButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    
     [self.navigationItem setTitle:@"Let 'em Know"];
     
     self.sharingImage.image = self.unfinishedMeme;
@@ -184,6 +192,9 @@
 - (IBAction)shareButtonPressed:(id)sender 
 {
     [self shareActionSheet];
+}
+
+- (IBAction)archiveButtonPressed:(id)sender {
 }
 
 - (void)uploadImageToParse:(UIImage *)charityMeme

@@ -14,6 +14,9 @@
 @property (nonatomic, strong) NSArray *archiveMemesArray;
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) NSMutableArray *dates;
+
+@property (assign, nonatomic) CATransform3D makeImagesLean;
+
 @end
 
 @implementation ArchiveTableViewController
@@ -32,6 +35,8 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    [self cellVisualEffect];
         
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -44,11 +49,27 @@
 {
     [super viewDidAppear:animated];
     [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-
-    [self imageLoader:self];
-
+    
 //    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
+    [self imageLoader:self];
 }
+
+#pragma mark - Table View Visual Effects
+
+- (void)cellVisualEffect
+{
+    //Part of code to get images to animate when appear
+    CGFloat rotationAngleDegrees = -15;
+    CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
+    CGPoint offsetPositioning = CGPointMake(-20, -20);
+    
+    CATransform3D transform = CATransform3DIdentity;
+    transform = CATransform3DRotate(transform, rotationAngleRadians, 0.0, 0.0, 1.0);
+    transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
+    self.makeImagesLean = transform;
+}
+
+#pragma mark - Parse Methods
 
 - (void)getArhiveMemesFromParse
 {
@@ -121,9 +142,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ArchiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dateAndImage" forIndexPath:indexPath];
+    cell.layer.transform = self.makeImagesLean;
+    cell.layer.opacity = 0.2;
+    [UIView animateWithDuration:0.4 animations:^{
+        cell.layer.transform = CATransform3DIdentity;
+        cell.layer.opacity = 1;
+    }]; 
     
+    cell.archiveImage.contentMode = UIViewContentModeScaleAspectFit;
     cell.archiveImage.image = [self.images objectAtIndex:indexPath.row];
     
+    cell.archiveDateLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    cell.archiveDateLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
     cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.section];
     
     return cell;
@@ -181,6 +211,11 @@
 
 - (IBAction)imageLoader:(id)sender 
 {
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
+//                                             (unsigned long)NULL), ^(void) {
+//        [self getArhiveMemesFromParse];
+//    });
     [self getArhiveMemesFromParse];
+
 }
 @end
