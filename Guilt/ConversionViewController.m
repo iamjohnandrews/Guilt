@@ -208,21 +208,21 @@
     }
     if (convertToFloat >= 20) {
         float flocksOfDucks = convertToFloat / 20;
-        NSLog(@"Flock of Ducks = %.2f", flocksOfDucks);
+//        NSLog(@"Flock of Ducks = %.2f", flocksOfDucks);
         int roundUp20 = ceilf(flocksOfDucks);
         NSString* floatToAString20 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp20]];
         [self.convertedCharitableGoodsDict setObject:floatToAString20 forKey:@"Heifer Internaitonal (ducks)"];
     }
     if (convertToFloat >= 30) {
         float honeyBees = convertToFloat / 30;
-        NSLog(@"Gift of Honey Bees is %.2f", honeyBees);
+//        NSLog(@"Gift of Honey Bees is %.2f", honeyBees);
         int roundUp30 = ceilf(honeyBees);
         NSString* floatToAString30 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp30]];        
         [self.convertedCharitableGoodsDict setObject:floatToAString30 forKey:@"Heifer Internaitonal (bees)"];
     }
     if (convertToFloat >= 50) {
         float numberOfCarePackages = convertToFloat / 50;
-        NSLog(@"Number of care packages is %.2f", numberOfCarePackages);
+//        NSLog(@"Number of care packages is %.2f", numberOfCarePackages);
         int roundUp50 = ceilf(numberOfCarePackages);
         NSString* floatToAString50 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp50]];    
         [self.convertedCharitableGoodsDict setObject:floatToAString50 forKey:@"Soilder's Angels"];
@@ -255,7 +255,7 @@
         ImagesViewController* imagesVC = [segue destinationViewController];
         imagesVC.resultOfCharitableConversionsDict = [self.convertedCharitableGoodsDict copy];
         imagesVC.productPrice = convertedProductPrice;
-        imagesVC.oneCharityURLforOneCharityNameDict = [self.oneToOneCharityURLCharityNameDict copy];
+//        imagesVC.oneCharityURLforOneCharityNameDict = [self.oneToOneCharityURLCharityNameDict copy];
         imagesVC.productName = productName;
         imagesVC.productProductURL = urlForProduct;
         imagesVC.userImputPrice = self.userEnterDollarAmountTextField.text;

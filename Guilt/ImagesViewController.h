@@ -11,7 +11,7 @@
 @interface ImagesViewController : BaseViewController 
 
 @property (strong, nonatomic) NSDictionary *resultOfCharitableConversionsDict;
-@property (nonatomic, strong) NSDictionary *oneCharityURLforOneCharityNameDict;
+//@property (nonatomic, strong) NSDictionary *oneCharityURLforOneCharityNameDict;
 
 @property (weak, nonatomic) IBOutlet UITableView *imagesTableView;
 

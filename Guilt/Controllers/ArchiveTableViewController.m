@@ -12,8 +12,8 @@
 #import "ModalArchiveViewController.h"
 #import "GAIDictionaryBuilder.h"
 
-@interface ArchiveTableViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) NSArray *archiveMemesArray;
+@interface ArchiveTableViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
+@property (nonatomic, strong) NSMutableArray *archiveMemesArray;
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) NSMutableArray *dates;
 @property (assign, nonatomic) CATransform3D makeImagesLean;
@@ -34,6 +34,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.archiveMemesArray = [NSMutableArray array];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -51,9 +52,10 @@
     
     if (self.imageTransformEnabled) {
         [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-    }
+    } 
 //    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
-    [self imageLoader:self];
+        [self getArhiveMemesFromParse:1];
+//    [self imageLoader:self];
 
 }
 
@@ -75,25 +77,27 @@
 
 #pragma mark - Parse Methods
 
-- (void)getArhiveMemesFromParse
+- (void)getArhiveMemesFromParse:(NSInteger)pullNumber
 {
     [self.refreshControl beginRefreshing];
-
     //Prepare the query to get all the images in descending order
     //1
     PFQuery *query = [PFQuery queryWithClassName:@"CharityMemes"];
     [query whereKey:@"User" equalTo:[PFUser currentUser]];
     //2
     [query orderByDescending:@"createdAt"];
-    query.limit = 6;
+    if (pullNumber > 1) {
+        [query addDescendingOrder:@"User"];
+        query.skip = pullNumber;
+    }
+    query.limit = 7;
     [query findObjectsInBackgroundWithBlock:^(NSArray *PFobjects, NSError *error) {
         //3 
         if (!error) {
             //Everything was correct, put the new objects and load the wall
-            self.archiveMemesArray = nil;
-            self.archiveMemesArray = [[NSArray alloc] initWithArray:PFobjects];
+            [self.archiveMemesArray addObjectsFromArray:PFobjects];
+//            self.archiveMemesArray = [[NSMutableArray alloc] initWithArray:PFobjects];
             [self parseThroughBackEndData];
-            NSLog(@"successfully retrieved %d images from Parse createdAt=%@", self.archiveMemesArray.count, self.dates[0]);
             [self.tableView reloadData];
             [self.refreshControl endRefreshing];
         } else {
@@ -161,8 +165,11 @@
     
     cell.archiveDateLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     cell.archiveDateLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
-    cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.section];
+    cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.row];
     
+    if (indexPath.row == self.archiveMemesArray.count-2) {
+        [self getArhiveMemesFromParse:self.archiveMemesArray.count];
+    }
     return cell;
 }
 
@@ -232,18 +239,17 @@
         NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
         modalArchiveVC.sharingArchiveMeme = [self.images objectAtIndex:selectedIndexPath.row];
         modalArchiveVC.activitySheetEnabled = YES;
-        NSLog(@"image to be shared = %@", [self.images objectAtIndex:selectedIndexPath.row]);
     } 
 }
 
 
 - (IBAction)imageLoader:(id)sender 
 {
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
-//                                             (unsigned long)NULL), ^(void) {
-//        [self getArhiveMemesFromParse];
-//    });
-    [self getArhiveMemesFromParse];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
+                                             (unsigned long)NULL), ^(void) {
+        [self getArhiveMemesFromParse:2];
+    });
+//    [self getArhiveMemesFromParse:2];
 
 }
 @end
