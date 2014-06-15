@@ -53,13 +53,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    self.oneToOneCharityURLCharityNameDict = [[NSDictionary alloc] init];
     self.charityData = [[Charity alloc] init];
     self.convertedCharitableGoodsDict = [NSMutableDictionary dictionary];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
-                                             (unsigned long)NULL), ^(void) {
-        [self startGettingImages];
-    });
+    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
+//                                             (unsigned long)NULL), ^(void) {
+//        [self startGettingImages];
+//    });
 }
 
 - (void)setupUI
@@ -239,11 +239,7 @@
     convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
     userEnterDollarAmountTextField.text = nil;
     
-    if (self.oneToOneCharityURLCharityNameDict.count) {
-        [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];   
-    } else {
-        [self waitOnImages];
-    }
+    [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];   
 }
 
 - (void)waitOnImages

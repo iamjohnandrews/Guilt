@@ -11,6 +11,7 @@
 // Frameworks / Libraries
 #import <AFNetworking/AFNetworking.h>
 #import <RaptureXML/RXMLElement.h>
+#import "GAIDictionaryBuilder.h"
 
 // Models
 #import "CharityImage.h"
@@ -39,7 +40,6 @@ NSString * const FlickrAPIKey = @"ba09703c363c9c64279b1a1f4a2d196a";
 }
 
 - (void)requestCharityImagescompletion:(FlickrImageRequestCompletion)completion;
-//- (void)requestImagesForQuery:(NSString *)query completion:(FlickrImageRequestCompletion)completion
 {
     CharityImage *imageModel = [[CharityImage alloc] init];
     self.flickrCharityUrlDictionary = [NSMutableDictionary dictionary];
