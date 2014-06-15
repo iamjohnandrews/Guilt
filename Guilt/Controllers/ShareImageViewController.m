@@ -11,6 +11,7 @@
 #import <MessageUI/MessageUI.h>
 #import "ArchiveTableViewController.h"
 
+
 @interface ShareImageViewController () <UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
 @end
 
@@ -205,7 +206,16 @@
     [self shareActionSheet];
 }
 
-- (IBAction)archiveButtonPressed:(id)sender {
+- (IBAction)archiveButtonPressed:(id)sender 
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker set:kGAIScreenName value:@"Initial Share Meme"];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"touch"
+                                                           label:self.archiveButtonOutlet.titleLabel.text
+                                                           value:nil] build]];
+    [tracker set:kGAIScreenName value:nil];
 }
 
 - (void)uploadImageToParse:(UIImage *)charityMeme

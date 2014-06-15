@@ -10,9 +10,7 @@
 #import <Parse/Parse.h>
 #import "ArchiveTableViewCell.h"
 #import "ModalArchiveViewController.h"
-#import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
-#import "GAITrackedViewController.h"
 
 @interface ArchiveTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSArray *archiveMemesArray;
@@ -170,9 +168,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    ModalArchiveViewController *modalArchiveVC = [[ModalArchiveViewController alloc] init];
-//    [modalArchiveVC setSharingArchiveMeme:[self.images objectAtIndex:indexPath.row]];
-//    modalArchiveVC.activitySheetEnabled = YES;
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"User's Archive Memes"];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"touch"
+                                                           label:@"share archive meme"
+                                                           value:nil] build]];
+    [tracker set:kGAIScreenName value:nil];
     
     [self performSegueWithIdentifier:@"ArchiveToModalShareSegue" sender:self];
 //    [self presentViewController:modalArchiveVC animated:YES completion:^{

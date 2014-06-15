@@ -119,6 +119,15 @@
 
 - (IBAction)leaveIntroButtonPressed:(id)sender 
 {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker set:kGAIScreenName value:@"Welcome"];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"touch"
+                                                           label:self.leaveIntroButtonOutlet.title
+                                                           value:nil] build]];
+    [tracker set:kGAIScreenName value:nil];
+    
     if ([PFUser currentUser]) {
         [self performSegueWithIdentifier:@"WelcomeToConversionSegue" sender:self];
     } else {

@@ -32,7 +32,7 @@
 @end
 
 @implementation ImagesViewController
-@synthesize makeImagesLean;
+@synthesize makeImagesLean, userProfileButtonOutlet;
 
 - (void)viewDidLoad
 {
@@ -80,6 +80,13 @@
         } else {
             shareImageVC.productPrice = self.userImputPrice;
         }
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker set:kGAIScreenName value:@"Social Impact Memes"];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                              action:@"touch"
+                                                               label:@"share specific meme"
+                                                               value:nil] build]];
+        [tracker set:kGAIScreenName value:nil];
     }
 }
 
@@ -320,6 +327,13 @@
 
 - (IBAction)userProfileButton:(id)sender 
 {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Social Impact Memes"];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"touch"
+                                                           label:userProfileButtonOutlet.title
+                                                           value:nil] build]];
+    [tracker set:kGAIScreenName value:nil];
 }
 
 

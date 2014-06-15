@@ -26,7 +26,7 @@
 
 @implementation ConversionViewController
 @synthesize userEnterDollarAmountTextField, valueQuestionLabel, orLabel, backToIntroductionButtonOutlet;
-@synthesize conversionButtonOutlet, scannerButtonOutlet;
+@synthesize conversionButtonOutlet, scannerButtonOutlet, userProfileButtonOutlet;
 @synthesize productName;
 @synthesize productPrice;
 @synthesize urlForProduct;
@@ -34,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.screenName = @"Welcome";
+    self.screenName = @"Conversion";
     [self setupUI];
     //code to dismiss keyboard when user taps around textField
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
@@ -127,13 +127,27 @@
 }
 
 - (IBAction)scannerButton:(id)sender {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Conversion"];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"touch"
+                                                           label:scannerButtonOutlet.titleLabel.text
+                                                           value:nil] build]];
+    [tracker set:kGAIScreenName value:nil];
 
     [self performSegueWithIdentifier:@"ScannerSegue" sender:self];
 }
 
 - (IBAction)conversionButton:(id)sender 
 {
-//    [self retrieveDataFromParse];
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Conversion"];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"touch"
+                                                           label:conversionButtonOutlet.titleLabel.text
+                                                           value:nil] build]];
+    [tracker set:kGAIScreenName value:nil];
+
     [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
 }
 
@@ -155,7 +169,13 @@
 
 - (IBAction)userProfileButton:(id)sender 
 {
-    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Conversion"];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"touch"
+                                                           label:userProfileButtonOutlet.title
+                                                           value:nil] build]];
+    [tracker set:kGAIScreenName value:nil];
     
 }
 

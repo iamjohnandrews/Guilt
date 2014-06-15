@@ -9,9 +9,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ScannerViewController.h"
 #import "ImagesViewController.h"
-#import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
-#import "GAITrackedViewController.h"
 
 @interface ScannerViewController ()  <AVCaptureMetadataOutputObjectsDelegate>
 {
