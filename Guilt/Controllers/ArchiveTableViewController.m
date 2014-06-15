@@ -45,7 +45,7 @@
     id tracker = [[GAI sharedInstance] defaultTracker];
     // This screen name value will remain set on the tracker and sent with
     // hits until it is set to a new value or to nil.
-    [tracker set:kGAIScreenName value:@"User's Archive Memes"];
+    [tracker set:kGAIScreenName value:@"ArchiveTableViewController"];
     // manual screen tracking
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
@@ -169,7 +169,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"User's Archive Memes"];
+    [tracker set:kGAIScreenName value:@"ArchiveTableViewController"];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
                                                           action:@"touch"
                                                            label:@"share archive meme"

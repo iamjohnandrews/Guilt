@@ -34,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.screenName = @"Conversion";
+    self.screenName = @"ConversionViewController";
     [self setupUI];
     //code to dismiss keyboard when user taps around textField
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
@@ -128,7 +128,7 @@
 
 - (IBAction)scannerButton:(id)sender {
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"Conversion"];
+    [tracker set:kGAIScreenName value:@"ConversionViewController"];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
                                                           action:@"touch"
                                                            label:scannerButtonOutlet.titleLabel.text
@@ -141,7 +141,7 @@
 - (IBAction)conversionButton:(id)sender 
 {
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"Conversion"];
+    [tracker set:kGAIScreenName value:@"ConversionViewController"];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
                                                           action:@"touch"
                                                            label:conversionButtonOutlet.titleLabel.text
@@ -170,7 +170,7 @@
 - (IBAction)userProfileButton:(id)sender 
 {
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"Conversion"];
+    [tracker set:kGAIScreenName value:@"ConversionViewController"];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
                                                           action:@"touch"
                                                            label:userProfileButtonOutlet.title

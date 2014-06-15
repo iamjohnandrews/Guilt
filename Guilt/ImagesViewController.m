@@ -37,7 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.screenName = @"Social Impact Memes";
+    self.screenName = @"ImagesViewController";
     if ([PFUser currentUser]) {
         self.userProfileButtonOutlet.enabled = YES;
     } else {
@@ -81,7 +81,7 @@
             shareImageVC.productPrice = self.userImputPrice;
         }
         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker set:kGAIScreenName value:@"Social Impact Memes"];
+        [tracker set:kGAIScreenName value:@"ImagesViewController"];
         [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
                                                               action:@"touch"
                                                                label:@"share specific meme"
@@ -231,7 +231,8 @@
                                        [NSString stringWithFormat:@"%@",
                                         [self.charityData charityLogos:charityName]]];
     
-       
+    charityCell.displayImageView.contentMode = UIViewContentModeScaleAspectFill;
+
     if (self.flickrImageUrlDictionary.count) {
         CGSize newSize = CGSizeMake(320.0f, 211.0f);
         UIImage *flickrImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]]];
@@ -328,7 +329,7 @@
 - (IBAction)userProfileButton:(id)sender 
 {
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"Social Impact Memes"];
+    [tracker set:kGAIScreenName value:@"ImagesViewController"];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
                                                           action:@"touch"
                                                            label:userProfileButtonOutlet.title

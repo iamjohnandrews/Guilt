@@ -20,7 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.screenName = @"Initial Share Meme";
+    self.screenName = @"ShareImageViewController";
     
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background"]];
     [self.view addSubview:background];
@@ -210,7 +210,7 @@
 {
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     
-    [tracker set:kGAIScreenName value:@"Initial Share Meme"];
+    [tracker set:kGAIScreenName value:@"ShareImageViewController"];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
                                                           action:@"touch"
                                                            label:self.archiveButtonOutlet.titleLabel.text

@@ -20,7 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.screenName = @"Specific Archive Meme";
+    self.screenName = @"ModalArchiveViewController";
     self.archiveImageToShare.image = self.sharingArchiveMeme;
     
     self.backToArchiveButtonOutlet.layer.cornerRadius = 8;
@@ -175,7 +175,7 @@
 - (IBAction)backToArchiveButtonPressed:(id)sender 
 {
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"Specific Archive Meme"];
+    [tracker set:kGAIScreenName value:@"ModalArchiveViewController"];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
                                                           action:@"touch"
                                                            label:self.backToArchiveButtonOutlet.titleLabel.text

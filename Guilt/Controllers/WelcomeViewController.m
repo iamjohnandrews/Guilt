@@ -22,7 +22,7 @@
         [self performSegueWithIdentifier:@"WelcomeToConversionSegue" sender:self];
     }
     
-    self.screenName = @"Welcome";
+    self.screenName = @"WelcomeViewController";
     
     self.introScrollView.pagingEnabled = YES;
     self.introScrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2, self.view.frame.size.height);
@@ -121,7 +121,7 @@
 {
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     
-    [tracker set:kGAIScreenName value:@"Welcome"];
+    [tracker set:kGAIScreenName value:@"WelcomeViewController"];
     [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
                                                           action:@"touch"
                                                            label:self.leaveIntroButtonOutlet.title
