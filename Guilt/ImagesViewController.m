@@ -151,7 +151,7 @@
     return screenshot;
 }
 */
-
+#pragma mark - Image Manipulation
 - (UIImage *)convertCellIntoImage
 {
     NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
@@ -165,6 +165,7 @@
         
     return cellImage;
 }
+
 #pragma mark - Table View Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -227,24 +228,36 @@
         charityCell.layer.transform = CATransform3DIdentity;
         charityCell.layer.opacity = 1;
     }];   
-    charityCell.logoImageView.image = [UIImage imageNamed:
-                                       [NSString stringWithFormat:@"%@",
-                                        [self.charityData charityLogos:charityName]]];
     
 
     if (self.flickrImageUrlDictionary.count) {
-        CGSize newSize = CGSizeMake(320.0f, 211.0f);
+        UIImage *logoImage = [[UIImage alloc] init];
+        logoImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[self.charityData charityLogos:charityName]]];
+        
+        CGSize shrinkLogoSize = CGSizeMake(60.0f, 40.0f);
+        UIGraphicsBeginImageContext(shrinkLogoSize);
+        [logoImage drawInRect:CGRectMake(0,0,shrinkLogoSize.width,shrinkLogoSize.height)];
+        UIImage* shrunkLogoImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        charityCell.logoImageView.image = shrunkLogoImage;
+        
+        
         UIImage *flickrImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]]];
         
-        UIGraphicsBeginImageContext(newSize);
-        [flickrImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-        UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+        CGSize shrinkflickrImage = CGSizeMake(320.0f, 211.0f);
+        UIGraphicsBeginImageContext(shrinkflickrImage);
+        [flickrImage drawInRect:CGRectMake(0,0,shrinkflickrImage.width,shrinkflickrImage.height)];
+        UIImage* shrunkflickrImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
         charityCell.displayImageView.contentMode = UIViewContentModeScaleAspectFill;
-        charityCell.displayImageView.image = newImage;
+        charityCell.displayImageView.image = shrunkflickrImage;
         [self.view bringSubviewToFront:charityCell.displayImageView];
-    } 
+    } else {
+        charityCell.displayImageView.image = [UIImage imageNamed:
+                                           [NSString stringWithFormat:@"%@",
+                                            [self.charityData charityLogos:charityName]]];
+    }
     
     charityCell.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
     charityCell.donationButton.frame = CGRectMake(charityCell.bounds.size.width - 44, charityCell.bounds.size.height - 46, 44, 44);

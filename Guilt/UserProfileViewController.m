@@ -98,8 +98,18 @@
     } else {
         cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Donation Amount $%.02f", moneyFormat];
     }
-    cell.logoImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[self.charityData charityLogos:charityName]]];
-    NSLog(@"charityName =%@",charityName);
+    
+    UIImage *logoImage = [[UIImage alloc] init];
+    logoImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[self.charityData charityLogos:charityName]]];
+    
+    CGSize shrinkLogoSize = CGSizeMake(81.0f, 44.0f);
+    UIGraphicsBeginImageContext(shrinkLogoSize);
+    [logoImage drawInRect:CGRectMake(0,0,shrinkLogoSize.width,shrinkLogoSize.height)];
+    UIImage* shrunkLogoImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    cell.logoImageView.image = shrunkLogoImage;
+
     return cell;    
 }
 
