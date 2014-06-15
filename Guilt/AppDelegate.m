@@ -21,7 +21,10 @@
     });
     
     //Google Analytics Tracking ID
-//    UA-51918496-1
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
+    [GAI sharedInstance].dispatchInterval = 20;
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:GOOGLE_ANALYTICS_TRACKINGID];
     
     //Parse
     [[UIApplication sharedApplication] setStatusBarHidden:YES];

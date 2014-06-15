@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-@interface BaseViewController : UIViewController 
+#import "GAITrackedViewController.h"
+
+@interface BaseViewController : GAITrackedViewController 
 @property (nonatomic) BOOL userIsLoggedIn;
 
 @end
