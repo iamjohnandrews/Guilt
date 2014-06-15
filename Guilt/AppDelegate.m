@@ -20,6 +20,9 @@
         [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil];
     });
     
+    //Google Analytics Tracking ID
+//    UA-51918496-1
+    
     //Parse
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [Parse setApplicationId:PARSE_APPLICATION_ID
