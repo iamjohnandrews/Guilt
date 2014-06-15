@@ -19,5 +19,3 @@ extern NSString * const FLICKR_API_KEY;
 extern NSString * const FLICKR_BASE_API_URL;
 extern NSString * const FLICKR_METHOD_PHOTO_SEARCH;
 
-#pragma mark - Google Constants
-extern NSString * const GOOGLE_ANALYTICS_TRACKINGID;

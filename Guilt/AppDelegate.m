@@ -24,7 +24,11 @@
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
     [GAI sharedInstance].dispatchInterval = 20;
-    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:GOOGLE_ANALYTICS_TRACKINGID];
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-51918496-1"];
+    
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    [tracker set:kGAIAppVersion value:version];
+    [tracker set:kGAISampleRate value:@"50.0"];
     
     //Parse
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
