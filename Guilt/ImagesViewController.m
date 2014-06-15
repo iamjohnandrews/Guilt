@@ -37,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.screenName = @"Social Impact Memes";
     if ([PFUser currentUser]) {
         self.userProfileButtonOutlet.enabled = YES;
     } else {

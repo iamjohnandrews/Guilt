@@ -20,6 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.screenName = @"Archive Share Meme";
     self.archiveImageToShare.image = self.sharingArchiveMeme;
     
     self.backToArchiveButtonOutlet.layer.cornerRadius = 8;

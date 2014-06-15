@@ -22,6 +22,8 @@
         [self performSegueWithIdentifier:@"WelcomeToConversionSegue" sender:self];
     }
     
+    self.screenName = @"Welcome";
+    
     self.introScrollView.pagingEnabled = YES;
     self.introScrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2, self.view.frame.size.height);
     self.introScrollView.delegate = self;

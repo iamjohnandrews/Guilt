@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.screenName = @"User Profile";
     donorInfo = [NSMutableArray new];
     
     PFQuery *donationsQuery = [PFQuery queryWithClassName:@"Donation"];

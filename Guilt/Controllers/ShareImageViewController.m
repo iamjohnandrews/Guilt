@@ -19,6 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.screenName = @"Initial Share Meme";
     
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background"]];
     [self.view addSubview:background];

@@ -9,6 +9,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ScannerViewController.h"
 #import "ImagesViewController.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAITrackedViewController.h"
 
 @interface ScannerViewController ()  <AVCaptureMetadataOutputObjectsDelegate>
 {
@@ -62,6 +65,22 @@
     [self.view.layer addSublayer:_prevLayer];
     
     [_session startRunning];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // returns the same tracker you created in your app delegate
+    // defaultTracker originally declared in AppDelegate.m
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    
+    // This screen name value will remain set on the tracker and sent with
+    // hits until it is set to a new value or to nil.
+    [tracker set:kGAIScreenName value:@"Scanner"];
+    
+    // manual screen tracking
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)setupUI

@@ -34,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.screenName = @"Welcome";
     [self setupUI];
     //code to dismiss keyboard when user taps around textField
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
