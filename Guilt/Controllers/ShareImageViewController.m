@@ -27,14 +27,19 @@
     [self.view sendSubviewToBack:background];
     self.view.contentMode = UIViewContentModeScaleAspectFit;
     
-    self.archiveButtonOutlet.layer.cornerRadius = 8;
-    self.archiveButtonOutlet.layer.borderWidth = 1;
-    self.archiveButtonOutlet.layer.borderColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1].CGColor;
-    self.archiveButtonOutlet.backgroundColor = [UIColor whiteColor];
-    self.archiveButtonOutlet.clipsToBounds = YES;
-    [self.archiveButtonOutlet setTitleColor:[UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1] forState:UIControlStateNormal];
-    [self.archiveButtonOutlet setTitle:@"Your Archive" forState:UIControlStateNormal];
-    self.archiveButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    if ([PFUser currentUser]) {
+        self.archiveButtonOutlet.layer.cornerRadius = 8;
+        self.archiveButtonOutlet.layer.borderWidth = 1;
+        self.archiveButtonOutlet.layer.borderColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1].CGColor;
+        self.archiveButtonOutlet.backgroundColor = [UIColor whiteColor];
+        self.archiveButtonOutlet.clipsToBounds = YES;
+        [self.archiveButtonOutlet setTitleColor:[UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1] forState:UIControlStateNormal];
+        [self.archiveButtonOutlet setTitle:@"Your Archive" forState:UIControlStateNormal];
+        self.archiveButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    } else {
+        self.archiveButtonOutlet.hidden = YES;
+    }
+        
     
     [self.navigationItem setTitle:@"Let 'em Know"];
 

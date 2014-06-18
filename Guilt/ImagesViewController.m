@@ -170,7 +170,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.flickrImageUrlDictionary.count;
+    return self.resultOfCharitableConversionsDict.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -280,6 +280,19 @@
     [charityCell addSubview:charityCell.donationButton];
             
     return charityCell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CharityAndProductDisplayCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"number of cell subviews BEFORE %d", selectedCell.subviews.count);
+//    for (UIButton *donationButton in selectedCell.subviews) {
+//        [donationButton removeFromSuperview];
+//    }
+    [selectedCell.donationButton removeFromSuperview];
+    selectedCell.charityConversionDetailsLabel.frame = CGRectMake(2,162,316,50);
+    NSLog(@"number of cell subviews After %d", selectedCell.subviews.count); 
+    [self performSegueWithIdentifier:@"ImageSelectionSegue" sender:self];
 }
 
 - (void)onDonationButtonTapped:(UITapGestureRecognizer *)gestureRecognizer

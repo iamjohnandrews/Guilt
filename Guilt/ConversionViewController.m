@@ -255,7 +255,7 @@
         ImagesViewController* imagesVC = [segue destinationViewController];
         imagesVC.resultOfCharitableConversionsDict = [self.convertedCharitableGoodsDict copy];
         imagesVC.productPrice = convertedProductPrice;
-//        imagesVC.oneCharityURLforOneCharityNameDict = [self.oneToOneCharityURLCharityNameDict copy];
+        imagesVC.oneCharityURLforOneCharityNameDict = [self.oneToOneCharityURLCharityNameDict copy];
         imagesVC.productName = productName;
         imagesVC.productProductURL = urlForProduct;
         imagesVC.userImputPrice = self.userEnterDollarAmountTextField.text;

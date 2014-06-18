@@ -32,6 +32,7 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
     [self.view addGestureRecognizer:tap];
+    NSLog(@"twitterLoginButtonOutlet measurements =%@", NSStringFromCGRect(self.twitterLoginButtonOutlet.frame));
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -78,7 +79,7 @@
 
 - (IBAction)forgottenPWButtonPressed:(id)sender 
 {
-    self.emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 360, 300, 40)];
+    self.emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 300, 300, 40)];
     self.emailTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.emailTextField.font = [UIFont systemFontOfSize:15];
     self.emailTextField.placeholder = @"enter email";
