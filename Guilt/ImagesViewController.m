@@ -273,6 +273,7 @@
     }
     NSAttributedString *charityDescriptionText = [[NSAttributedString alloc] initWithString:[[NSString stringWithFormat:@"%@ %@",[self.resultOfCharitableConversionsDict objectForKey:charityName], charityDescription] uppercaseString] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
     charityCell.charityConversionDetailsLabel.attributedText = charityDescriptionText;
+    charityCell.charityConversionDetailsLabel.tag = 4;
     
     NSAttributedString *dollarConversionDescriptionText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"$%@ IS EQUIVALENT TO", self.productPrice] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
     charityCell.dollarAmountConvertedLabel.attributedText = dollarConversionDescriptionText;
@@ -286,16 +287,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    uita *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"number of cell subviews BEFORE %d", selectedCell.subviews.count);
-    for (id subview in selectedCell.subviews) {
-        if (subview.tag == 2){
-            [subview removeFromSuperview];
-        }
-    }
+    
+    UIImageView *donationButton = (UIImageView *)[selectedCell viewWithTag:2];
+    [donationButton removeFromSuperview];
 
-    selectedCell.charityConversionDetailsLabel.frame = CGRectMake(2,162,316,50);
-    NSLog(@"number of cell subviews After %d", selectedCell.subviews.count); 
+    UILabel *bottomLabel = (UILabel *)[selectedCell viewWithTag:4];
+    bottomLabel.frame = CGRectMake(2,162,316,50);
     [self performSegueWithIdentifier:@"ImageSelectionSegue" sender:self];
 }
 

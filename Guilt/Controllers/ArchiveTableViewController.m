@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) NSMutableArray *dates;
 @property (assign, nonatomic) CATransform3D makeImagesLean;
-
+@property (nonatomic) int totalNumberArchiveMemes;
 @end
 
 @implementation ArchiveTableViewController
@@ -25,6 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self findOutHowManyMemesUserHasinDatabase];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self cellVisualEffect];
@@ -54,7 +55,12 @@
         [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
     } 
 //    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
-        [self getArhiveMemesFromParse:1];
+    if (self.segueingFromUserProfileOrShareVC) {
+        if (self.archiveMemesArray.count < self.totalNumberArchiveMemes) {
+            [self getArhiveMemesFromParse:1];
+        }
+    }
+    
 //    [self imageLoader:self];
     NSLog(@"self.archiveMemesArray.count = %d", self.archiveMemesArray.count);
 }
@@ -84,6 +90,7 @@
     //1
     PFQuery *query = [PFQuery queryWithClassName:@"CharityMemes"];
     [query whereKey:@"User" equalTo:[PFUser currentUser]];
+    
     //2
     [query orderByDescending:@"createdAt"];
     if (pullNumber > 1) {
@@ -106,6 +113,19 @@
             NSString *errorString = [[error userInfo] objectForKey:@"error"];
             UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [errorAlertView show];
+        }
+    }]; 
+}
+
+- (void)findOutHowManyMemesUserHasinDatabase
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"CharityMemes"];
+    [query whereKey:@"User" equalTo:[PFUser currentUser]];
+    
+    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        if (!error) {
+            self.totalNumberArchiveMemes = number;
+            NSLog(@"self.totalNumberArchiveMemes =%d", self.totalNumberArchiveMemes);
         }
     }];
 }
@@ -166,10 +186,14 @@
     cell.archiveDateLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
     cell.archiveDateLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
     cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.row];
+    NSLog(@"self.dates.count = %d, indexPath.row =%d, cell.archiveDateLabel.text = %@", self.dates.count, indexPath.row, cell.archiveDateLabel.text);
     
-    if (indexPath.row == self.archiveMemesArray.count-2 && indexPath.row > 7) {
-        [self getArhiveMemesFromParse:self.archiveMemesArray.count];
+    if (self.archiveMemesArray.count < self.totalNumberArchiveMemes) {
+        if (indexPath.row == self.archiveMemesArray.count-2) {
+            [self getArhiveMemesFromParse:self.archiveMemesArray.count];
+        }
     }
+    
     return cell;
 }
 

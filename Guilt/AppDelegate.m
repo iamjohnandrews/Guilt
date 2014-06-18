@@ -16,7 +16,7 @@
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
                                              (unsigned long)NULL), ^(void) {
-//        [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil];
+        [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil];
     });
     
     //Google Analytics Tracking ID

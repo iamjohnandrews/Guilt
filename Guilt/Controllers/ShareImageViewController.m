@@ -272,6 +272,7 @@
     if ([segue.identifier isEqualToString:@"ShareToArchiveSegue"]) {
         ArchiveTableViewController * archiveVC = [segue destinationViewController];
         archiveVC.imageTransformEnabled = YES;
+        archiveVC.segueingFromUserProfileOrShareVC = YES;
     } 
 }
 

@@ -11,4 +11,6 @@
 @interface ArchiveTableViewController : UITableViewController
 - (IBAction)imageLoader:(id)sender;
 @property (nonatomic) BOOL imageTransformEnabled;
+@property (nonatomic) BOOL segueingFromUserProfileOrShareVC;
+
 @end
