@@ -443,7 +443,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="WID-1z-79Y">
                                 <rect key="frame" x="0.0" y="58" width="320" height="212"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ny1-Rx-gNG">
                                 <rect key="frame" x="48" y="276" width="225" height="70"/>
@@ -745,6 +745,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="DqT-8L-8h8"/>
         <segue reference="ykt-Gs-ZaS"/>
-        <segue reference="Jte-e4-Cc6"/>
+        <segue reference="I5p-2b-h2H"/>
     </inferredMetricsTieBreakers>
 </document>

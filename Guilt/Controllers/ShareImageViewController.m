@@ -45,7 +45,7 @@
 
     self.sharingImage.image = self.unfinishedMeme;
     
-    [self replaceDonateButtonWithKarmaScnaLogo];
+//    [self replaceDonateButtonWithKarmaScnaLogo];
     
     [self shareActionSheet];
 }
@@ -86,7 +86,9 @@
     
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
         if (completed) {
-            [self uploadImageToParse:newImage];
+            if ([PFUser currentUser]) {
+                [self uploadImageToParse:newImage];
+            }
         }
     }];
     
