@@ -11,7 +11,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
 @implementation CharityAndProductDisplayCell
-@synthesize charityConversionDetailsLabel, donationButton, dollarAmountConvertedLabel;
+@synthesize charityConversionDetailsLabel, dollarAmountConvertedLabel;
 
 
 - (void)awakeFromNib

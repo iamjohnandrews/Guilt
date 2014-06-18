@@ -29,6 +29,7 @@
 @property (strong, nonatomic) NSDictionary *flickrCharitySearchTerms;
 @property (strong, nonatomic) NSMutableDictionary *flickrImageUrlDictionary;
 @property (strong, nonatomic) NSArray *specificTypeOfFlickrImageUrlArray;
+
 @end
 
 @implementation ImagesViewController
@@ -262,6 +263,7 @@
     charityCell.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
     charityCell.donationButton.frame = CGRectMake(charityCell.bounds.size.width - 44, charityCell.bounds.size.height - 46, 44, 44);
     [charityCell.donationButton setUserInteractionEnabled:YES];
+    charityCell.donationButton.tag = 2;
     
     NSString *charityDescription = [[NSString alloc] init];
     if ([[self.resultOfCharitableConversionsDict objectForKey:charityName] integerValue] == 1) {
@@ -284,12 +286,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CharityAndProductDisplayCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    uita *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"number of cell subviews BEFORE %d", selectedCell.subviews.count);
-//    for (UIButton *donationButton in selectedCell.subviews) {
-//        [donationButton removeFromSuperview];
-//    }
-    [selectedCell.donationButton removeFromSuperview];
+    for (id subview in selectedCell.subviews) {
+        if (subview.tag == 2){
+            [subview removeFromSuperview];
+        }
+    }
+
     selectedCell.charityConversionDetailsLabel.frame = CGRectMake(2,162,316,50);
     NSLog(@"number of cell subviews After %d", selectedCell.subviews.count); 
     [self performSegueWithIdentifier:@"ImageSelectionSegue" sender:self];

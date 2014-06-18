@@ -56,7 +56,7 @@
 //    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
         [self getArhiveMemesFromParse:1];
 //    [self imageLoader:self];
-
+    NSLog(@"self.archiveMemesArray.count = %d", self.archiveMemesArray.count);
 }
 
 #pragma mark - Table View Visual Effects
@@ -167,7 +167,7 @@
     cell.archiveDateLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
     cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.row];
     
-    if (indexPath.row == self.archiveMemesArray.count-2) {
+    if (indexPath.row == self.archiveMemesArray.count-2 && indexPath.row > 7) {
         [self getArhiveMemesFromParse:self.archiveMemesArray.count];
     }
     return cell;
