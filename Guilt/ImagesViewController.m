@@ -255,17 +255,12 @@
 {
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     
-    //removes every donationButton, best option so far
-    for (UIImageView *donationButton in self.donationButtonArray) {
-        [donationButton removeFromSuperview];
+    for (UIView *subview in selectedCell.subviews) {
+        for (UIView *subSubviews in subview.subviews) {
+            UIImageView *donationButton = (UIImageView *)[subSubviews viewWithTag:2];
+            [donationButton removeFromSuperview];
+        }
     }
-
-    //removes donationButton part of time
-//    UIImageView *donationButton = [[UIImageView alloc] init];
-//    donationButton = (UIImageView *)[selectedCell viewWithTag:2];
-//    [donationButton removeFromSuperview];
-    
-    [[self.donationButtonArray objectAtIndex:indexPath.row] removeFromSuperview];
 
     UILabel *bottomLabel = (UILabel *)[selectedCell viewWithTag:4];
     bottomLabel.frame = CGRectMake(2.0f, 162.0f, 316.0f, 50.0f);
