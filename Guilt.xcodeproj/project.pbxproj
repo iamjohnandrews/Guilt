@@ -37,7 +37,6 @@
 		8E00AAE818182E9700BB32E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AACA18182E9700BB32E4 /* UIKit.framework */; };
 		8E00AAF018182E9700BB32E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E00AAEE18182E9700BB32E4 /* InfoPlist.strings */; };
 		8E00AAF218182E9700BB32E4 /* GuiltTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00AAF118182E9700BB32E4 /* GuiltTests.m */; };
-		8E034B6819493BFC006D8DD6 /* ArchiveCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E034B6719493BFC006D8DD6 /* ArchiveCollectionViewCell.m */; };
 		8E034B6D194A639A006D8DD6 /* ArchiveTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E034B6C194A639A006D8DD6 /* ArchiveTableViewController.m */; };
 		8E034B70194A67CE006D8DD6 /* ArchiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E034B6F194A67CE006D8DD6 /* ArchiveTableViewCell.m */; };
 		8E034B73194C9412006D8DD6 /* ModalArchiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E034B72194C9412006D8DD6 /* ModalArchiveViewController.m */; };
@@ -144,8 +143,6 @@
 		8E00AAED18182E9700BB32E4 /* GuiltTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GuiltTests-Info.plist"; sourceTree = "<group>"; };
 		8E00AAEF18182E9700BB32E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8E00AAF118182E9700BB32E4 /* GuiltTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuiltTests.m; sourceTree = "<group>"; };
-		8E034B6619493BFC006D8DD6 /* ArchiveCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveCollectionViewCell.h; sourceTree = "<group>"; };
-		8E034B6719493BFC006D8DD6 /* ArchiveCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveCollectionViewCell.m; sourceTree = "<group>"; };
 		8E034B6B194A639A006D8DD6 /* ArchiveTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveTableViewController.h; sourceTree = "<group>"; };
 		8E034B6C194A639A006D8DD6 /* ArchiveTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveTableViewController.m; sourceTree = "<group>"; };
 		8E034B6E194A67CE006D8DD6 /* ArchiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveTableViewCell.h; sourceTree = "<group>"; };
@@ -496,8 +493,6 @@
 				8EB17C1218217A85000DDFCC /* CharityAndProductDisplayCell.m */,
 				8E77A87A18EA5608001470DD /* UserHistoryCell.h */,
 				8E77A87B18EA5608001470DD /* UserHistoryCell.m */,
-				8E034B6619493BFC006D8DD6 /* ArchiveCollectionViewCell.h */,
-				8E034B6719493BFC006D8DD6 /* ArchiveCollectionViewCell.m */,
 				8E034B6E194A67CE006D8DD6 /* ArchiveTableViewCell.h */,
 				8E034B6F194A67CE006D8DD6 /* ArchiveTableViewCell.m */,
 			);
@@ -717,7 +712,6 @@
 				8E034B6D194A639A006D8DD6 /* ArchiveTableViewController.m in Sources */,
 				8EB6F6E419218F8E004F70C5 /* FlickrNetworkManager.m in Sources */,
 				8E77A87C18EA5608001470DD /* UserHistoryCell.m in Sources */,
-				8E034B6819493BFC006D8DD6 /* ArchiveCollectionViewCell.m in Sources */,
 				8EB6F6E119218F65004F70C5 /* CharityImage.m in Sources */,
 				8EB6F6C3191FAE0D004F70C5 /* FHSStream.m in Sources */,
 				8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */,
