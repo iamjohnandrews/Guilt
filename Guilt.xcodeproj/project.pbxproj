@@ -23,6 +23,7 @@
 		7727AD8B182BF356006D01DD /* ic_profile_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727AD87182BF356006D01DD /* ic_profile_black@2x.png */; };
 		7727AD8C182BF356006D01DD /* ic_profile_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727AD88182BF356006D01DD /* ic_profile_black.png */; };
 		772B828E1829683300128190 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B828D1829683300128190 /* UserProfileViewController.m */; };
+		7F49207119550B61006FF4A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F49207019550B61006FF4A3 /* Parse.framework */; };
 		8E00AAC718182E9700BB32E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC618182E9700BB32E4 /* Foundation.framework */; };
 		8E00AAC918182E9700BB32E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */; };
 		8E00AACB18182E9700BB32E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AACA18182E9700BB32E4 /* UIKit.framework */; };
@@ -126,6 +127,7 @@
 		7727AD88182BF356006D01DD /* ic_profile_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_profile_black.png; sourceTree = "<group>"; };
 		772B828C1829683300128190 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = ../UserProfileViewController.h; sourceTree = "<group>"; };
 		772B828D1829683300128190 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = ../UserProfileViewController.m; sourceTree = "<group>"; };
+		7F49207019550B61006FF4A3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		8E00AAC318182E9700BB32E4 /* Guilt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guilt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E00AAC618182E9700BB32E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -257,6 +259,7 @@
 				771BCD9018219B15000264A8 /* StoreKit.framework in Frameworks */,
 				771BCD8E18219B0C000264A8 /* Security.framework in Frameworks */,
 				771BCD8C18219B01000264A8 /* QuartzCore.framework in Frameworks */,
+				7F49207119550B61006FF4A3 /* Parse.framework in Frameworks */,
 				771BCD8A18219AF3000264A8 /* MobileCoreServices.framework in Frameworks */,
 				771BCD8818219AE9000264A8 /* libz.1.1.3.dylib in Frameworks */,
 				771BCD8618219ACF000264A8 /* CoreLocation.framework in Frameworks */,
@@ -306,6 +309,7 @@
 		8E00AAC518182E9700BB32E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F49207019550B61006FF4A3 /* Parse.framework */,
 				8E034B7F194DD7C8006D8DD6 /* libz.dylib */,
 				8E034B7D194DD7B4006D8DD6 /* CoreData.framework */,
 				8E034B7B194DD79A006D8DD6 /* libGoogleAnalyticsServices.a */,
@@ -870,6 +874,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					Users/johnandrews/Desktop/MobileMakers/6th_Week,
 					/Users/johnandrews/Desktop/MobileMakers/6th_Week/Guilt,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Guilt/Guilt-Prefix.pch";
@@ -895,6 +900,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					Users/johnandrews/Desktop/MobileMakers/6th_Week,
 					/Users/johnandrews/Desktop/MobileMakers/6th_Week/Guilt,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Guilt/Guilt-Prefix.pch";
