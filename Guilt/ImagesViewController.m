@@ -113,45 +113,6 @@
     self.specificTypeOfFlickrImageUrlArray = [[NSArray alloc] initWithArray:arrayOfManyImageUrls];
 }
 
-/*Original
-- (UIImage *)convertCellIntoImage
-{
-    NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
-    UITableViewCell *cell  = [self.imagesTableView cellForRowAtIndexPath:selectedIndexPath];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
-
-    //take snapshot of the cell
-    UIGraphicsBeginImageContextWithOptions(cell.bounds.size, cell.opaque, 0.0);
-    [cell.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *cellImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    CGContextRestoreGState(context);
-    
-    return cellImage;
-}
-/* Logan
-- (UIImage *)convertCellIntoImage
-{    
-    NSIndexPath *selectedIndexPath = [self.imagesTableView indexPathForSelectedRow];
-    UITableViewCell *cell  = [self.imagesTableView cellForRowAtIndexPath:selectedIndexPath];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-
-    UIGraphicsBeginImageContextWithOptions(cell.frame.size, NO, 0.0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextConcatCTM(context, CGAffineTransformMakeTranslation(-cell.frame.origin.x, -cell.frame.origin.y - self.navigationController.navigationBar.frame.size.height));
-    [[[[UIApplication sharedApplication] keyWindow] layer] renderInContext:context];
-        
-    UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return screenshot;
-}
-*/
 #pragma mark - Image Manipulation
 - (UIImage *)convertCellIntoImage
 {

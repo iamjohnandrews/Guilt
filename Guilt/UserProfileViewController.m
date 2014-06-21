@@ -11,7 +11,6 @@
 #import "ArchiveTableViewController.h"
 
 @interface UserProfileViewController () {
-  //  DonationsTableViewController *donationsTable;
     NSMutableArray *donorInfo;
     int tempPoints;
     

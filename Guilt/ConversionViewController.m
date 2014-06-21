@@ -279,21 +279,6 @@
     
 }
 
-//DELETE
-//- (void)startGettingImages
-//{
-////    self.oneToOneCharityURLCharityNameDict = [NSDictionary dictionaryWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
-//    self.oneToOneCharityURLCharityNameDict = [[NSDictionary alloc] initWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
-//    NSLog(@"oneToOneCharityURLCharityNameDict FILLED =%d", self.oneToOneCharityURLCharityNameDict.count);
-//    if (self.spinner) {
-//        [self.spinner stopAnimating];
-//        self.spinner = nil;
-//        dispatch_async(dispatch_get_main_queue(),^{
-//            [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
-//        });
-//    }
-//}
-
 - (void)dismissKeyboard 
 {
     [userEnterDollarAmountTextField resignFirstResponder];

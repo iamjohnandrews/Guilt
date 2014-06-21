@@ -60,8 +60,6 @@
             [self getArhiveMemesFromParse:1];
         }
     }
-    
-//    [self imageLoader:self];
     NSLog(@"self.archiveMemesArray.count = %d", self.archiveMemesArray.count);
 }
 
@@ -314,7 +312,5 @@
                                              (unsigned long)NULL), ^(void) {
         [self getArhiveMemesFromParse:2];
     });
-//    [self getArhiveMemesFromParse:2];
-
 }
 @end

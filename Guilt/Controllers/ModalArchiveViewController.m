@@ -48,12 +48,6 @@
 - (void)shareActionSheet
 {
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:@"#KarmaScanFact", self.sharingArchiveMeme, nil] applicationActivities:nil];
-    
-//    [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
-//        if (completed) {
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//        }
-//    }];
         
     [self presentViewController:activityViewController animated:YES completion:^{
     }];
