@@ -72,7 +72,7 @@ NSString * const FlickrAPIKey = @"ba09703c363c9c64279b1a1f4a2d196a";
                                                        }
                                                    }
                                                    failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                                       NSLog(@"%@ %@ %@", error, [error localizedDescription], [error localizedFailureReason]);
+                                                       NSLog(@"Flickr Error =%@ %@ %@", error, [error localizedDescription], [error localizedFailureReason]);
                                                    }];
         [dataTask resume];
     }

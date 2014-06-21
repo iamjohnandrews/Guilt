@@ -96,23 +96,26 @@
         query.skip = pullNumber;
     }
     query.limit = 7;
-    [query findObjectsInBackgroundWithBlock:^(NSArray *PFobjects, NSError *error) {
-        //3 
-        if (!error) {
-            //Everything was correct, put the new objects and load the wall
-            [self.archiveMemesArray addObjectsFromArray:PFobjects];
-//            self.archiveMemesArray = [[NSMutableArray alloc] initWithArray:PFobjects];
-            [self parseThroughBackEndData];
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-        } else {
-            
-            //4
-            NSString *errorString = [[error userInfo] objectForKey:@"error"];
-            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [errorAlertView show];
-        }
-    }]; 
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                             (unsigned long)NULL), ^(void) {
+        [query findObjectsInBackgroundWithBlock:^(NSArray *PFobjects, NSError *error) {
+            //3
+            if (!error) {
+                //Everything was correct, put the new objects and load the wall
+                [self.archiveMemesArray addObjectsFromArray:PFobjects];
+                //            self.archiveMemesArray = [[NSMutableArray alloc] initWithArray:PFobjects];
+                [self parseThroughBackEndData];
+                [self.tableView reloadData];
+                [self.refreshControl endRefreshing];
+            } else {
+                
+                //4
+                NSString *errorString = [[error userInfo] objectForKey:@"error"];
+                UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [errorAlertView show];
+            }
+        }];
+    });
 }
 
 - (void)findOutHowManyMemesUserHasinDatabase
