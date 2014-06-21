@@ -288,13 +288,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"number of cell subviews BEFORE %d", selectedCell.subviews.count);
     
     UIImageView *donationButton = (UIImageView *)[selectedCell viewWithTag:2];
     [donationButton removeFromSuperview];
 
     UILabel *bottomLabel = (UILabel *)[selectedCell viewWithTag:4];
-    bottomLabel.frame = CGRectMake(2,162,316,50);
+    bottomLabel.frame = CGRectMake(2.0f, 162.0f, 316.0f, 50.0f);
     [self performSegueWithIdentifier:@"ImageSelectionSegue" sender:self];
 }
 
