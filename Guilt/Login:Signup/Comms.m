@@ -52,7 +52,6 @@
         if (succeeded) {
             PFObject *charityMeme = [PFObject objectWithClassName:@"charityMeme"];
             charityMeme[@"image"] = imageFile;
-//            charityMeme[@"userId"] = [[PFUser currentUser] objectForKey:@"Id"];
             charityMeme[@"user"] = [PFUser currentUser].username;
         }
     } progressBlock:^(int percentDone) {

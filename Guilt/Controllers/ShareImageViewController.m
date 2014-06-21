@@ -45,20 +45,10 @@
 
     self.sharingImage.image = self.unfinishedMeme;
     
-//    [self replaceDonateButtonWithKarmaScnaLogo];
-    
     [self shareActionSheet];
 }
 
 #pragma mark Create Meme
-- (void)replaceDonateButtonWithKarmaScnaLogo
-{   
-    UIImageView * karmaScanK = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaSan_K_small.png"]];
-    karmaScanK.frame = CGRectMake(self.sharingImage.bounds.size.width - 45, self.sharingImage.bounds.size.height - 46, 44, 44);
-    [self.sharingImage addSubview:karmaScanK];
-    
-}
-
 - (UIImage *)convertIntoFinalMemeToShare
 {    
     UIGraphicsBeginImageContextWithOptions(self.sharingImage.bounds.size, NO, 0.0);
@@ -73,8 +63,6 @@
 #pragma mark Sharing & Action
 - (void)shareActionSheet
 {
-
-//    UIImage *finialImage = [self convertIntoFinalMemeToShare];
     CGSize newSize = CGSizeMake(320.0f, 211.0f);
 
     UIGraphicsBeginImageContext(newSize);

@@ -76,28 +76,6 @@ NSString * const FlickrAPIKey = @"ba09703c363c9c64279b1a1f4a2d196a";
                                                    }];
         [dataTask resume];
     }
-    
-//    [newImage.imageURLArray arrayByAddingObject:self.charityPhotos];
-//    NSLog(@"Number of Photos in MODEL = %d", newImage.imageURLArray.count);
-//    NSLog(@"@Total amount of Photos from Flickr = %d", self.charityPhotos.count);
-
-//    NSURLSessionDataTask *dataTask = [self.session GET:@""
-//                                            parameters:@{@"method": FLICKR_METHOD_PHOTO_SEARCH,
-//                                                         @"api_key": FLICKR_API_KEY,
-//                                                         @"text": query,
-//                                                         @"safe_search": @"1",
-//                                                         @"format": @"rest",
-//                                                         @"extras": @"url_l"}
-//                                               success:^(NSURLSessionDataTask *task, id responseObject) {
-//                                                   NSArray *photos = [self parseImagesXMLRequest:responseObject];
-//                                                   if (completion) {
-//                                                       completion(photos);
-//                                                   }
-//                                               }
-//                                               failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                                                   NSLog(@"%@ %@ %@", error, [error localizedDescription], [error localizedFailureReason]);
-//                                               }];
-//    [dataTask resume];
 }
 
 #pragma mark - XML Parsing
@@ -110,7 +88,6 @@ NSString * const FlickrAPIKey = @"ba09703c363c9c64279b1a1f4a2d196a";
                        usingBlock:^(RXMLElement *photo) {
                            NSString *urlString = [photo attribute:@"url_l"];
                            if (urlString.length) {
-//                               NSURL *imageUrl = [[NSURL alloc] init];
                                CharityImage *newImage = [[CharityImage alloc] init];
                                newImage.imageUrl = [NSURL URLWithString:urlString];
                                [photos addObject:newImage.imageUrl];

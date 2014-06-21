@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Charity.h"
+
 @interface UserHistoryCell : UITableViewCell
-@property (strong, nonatomic) Charity *charity;
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *moneyDetailsLabel;
 

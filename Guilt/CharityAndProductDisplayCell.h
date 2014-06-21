@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Charity.h"
 @class CharityImage;
 
 @interface CharityAndProductDisplayCell : UITableViewCell

@@ -10,7 +10,6 @@
 #import "ImagesViewController.h"
 #import "ScannerViewController.h"
 #import <Parse/Parse.h>
-#import "Charity.h"
 #import "FlickrNetworkManager.h"
 
 @interface ConversionViewController (){
@@ -19,8 +18,6 @@
 @property (strong, nonatomic) NSMutableDictionary *convertedCharitableGoodsDict;
 @property (nonatomic, strong) NSMutableArray *parseNonprofitInfoArray;
 @property (nonatomic, strong) NSDictionary *oneToOneCharityURLCharityNameDict;
-@property (strong, nonatomic) Charity *charityData;
-@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
 @end
 
@@ -53,13 +50,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.charityData = [[Charity alloc] init];
     self.convertedCharitableGoodsDict = [NSMutableDictionary dictionary];
-    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
-//                                             (unsigned long)NULL), ^(void) {
-//        [self startGettingImages];
-//    });
 }
 
 - (void)setupUI
@@ -242,14 +233,6 @@
     [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];   
 }
 
-- (void)waitOnImages
-{
-    self.spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x - 25, self.view.bounds.origin.y + 35, 50, 50)];
-    self.spinner.color = [UIColor orangeColor];
-    [self.spinner startAnimating];
-    [self.view addSubview:self.spinner]; 
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"ConversionToImagesSegue"]) {
         ImagesViewController* imagesVC = [segue destinationViewController];
@@ -296,19 +279,20 @@
     
 }
 
-- (void)startGettingImages
-{
-//    self.oneToOneCharityURLCharityNameDict = [NSDictionary dictionaryWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
-    self.oneToOneCharityURLCharityNameDict = [[NSDictionary alloc] initWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
-    NSLog(@"oneToOneCharityURLCharityNameDict FILLED =%d", self.oneToOneCharityURLCharityNameDict.count);
-    if (self.spinner) {
-        [self.spinner stopAnimating];
-        self.spinner = nil;
-        dispatch_async(dispatch_get_main_queue(),^{
-            [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
-        });
-    }
-}
+//DELETE
+//- (void)startGettingImages
+//{
+////    self.oneToOneCharityURLCharityNameDict = [NSDictionary dictionaryWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
+//    self.oneToOneCharityURLCharityNameDict = [[NSDictionary alloc] initWithDictionary:[self.charityData charityImageURLSForSpecifcCharity]];
+//    NSLog(@"oneToOneCharityURLCharityNameDict FILLED =%d", self.oneToOneCharityURLCharityNameDict.count);
+//    if (self.spinner) {
+//        [self.spinner stopAnimating];
+//        self.spinner = nil;
+//        dispatch_async(dispatch_get_main_queue(),^{
+//            [self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
+//        });
+//    }
+//}
 
 - (void)dismissKeyboard 
 {
