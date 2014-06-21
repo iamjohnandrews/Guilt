@@ -5,7 +5,6 @@ target "Guilt" do
 pod 'Facebook-iOS-SDK', '~> 3.14'
 pod 'AFNetworking', '~> 2.2'
 pod 'RaptureXML'
-pod 'CSStickyHeaderFlowLayout'
 end
 
 target "GuiltTests" do
