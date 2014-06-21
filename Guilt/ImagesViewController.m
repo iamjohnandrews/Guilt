@@ -30,6 +30,8 @@
 @property (strong, nonatomic) NSMutableDictionary *flickrImageUrlDictionary;
 @property (strong, nonatomic) NSArray *specificTypeOfFlickrImageUrlArray;
 
+@property (strong, nonatomic) NSMutableArray *donationButtonArray;
+
 @end
 
 @implementation ImagesViewController
@@ -46,6 +48,8 @@
     }
     self.imagesTableView.dataSource = self;
     self.imagesTableView.delegate = self;
+
+    self.donationButtonArray = [NSMutableArray array];
 
     
     //Part of code to get images to animate when appear
@@ -180,8 +184,8 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{  
-    NSString *charityName = [self.charityData charityNames:indexPath.row]; 
+{
+    NSString *charityName = [self.charityData charityNames:indexPath.row];
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
 
     charityCell.layer.transform = self.makeImagesLean;
@@ -221,10 +225,11 @@
                                             [self.charityData charityLogos:charityName]]];
     }
     
-    charityCell.donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
-    charityCell.donationButton.frame = CGRectMake(charityCell.bounds.size.width - 44, charityCell.bounds.size.height - 46, 44, 44);
-    [charityCell.donationButton setUserInteractionEnabled:YES];
-    charityCell.donationButton.tag = 2;
+    UIImageView *donationButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"donate.png"]];
+    donationButton.frame = CGRectMake(charityCell.bounds.size.width - 44, charityCell.bounds.size.height - 46, 44, 44);
+    [donationButton setUserInteractionEnabled:YES];
+    donationButton.tag = 2;
+    [self.donationButtonArray addObject:donationButton];
     
     NSString *charityDescription = [[NSString alloc] init];
     if ([[self.resultOfCharitableConversionsDict objectForKey:charityName] integerValue] == 1) {
@@ -240,8 +245,8 @@
     charityCell.dollarAmountConvertedLabel.attributedText = dollarConversionDescriptionText;
     
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDonationButtonTapped:)];
-    [charityCell.donationButton addGestureRecognizer:recognizer];
-    [charityCell addSubview:charityCell.donationButton];
+    [donationButton addGestureRecognizer:recognizer];
+    [charityCell addSubview:donationButton];
             
     return charityCell;
 }
@@ -250,8 +255,17 @@
 {
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     
-    UIImageView *donationButton = (UIImageView *)[selectedCell viewWithTag:2];
-    [donationButton removeFromSuperview];
+    //removes every donationButton, best option so far
+    for (UIImageView *donationButton in self.donationButtonArray) {
+        [donationButton removeFromSuperview];
+    }
+
+    //removes donationButton part of time
+//    UIImageView *donationButton = [[UIImageView alloc] init];
+//    donationButton = (UIImageView *)[selectedCell viewWithTag:2];
+//    [donationButton removeFromSuperview];
+    
+    [[self.donationButtonArray objectAtIndex:indexPath.row] removeFromSuperview];
 
     UILabel *bottomLabel = (UILabel *)[selectedCell viewWithTag:4];
     bottomLabel.frame = CGRectMake(2.0f, 162.0f, 316.0f, 50.0f);

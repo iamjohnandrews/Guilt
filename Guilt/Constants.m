@@ -21,7 +21,8 @@ NSString * const TWITTER_CONSUMER_KEY = @"6HGYzIN6t2qJILEN0BlAwB0XQ";
 NSString * const TWITTER_CONSUMER_SECRET = @"eqip3xLUZI2Th1kZpji9Uv8MmAH7LI012aMvwjlWLZOZ6a3F7Q";
 
 #pragma mark - Flickr Constants
-NSString * const FLICKR_API_KEY = @"8674095bdc69112cf51ed6e0dd4cbd05";
 NSString * const FLICKR_BASE_API_URL = @"http://api.flickr.com/services/rest";
 NSString * const FLICKR_METHOD_PHOTO_SEARCH = @"flickr.photos.search";
-
+//MacAir
+NSString * const FLICKR_API_KEY = @"8b8baa38afda046157ddde74bc41782c";
+//NSString * const FLICKR_SECRET = @"4ef5b932ab1251c1";

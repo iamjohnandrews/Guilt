@@ -14,7 +14,7 @@
 {
     NSDictionary *charityLogosDict = [NSDictionary dictionary];
     charityLogosDict = @{@"African Well Fund": @"AfricanWellFund.jpg", 
-                          @"Feed The Children": @"feed_the_children.jpg", 
+                          @"Feed The Children": @"feed-children-logo.jpg", 
                           @"Soilder's Angels": @"SoldiersAngels.jpg",
                           @"The Animal Rescue Site": @"AnimalRescueSite.jpeg",
                           @"Unicef": @"unicef.jpg",

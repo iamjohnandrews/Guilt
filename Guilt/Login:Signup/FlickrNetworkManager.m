@@ -54,7 +54,7 @@ NSString * const FlickrAPIKey = @"ba09703c363c9c64279b1a1f4a2d196a";
     for (int flickrCall = 0; flickrCall < self.charitySearchTerms.count; flickrCall++) {
         NSURLSessionDataTask *dataTask = [self.session GET:@""
                                                 parameters:@{@"method": FLICKR_METHOD_PHOTO_SEARCH,
-                                                             @"api_key": FlickrAPIKey,
+                                                             @"api_key": FLICKR_API_KEY,
                                                              @"text": [self.charitySearchTerms objectForKey:[NSNumber numberWithInt:flickrCall]],
                                                              @"safe_search": @"1",
                                                              @"format": @"rest",
