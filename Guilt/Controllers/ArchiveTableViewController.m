@@ -125,9 +125,24 @@
     [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         if (!error) {
             self.totalNumberArchiveMemes = number;
+            if (self.totalNumberArchiveMemes == 0) {
+                [self showEncourageToShareAndArchiveMessage];
+            }
             NSLog(@"self.totalNumberArchiveMemes =%d", self.totalNumberArchiveMemes);
         }
     }];
+}
+
+- (void)showEncourageToShareAndArchiveMessage
+{
+    UILabel *shareEncouragementMessage = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, self.navigationController.navigationBar.frame.size.height + 10.0f, self.view.frame.size.width - 40.0f, (44.0f * 3))];
+    shareEncouragementMessage.font = [UIFont fontWithName:@"Quicksand-Regular" size:22];
+    shareEncouragementMessage.backgroundColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
+    shareEncouragementMessage.numberOfLines = 0;
+    shareEncouragementMessage.textAlignment = NSTextAlignmentCenter;
+    shareEncouragementMessage.textColor = [UIColor whiteColor];
+    shareEncouragementMessage.text = @"Whenever you share a #KarmaScanFact meme, it is saved to your personal archive";
+    [self.view addSubview:shareEncouragementMessage];
 }
 
 - (void)parseThroughBackEndData
@@ -186,24 +201,34 @@
         self.imageTransformEnabled = NO;
     }
     
-    if (self.totalNumberArchiveMemes == 0) {
-        UILabel *shareEncouragementMessage = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, self.navigationController.navigationBar.frame.size.height + 10.0f, self.view.frame.size.width - 40.0f, (44.0f * 3))];
-        shareEncouragementMessage.font = [UIFont fontWithName:@"Quicksand-Regular" size:22];
-        shareEncouragementMessage.backgroundColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
-        shareEncouragementMessage.numberOfLines = 0;
-        shareEncouragementMessage.textAlignment = NSTextAlignmentCenter;
-        shareEncouragementMessage.textColor = [UIColor whiteColor];
-        shareEncouragementMessage.text = @"Whenever you share a #KarmaScanFact meme, it is saved to your personal archive";
-        [self.view addSubview:shareEncouragementMessage];
-    } else {
-        cell.archiveImage.contentMode = UIViewContentModeScaleAspectFit;
-        cell.archiveImage.image = [self.images objectAtIndex:indexPath.row];
-        
-        cell.archiveDateLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
-        cell.archiveDateLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
-        cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.row];
-        NSLog(@"self.dates.count = %d, indexPath.row =%d, cell.archiveDateLabel.text = %@", self.dates.count, indexPath.row, cell.archiveDateLabel.text);
-    }
+//    if (self.totalNumberArchiveMemes == 0) {
+//        UILabel *shareEncouragementMessage = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, self.navigationController.navigationBar.frame.size.height + 10.0f, self.view.frame.size.width - 40.0f, (44.0f * 3))];
+//        shareEncouragementMessage.font = [UIFont fontWithName:@"Quicksand-Regular" size:22];
+//        shareEncouragementMessage.backgroundColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
+//        shareEncouragementMessage.numberOfLines = 0;
+//        shareEncouragementMessage.textAlignment = NSTextAlignmentCenter;
+//        shareEncouragementMessage.textColor = [UIColor whiteColor];
+//        shareEncouragementMessage.text = @"Whenever you share a #KarmaScanFact meme, it is saved to your personal archive";
+//        [self.view addSubview:shareEncouragementMessage];
+//    } else {
+//        cell.archiveImage.contentMode = UIViewContentModeScaleAspectFit;
+//        cell.archiveImage.image = [self.images objectAtIndex:indexPath.row];
+//        
+//        cell.archiveDateLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+//        cell.archiveDateLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
+//        cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.row];
+//        NSLog(@"self.dates.count = %d, indexPath.row =%d, cell.archiveDateLabel.text = %@", self.dates.count, indexPath.row, cell.archiveDateLabel.text);
+//    }
+    
+
+    cell.archiveImage.contentMode = UIViewContentModeScaleAspectFit;
+    cell.archiveImage.image = [self.images objectAtIndex:indexPath.row];
+    
+    cell.archiveDateLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    cell.archiveDateLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
+    cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.row];
+    NSLog(@"self.dates.count = %d, indexPath.row =%d, cell.archiveDateLabel.text = %@", self.dates.count, indexPath.row, cell.archiveDateLabel.text);
+    
     if (self.archiveMemesArray.count < self.totalNumberArchiveMemes) {
         if (indexPath.row == self.archiveMemesArray.count-2) {
             [self getArhiveMemesFromParse:self.archiveMemesArray.count];
