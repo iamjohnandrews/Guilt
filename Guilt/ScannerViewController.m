@@ -22,8 +22,7 @@
     UIView *highlightView;
     UILabel *label;
     
-    BOOL flag;
-    
+    BOOL flag;    
 }
 @end
 
@@ -110,9 +109,8 @@
     [super viewWillAppear:animated];
     
     flag = NO;
-    
-    
 }
+
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
     CGRect highlightViewRect = CGRectZero;
@@ -124,36 +122,28 @@
     
     for (AVMetadataObject *metadata in metadataObjects) {
         for (NSString *type in barCodeTypes) {
-            if ([metadata.type isEqualToString:type])
-            {
+            if ([metadata.type isEqualToString:type]) {
                 barCodeObject = (AVMetadataMachineReadableCodeObject *)[_prevLayer transformedMetadataObjectForMetadataObject:(AVMetadataMachineReadableCodeObject *)metadata];
                 highlightViewRect = barCodeObject.bounds;
                 detectionString = [(AVMetadataMachineReadableCodeObject *)metadata stringValue];
-                break;
             }
         }
-        
-        if (detectionString != nil)
-        {
-            label.text = detectionString;
-            
-            //find product information
-            
-            NSLog(@"UPC %@",detectionString);
-            
-            if (flag==NO) {
-                
-                [self findProductInfo:detectionString];
-                flag=YES; //ensures that only one look per scan takes place
-#warning the above if statement is not working. Should we put timer on scanner fo after 3 seconds it gives up?
-            }
-            
-            break;
-        }
-        else
-            label.text = @"(none)";
     }
-    
+    if (detectionString != nil) {
+        label.text = detectionString;
+        
+        //find product information
+        
+        NSLog(@"UPC %@",detectionString);
+        
+        if (flag==NO) {
+            [self findProductInfo:detectionString];
+            flag=YES; //ensures that only one look per scan takes place
+            
+        } else {
+            label.text = @"(none)";
+        }
+    }
     highlightView.frame = highlightViewRect;
 }
 
@@ -164,31 +154,23 @@
     //upc = @"0049000028904";
     NSLog(@"UPC = %@",upc);
     
+    NSString * escapedUrlString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[NSString stringWithFormat:@"{\"upc\":\"%@\"}",upc], NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8 ));
     
-    
-    NSString * escapedUrlString =(NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                                                                                                       NULL,
-                                                                                                       
-                                                                                                       (CFStringRef)[NSString stringWithFormat:@"{\"upc\":\"%@\"}",upc],
-                                                                                                       NULL,
-                                                                                                       (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                                       kCFStringEncodingUTF8 ));
-    
-    NSLog(@"escapedURLString %@",escapedUrlString);
-    
-    
-	// Do any additional setup after loading the view, typically from a nib.
-    //   NSURL * url = [NSURL URLWithString:@"https://alpha-api.app.net/stream/0/posts/stream/global"];
-    //    NSURL * url = [NSURL URLWithString:@"https://api.semantics3.com/test/v1/products?q={\"search\":\"Apple iPad*\"}"];
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.semantics3.com/test/v1/products?q=%@",escapedUrlString]];
-    
+    NSString *queryString = [NSString stringWithFormat:@"%@{\"upc\":%@}", SEMANTICS_BASE_API_URL, upc];
+    NSLog(@"queryString %@",queryString);
+
+//    NSURL * url = [NSURL URLWithString:[queryString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:queryString];
+
     NSLog(@"URL: %@",url);
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
     //Create a mutable copy of the immutable request & and add more headers
     NSMutableURLRequest *mutableRequest = [request mutableCopy];
-    ////
-    [mutableRequest addValue:@"SEM3B4375C1733AA1EB425CD175E9449D509"forHTTPHeaderField:@"api_key"];
+    
+//    [mutableRequest addValue:@"SEM3B4375C1733AA1EB425CD175E9449D509"forHTTPHeaderField:@"api_key"];
+    [mutableRequest addValue:SEMANTICS_API_KEY forHTTPHeaderField:@"api_key"];
+
     //////
     request = [mutableRequest copy];
     
@@ -198,86 +180,87 @@
     
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
-     {
-         
-         
-         
-         NSDictionary* dictionary= [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
-         
-         NSLog(@" Dictionary: %@", dictionary);
-         
-         NSString* code =[dictionary objectForKey:@"code"];
-         
-         NSString *message =[dictionary objectForKey:@"message" ];
-         
-         
-         if ([code isEqualToString:@"APIError" ] || [message isEqualToString:@"No results found; please modify your search."]) {
-             
-             NSLog(@"API Error occurred or No Results found");
-             
-             [self exit];
-             
-             NSLog(@"after popToRootViewControllerAnimated is called ");
-             //above code sends user to ConversionViewController
-             
-             
-         }
-         
-         else
-         {
-             
-             NSArray *tempArray = [dictionary objectForKey:@"results"];
-             
-             NSLog(@" tempArray: %@", tempArray);
-             
-             NSDictionary *tempDict1 = [tempArray objectAtIndex:0];
-             
-             
-             productName = [tempDict1 objectForKey:@"name"];
-             NSArray *tempArray2 = [tempDict1 objectForKey:@"sitedetails"];
-             
-             NSLog(@" tempArray2: %@", tempArray2);
-             
-             NSDictionary* latestOffers = [tempArray2 objectAtIndex:0];
-             
-             NSLog(@" latestOffers: %@", latestOffers);
-             NSLog(@"URL for this is: %@", [latestOffers objectForKey:@"url"]);
-             
-             urlForProduct = [latestOffers objectForKey:@"url"];
-             
-             if (urlForProduct == nil) {
-                 [self exit];
-             }
-             
-             NSLog(@"This is after the assignment of urlForProduct: %@", urlForProduct);
-             
-             
-             NSArray *ltArray = [latestOffers objectForKey:@"latestoffers"];
-             for (int i = 0; i < [ltArray count]; i++) {
-                 
-                 NSString* price = [ltArray[i] objectForKey:@"price"];
-                 NSLog(@"Price is item %i is $%@", i,  price);
-                 
-                 productPrice = [price floatValue];
-                 
-                 
-                 //[self.navigationController popViewControllerAnimated:YES];
-                 [self dismissViewControllerAnimated:YES completion:nil];
-                 
-                 //temp for testing
-                 //productName = @"Bic Pens";
-                 
-                 [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] urlS: urlForProduct productNameNow: productName];                 
-                 
-                 NSLog(@"the URL of the product is %@", urlForProduct);
-                 
-                 NSLog(@"at end of scanner");
-                 break;
-             }
-             
-         }
-     }];
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError){
+                               
+                               if (!connectionError) {
+                                   NSLog(@"code went through");
+                               }
+                               
+                               NSDictionary* dictionary= [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
+                               
+                               NSLog(@" Dictionary: %@", dictionary);
+                               
+                               NSString* code =[dictionary objectForKey:@"code"];
+                               
+                               NSString *message =[dictionary objectForKey:@"message" ];
+                               
+                               
+                               if ([code isEqualToString:@"APIError" ] || [message isEqualToString:@"No results found; please modify your search."]) {
+                                   
+                                   NSLog(@"API Error occurred or No Results found");
+                                   
+                                   [self exit];
+                                   
+                                   NSLog(@"after popToRootViewControllerAnimated is called ");
+                                   //above code sends user to ConversionViewController
+                                   
+                                   
+                               }
+                               
+                               else
+                               {
+                                   
+                                   NSArray *tempArray = [dictionary objectForKey:@"results"];
+                                   
+                                   NSLog(@" tempArray: %@", tempArray);
+                                   
+                                   NSDictionary *tempDict1 = [tempArray objectAtIndex:0];
+                                   
+                                   
+                                   productName = [tempDict1 objectForKey:@"name"];
+                                   NSArray *tempArray2 = [tempDict1 objectForKey:@"sitedetails"];
+                                   
+                                   NSLog(@" tempArray2: %@", tempArray2);
+                                   
+                                   NSDictionary* latestOffers = [tempArray2 objectAtIndex:0];
+                                   
+                                   NSLog(@" latestOffers: %@", latestOffers);
+                                   NSLog(@"URL for this is: %@", [latestOffers objectForKey:@"url"]);
+                                   
+                                   urlForProduct = [latestOffers objectForKey:@"url"];
+                                   
+                                   if (urlForProduct == nil) {
+                                       [self exit];
+                                   }
+                                   
+                                   NSLog(@"This is after the assignment of urlForProduct: %@", urlForProduct);
+                                   
+                                   
+                                   NSArray *ltArray = [latestOffers objectForKey:@"latestoffers"];
+                                   for (int i = 0; i < [ltArray count]; i++) {
+                                       
+                                       NSString* price = [ltArray[i] objectForKey:@"price"];
+                                       NSLog(@"Price is item %i is $%@", i,  price);
+                                       
+                                       productPrice = [price floatValue];
+                                       
+                                       
+                                       //[self.navigationController popViewControllerAnimated:YES];
+                                       [self dismissViewControllerAnimated:YES completion:nil];
+                                       
+                                       //temp for testing
+                                       //productName = @"Bic Pens";
+                                       
+                                       [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] urlS: urlForProduct productNameNow: productName];                 
+                                       
+                                       NSLog(@"the URL of the product is %@", urlForProduct);
+                                       
+                                       NSLog(@"at end of scanner");
+                                       break;
+                                   }
+                                   
+                               }
+                           }];
     
 }
 

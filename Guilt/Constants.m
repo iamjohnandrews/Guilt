@@ -21,8 +21,14 @@ NSString * const TWITTER_CONSUMER_KEY = @"6HGYzIN6t2qJILEN0BlAwB0XQ";
 NSString * const TWITTER_CONSUMER_SECRET = @"eqip3xLUZI2Th1kZpji9Uv8MmAH7LI012aMvwjlWLZOZ6a3F7Q";
 
 #pragma mark - Flickr Constants
-NSString * const FLICKR_BASE_API_URL = @"http://api.flickr.com/services/rest";
+NSString * const FLICKR_BASE_API_URL = @"https://api.flickr.com/services/rest";
 NSString * const FLICKR_METHOD_PHOTO_SEARCH = @"flickr.photos.search";
 //MacAir
 NSString * const FLICKR_API_KEY = @"8b8baa38afda046157ddde74bc41782c";
 //NSString * const FLICKR_SECRET = @"4ef5b932ab1251c1";
+
+
+#pragma mark - Semantics3 Constants
+NSString * const SEMANTICS_API_KEY = @"SEM3303A121599008E2FE2E28A4349163619";
+//NSString * const SEMANTICS_API_SECRET = @"MjBlMzc3MTZiY2RhZjVmZGQ2MTE2MDg2ZjFjZWY5ODY";
+NSString * const SEMANTICS_BASE_API_URL = @"https://api.semantics3.com/v1/products?q=";

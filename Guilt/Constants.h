@@ -19,3 +19,7 @@ extern NSString * const FLICKR_API_KEY;
 extern NSString * const FLICKR_BASE_API_URL;
 extern NSString * const FLICKR_METHOD_PHOTO_SEARCH;
 
+#pragma mark - Semantics3 Constants
+extern NSString * const SEMANTICS_API_KEY;
+extern NSString * const SEMANTICS_API_SECRET;
+extern NSString * const SEMANTICS_BASE_API_URL;
