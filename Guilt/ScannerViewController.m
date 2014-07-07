@@ -152,15 +152,16 @@
 {
     // upc = @"883974958450";
     //upc = @"0049000028904";
-    NSLog(@"UPC = %@",upc);
+    
+    // Do any additional setup after loading the view, typically from a nib.
+    //   NSURL * url = [NSURL URLWithString:@"https://alpha-api.app.net/stream/0/posts/stream/global"];
+    //    NSURL * url = [NSURL URLWithString:@"https://api.semantics3.com/test/v1/products?q={\"search\":\"Apple iPad*\"}"];
+//    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.semantics3.com/test/v1/products?q=%@",escapedUrlString]];
+    
     
     NSString * escapedUrlString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[NSString stringWithFormat:@"{\"upc\":\"%@\"}",upc], NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8 ));
-    
-    NSString *queryString = [NSString stringWithFormat:@"%@{\"upc\":%@}", SEMANTICS_BASE_API_URL, upc];
-    NSLog(@"queryString %@",queryString);
 
-//    NSURL * url = [NSURL URLWithString:[queryString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURL *url = [NSURL URLWithString:queryString];
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.semantics3.com/test/v1/products?q=%@",escapedUrlString]];
 
     NSLog(@"URL: %@",url);
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
@@ -188,7 +189,9 @@
                                
                                NSDictionary* dictionary= [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
                                
-                               NSLog(@" Dictionary: %@", dictionary);
+                               [self parseSemanticsProductResponse:dictionary];
+                               
+                               NSLog(@"API Returns Dictionary: %@", dictionary);
                                
                                NSString* code =[dictionary objectForKey:@"code"];
                                
@@ -200,23 +203,14 @@
                                    NSLog(@"API Error occurred or No Results found");
                                    
                                    [self exit];
-                                   
-                                   NSLog(@"after popToRootViewControllerAnimated is called ");
-                                   //above code sends user to ConversionViewController
-                                   
-                                   
+
                                }
-                               
-                               else
-                               {
-                                   
+                              /* else {
                                    NSArray *tempArray = [dictionary objectForKey:@"results"];
                                    
                                    NSLog(@" tempArray: %@", tempArray);
                                    
                                    NSDictionary *tempDict1 = [tempArray objectAtIndex:0];
-                                   
-                                   
                                    productName = [tempDict1 objectForKey:@"name"];
                                    NSArray *tempArray2 = [tempDict1 objectForKey:@"sitedetails"];
                                    
@@ -251,30 +245,38 @@
                                        //temp for testing
                                        //productName = @"Bic Pens";
                                        
-                                       [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] urlS: urlForProduct productNameNow: productName];                 
+                                       [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] urlS: urlForProduct productNameNow: productName];
                                        
                                        NSLog(@"the URL of the product is %@", urlForProduct);
                                        
                                        NSLog(@"at end of scanner");
                                        break;
                                    }
-                                   
-                               }
+                               }*/
                            }];
     
 }
 
+- (void)parseSemanticsProductResponse:(NSDictionary *)productDictionary
+{
+    NSArray *outerLayer = [[NSArray alloc] initWithArray:[productDictionary objectForKey:@"results"]];
+    NSDictionary *innerLayer = [[NSDictionary alloc] initWithDictionary:[outerLayer firstObject]];
+    productName = [innerLayer objectForKey:@"name"];
+    productPrice = [[innerLayer objectForKey:@"price"] floatValue];
+    urlForProduct = [innerLayer objectForKey:@"url"];
+    
+    [self exit];
+}
 
 -(void)exit
 {
-    
-    [self.delegate productDatabaseReturnedNothing];
-    
-    
+    if (!productPrice) {
+        [self.delegate productDatabaseReturnedNothing];
+    } else {
+        [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] urlS:urlForProduct productNameNow:productName];
+    }
     
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    NSLog(@"we are in Exit");
     
 }
 
