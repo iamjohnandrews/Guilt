@@ -37,8 +37,6 @@
 {
     [super viewDidLoad];    
     
-    [self setupUI];
-    
     _session = [[AVCaptureSession alloc] init];
     _device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     NSError *error = nil;
@@ -78,6 +76,7 @@
     
     // manual screen tracking
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    [self setupUI];
 }
 
 - (void)setupUI
@@ -139,7 +138,7 @@
         if (flag==NO) {
             [self findProductInfo:detectionString];
             flag=YES; //ensures that only one look per scan takes place
-            
+            label.text = detectionString;
         } else {
             label.text = @"(none)";
         }
@@ -150,15 +149,6 @@
 
 -(void)findProductInfo: (NSString*)upc
 {
-    // upc = @"883974958450";
-    //upc = @"0049000028904";
-    
-    // Do any additional setup after loading the view, typically from a nib.
-    //   NSURL * url = [NSURL URLWithString:@"https://alpha-api.app.net/stream/0/posts/stream/global"];
-    //    NSURL * url = [NSURL URLWithString:@"https://api.semantics3.com/test/v1/products?q={\"search\":\"Apple iPad*\"}"];
-//    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.semantics3.com/test/v1/products?q=%@",escapedUrlString]];
-    
-    
     NSString * escapedUrlString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[NSString stringWithFormat:@"{\"upc\":\"%@\"}",upc], NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8 ));
 
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.semantics3.com/test/v1/products?q=%@",escapedUrlString]];
@@ -169,22 +159,17 @@
     //Create a mutable copy of the immutable request & and add more headers
     NSMutableURLRequest *mutableRequest = [request mutableCopy];
     
-//    [mutableRequest addValue:@"SEM3B4375C1733AA1EB425CD175E9449D509"forHTTPHeaderField:@"api_key"];
     [mutableRequest addValue:SEMANTICS_API_KEY forHTTPHeaderField:@"api_key"];
 
-    //////
     request = [mutableRequest copy];
-    
     NSLog(@"Request is %@", request);
-    
-    // api_key: SEM3B4375C1733AA1EB425CD175E9449D509" https://api.semantics3.com/test/v1/products --data-urlencode 'q={"search":"Apple iPad*"}
     
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError){
                                
                                if (!connectionError) {
-                                   NSLog(@"code went through");
+                                   NSLog(@"recieved API response from Semantics");
                                }
                                
                                NSDictionary* dictionary= [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
@@ -205,56 +190,7 @@
                                    [self exit];
 
                                }
-                              /* else {
-                                   NSArray *tempArray = [dictionary objectForKey:@"results"];
-                                   
-                                   NSLog(@" tempArray: %@", tempArray);
-                                   
-                                   NSDictionary *tempDict1 = [tempArray objectAtIndex:0];
-                                   productName = [tempDict1 objectForKey:@"name"];
-                                   NSArray *tempArray2 = [tempDict1 objectForKey:@"sitedetails"];
-                                   
-                                   NSLog(@" tempArray2: %@", tempArray2);
-                                   
-                                   NSDictionary* latestOffers = [tempArray2 objectAtIndex:0];
-                                   
-                                   NSLog(@" latestOffers: %@", latestOffers);
-                                   NSLog(@"URL for this is: %@", [latestOffers objectForKey:@"url"]);
-                                   
-                                   urlForProduct = [latestOffers objectForKey:@"url"];
-                                   
-                                   if (urlForProduct == nil) {
-                                       [self exit];
-                                   }
-                                   
-                                   NSLog(@"This is after the assignment of urlForProduct: %@", urlForProduct);
-                                   
-                                   
-                                   NSArray *ltArray = [latestOffers objectForKey:@"latestoffers"];
-                                   for (int i = 0; i < [ltArray count]; i++) {
-                                       
-                                       NSString* price = [ltArray[i] objectForKey:@"price"];
-                                       NSLog(@"Price is item %i is $%@", i,  price);
-                                       
-                                       productPrice = [price floatValue];
-                                       
-                                       
-                                       //[self.navigationController popViewControllerAnimated:YES];
-                                       [self dismissViewControllerAnimated:YES completion:nil];
-                                       
-                                       //temp for testing
-                                       //productName = @"Bic Pens";
-                                       
-                                       [self.delegate productInfoReturned:[NSNumber numberWithFloat:productPrice] urlS: urlForProduct productNameNow: productName];
-                                       
-                                       NSLog(@"the URL of the product is %@", urlForProduct);
-                                       
-                                       NSLog(@"at end of scanner");
-                                       break;
-                                   }
-                               }*/
                            }];
-    
 }
 
 - (void)parseSemanticsProductResponse:(NSDictionary *)productDictionary

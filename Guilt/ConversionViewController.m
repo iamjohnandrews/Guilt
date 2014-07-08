@@ -263,20 +263,14 @@
     [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
-- (void)productInfoReturned:(NSNumber*)returnedPrice urlS:(NSString*) urlForProductTemp productNameNow:(NSString*)productNameNow
+- (void)productInfoReturned:(NSNumber*)returnedPrice urlS:(NSString*)urlForProductTemp productNameNow:(NSString*)productNameNow
 {
     NSLog(@"Get Hype, Product name = %@, URL = %@, Product Price = %@", productNameNow, urlForProductTemp, returnedPrice);
     
     urlForProduct = urlForProductTemp;
     productName = productNameNow;
     
-    
-    //[self performSegueWithIdentifier:@"ConversionToImagesSegue" sender:self];
-    
     [self calculateCharitableImpactValue:returnedPrice];
-    
-   // NSLog(@"the url passed through is %@", urlForProduct);
-    
 }
 
 - (void)dismissKeyboard 

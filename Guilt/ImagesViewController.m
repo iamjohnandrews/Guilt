@@ -144,30 +144,32 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,30)];
     
     UITextView *productNameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 120 )];
-    productNameTextView.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    productNameTextView.font = [UIFont fontWithName:@"Quicksand-Regular" size:17];
     productNameTextView.text = [NSString stringWithFormat:@"%@\n $%@\n", _productName, _productPrice];
     productNameTextView.backgroundColor = [UIColor colorWithRed:247.0/255 green:150.0/255 blue:0.0/255 alpha:1];
     
-    UIButton* urlLinkButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    urlLinkButton.backgroundColor = [UIColor blackColor];
-    urlLinkButton.frame = CGRectMake(210, 50, 100, 50);
-
-    //headerView.backgroundColor = [UIColor blueColor];
-    [urlLinkButton setTitle:@"Buy Now" forState:UIControlStateNormal];
-    urlLinkButton.layer.cornerRadius = 8;
-    urlLinkButton.layer.borderWidth = 1;
-    urlLinkButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    urlLinkButton.clipsToBounds = YES;
-    urlLinkButton.titleLabel.textColor = [UIColor whiteColor];
+    if (self.productProductURL.length) {
+        UIButton* urlLinkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        urlLinkButton.backgroundColor = [UIColor blackColor];
+        urlLinkButton.frame = CGRectMake(210, 50, 100, 50);
+        [urlLinkButton setTitle:@"Buy Now" forState:UIControlStateNormal];
+        urlLinkButton.layer.cornerRadius = 8;
+        urlLinkButton.layer.borderWidth = 1;
+        urlLinkButton.layer.borderColor = [UIColor whiteColor].CGColor;
+        urlLinkButton.clipsToBounds = YES;
+        urlLinkButton.titleLabel.textColor = [UIColor whiteColor];
+        
+        [headerView addSubview:urlLinkButton];
+        [headerView bringSubviewToFront:urlLinkButton];
+        
+        [urlLinkButton setUserInteractionEnabled:YES];
+        
+        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBuyNowButtonTapped)];
+        [urlLinkButton addGestureRecognizer:recognizer];
+    }
 
     [headerView addSubview:productNameTextView];
-    [headerView addSubview:urlLinkButton];
-    [headerView bringSubviewToFront:urlLinkButton];
-    
-    [urlLinkButton setUserInteractionEnabled:YES];
-    
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBuyNowButtonTapped)];
-    [urlLinkButton addGestureRecognizer:recognizer];
+
     
     return headerView;
     
@@ -175,10 +177,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section 
 {
-    if (!_productProductURL) {
+    if (!self.productPrice) {
         return 0;
     } else {
+        if (self.productName.length > 90) {
+            return 140;
+        } else if (self.productName.length > 70){
         return 122;
+        } else if (self.productName.length > 50){
+            return 100;
+        } else if (self.productName.length > 30){
+            return  80;
+        }
+        return 60;
     }
 }
 
