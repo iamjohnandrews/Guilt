@@ -168,11 +168,11 @@
         [urlLinkButton addGestureRecognizer:recognizer];
     }
 
-    [headerView addSubview:productNameTextView];
-
+    if (_productName && _productPrice) {
+        [headerView addSubview:productNameTextView];
+    }
     
     return headerView;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section 

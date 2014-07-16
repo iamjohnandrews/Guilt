@@ -33,6 +33,8 @@
     [super viewDidLoad];
     self.screenName = @"ConversionViewController";
     [self setupUI];
+    userEnterDollarAmountTextField.delegate = self;
+    
     //code to dismiss keyboard when user taps around textField
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
                                    initWithTarget:self
@@ -138,8 +140,13 @@
                                                            label:conversionButtonOutlet.titleLabel.text
                                                            value:nil] build]];
     [tracker set:kGAIScreenName value:nil];
+    
+    NSString *removeDollarSignString;
+    if ([userEnterDollarAmountTextField.text hasPrefix:[[NSLocale currentLocale] objectForKey:NSLocaleCurrencySymbol]] && [userEnterDollarAmountTextField.text length] > 1) {
+        removeDollarSignString = [userEnterDollarAmountTextField.text substringFromIndex:1];
+    }
 
-    [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[userEnterDollarAmountTextField.text floatValue]]];
+    [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[removeDollarSignString floatValue]]];
 }
 
 - (void)textFieldDidChange
@@ -150,6 +157,28 @@
     else {
         [self.conversionButtonOutlet setEnabled:YES];
     }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField.text.length  == 0)
+    {
+        textField.text = [[NSLocale currentLocale] objectForKey:NSLocaleCurrencySymbol];
+    }
+}
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    // Make sure that the currency symbol is always at the beginning of the string:
+    if (![newText hasPrefix:[[NSLocale currentLocale] objectForKey:NSLocaleCurrencySymbol]])
+    {
+        return NO;
+    }
+    
+    // Default:
+    return YES;
 }
 
 - (IBAction)backToIntroductionButton:(id)sender 

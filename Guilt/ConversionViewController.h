@@ -9,7 +9,7 @@
 #import "ScannerDidNotWorkDelegate.h"
 #import "ScannerViewController.h"
 
-@interface ConversionViewController : BaseViewController <ScannerDidNotWorkDelegate>
+@interface ConversionViewController : BaseViewController <ScannerDidNotWorkDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *valueQuestionLabel;
 
