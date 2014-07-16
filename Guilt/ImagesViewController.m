@@ -142,11 +142,12 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,30)];
-    
+        
     UITextView *productNameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 120 )];
     productNameTextView.font = [UIFont fontWithName:@"Quicksand-Regular" size:17];
     productNameTextView.text = [NSString stringWithFormat:@"%@\n $%@\n", _productName, _productPrice];
     productNameTextView.backgroundColor = [UIColor colorWithRed:247.0/255 green:150.0/255 blue:0.0/255 alpha:1];
+    [headerView addSubview:productNameTextView];
     
     if (self.productProductURL.length) {
         UIButton* urlLinkButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -167,17 +168,13 @@
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBuyNowButtonTapped)];
         [urlLinkButton addGestureRecognizer:recognizer];
     }
-
-    if (_productName && _productPrice) {
-        [headerView addSubview:productNameTextView];
-    }
     
     return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section 
 {
-    if (!self.productPrice) {
+    if (!self.productName.length) {
         return 0;
     } else {
         if (self.productName.length > 90) {
@@ -227,7 +224,7 @@
         UIImage* shrunkflickrImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        charityCell.displayImageView.contentMode = UIViewContentModeScaleAspectFill;
+        charityCell.displayImageView.contentMode = UIViewContentModeScaleAspectFit;
         charityCell.displayImageView.image = shrunkflickrImage;
         [self.view bringSubviewToFront:charityCell.displayImageView];
     } else {

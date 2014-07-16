@@ -17,7 +17,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.displayImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.displayImageView.clipsToBounds = YES;    
     
     [self updateUI];
