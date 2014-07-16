@@ -23,7 +23,6 @@
     }
     
     self.screenName = @"WelcomeViewController";
-    
     self.introScrollView.pagingEnabled = YES;
     self.introScrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 2, self.view.frame.size.height);
     self.introScrollView.delegate = self;
@@ -45,7 +44,9 @@
 }
 
 - (void)updateUI
-{    
+{
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
     UIView *page1 = [[UIView alloc] initWithFrame:self.view.bounds];
     
     UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarmaScan logo-FJ"]];
@@ -84,12 +85,12 @@
     instructionLabel.numberOfLines = 0;
     instructionLabel.text = @"Use your camera to scan and we'll check for better prices online, then be informed how easy it is to help others in need.  Keep tabs on your product scans and donations with the Karma Chart!" ;
     instructionLabel.textColor = [UIColor whiteColor];
-    instructionLabel.font = [instructionLabel.font fontWithSize:14.0f];
+    instructionLabel.font = [instructionLabel.font fontWithSize:18.0f];
     [instructionLabel sizeToFit];
     [page2 addSubview:instructionLabel];
     
     UIImageView *scannerPic = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"karmaScan1"]];
-    scannerPic.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 180, self.view.bounds.size.width - 20, 240);
+    scannerPic.frame = CGRectMake(self.view.bounds.origin.x + 10, self.view.bounds.origin.y + 270.0f, self.view.bounds.size.width - 20, 240);
     
     UIGraphicsBeginImageContextWithOptions(scannerPic.bounds.size, NO, [UIScreen mainScreen].scale);
     [[UIBezierPath bezierPathWithRoundedRect:scannerPic.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(25, 25)] addClip];

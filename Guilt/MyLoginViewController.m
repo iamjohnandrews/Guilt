@@ -13,7 +13,7 @@
 #import "TwitterClient.h"
 #import "FHSTwitterEngine.h"
 
-@interface MyLoginViewController () <UITextFieldDelegate, CommsDelegate, UIActionSheetDelegate, TwitterDelegate>
+@interface MyLoginViewController () <UITextFieldDelegate, CommsDelegate, UIActionSheetDelegate, TwitterDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) UITextField *emailTextField;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSArray *twitterAccounts;
@@ -82,7 +82,8 @@
     self.emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 300, 300, 40)];
     self.emailTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.emailTextField.font = [UIFont systemFontOfSize:15];
-    self.emailTextField.placeholder = @"enter email";
+    self.emailTextField.placeholder = @"Enter email. CASE matters";
+    self.emailTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.emailTextField.keyboardType = UIKeyboardTypeDefault;
     self.emailTextField.returnKeyType = UIReturnKeyDone;
     self.emailTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -279,20 +280,31 @@
     [self.emailTextField endEditing:YES];
     [PFUser requestPasswordResetForEmailInBackground:textField.text];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reset Password"
-                                                    message:@"Check your email for a link to reset your password."
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+    if (self.emailTextField.text.length) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reset Password"
+                                                        message:@"Check your email for a link to reset your password."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You forget something?"
+                                                        message:@"You must input an email address"
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"My Bad", nil];
+        [alert show];
+    }
+    
     
     return YES;
 }
 
-- (void)dismissAlertView:(UIAlertView *)alertView
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    self.emailTextField.text = nil;
     [alertView dismissWithClickedButtonIndex:0 animated:YES];
+    [self.emailTextField removeFromSuperview];
+    self.fogottenPWButtonOutlet.hidden = NO;
 }
 
 - (void)unregisterKeyboardNotification
