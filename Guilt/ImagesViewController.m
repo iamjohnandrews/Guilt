@@ -215,7 +215,7 @@
         UIGraphicsEndImageContext();
         charityCell.logoImageView.image = shrunkLogoImage;
         
-        
+#warning        datawithcontentsofurl is not async...gotta edit below code
         UIImage *flickrImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]]];
         
         CGSize shrinkflickrImage = CGSizeMake(320.0f, 211.0f);
