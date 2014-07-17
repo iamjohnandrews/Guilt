@@ -5,6 +5,7 @@ target "Guilt" do
 pod 'Facebook-iOS-SDK', '~> 3.14'
 pod 'AFNetworking', '~> 2.2'
 pod 'RaptureXML'
+pod 'SDWebImage', '~>3.6'
 end
 
 target "GuiltTests" do

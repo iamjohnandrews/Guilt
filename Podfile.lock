@@ -21,19 +21,24 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Bolts (1.1.0)
-  - Facebook-iOS-SDK (3.15.0):
+  - Facebook-iOS-SDK (3.16):
     - Bolts
   - RaptureXML (1.0.1)
+  - SDWebImage (3.7.0):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.7.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2)
   - Facebook-iOS-SDK (~> 3.14)
   - RaptureXML
+  - SDWebImage (~> 3.6)
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
-  Facebook-iOS-SDK: d67a9aa373f28b581e00cefdfd5a1ab8f883ac14
+  Facebook-iOS-SDK: 82ad03cb9ce568855057e20a099054cf1e34ef12
   RaptureXML: b9b0aca9c68c684c189af73dd5e8f8fdeec74600
+  SDWebImage: 791cb0f588046cb0bb7802ae8ae8f5462947b773
 
 COCOAPODS: 0.33.1
