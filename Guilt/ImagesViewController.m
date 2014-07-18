@@ -16,6 +16,7 @@
 #import "ShareImageViewController.h"
 #import "FlickrNetworkManager.h"
 #import "CharityImage.h"
+#import "UIImageView+WebCache.h"
 
 
 @interface ImagesViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -216,11 +217,29 @@
         charityCell.logoImageView.image = shrunkLogoImage;
         
 #warning        datawithcontentsofurl is not async...gotta edit below code
-        UIImage *flickrImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]]];
+//        UIImage *flickrImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]]];
+        
+        UIImageView *flickrImage = [[UIImageView alloc] init];
+        [flickrImage setImageWithURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]
+                             placeholderImage:nil
+                                      options:nil
+                                     progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                         self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                                         [self.imagesTableView addSubview:self.spinner];
+                                         [self.spinner startAnimating];
+                                     }
+                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                                        [self.spinner stopAnimating];
+                                    }];
+        
+//        UIImageView *flickrImage = [[UIImageView alloc] init];
+//        [flickrImage setImageWithURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]
+//                    placeholderImage:nil];
+        
         
         CGSize shrinkflickrImage = CGSizeMake(320.0f, 211.0f);
         UIGraphicsBeginImageContext(shrinkflickrImage);
-        [flickrImage drawInRect:CGRectMake(0,0,shrinkflickrImage.width,shrinkflickrImage.height)];
+        [flickrImage.image drawInRect:CGRectMake(0,0,shrinkflickrImage.width,shrinkflickrImage.height)];
         UIImage* shrunkflickrImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
