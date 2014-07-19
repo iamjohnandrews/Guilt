@@ -161,6 +161,14 @@
         urlLinkButton.clipsToBounds = YES;
         urlLinkButton.titleLabel.textColor = [UIColor whiteColor];
         
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker set:kGAIScreenName value:@"ImagesViewController"];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                              action:@"touch"
+                                                               label:urlLinkButton.titleLabel.text
+                                                               value:nil] build]];
+        [tracker set:kGAIScreenName value:nil];
+        
         [headerView addSubview:urlLinkButton];
         [headerView bringSubviewToFront:urlLinkButton];
         
