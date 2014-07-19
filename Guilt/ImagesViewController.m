@@ -196,7 +196,9 @@
 {
     NSString *charityName = [self.charityData charityNames:indexPath.row];
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
-    
+    charityCell.displayImageView.image = [UIImage imageNamed:
+                                          [NSString stringWithFormat:@"%@",
+                                           [self.charityData charityLogos:charityName]]];
     UIImageView *flickrImage = [[UIImageView alloc] init];
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -210,10 +212,8 @@
     NSLog(@"self.charityCellUpdateUICalled =%d", self.charityCellUpdateUICalled);
     
     [flickrImage sd_setImageWithURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]
-                   placeholderImage:[UIImage imageNamed:
-                                     [NSString stringWithFormat:@"%@",
-                                      [self.charityData charityLogos:charityName]]]
-                            options:SDWebImageProgressiveDownload
+                   placeholderImage:nil
+                            options:SDWebImageLowPriority
                            progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                [indicator startAnimating];
                                NSLog(@"percentage until complete =%f", (float)receivedSize/(float)expectedSize);
@@ -247,15 +247,14 @@
                                        UIGraphicsEndImageContext();
                                        
                                        charityCell.displayImageView.image = shrunkflickrImage;
+                                       charityCell.displayImageView.contentMode = UIViewContentModeScaleAspectFit;
                                        [self.view bringSubviewToFront:charityCell.displayImageView];
                                        if (self.charityCellUpdateUICalled < self.flickrImageUrlDictionary.count) {
                                            [charityCell updateUI];
                                            NSLog(@"[charityCell updateUI]; called");
                                        }
                                    } else {
-                                       charityCell.displayImageView.image = [UIImage imageNamed:
-                                                                             [NSString stringWithFormat:@"%@",
-                                                                              [self.charityData charityLogos:charityName]]];
+                   
                                        [charityCell updateUI];
                                    }
                                    
@@ -283,9 +282,7 @@
                                    [charityCell addSubview:donationButton];
                                } else {
                                    NSLog(@"error =%@", [error localizedDescription]);
-                                   charityCell.displayImageView.image = [UIImage imageNamed:
-                                                                         [NSString stringWithFormat:@"%@",
-                                                                          [self.charityData charityLogos:charityName]]];
+                              
                                    [charityCell updateUI];
                                }
                            }];
