@@ -19,4 +19,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *dollarAmountConvertedLabel;
 
+- (void)updateUI;
+
 @end

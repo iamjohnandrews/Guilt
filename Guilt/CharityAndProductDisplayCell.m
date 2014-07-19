@@ -13,17 +13,19 @@
 @implementation CharityAndProductDisplayCell
 @synthesize charityConversionDetailsLabel, dollarAmountConvertedLabel;
 
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    self.displayImageView.clipsToBounds = YES;    
-    
-    [self updateUI];
-}
+//
+//- (void)awakeFromNib
+//{
+//    [super awakeFromNib];
+//    self.displayImageView.clipsToBounds = YES;    
+//    
+//    [self updateUI];
+//}
 
 - (void)updateUI
 {
+    self.displayImageView.clipsToBounds = YES;
+
     self.charityConversionDetailsLabel.textColor = [UIColor whiteColor];
     
     CAGradientLayer *bottomGradientLayer = [CAGradientLayer layer];
