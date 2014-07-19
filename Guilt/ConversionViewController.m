@@ -35,6 +35,10 @@
     [self setupUI];
     userEnterDollarAmountTextField.delegate = self;
     
+    CGRect frameRect = userEnterDollarAmountTextField.frame;
+    frameRect.size.height = 50;
+    userEnterDollarAmountTextField.frame = frameRect;
+    
     //code to dismiss keyboard when user taps around textField
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] 
                                    initWithTarget:self
