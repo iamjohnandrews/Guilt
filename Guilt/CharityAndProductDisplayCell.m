@@ -34,7 +34,7 @@
     bottomGradientLayer.colors = @[(id)[[UIColor clearColor] CGColor],
                              (id)[[UIColor clearColor] CGColor],
                              (id)[[UIColor colorWithWhite:0.0 alpha:1.0] CGColor]];
-    bottomGradientLayer.locations = @[@0.4, @0.7, @1.0];
+    bottomGradientLayer.locations = @[@0.45, @0.8, @1.0];
     [self.displayImageView.layer addSublayer:bottomGradientLayer]; 
     
     CAGradientLayer *topGradientLayer = [CAGradientLayer layer];
@@ -44,7 +44,7 @@
                                 (id)[[UIColor clearColor] CGColor],
                                 (id)[[UIColor clearColor] CGColor]];
     
-    topGradientLayer.locations = @[@0.0, @0.075, @0.25];
+    topGradientLayer.locations = @[@0.0, @0.075, @0.3];
     [self.displayImageView.layer addSublayer:topGradientLayer];
     
     self.logoImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -53,7 +53,6 @@
     self.logoImageView.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
     self.logoImageView.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
     [self bringSubviewToFront:self.logoImageView];
-        
 }
 
 @end

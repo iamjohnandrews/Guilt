@@ -217,7 +217,7 @@
 
 - (void)displayUIActivityIndicatorView
 {
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x, self.view.bounds.origin.y + self.navigationController.navigationBar.frame.size.height + 2, 50, 50)];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(self.view.center.x - 15.0f, self.view.bounds.origin.y + self.navigationController.navigationBar.frame.size.height + 2, 50, 50)];
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.activityIndicator]; 
 }
