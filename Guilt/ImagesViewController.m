@@ -100,18 +100,18 @@
 - (void)getFlickrImageUrl
 {
     NSMutableArray *arrayOfManyImageUrls = [NSMutableArray array];
-    int top5thFlickrResults;
+    int top7thFlickrResults;
     for (int i = 0; i < self.flickrImageUrlDictionary.count; i++) {
         
         int numberOfFlickrImagesInCharityVerticalArray = [[self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSNumber numberWithInt:i]]] count];
         
         if (numberOfFlickrImagesInCharityVerticalArray > 5) {
-            top5thFlickrResults =  roundf(numberOfFlickrImagesInCharityVerticalArray / 4);
+            top7thFlickrResults =  roundf(numberOfFlickrImagesInCharityVerticalArray / 7);
         } else {
-            top5thFlickrResults =  roundf(numberOfFlickrImagesInCharityVerticalArray / 2);
+            top7thFlickrResults =  roundf(numberOfFlickrImagesInCharityVerticalArray / 2);
         }
         
-        int randomNumber = arc4random() % top5thFlickrResults;
+        int randomNumber = arc4random() % top7thFlickrResults;
 
         [arrayOfManyImageUrls addObject:[[self.flickrImageUrlDictionary objectForKey:[self.flickrCharitySearchTerms objectForKey:[NSNumber numberWithInt:i]]] objectAtIndex:randomNumber]];
     }
