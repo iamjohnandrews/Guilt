@@ -287,13 +287,14 @@
     }
 }
 
+#pragma mark Scanner DB Delegate Methods
 -(void)productDatabaseReturnedNothing
 {
     NSLog(@"the productDatabaseReturnedNothing method is firing!");
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Scan Did Not Work" message:@"Please input price into text field. Sorry for the manual labor." delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
     [alert show];
-    [alert dismissWithClickedButtonIndex:0 animated:YES];
+//    [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 - (void)productInfoReturned:(NSNumber*)returnedPrice urlS:(NSString*)urlForProductTemp productNameNow:(NSString*)productNameNow

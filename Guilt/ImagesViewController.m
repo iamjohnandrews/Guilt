@@ -141,10 +141,10 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,30)];
+    CGFloat tableHeight = [self tableView:tableView heightForHeaderInSection:section];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,tableHeight)];
         
-    UITextView *productNameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 120 )];
+    UITextView *productNameTextView = [[UITextView alloc] initWithFrame:headerView.frame];
     productNameTextView.font = [UIFont fontWithName:@"Quicksand-Regular" size:17];
     productNameTextView.text = [NSString stringWithFormat:@"%@\n $%@\n", _productName, _productPrice];
     productNameTextView.backgroundColor = [UIColor colorWithRed:247.0/255 green:150.0/255 blue:0.0/255 alpha:1];
@@ -186,16 +186,14 @@
     if (!self.productName.length) {
         return 0;
     } else {
-        if (self.productName.length > 90) {
-            return 140;
-        } else if (self.productName.length > 70){
-        return 122;
-        } else if (self.productName.length > 50){
-            return 100;
-        } else if (self.productName.length > 30){
-            return  80;
+        if (self.productName.length > 120) {
+            return 155;
+        } else if (self.productName.length > 90){
+        return 125;
+        } else if (self.productName.length > 60){
+            return 105;
         }
-        return 60;
+        return 80;
     }
 }
 

@@ -117,19 +117,10 @@
                     barCodeObject = (AVMetadataMachineReadableCodeObject *)[_prevLayer transformedMetadataObjectForMetadataObject:(AVMetadataMachineReadableCodeObject *)metadata];
                     highlightViewRect = barCodeObject.bounds;
                     detectionString = [(AVMetadataMachineReadableCodeObject *)metadata stringValue];
+                    [self createScannerBar:highlightViewRect];
                 }
             }
         }
-        //create scanner line
-        UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:CGPointMake(highlightViewRect.origin.x, highlightViewRect.origin.y)];
-        [path addLineToPoint:CGPointMake(highlightViewRect.origin.x + highlightViewRect.size.width, highlightViewRect.origin.y)];
-        
-        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-        shapeLayer.path = [path CGPath];
-        shapeLayer.strokeColor = [[UIColor redColor] CGColor];
-        shapeLayer.lineWidth = 3.0;
-        [self.view.layer addSublayer:shapeLayer];
         
         if (detectionString != nil) {
             label.text =[NSString stringWithFormat:@"UPC = %@", detectionString];
@@ -139,10 +130,24 @@
             flag=YES; //ensures that only one look per scan takes place
         }
     } else {
-        label.text = @"Retrieving Data...";
+        label.text = @"Searching for bargain price...";
     }
 }
 
+- (void)createScannerBar:(CGRect)highlightViewRect
+{
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(highlightViewRect.origin.x, highlightViewRect.origin.y)];
+    [path addLineToPoint:CGPointMake(self.view.frame.origin.x, highlightViewRect.origin.y)];
+    [path addLineToPoint:CGPointMake(self.view.frame.size.width, highlightViewRect.origin.y)];
+//    [path addLineToPoint:CGPointMake(highlightViewRect.origin.x + highlightViewRect.size.width, highlightViewRect.origin.y)];
+    
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = [path CGPath];
+    shapeLayer.strokeColor = [[UIColor redColor] CGColor];
+    shapeLayer.lineWidth = 3.0;
+    [self.view.layer addSublayer:shapeLayer];
+}
 
 -(void)findProductInfo: (NSString*)upc
 {
@@ -169,11 +174,10 @@
                                    NSDictionary* dictionary= [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
                                    
                                    [self parseSemanticsProductResponse:dictionary];
-                                   
-                                   [self exit];
                                } else {
                                    NSLog(@"API error %@", [connectionError localizedDescription]);
                                }
+                               [self exit];
                            }];
 }
 
