@@ -19,7 +19,6 @@
     AVCaptureMetadataOutput *_output;
     AVCaptureVideoPreviewLayer *_prevLayer;
     
-    UIView *highlightView;
     UILabel *label;
     
     BOOL flag;    
@@ -65,7 +64,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+
     // returns the same tracker you created in your app delegate
     // defaultTracker originally declared in AppDelegate.m
     id tracker = [[GAI sharedInstance] defaultTracker];
@@ -81,12 +80,6 @@
 
 - (void)setupUI
 {
-    highlightView = [[UIView alloc] init];
-    highlightView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
-    highlightView.layer.borderColor = [UIColor greenColor].CGColor;
-    highlightView.layer.borderWidth = 3;
-    [self.view addSubview:highlightView];
-    
     label = [[UILabel alloc] init];
     label.frame = CGRectMake(0, self.view.bounds.size.height - 40, self.view.bounds.size.width, 40);
     label.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
@@ -96,11 +89,8 @@
     label.layer.borderColor = [[UIColor whiteColor] CGColor];
     label.layer.borderWidth = 2;
     label.layer.cornerRadius = 10;
-    label.text = @"UPC Code Will Appear Here";
+    label.text = @"Scanning...";
     [self.view addSubview:label];
-    
-    [self.view bringSubviewToFront:highlightView];
-    [self.view bringSubviewToFront:label];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -112,38 +102,45 @@
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
-    CGRect highlightViewRect = CGRectZero;
-    AVMetadataMachineReadableCodeObject *barCodeObject;
-    NSString *detectionString = nil;
-    NSArray *barCodeTypes = @[AVMetadataObjectTypeUPCECode, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode39Mod43Code,
-                              AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeEAN8Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeCode128Code,
-                              AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeQRCode, AVMetadataObjectTypeAztecCode];
-    
-    for (AVMetadataObject *metadata in metadataObjects) {
-        for (NSString *type in barCodeTypes) {
-            if ([metadata.type isEqualToString:type]) {
-                barCodeObject = (AVMetadataMachineReadableCodeObject *)[_prevLayer transformedMetadataObjectForMetadataObject:(AVMetadataMachineReadableCodeObject *)metadata];
-                highlightViewRect = barCodeObject.bounds;
-                detectionString = [(AVMetadataMachineReadableCodeObject *)metadata stringValue];
+    NSLog(@"flag = %hhd", flag);
+    if (flag == NO) {
+        
+        CGRect highlightViewRect = CGRectZero;
+        AVMetadataMachineReadableCodeObject *barCodeObject;
+        NSString *detectionString = nil;
+        NSArray *barCodeTypes = @[AVMetadataObjectTypeUPCECode, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode39Mod43Code,
+                                  AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeEAN8Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeCode128Code,
+                                  AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeQRCode, AVMetadataObjectTypeAztecCode];
+        for (AVMetadataObject *metadata in metadataObjects) {
+            for (NSString *type in barCodeTypes) {
+                if ([metadata.type isEqualToString:type]) {
+                    barCodeObject = (AVMetadataMachineReadableCodeObject *)[_prevLayer transformedMetadataObjectForMetadataObject:(AVMetadataMachineReadableCodeObject *)metadata];
+                    highlightViewRect = barCodeObject.bounds;
+                    detectionString = [(AVMetadataMachineReadableCodeObject *)metadata stringValue];
+                }
             }
         }
-    }
-    if (detectionString != nil) {
-        label.text = detectionString;
+        //create scanner line
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        [path moveToPoint:CGPointMake(highlightViewRect.origin.x, highlightViewRect.origin.y)];
+        [path addLineToPoint:CGPointMake(highlightViewRect.origin.x + highlightViewRect.size.width, highlightViewRect.origin.y)];
         
-        //find product information
+        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+        shapeLayer.path = [path CGPath];
+        shapeLayer.strokeColor = [[UIColor redColor] CGColor];
+        shapeLayer.lineWidth = 3.0;
+        [self.view.layer addSublayer:shapeLayer];
         
-        NSLog(@"UPC %@",detectionString);
-        
-        if (flag==NO) {
+        if (detectionString != nil) {
+            label.text =[NSString stringWithFormat:@"UPC = %@", detectionString];
+            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+            
             [self findProductInfo:detectionString];
             flag=YES; //ensures that only one look per scan takes place
-            label.text = detectionString;
-        } else {
-            label.text = @"(none)";
         }
+    } else {
+        label.text = @"Retrieving Data...";
     }
-    highlightView.frame = highlightViewRect;
 }
 
 
@@ -167,28 +164,15 @@
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError){
-                               
                                if (!connectionError) {
                                    NSLog(@"recieved API response from Semantics");
-                               }
-                               
-                               NSDictionary* dictionary= [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
-                               
-                               [self parseSemanticsProductResponse:dictionary];
-                               
-                               NSLog(@"API Returns Dictionary: %@", dictionary);
-                               
-                               NSString* code =[dictionary objectForKey:@"code"];
-                               
-                               NSString *message =[dictionary objectForKey:@"message" ];
-                               
-                               
-                               if ([code isEqualToString:@"APIError" ] || [message isEqualToString:@"No results found; please modify your search."]) {
+                                   NSDictionary* dictionary= [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
                                    
-                                   NSLog(@"API Error occurred or No Results found");
+                                   [self parseSemanticsProductResponse:dictionary];
                                    
                                    [self exit];
-
+                               } else {
+                                   NSLog(@"API error %@", [connectionError localizedDescription]);
                                }
                            }];
 }
@@ -200,8 +184,6 @@
     productName = [innerLayer objectForKey:@"name"];
     productPrice = [[innerLayer objectForKey:@"price"] floatValue];
     urlForProduct = [innerLayer objectForKey:@"url"];
-    
-    [self exit];
 }
 
 -(void)exit
@@ -213,7 +195,6 @@
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 
