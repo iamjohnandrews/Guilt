@@ -23,6 +23,7 @@
     
     BOOL flag;    
 }
+
 @end
 
 @implementation ScannerViewController
@@ -89,8 +90,35 @@
     label.layer.borderColor = [[UIColor whiteColor] CGColor];
     label.layer.borderWidth = 2;
     label.layer.cornerRadius = 10;
-    label.text = @"Scanning...";
+    label.text = @"Trying to scan...";
     [self.view addSubview:label];
+    
+    UIButton* dismissScannerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    dismissScannerButton.backgroundColor = [UIColor whiteColor];
+    dismissScannerButton.frame = CGRectMake(self.view.frame.origin.x + 10.0f, self.view.frame.origin.y + 10.0f, 80, 40);
+    [dismissScannerButton setTitle:@"Back" forState:UIControlStateNormal];
+    dismissScannerButton.layer.cornerRadius = 8;
+    dismissScannerButton.layer.borderWidth = 1;
+    dismissScannerButton.layer.borderColor = [UIColor blueColor].CGColor;
+    dismissScannerButton.clipsToBounds = YES;
+    dismissScannerButton.titleLabel.textColor = [UIColor blueColor];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"ScannerViewController"];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+                                                          action:@"touch"
+                                                           label:@"dismiss scanner"
+                                                           value:nil] build]];
+    [tracker set:kGAIScreenName value:nil];
+    
+    [self.view addSubview:dismissScannerButton];
+    [self.view bringSubviewToFront:dismissScannerButton];
+    
+    [dismissScannerButton setUserInteractionEnabled:YES];
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissScannerButtonPressed)];
+    [dismissScannerButton addGestureRecognizer:recognizer];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -102,7 +130,6 @@
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
-    NSLog(@"flag = %hhd", flag);
     if (flag == NO) {
         
         CGRect highlightViewRect = CGRectZero;
@@ -172,7 +199,6 @@
                                if (!connectionError) {
                                    NSLog(@"recieved API response from Semantics");
                                    NSDictionary* dictionary= [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
-                                   NSLog(@"API JSON response %@", dictionary);
                                    [self parseSemanticsProductResponse:dictionary];
                                } else {
                                    NSLog(@"API error %@", [connectionError localizedDescription]);
@@ -202,4 +228,8 @@
 }
 
 
+- (void)dismissScannerButtonPressed
+{
+    [self exit];
+}
 @end

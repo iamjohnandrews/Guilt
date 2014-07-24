@@ -153,7 +153,7 @@
     if (self.productProductURL.length) {
         UIButton* urlLinkButton = [UIButton buttonWithType:UIButtonTypeCustom];
         urlLinkButton.backgroundColor = [UIColor blackColor];
-        urlLinkButton.frame = CGRectMake(210, 50, 100, 50);
+        urlLinkButton.frame = CGRectMake(tableView.frame.size.width - 110.0f, tableHeight - 60.0f, 100, 50);
         [urlLinkButton setTitle:@"Buy Now" forState:UIControlStateNormal];
         urlLinkButton.layer.cornerRadius = 8;
         urlLinkButton.layer.borderWidth = 1;
@@ -187,13 +187,13 @@
         return 0;
     } else {
         if (self.productName.length > 120) {
-            return 155;
+            return 210;
         } else if (self.productName.length > 90){
-        return 125;
+        return 180;
         } else if (self.productName.length > 60){
-            return 105;
+            return 150;
         }
-        return 80;
+        return 120;
     }
 }
 
@@ -222,7 +222,7 @@
                             options:SDWebImageLowPriority
                            progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                [indicator startAnimating];
-                               NSLog(@"percentage until complete =%f", (float)receivedSize/(float)expectedSize);
+//                               NSLog(@"percentage until complete =%f", (float)receivedSize/(float)expectedSize);
                                
                            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                [indicator stopAnimating];
