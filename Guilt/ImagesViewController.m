@@ -187,13 +187,13 @@
         return 0;
     } else {
         if (self.productName.length > 120) {
-            return 210;
+            return 185;
         } else if (self.productName.length > 90){
-        return 180;
+        return 160;
         } else if (self.productName.length > 60){
-            return 150;
+            return 135;
         }
-        return 120;
+        return 110;
     }
 }
 
@@ -215,7 +215,6 @@
     [indicator bringSubviewToFront:self.view];
     
     self.charityCellUpdateUICalled ++;
-    NSLog(@"self.charityCellUpdateUICalled =%d", self.charityCellUpdateUICalled);
     
     [flickrImage sd_setImageWithURL:[self.specificTypeOfFlickrImageUrlArray objectAtIndex:indexPath.row]
                    placeholderImage:nil
@@ -257,7 +256,6 @@
                                        [self.view bringSubviewToFront:charityCell.displayImageView];
                                        if (self.charityCellUpdateUICalled < self.flickrImageUrlDictionary.count) {
                                            [charityCell updateUI];
-                                           NSLog(@"[charityCell updateUI]; called");
                                        }
                                    } else {
                    
