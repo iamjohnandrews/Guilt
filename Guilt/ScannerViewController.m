@@ -172,7 +172,7 @@
                                if (!connectionError) {
                                    NSLog(@"recieved API response from Semantics");
                                    NSDictionary* dictionary= [NSJSONSerialization JSONObjectWithData:data options:0 error:&connectionError];
-                                   
+                                   NSLog(@"API JSON response %@", dictionary);
                                    [self parseSemanticsProductResponse:dictionary];
                                } else {
                                    NSLog(@"API error %@", [connectionError localizedDescription]);
@@ -187,7 +187,7 @@
     NSDictionary *innerLayer = [[NSDictionary alloc] initWithDictionary:[outerLayer firstObject]];
     productName = [innerLayer objectForKey:@"name"];
     productPrice = [[innerLayer objectForKey:@"price"] floatValue];
-    urlForProduct = [innerLayer objectForKey:@"url"];
+    urlForProduct = [[[innerLayer objectForKey:@"sitedetails"] firstObject] objectForKey:@"url"];
 }
 
 -(void)exit
