@@ -16,5 +16,15 @@
 @property (strong, nonatomic) NSMutableDictionary *flickrImageURLDict;
 @property (strong, nonatomic) NSMutableDictionary *flickrSearchTermsDict;
 
+
+@property (strong, nonatomic) NSString *charityName;
+@property (strong, nonatomic) NSString *singularDescription;
+@property (strong, nonatomic) NSString *pluralDescription;
+@property (strong, nonatomic) NSString *flickrSearchTerm;
+@property (strong, nonatomic) NSString *donationURL;
+@property (strong, nonatomic) UIImage *charityLogo;
+@property (strong, nonatomic) NSNumber *conversionValue;
+
++ (NSArray *)allCharityDetails:(BOOL)randomized;
 @end
 

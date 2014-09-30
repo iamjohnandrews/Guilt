@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface ImagesViewController : BaseViewController 
 
 @property (strong, nonatomic) NSDictionary *resultOfCharitableConversionsDict;
@@ -23,7 +24,8 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *userProfileButtonOutlet;
 
--(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity;
 - (IBAction)userProfileButton:(id)sender;
+-(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity;
+- (void)onDonationButtonTapped:(UITableViewCell *)cell;
 
 @end

@@ -77,7 +77,11 @@
     self.cancelSignupButtonOutlet.clipsToBounds = YES;
     self.cancelSignupButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:14];
     [self.cancelSignupButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.cancelSignupButtonOutlet setTitle:@"Cancel" forState:UIControlStateNormal];    
+    [self.cancelSignupButtonOutlet setTitle:@"Cancel" forState:UIControlStateNormal];
+    
+    userName.clearButtonMode = UITextFieldViewModeWhileEditing;
+    password.clearButtonMode = UITextFieldViewModeWhileEditing;
+    emailAddress.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
 - (IBAction)cancelSignupButtonPressed:(id)sender 

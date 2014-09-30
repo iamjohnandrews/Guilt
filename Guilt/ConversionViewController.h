@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *backToIntroductionButtonOutlet;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *userProfileButtonOutlet;
+@property (weak, nonatomic) IBOutlet UIButton *addNonprofitButtonOutlet;
 
 - (IBAction)scannerButton:(id)sender;
 
@@ -37,5 +38,7 @@
 - (IBAction)backToIntroductionButton:(id)sender;
 
 - (IBAction)userProfileButton:(id)sender;
+
+- (IBAction)addNonprofitButton:(id)sender;
 
 @end

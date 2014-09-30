@@ -11,5 +11,6 @@
 @interface UserHistoryCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *moneyDetailsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *donationTimeStamp;
 
 @end

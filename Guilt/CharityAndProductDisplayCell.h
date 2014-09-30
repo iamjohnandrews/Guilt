@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@class CharityImage;
 
 @interface CharityAndProductDisplayCell : UITableViewCell
 
@@ -18,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *charityConversionDetailsLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *dollarAmountConvertedLabel;
+@property (weak, nonatomic) IBOutlet UIButton *donateButtonOutlet;
+
+@property (weak, nonatomic) IBOutlet UIButton *shareButtonOutlet;
 
 - (void)updateUI;
 

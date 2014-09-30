@@ -43,39 +43,28 @@
     
     [self.navigationItem setTitle:@"Let 'em Know"];
 
-    self.sharingImage.image = self.unfinishedMeme;
+//    [self.sharingImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     [self shareActionSheet];
 }
 
-#pragma mark Create Meme
-- (UIImage *)convertIntoFinalMemeToShare
-{    
-    UIGraphicsBeginImageContextWithOptions(self.sharingImage.bounds.size, NO, 0.0);
-    
-    [self.sharingImage.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *charityMeme = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return charityMeme;
+ - (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.sharingImage.image = self.unfinishedMeme;
 }
 
 #pragma mark Sharing & Action
 - (void)shareActionSheet
 {
-    CGSize newSize = CGSizeMake(320.0f, 211.0f);
-
-    UIGraphicsBeginImageContext(newSize);
-    [[self convertIntoFinalMemeToShare] drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    NSString *message = @"#KarmaScanFact\r Download the official KarmaScan app here";
     
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:@"#KarmaScanFact", newImage, nil] applicationActivities:nil];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:message, self.unfinishedMeme, nil] applicationActivities:nil];
     
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
         if (completed) {
             if ([PFUser currentUser]) {
-                [self uploadImageToParse:newImage];
+                [self uploadImageToParse:self.sharingImage.image];
             }
         }
     }];
@@ -129,7 +118,7 @@
         [self presentViewController:mailComposeViewController animated:YES completion:nil];
         
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter" message:@"KarmaScan is unable to access your email at this time" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Attention" message:@"KarmaScan is unable to access your email at this time" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
     }
 }

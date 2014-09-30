@@ -10,7 +10,11 @@
 #import "ImagesViewController.h"
 #import "ScannerViewController.h"
 #import <Parse/Parse.h>
-#import "FlickrNetworkManager.h"
+#import "AddCharityViewController.h"
+#import "InitialParseNetworking.h"
+#import "CharityImage.h"
+
+
 
 @interface ConversionViewController (){
     NSNumber* convertedProductPrice;
@@ -18,7 +22,6 @@
 @property (strong, nonatomic) NSMutableDictionary *convertedCharitableGoodsDict;
 @property (nonatomic, strong) NSMutableArray *parseNonprofitInfoArray;
 @property (nonatomic, strong) NSDictionary *oneToOneCharityURLCharityNameDict;
-
 @end
 
 @implementation ConversionViewController
@@ -44,19 +47,13 @@
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
-    
-    //code to disable conversionButton until user inputs value into textField
-    [self.conversionButtonOutlet setEnabled:NO];
-    [userEnterDollarAmountTextField addTarget:self 
-                                       action:@selector(textFieldDidChange)
-                             forControlEvents:UIControlEventEditingChanged];
 }
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.convertedCharitableGoodsDict = [NSMutableDictionary dictionary];
+    self.convertedCharitableGoodsDict = [[NSMutableDictionary alloc] init];
 }
 
 - (void)setupUI
@@ -79,9 +76,13 @@
     orLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:25];
     orLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
     
-    backToIntroductionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    backToIntroductionButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:16];
     [backToIntroductionButtonOutlet setTitleColor:[UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1] forState:UIControlStateNormal];
-    [backToIntroductionButtonOutlet setTitle:@"Back to Introduction" forState:UIControlStateNormal];    
+    [backToIntroductionButtonOutlet setTitle:@"Back to Introduction" forState:UIControlStateNormal];
+    
+    self.addNonprofitButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:22];
+    [self.addNonprofitButtonOutlet setTitleColor:[UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1] forState:UIControlStateNormal];
+    [self.addNonprofitButtonOutlet setTitle:@"Add Your Organization" forState:UIControlStateNormal];
     
     scannerButtonOutlet.layer.cornerRadius = 8;
     scannerButtonOutlet.layer.borderWidth = 1;
@@ -101,6 +102,7 @@
     //UIColor* orangeKindaColor = [UIColor colorWithRed:244.0/255 green:128.0/255 blue:0.0/255 alpha:1];
     [conversionButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [conversionButtonOutlet setTitle:@"Get Impact Value" forState:UIControlStateNormal];
+    conversionButtonOutlet.userInteractionEnabled = NO;
 }
 
 - (void)logOutUser
@@ -153,16 +155,7 @@
     [self calculateCharitableImpactValue:[NSNumber numberWithFloat:[removeDollarSignString floatValue]]];
 }
 
-- (void)textFieldDidChange
-{
-    if (self.userEnterDollarAmountTextField.text.length == 0) {
-        [self.conversionButtonOutlet setEnabled:NO];
-    }
-    else {
-        [self.conversionButtonOutlet setEnabled:YES];
-    }
-}
-
+#pragma mark TextField Delegate Methods
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     if (textField.text.length  == 0)
     {
@@ -179,6 +172,9 @@
     if (![newText hasPrefix:[[NSLocale currentLocale] objectForKey:NSLocaleCurrencySymbol]])
     {
         return NO;
+    }
+    if (textField.text.length > 0) {
+        self.conversionButtonOutlet.userInteractionEnabled = YES;
     }
     
     // Default:
@@ -203,62 +199,25 @@
     
 }
 
+- (IBAction)addNonprofitButton:(id)sender {
+}
+
 - (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {
     NSNumberFormatter* addCommasFormatter = [[NSNumberFormatter alloc] init];
     [addCommasFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-
+    
     float convertToFloat = [dollarAmount floatValue];
     
-    if (convertToFloat >= 1) {
-        float numberOfAnimalMeals = (convertToFloat / 1) * 20;
-//        NSLog(@"Number of animal meals = %.2f", numberOfAnimalMeals);
-        int roundUp1 = ceilf(numberOfAnimalMeals);
-        NSString* floatToAString1 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp1]];
-        [self.convertedCharitableGoodsDict setObject:floatToAString1 forKey:@"The Animal Rescue Site"];
+    for (CharityImage *charityInfo in [CharityImage allCharityDetails:YES]) {
+        if (convertToFloat >= [charityInfo.conversionValue floatValue]) {
+            float impactNumber = convertToFloat / [charityInfo.conversionValue floatValue];
+            int roundUp = ceilf(impactNumber);
+            NSString* floatToAString = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp]];
+//            [self.convertedCharitableGoodsDict setObject:floatToAString forKey:charityInfo.charityName];
+            [self.convertedCharitableGoodsDict setObject:charityInfo forKey:floatToAString];
+        }
     }
-    if (convertToFloat >= 10) {
-        float numberOfMonthsHelpingChildren = convertToFloat / 10;
-//        NSLog(@"number of months = %.2f", numberOfMonthsHelpingChildren);
-        int roundUp10 = ceilf(numberOfMonthsHelpingChildren);
-        NSString* floatToAString10 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp10]];
-        [self.convertedCharitableGoodsDict setObject:floatToAString10 forKey:@"Unicef"];
-    }
-    if (convertToFloat >= 19) {
-        float numberOfMonthsToFeedChildren = convertToFloat / 19;
-//        NSLog(@"Number of Months = %.2f", numberOfMonthsToFeedChildren);
-        int roundUp19 = ceilf(numberOfMonthsToFeedChildren);
-        NSString* floatToAString19 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp19]];
-        [self.convertedCharitableGoodsDict setObject:floatToAString19 forKey:@"Feed The Children"];        
-    }
-    if (convertToFloat >= 20) {
-        float flocksOfDucks = convertToFloat / 20;
-//        NSLog(@"Flock of Ducks = %.2f", flocksOfDucks);
-        int roundUp20 = ceilf(flocksOfDucks);
-        NSString* floatToAString20 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp20]];
-        [self.convertedCharitableGoodsDict setObject:floatToAString20 forKey:@"Heifer Internaitonal (ducks)"];
-    }
-    if (convertToFloat >= 30) {
-        float honeyBees = convertToFloat / 30;
-//        NSLog(@"Gift of Honey Bees is %.2f", honeyBees);
-        int roundUp30 = ceilf(honeyBees);
-        NSString* floatToAString30 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp30]];        
-        [self.convertedCharitableGoodsDict setObject:floatToAString30 forKey:@"Heifer Internaitonal (bees)"];
-    }
-    if (convertToFloat >= 50) {
-        float numberOfCarePackages = convertToFloat / 50;
-//        NSLog(@"Number of care packages is %.2f", numberOfCarePackages);
-        int roundUp50 = ceilf(numberOfCarePackages);
-        NSString* floatToAString50 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp50]];    
-        [self.convertedCharitableGoodsDict setObject:floatToAString50 forKey:@"Soilder's Angels"];
-    }
-    if (convertToFloat >= 500) {
-        float numberOfSpringCatchments = convertToFloat / 500;
-//        NSLog(@"Number of Natiral Spring Cathcments %.2f", numberOfSpringCatchments);
-        int roundUp500 = ceilf(numberOfSpringCatchments);
-        NSString* floatToAString500 = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp500]];       
-        [self.convertedCharitableGoodsDict setObject:floatToAString500 forKey:@"African Well Fund"];
-    }
-    
+
     [userEnterDollarAmountTextField resignFirstResponder];
     convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
     userEnterDollarAmountTextField.text = nil;
@@ -284,7 +243,7 @@
         productName = svc.productName;
         
         svc.delegate = self;
-    }
+    } 
 }
 
 #pragma mark Scanner DB Delegate Methods
@@ -294,7 +253,6 @@
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Scan Did Not Work" message:@"Please input price into text field. Sorry for the manual labor." delegate:self cancelButtonTitle:@"Got It" otherButtonTitles:nil];
     [alert show];
-//    [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 - (void)productInfoReturned:(NSNumber*)returnedPrice urlS:(NSString*)urlForProductTemp productNameNow:(NSString*)productNameNow

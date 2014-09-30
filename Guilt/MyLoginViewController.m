@@ -33,6 +33,8 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
     [self.view addGestureRecognizer:tap];
     NSLog(@"twitterLoginButtonOutlet measurements =%@", NSStringFromCGRect(self.twitterLoginButtonOutlet.frame));
+    userName.clearButtonMode = UITextFieldViewModeWhileEditing;
+    password.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

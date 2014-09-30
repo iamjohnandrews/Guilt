@@ -126,6 +126,45 @@
     [super viewWillAppear:animated];
     
     flag = NO;
+    
+    //make white line corners outlining scan area
+    UIBezierPath *leftTopCornerPath = [UIBezierPath bezierPath];
+    [leftTopCornerPath moveToPoint:CGPointMake(self.view.frame.origin.x + 50.0f, self.view.center.y -150.0f)];
+    [leftTopCornerPath addLineToPoint:CGPointMake(self.view.frame.origin.x + 50.0f, self.view.center.y -160.0f)];
+    [leftTopCornerPath addLineToPoint:CGPointMake(self.view.frame.origin.x + 60.0f, self.view.center.y -160.0f)];
+    
+    UIBezierPath *rightTopCornerPath = [UIBezierPath bezierPath];
+    [rightTopCornerPath moveToPoint:CGPointMake(self.view.frame.size.width - 50.0f, self.view.center.y -150.0f)];
+    [rightTopCornerPath addLineToPoint:CGPointMake(self.view.frame.size.width - 50.0f, self.view.center.y -160.0f)];
+    [rightTopCornerPath addLineToPoint:CGPointMake(self.view.frame.size.width - 60.0f, self.view.center.y -160.0f)];
+    
+    UIBezierPath *rightbottomCornerPath = [UIBezierPath bezierPath];
+    [rightbottomCornerPath moveToPoint:CGPointMake(self.view.frame.size.width - 50.0f, self.view.center.y +150.0f)];
+    [rightbottomCornerPath addLineToPoint:CGPointMake(self.view.frame.size.width - 50.0f, self.view.center.y +160.0f)];
+    [rightbottomCornerPath addLineToPoint:CGPointMake(self.view.frame.size.width - 60.0f, self.view.center.y +160.0f)];
+    
+    UIBezierPath *leftBottomCornerPath = [UIBezierPath bezierPath];
+    [leftBottomCornerPath moveToPoint:CGPointMake(self.view.frame.origin.x + 50.0f, self.view.center.y +150.0f)];
+    [leftBottomCornerPath addLineToPoint:CGPointMake(self.view.frame.origin.x + 50.0f, self.view.center.y +160.0f)];
+    [leftBottomCornerPath addLineToPoint:CGPointMake(self.view.frame.origin.x + 60.0f, self.view.center.y +160.0f)];
+    
+    CAShapeLayer *rightTopCornerLayer = [CAShapeLayer layer];
+    rightTopCornerLayer.path = [rightTopCornerPath CGPath];
+    rightTopCornerLayer.strokeColor = [[UIColor whiteColor] CGColor];
+    rightTopCornerLayer.lineWidth = 1.0;
+    [self.view.layer addSublayer:rightTopCornerLayer];
+    
+    CAShapeLayer *rightBottomCornerLayer = [CAShapeLayer layer];
+    rightBottomCornerLayer.path = [rightbottomCornerPath CGPath];
+    rightBottomCornerLayer.strokeColor = [[UIColor whiteColor] CGColor];
+    rightBottomCornerLayer.lineWidth = 1.0;
+    [self.view.layer addSublayer:rightBottomCornerLayer];
+    
+    CAShapeLayer *leftBottomCornerLayer = [CAShapeLayer layer];
+    leftBottomCornerLayer.path = [leftBottomCornerPath CGPath];
+    leftBottomCornerLayer.strokeColor = [[UIColor whiteColor] CGColor];
+    leftBottomCornerLayer.lineWidth = 1.0;
+    [self.view.layer addSublayer:leftBottomCornerLayer];
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
@@ -167,7 +206,6 @@
     [path moveToPoint:CGPointMake(highlightViewRect.origin.x, highlightViewRect.origin.y)];
     [path addLineToPoint:CGPointMake(self.view.frame.origin.x, highlightViewRect.origin.y)];
     [path addLineToPoint:CGPointMake(self.view.frame.size.width, highlightViewRect.origin.y)];
-//    [path addLineToPoint:CGPointMake(highlightViewRect.origin.x + highlightViewRect.size.width, highlightViewRect.origin.y)];
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = [path CGPath];

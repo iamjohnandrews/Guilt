@@ -7,7 +7,7 @@
 //
 
 #import "UserProfileViewController.h"
-#import "Charity.h"
+#import "CharityImage.h"
 #import "ArchiveTableViewController.h"
 
 @interface UserProfileViewController () {
@@ -20,8 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailAddressTextField;
 
 @property (weak, nonatomic) IBOutlet UILabel *passwordTextField;
-
-@property (strong, nonatomic) Charity *charityData;
 
 @end
 
@@ -66,7 +64,6 @@
         }
         [_tableView reloadData];
     }];
-    self.charityData = [[Charity alloc] init];
 }
 
 #pragma mark - Tableview Delegate Method
@@ -88,18 +85,28 @@
     UserHistoryCell* cell = [tableView dequeueReusableCellWithIdentifier:@"UserHistory"];
     cell.userInteractionEnabled = NO;
     
-    NSString *charityName = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"recipientCharity"];    
+    NSString *charityName = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"recipientCharity"];
     NSNumber *donationAmount = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"donationAmount"];
     float moneyFormat = [donationAmount floatValue];
-//    NSLog(@"Getting %@", charityName);
+
     if ([charityName isEqualToString:@"made a purchase"]) {
         cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Purchase made $%.02f", moneyFormat];
     } else {
         cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Donation Amount $%.02f", moneyFormat];
     }
     
+    PFObject *object = [donorInfo objectAtIndex:indexPath.row];
+    NSDate *donationTimeStamp = object.createdAt;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"eeee, MMMM dd, yyyy"];
+    cell.donationTimeStamp.text = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:donationTimeStamp]];
+    
     UIImage *logoImage = [[UIImage alloc] init];
-    logoImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[self.charityData charityLogos:charityName]]];
+    for (CharityImage *charity in [CharityImage allCharityDetails:NO]) {
+        if ([charity.charityName isEqualToString:charityName]) {
+            logoImage = charity.charityLogo;
+        }
+    }
     
     CGSize shrinkLogoSize = CGSizeMake(81.0f, 44.0f);
     UIGraphicsBeginImageContext(shrinkLogoSize);

@@ -55,12 +55,15 @@
         [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
     } 
 //    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
+    
+    /* for some reason, the below code does not work on a device
     if (self.segueingFromUserProfileOrShareVC) {
         if (self.archiveMemesArray.count < self.totalNumberArchiveMemes) {
             [self getArhiveMemesFromParse:1];
         }
     }
     NSLog(@"self.archiveMemesArray.count = %d", self.archiveMemesArray.count);
+    */
 }
 
 #pragma mark - Table View Visual Effects
@@ -101,7 +104,6 @@
         if (!error) {
             //Everything was correct, put the new objects and load the wall
             [self.archiveMemesArray addObjectsFromArray:PFobjects];
-            //            self.archiveMemesArray = [[NSMutableArray alloc] initWithArray:PFobjects];
             [self parseThroughBackEndData];
             [self.tableView reloadData];
             [self.refreshControl endRefreshing];
@@ -202,10 +204,10 @@
     cell.archiveImage.contentMode = UIViewContentModeScaleAspectFit;
     cell.archiveImage.image = [self.images objectAtIndex:indexPath.row];
     
-    cell.archiveDateLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:20];
+    cell.archiveDateLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:18];
     cell.archiveDateLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
     cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.row];
-    NSLog(@"self.dates.count = %d, indexPath.row =%d, cell.archiveDateLabel.text = %@", self.dates.count, indexPath.row, cell.archiveDateLabel.text);
+//    NSLog(@"self.dates.count = %d, indexPath.row =%d, cell.archiveDateLabel.text = %@", self.dates.count, indexPath.row, cell.archiveDateLabel.text);
     
     if (self.archiveMemesArray.count < self.totalNumberArchiveMemes) {
         if (indexPath.row == self.archiveMemesArray.count-2) {
@@ -228,45 +230,6 @@
     
     [self performSegueWithIdentifier:@"ArchiveToModalShareSegue" sender:self];
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Navigation

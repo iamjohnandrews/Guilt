@@ -23,7 +23,11 @@
 		7727AD8B182BF356006D01DD /* ic_profile_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727AD87182BF356006D01DD /* ic_profile_black@2x.png */; };
 		7727AD8C182BF356006D01DD /* ic_profile_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7727AD88182BF356006D01DD /* ic_profile_black.png */; };
 		772B828E1829683300128190 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B828D1829683300128190 /* UserProfileViewController.m */; };
+		7F05B6A219C1030A00C5EE16 /* InitialParseNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F05B6A119C1030A00C5EE16 /* InitialParseNetworking.m */; };
+		7F36979F19AAE2E200BDC2A3 /* AddCharityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F36979E19AAE2E200BDC2A3 /* AddCharityViewController.m */; };
 		7F49207119550B61006FF4A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F49207019550B61006FF4A3 /* Parse.framework */; };
+		7F699BE819AAD13C0016526B /* CustimizeMessageForEmail1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F699BE719AAD13C0016526B /* CustimizeMessageForEmail1.m */; };
+		7F699BEB19AAD14D0016526B /* CustimizeMessageForEmail2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */; };
 		8E00AAC718182E9700BB32E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC618182E9700BB32E4 /* Foundation.framework */; };
 		8E00AAC918182E9700BB32E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */; };
 		8E00AACB18182E9700BB32E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AACA18182E9700BB32E4 /* UIKit.framework */; };
@@ -43,12 +47,6 @@
 		8E034B7C194DD79A006D8DD6 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E034B7B194DD79A006D8DD6 /* libGoogleAnalyticsServices.a */; };
 		8E034B7E194DD7B4006D8DD6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E034B7D194DD7B4006D8DD6 /* CoreData.framework */; };
 		8E034B80194DD7C8006D8DD6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E034B7F194DD7C8006D8DD6 /* libz.dylib */; };
-		8E034B87194DFECE006D8DD6 /* AfricanWellFund.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E034B81194DFECE006D8DD6 /* AfricanWellFund.jpg */; };
-		8E034B88194DFECE006D8DD6 /* AnimalRescueSite.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8E034B82194DFECE006D8DD6 /* AnimalRescueSite.jpeg */; };
-		8E034B8A194DFECE006D8DD6 /* Heifer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E034B84194DFECE006D8DD6 /* Heifer.jpg */; };
-		8E034B8B194DFECE006D8DD6 /* SoldiersAngels.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E034B85194DFECE006D8DD6 /* SoldiersAngels.jpg */; };
-		8E034B8C194DFECE006D8DD6 /* unicef.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E034B86194DFECE006D8DD6 /* unicef.jpg */; };
-		8E034B8F194E0289006D8DD6 /* feed-children-logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8E034B8E194E0289006D8DD6 /* feed-children-logo.jpg */; };
 		8E05BC60182AB7F20005BF34 /* KarmaScan logo-FJ.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC59182AB7F20005BF34 /* KarmaScan logo-FJ.png */; };
 		8E05BC68182AE1E80005BF34 /* KarnaScan_Background_i4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC65182AE1E80005BF34 /* KarnaScan_Background_i4.png */; };
 		8E05BC6B182AE43B0005BF34 /* barcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC6A182AE43B0005BF34 /* barcode.png */; };
@@ -56,7 +54,6 @@
 		8E05BC6F182B01200005BF34 /* awesomeBarcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC6E182B01200005BF34 /* awesomeBarcode.png */; };
 		8E05BC71182B08990005BF34 /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC70182B085C0005BF34 /* Quicksand-Bold.otf */; };
 		8E05BC73182B2F6E0005BF34 /* KarnaScan_NavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E05BC72182B2F6E0005BF34 /* KarnaScan_NavBar.png */; };
-		8E29F2A218D626A4007AFA4C /* Charity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E29F2A118D626A4007AFA4C /* Charity.m */; };
 		8E31BE89191C44B900EB9032 /* ShareImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E31BE88191C44B900EB9032 /* ShareImageViewController.m */; };
 		8E31BE8B191E957500EB9032 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E31BE8A191E957500EB9032 /* Social.framework */; };
 		8E31BE8D191E958E00EB9032 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E31BE8C191E958E00EB9032 /* libsqlite3.dylib */; };
@@ -123,7 +120,15 @@
 		7727AD88182BF356006D01DD /* ic_profile_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_profile_black.png; sourceTree = "<group>"; };
 		772B828C1829683300128190 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = ../UserProfileViewController.h; sourceTree = "<group>"; };
 		772B828D1829683300128190 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = ../UserProfileViewController.m; sourceTree = "<group>"; };
+		7F05B6A019C1030A00C5EE16 /* InitialParseNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialParseNetworking.h; sourceTree = "<group>"; };
+		7F05B6A119C1030A00C5EE16 /* InitialParseNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialParseNetworking.m; sourceTree = "<group>"; };
+		7F36979D19AAE2E200BDC2A3 /* AddCharityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCharityViewController.h; sourceTree = "<group>"; };
+		7F36979E19AAE2E200BDC2A3 /* AddCharityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCharityViewController.m; sourceTree = "<group>"; };
 		7F49207019550B61006FF4A3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		7F699BE619AAD13C0016526B /* CustimizeMessageForEmail1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustimizeMessageForEmail1.h; sourceTree = "<group>"; };
+		7F699BE719AAD13C0016526B /* CustimizeMessageForEmail1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustimizeMessageForEmail1.m; sourceTree = "<group>"; };
+		7F699BE919AAD14D0016526B /* CustimizeMessageForEmail2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustimizeMessageForEmail2.h; sourceTree = "<group>"; };
+		7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustimizeMessageForEmail2.m; sourceTree = "<group>"; };
 		8E00AAC318182E9700BB32E4 /* Guilt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guilt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E00AAC618182E9700BB32E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -156,12 +161,6 @@
 		8E034B7B194DD79A006D8DD6 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		8E034B7D194DD7B4006D8DD6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8E034B7F194DD7C8006D8DD6 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		8E034B81194DFECE006D8DD6 /* AfricanWellFund.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AfricanWellFund.jpg; sourceTree = "<group>"; };
-		8E034B82194DFECE006D8DD6 /* AnimalRescueSite.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AnimalRescueSite.jpeg; sourceTree = "<group>"; };
-		8E034B84194DFECE006D8DD6 /* Heifer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Heifer.jpg; sourceTree = "<group>"; };
-		8E034B85194DFECE006D8DD6 /* SoldiersAngels.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SoldiersAngels.jpg; sourceTree = "<group>"; };
-		8E034B86194DFECE006D8DD6 /* unicef.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = unicef.jpg; sourceTree = "<group>"; };
-		8E034B8E194E0289006D8DD6 /* feed-children-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "feed-children-logo.jpg"; sourceTree = "<group>"; };
 		8E05BC59182AB7F20005BF34 /* KarmaScan logo-FJ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KarmaScan logo-FJ.png"; sourceTree = "<group>"; };
 		8E05BC65182AE1E80005BF34 /* KarnaScan_Background_i4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KarnaScan_Background_i4.png; sourceTree = "<group>"; };
 		8E05BC6A182AE43B0005BF34 /* barcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barcode.png; sourceTree = "<group>"; };
@@ -169,8 +168,6 @@
 		8E05BC6E182B01200005BF34 /* awesomeBarcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = awesomeBarcode.png; path = ../awesomeBarcode.png; sourceTree = "<group>"; };
 		8E05BC70182B085C0005BF34 /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
 		8E05BC72182B2F6E0005BF34 /* KarnaScan_NavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KarnaScan_NavBar.png; sourceTree = "<group>"; };
-		8E29F2A018D626A4007AFA4C /* Charity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Charity.h; sourceTree = "<group>"; };
-		8E29F2A118D626A4007AFA4C /* Charity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Charity.m; sourceTree = "<group>"; };
 		8E31BE87191C44B900EB9032 /* ShareImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareImageViewController.h; sourceTree = "<group>"; };
 		8E31BE88191C44B900EB9032 /* ShareImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareImageViewController.m; sourceTree = "<group>"; };
 		8E31BE8A191E957500EB9032 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -276,6 +273,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F699BEC19AAD1570016526B /* SocialMediaMessages */ = {
+			isa = PBXGroup;
+			children = (
+				7F699BE619AAD13C0016526B /* CustimizeMessageForEmail1.h */,
+				7F699BE719AAD13C0016526B /* CustimizeMessageForEmail1.m */,
+				7F699BE919AAD14D0016526B /* CustimizeMessageForEmail2.h */,
+				7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */,
+			);
+			name = SocialMediaMessages;
+			sourceTree = "<group>";
+		};
 		8E00AABA18182E9700BB32E4 = {
 			isa = PBXGroup;
 			children = (
@@ -347,7 +355,6 @@
 		8E00AACD18182E9700BB32E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8E034B8D194DFED8006D8DD6 /* Charity Logos */,
 				8E034B74194DD76C006D8DD6 /* Library */,
 				8EB6F6DD191FD53D004F70C5 /* FBSignInButton.png */,
 				8EB6F6DB191FD532004F70C5 /* TWSignInButton.png */,
@@ -399,19 +406,6 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
-		8E034B8D194DFED8006D8DD6 /* Charity Logos */ = {
-			isa = PBXGroup;
-			children = (
-				8E034B8E194E0289006D8DD6 /* feed-children-logo.jpg */,
-				8E034B81194DFECE006D8DD6 /* AfricanWellFund.jpg */,
-				8E034B82194DFECE006D8DD6 /* AnimalRescueSite.jpeg */,
-				8E034B84194DFECE006D8DD6 /* Heifer.jpg */,
-				8E034B85194DFECE006D8DD6 /* SoldiersAngels.jpg */,
-				8E034B86194DFECE006D8DD6 /* unicef.jpg */,
-			);
-			name = "Charity Logos";
-			sourceTree = "<group>";
-		};
 		8E05BC54182AB7F20005BF34 /* KarmaScan_logoFJ */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,8 +426,6 @@
 		8E29F29F18D4C4F9007AFA4C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8E29F2A018D626A4007AFA4C /* Charity.h */,
-				8E29F2A118D626A4007AFA4C /* Charity.m */,
 				8EB6F6DF19218F65004F70C5 /* CharityImage.h */,
 				8EB6F6E019218F65004F70C5 /* CharityImage.m */,
 			);
@@ -452,6 +444,8 @@
 				8E3FA46718CB8329009E2A66 /* WelcomeViewController.m */,
 				8EAE7B71182006A7001BDC08 /* ConversionViewController.h */,
 				8EAE7B72182006A7001BDC08 /* ConversionViewController.m */,
+				7F36979D19AAE2E200BDC2A3 /* AddCharityViewController.h */,
+				7F36979E19AAE2E200BDC2A3 /* AddCharityViewController.m */,
 				8EB17BF718201F00000DDFCC /* ImagesViewController.h */,
 				8EB17BF818201F00000DDFCC /* ImagesViewController.m */,
 				771BCD7F182023DD000264A8 /* ScannerViewController.m */,
@@ -461,6 +455,7 @@
 				772B828D1829683300128190 /* UserProfileViewController.m */,
 				8E034B6B194A639A006D8DD6 /* ArchiveTableViewController.h */,
 				8E034B6C194A639A006D8DD6 /* ArchiveTableViewController.m */,
+				7F699BEC19AAD1570016526B /* SocialMediaMessages */,
 				8E034B71194C9412006D8DD6 /* ModalArchiveViewController.h */,
 				8E034B72194C9412006D8DD6 /* ModalArchiveViewController.m */,
 			);
@@ -496,6 +491,8 @@
 		8EB6F6B6191FAB5A004F70C5 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				7F05B6A019C1030A00C5EE16 /* InitialParseNetworking.h */,
+				7F05B6A119C1030A00C5EE16 /* InitialParseNetworking.m */,
 				8EB6F6E219218F8E004F70C5 /* FlickrNetworkManager.h */,
 				8EB6F6E319218F8E004F70C5 /* FlickrNetworkManager.m */,
 				8EB6F6BA191FAD7F004F70C5 /* TwitterClient.h */,
@@ -621,25 +618,19 @@
 				E00CB862182B412C00A497C3 /* CheckMarkWhite.png in Resources */,
 				8E77A8B218F091B5001470DD /* dollarSign.jpg in Resources */,
 				8E05BC6B182AE43B0005BF34 /* barcode.png in Resources */,
-				8E034B8A194DFECE006D8DD6 /* Heifer.jpg in Resources */,
 				E00CB860182B400F00A497C3 /* karmaScan1.png in Resources */,
 				E00CB84D182B28F000A497C3 /* TestHeader.xib in Resources */,
 				E00CB85E182B400400A497C3 /* donation.png in Resources */,
-				8E034B88194DFECE006D8DD6 /* AnimalRescueSite.jpeg in Resources */,
 				7727AD8B182BF356006D01DD /* ic_profile_black@2x.png in Resources */,
 				8E05BC6F182B01200005BF34 /* awesomeBarcode.png in Resources */,
 				7727AD8C182BF356006D01DD /* ic_profile_black.png in Resources */,
 				8E05BC6D182AF20A0005BF34 /* QuicksandRegular.otf in Resources */,
-				8E034B8C194DFECE006D8DD6 /* unicef.jpg in Resources */,
 				8E05BC60182AB7F20005BF34 /* KarmaScan logo-FJ.png in Resources */,
-				8E034B8F194E0289006D8DD6 /* feed-children-logo.jpg in Resources */,
 				8E00AAD118182E9700BB32E4 /* InfoPlist.strings in Resources */,
 				E00CB852182B291400A497C3 /* KarnaScan_Background.png in Resources */,
 				8E05BC68182AE1E80005BF34 /* KarnaScan_Background_i4.png in Resources */,
 				8E959714182973A400AE29DB /* donate.png in Resources */,
 				8E00AADA18182E9700BB32E4 /* Main.storyboard in Resources */,
-				8E034B8B194DFECE006D8DD6 /* SoldiersAngels.jpg in Resources */,
-				8E034B87194DFECE006D8DD6 /* AfricanWellFund.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,13 +684,14 @@
 			files = (
 				8EB6F6CF191FAE2F004F70C5 /* OAuthCore.m in Sources */,
 				E00CB85C182B318A00A497C3 /* MyLoginViewController.m in Sources */,
+				7F05B6A219C1030A00C5EE16 /* InitialParseNetworking.m in Sources */,
 				8E31BE94191E9D0300EB9032 /* Comms.m in Sources */,
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8EB6F6CD191FAE2F004F70C5 /* NSData+Base64.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
 				8EB6F6D5191FAE3C004F70C5 /* TWSignedRequest.m in Sources */,
 				8E034B73194C9412006D8DD6 /* ModalArchiveViewController.m in Sources */,
-				8E29F2A218D626A4007AFA4C /* Charity.m in Sources */,
+				7F699BEB19AAD14D0016526B /* CustimizeMessageForEmail2.m in Sources */,
 				8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */,
 				8E034B6D194A639A006D8DD6 /* ArchiveTableViewController.m in Sources */,
 				8EB6F6E419218F8E004F70C5 /* FlickrNetworkManager.m in Sources */,
@@ -715,7 +707,9 @@
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E034B70194A67CE006D8DD6 /* ArchiveTableViewCell.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
+				7F699BE819AAD13C0016526B /* CustimizeMessageForEmail1.m in Sources */,
 				8E31BE89191C44B900EB9032 /* ShareImageViewController.m in Sources */,
+				7F36979F19AAE2E200BDC2A3 /* AddCharityViewController.m in Sources */,
 				8EB6F6D4191FAE3C004F70C5 /* TWAPIManager.m in Sources */,
 				772B828E1829683300128190 /* UserProfileViewController.m in Sources */,
 				771BCD951822D48E000264A8 /* (null) in Sources */,
@@ -771,6 +765,86 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7FAA92791981F1DD00C4D723 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: John Andrews (8Q5FPD993U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Soothsayer Labs, Inc. (835L8YFNV4)";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "ac2d1ee0-8ffe-4e3f-b5a9-c6e712746bb1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		7FAA927A1981F1DD00C4D723 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC7255DFA74C4B69BA2699AD /* Pods-Guilt.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = splashScreen;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Soothsayer Labs, Inc. (835L8YFNV4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Soothsayer Labs, Inc. (835L8YFNV4)";
+				FRAMEWORK_SEARCH_PATHS = (
+					Users/johnandrews/Desktop/MobileMakers/6th_Week,
+					/Users/johnandrews/Desktop/MobileMakers/6th_Week/Guilt,
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Guilt/Guilt-Prefix.pch";
+				INFOPLIST_FILE = "Guilt/Guilt-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ac2d1ee0-8ffe-4e3f-b5a9-c6e712746bb1";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Distribution;
+		};
+		7FAA927B1981F1DD00C4D723 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Guilt.app/Guilt";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Guilt/Guilt-Prefix.pch";
+				INFOPLIST_FILE = "GuiltTests/GuiltTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Distribution;
+		};
 		8E00AAF318182E9700BB32E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -788,7 +862,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: John Andrews (8Q5FPD993U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Soothsayer Labs, Inc. (835L8YFNV4)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -806,6 +881,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "ac2d1ee0-8ffe-4e3f-b5a9-c6e712746bb1";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -827,7 +903,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: John Andrews (8Q5FPD993U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Soothsayer Labs, Inc. (835L8YFNV4)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -838,6 +915,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "ac2d1ee0-8ffe-4e3f-b5a9-c6e712746bb1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -849,8 +927,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = splashScreen;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Soothsayer Labs, Inc. (835L8YFNV4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Soothsayer Labs, Inc. (835L8YFNV4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					Users/johnandrews/Desktop/MobileMakers/6th_Week,
 					/Users/johnandrews/Desktop/MobileMakers/6th_Week/Guilt,
@@ -864,7 +942,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ac2d1ee0-8ffe-4e3f-b5a9-c6e712746bb1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -875,8 +953,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = splashScreen;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Soothsayer Labs, Inc. (835L8YFNV4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Soothsayer Labs, Inc. (835L8YFNV4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					Users/johnandrews/Desktop/MobileMakers/6th_Week,
 					/Users/johnandrews/Desktop/MobileMakers/6th_Week/Guilt,
@@ -890,7 +968,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ac2d1ee0-8ffe-4e3f-b5a9-c6e712746bb1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -945,6 +1023,7 @@
 			buildConfigurations = (
 				8E00AAF318182E9700BB32E4 /* Debug */,
 				8E00AAF418182E9700BB32E4 /* Release */,
+				7FAA92791981F1DD00C4D723 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -954,6 +1033,7 @@
 			buildConfigurations = (
 				8E00AAF618182E9700BB32E4 /* Debug */,
 				8E00AAF718182E9700BB32E4 /* Release */,
+				7FAA927A1981F1DD00C4D723 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -963,6 +1043,7 @@
 			buildConfigurations = (
 				8E00AAF918182E9700BB32E4 /* Debug */,
 				8E00AAFA18182E9700BB32E4 /* Release */,
+				7FAA927B1981F1DD00C4D723 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

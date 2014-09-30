@@ -8,15 +8,26 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
-#import "FlickrNetworkManager.h"
+#import "InitialParseNetworking.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 
+    //Parse
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [Parse setApplicationId:PARSE_APPLICATION_ID
+                  clientKey:PARSE_CLIENT_KEY];
+    
+    // Initialize Parse's Facebook Utilities singleton. This uses the FacebookAppID we specified in our App bundle's plist.
+    [PFFacebookUtils initializeFacebook];
+    
+    //Parse Analytics
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
                                              (unsigned long)NULL), ^(void) {
-        [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil];
+        [[InitialParseNetworking sharedManager] getConversionNonprofitDataFromParse];
     });
     
     //Google Analytics Tracking ID
@@ -28,17 +39,6 @@
     NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     [tracker set:kGAIAppVersion value:version];
     [tracker set:kGAISampleRate value:@"50.0"];
-    
-    //Parse
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    [Parse setApplicationId:PARSE_APPLICATION_ID
-                  clientKey:PARSE_CLIENT_KEY];
-    
-    // Initialize Parse's Facebook Utilities singleton. This uses the FacebookAppID we specified in our App bundle's plist.
-    [PFFacebookUtils initializeFacebook];
-    
-    //Parse Analytics
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     //Twitter Login
     [PFTwitterUtils initializeWithConsumerKey:TWITTER_CONSUMER_KEY
