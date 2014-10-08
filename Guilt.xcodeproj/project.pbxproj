@@ -28,6 +28,10 @@
 		7F49207119550B61006FF4A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F49207019550B61006FF4A3 /* Parse.framework */; };
 		7F699BE819AAD13C0016526B /* CustimizeMessageForEmail1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F699BE719AAD13C0016526B /* CustimizeMessageForEmail1.m */; };
 		7F699BEB19AAD14D0016526B /* CustimizeMessageForEmail2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */; };
+		7FC797D619DB6D210093ED54 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7FC797D419DB6D210093ED54 /* Model.xcdatamodeld */; };
+		7FC797D919DB6FD50093ED54 /* DonationHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC797D819DB6FD50093ED54 /* DonationHistory.m */; };
+		7FC797DC19DB6FD60093ED54 /* ArchiveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC797DB19DB6FD60093ED54 /* ArchiveImage.m */; };
+		7FC797DF19DCBB5A0093ED54 /* ImageSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC797DE19DCBB5A0093ED54 /* ImageSaver.m */; };
 		8E00AAC718182E9700BB32E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC618182E9700BB32E4 /* Foundation.framework */; };
 		8E00AAC918182E9700BB32E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */; };
 		8E00AACB18182E9700BB32E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E00AACA18182E9700BB32E4 /* UIKit.framework */; };
@@ -129,6 +133,13 @@
 		7F699BE719AAD13C0016526B /* CustimizeMessageForEmail1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustimizeMessageForEmail1.m; sourceTree = "<group>"; };
 		7F699BE919AAD14D0016526B /* CustimizeMessageForEmail2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustimizeMessageForEmail2.h; sourceTree = "<group>"; };
 		7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustimizeMessageForEmail2.m; sourceTree = "<group>"; };
+		7FC797D519DB6D210093ED54 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		7FC797D719DB6FD50093ED54 /* DonationHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonationHistory.h; sourceTree = "<group>"; };
+		7FC797D819DB6FD50093ED54 /* DonationHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonationHistory.m; sourceTree = "<group>"; };
+		7FC797DA19DB6FD60093ED54 /* ArchiveImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveImage.h; sourceTree = "<group>"; };
+		7FC797DB19DB6FD60093ED54 /* ArchiveImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveImage.m; sourceTree = "<group>"; };
+		7FC797DD19DCBB5A0093ED54 /* ImageSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSaver.h; sourceTree = "<group>"; };
+		7FC797DE19DCBB5A0093ED54 /* ImageSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSaver.m; sourceTree = "<group>"; };
 		8E00AAC318182E9700BB32E4 /* Guilt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guilt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E00AAC618182E9700BB32E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8E00AAC818182E9700BB32E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -426,8 +437,15 @@
 		8E29F29F18D4C4F9007AFA4C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7FC797DD19DCBB5A0093ED54 /* ImageSaver.h */,
+				7FC797DE19DCBB5A0093ED54 /* ImageSaver.m */,
 				8EB6F6DF19218F65004F70C5 /* CharityImage.h */,
 				8EB6F6E019218F65004F70C5 /* CharityImage.m */,
+				7FC797D419DB6D210093ED54 /* Model.xcdatamodeld */,
+				7FC797DA19DB6FD60093ED54 /* ArchiveImage.h */,
+				7FC797DB19DB6FD60093ED54 /* ArchiveImage.m */,
+				7FC797D719DB6FD50093ED54 /* DonationHistory.h */,
+				7FC797D819DB6FD50093ED54 /* DonationHistory.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -691,18 +709,22 @@
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
 				8EB6F6D5191FAE3C004F70C5 /* TWSignedRequest.m in Sources */,
 				8E034B73194C9412006D8DD6 /* ModalArchiveViewController.m in Sources */,
+				7FC797DF19DCBB5A0093ED54 /* ImageSaver.m in Sources */,
 				7F699BEB19AAD14D0016526B /* CustimizeMessageForEmail2.m in Sources */,
 				8E3FA46818CB8329009E2A66 /* WelcomeViewController.m in Sources */,
 				8E034B6D194A639A006D8DD6 /* ArchiveTableViewController.m in Sources */,
 				8EB6F6E419218F8E004F70C5 /* FlickrNetworkManager.m in Sources */,
 				8E77A87C18EA5608001470DD /* UserHistoryCell.m in Sources */,
+				7FC797D919DB6FD50093ED54 /* DonationHistory.m in Sources */,
 				8EB6F6E119218F65004F70C5 /* CharityImage.m in Sources */,
 				8EB6F6C3191FAE0D004F70C5 /* FHSStream.m in Sources */,
 				8E3FA46B18CBB3FA009E2A66 /* BaseViewController.m in Sources */,
+				7FC797D619DB6D210093ED54 /* Model.xcdatamodeld in Sources */,
 				8EB6F6C6191FAE1F004F70C5 /* PFTwitterUtils+NativeTwitter.m in Sources */,
 				8EB6F6B9191FAC9A004F70C5 /* Constants.m in Sources */,
 				E00CB859182B316F00A497C3 /* KarmaSignupViewController.m in Sources */,
 				8EB6F6C2191FAE0D004F70C5 /* FHSTwitterEngine.m in Sources */,
+				7FC797DC19DB6FD60093ED54 /* ArchiveImage.m in Sources */,
 				8EB6F6BC191FAD7F004F70C5 /* TwitterClient.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E034B70194A67CE006D8DD6 /* ArchiveTableViewCell.m in Sources */,
@@ -1049,6 +1071,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7FC797D419DB6D210093ED54 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7FC797D519DB6D210093ED54 /* Model.xcdatamodel */,
+			);
+			currentVersion = 7FC797D519DB6D210093ED54 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8E00AABB18182E9700BB32E4 /* Project object */;
 }

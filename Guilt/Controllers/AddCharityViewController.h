@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddCharityViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextView *instructionsTextView;
+@interface AddCharityViewController : BaseViewController  <UITextFieldDelegate, UIImagePickerControllerDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *orgName;
+@property (weak, nonatomic) IBOutlet UITextField *donationURL;
+@property (weak, nonatomic) IBOutlet UITextField *conversionValue;
+@property (weak, nonatomic) IBOutlet UIImageView *selectedImage;
+@property (weak, nonatomic) IBOutlet UIButton *selectImageButtonOutlet;
+@property (weak, nonatomic) IBOutlet UIButton *backButtonOutlet;
+@property (weak, nonatomic) IBOutlet UILabel *topInstructionsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *conversionValueInstructionsLabel;
 
+
+- (IBAction)backButtonPressed:(id)sender;
+
+- (IBAction)selectImageButtonPressed:(id)sender;
 @end

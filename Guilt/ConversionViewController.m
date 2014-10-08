@@ -56,6 +56,12 @@
     self.convertedCharitableGoodsDict = [[NSMutableDictionary alloc] init];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self resignFirstResponder];
+}
+
 - (void)setupUI
 {
     [self.navigationItem setTitle:@"Convert"];

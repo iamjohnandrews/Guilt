@@ -60,7 +60,6 @@
     transform = CATransform3DTranslate(transform, offsetPositioning.x, offsetPositioning.y, 0.0);
     makeImagesLean = transform;
     
-//    [self setFontFamily:@"Quicksand-Bold" forView:self.view andSubViews:YES];
     [self.navigationItem setTitle:@"Impact"];
     
     self.flickrImageUrlDictionary = [[NSMutableDictionary alloc] initWithDictionary:[FlickrNetworkManager sharedManager].flickrCharityUrlDictionary];
@@ -107,11 +106,8 @@
     NSMutableDictionary *dictOfManyImageUrls = [NSMutableDictionary dictionary];
 
     for (int i = 0; i < self.flickrImageUrlDictionary.count; i++) {
-        
-        int numberOfFlickrImagesInCharityVerticalArray = [[self.flickrImageUrlDictionary objectForKey:[self.flickrImageUrlDictionary allKeys][i]] count];
-        int randomNumber = [self getRandomNumber:numberOfFlickrImagesInCharityVerticalArray];
-        NSLog(@"%d.numberOfFlickrImagesInCharityVerticalArray =%d", i, numberOfFlickrImagesInCharityVerticalArray);
-        NSURL *flickrImageUrl = [[self.flickrImageUrlDictionary objectForKey:[self.flickrImageUrlDictionary allKeys][i]] objectAtIndex:randomNumber];
+
+        NSURL *flickrImageUrl = [[self.flickrImageUrlDictionary objectForKey:[self.flickrImageUrlDictionary allKeys][i]] firstObject];
 
         [dictOfManyImageUrls setObject:flickrImageUrl forKey: [self.flickrImageUrlDictionary allKeys][i]];
     }
@@ -134,21 +130,6 @@
     if (removeFromFlickrSingleton) {
         [[[FlickrNetworkManager sharedManager].flickrCharityUrlDictionary objectForKey:searchTerm] removeObjectAtIndex:indexOfUsedURL];
     }
-}
-
-- (int)getRandomNumber:(int)numberOfFlickrImagesInCharityVerticalArray
-{
-    int top7thFlickrResults;
-
-    if (numberOfFlickrImagesInCharityVerticalArray > 7) {
-        top7thFlickrResults =  roundf(numberOfFlickrImagesInCharityVerticalArray / 7);
-    } else {
-        top7thFlickrResults =  roundf(numberOfFlickrImagesInCharityVerticalArray / 2);
-    }
-    
-    int randomNumber = arc4random() % top7thFlickrResults;
-    
-    return randomNumber;
 }
 
 
@@ -281,7 +262,8 @@
                                        [flickrImage.image drawInRect:CGRectMake(0,0,shrinkflickrImage.width,shrinkflickrImage.height)];
                                        UIImage* shrunkflickrImage = UIGraphicsGetImageFromCurrentImageContext();
                                        UIGraphicsEndImageContext();
-
+                                       
+                                       //need a method to clear displayImageView.image? Currently, I think I'm showing an image on top of an image
                                        charityCell.displayImageView.image = shrunkflickrImage;
                                        charityCell.displayImageView.contentMode = UIViewContentModeScaleAspectFit;
                                        if (self.charityCellUpdateUICalled < self.flickrImageUrlDictionary.count) {

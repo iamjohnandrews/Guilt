@@ -9,6 +9,8 @@
 #import "InitialParseNetworking.h"
 #import "CharityImage.h"
 #import "FlickrNetworkManager.h"
+#import "ImageSaver.h"
+#import "DonationHistory.h"
 
 @implementation InitialParseNetworking
 
@@ -60,9 +62,17 @@
         individualCharityInfo.donationURL = [charityDetails objectForKey:@"donationURL"];
         individualCharityInfo.conversionValue = [charityDetails objectForKey:@"conversionValue"];
         
+        BOOL isLogoSavedToDisk = [ImageSaver imageAlreadySavedToDiskWithName:individualCharityInfo.charityName];
+        
         [[charityDetails objectForKey:@"logo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
                 individualCharityInfo.charityLogo = [UIImage imageWithData:data];
+                
+                //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    if (!isLogoSavedToDisk) {
+                        [ImageSaver saveImageToDisk:individualCharityInfo.charityLogo withName:individualCharityInfo.charityName];
+                    }
+                //});
             }
         }];
         
