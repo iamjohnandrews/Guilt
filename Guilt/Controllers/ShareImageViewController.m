@@ -10,6 +10,7 @@
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
 #import "ArchiveTableViewController.h"
+#import "CustimizeMessageForEmail2.h"
 
 
 @interface ShareImageViewController () <UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
@@ -57,8 +58,7 @@
 #pragma mark Sharing & Action
 - (void)shareActionSheet
 {
-    NSString *message = @"#KarmaScanFact\r Download the official KarmaScan app here";
-    
+    /*NSString *message =@"#KarmaScan is great!";
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:[NSArray arrayWithObjects:message, self.unfinishedMeme, nil] applicationActivities:nil];
     
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
@@ -70,9 +70,29 @@
     }];
     
     [self presentViewController:activityViewController animated:YES completion:^{
-    }];
-}
+    }];*/
+    
+    
+    //---------------------------------------
+   CustimizeMessageForEmail2 *ActivityProvider = [[CustimizeMessageForEmail2 alloc] init];
+    NSArray *Items = @[self.unfinishedMeme, ActivityProvider];
+    
+    UIActivityViewController *ActivityView = [[UIActivityViewController alloc] initWithActivityItems:Items applicationActivities:nil];
+        
+    [self presentViewController:ActivityView animated:YES completion:nil];
 
+    [ActivityView setCompletionHandler:^(NSString *act, BOOL done)
+     {
+         if ( done )
+         {
+             if ([PFUser currentUser]) {
+                 [self uploadImageToParse:self.sharingImage.image];
+             }
+         }
+     }];
+    
+}
+//now irrelevant
 - (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController
 {
     return @"Placeholder";

@@ -26,7 +26,6 @@
 		7F05B6A219C1030A00C5EE16 /* InitialParseNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F05B6A119C1030A00C5EE16 /* InitialParseNetworking.m */; };
 		7F36979F19AAE2E200BDC2A3 /* AddCharityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F36979E19AAE2E200BDC2A3 /* AddCharityViewController.m */; };
 		7F49207119550B61006FF4A3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F49207019550B61006FF4A3 /* Parse.framework */; };
-		7F699BE819AAD13C0016526B /* CustimizeMessageForEmail1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F699BE719AAD13C0016526B /* CustimizeMessageForEmail1.m */; };
 		7F699BEB19AAD14D0016526B /* CustimizeMessageForEmail2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */; };
 		7FC797D619DB6D210093ED54 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7FC797D419DB6D210093ED54 /* Model.xcdatamodeld */; };
 		7FC797D919DB6FD50093ED54 /* DonationHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC797D819DB6FD50093ED54 /* DonationHistory.m */; };
@@ -129,8 +128,6 @@
 		7F36979D19AAE2E200BDC2A3 /* AddCharityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCharityViewController.h; sourceTree = "<group>"; };
 		7F36979E19AAE2E200BDC2A3 /* AddCharityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCharityViewController.m; sourceTree = "<group>"; };
 		7F49207019550B61006FF4A3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		7F699BE619AAD13C0016526B /* CustimizeMessageForEmail1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustimizeMessageForEmail1.h; sourceTree = "<group>"; };
-		7F699BE719AAD13C0016526B /* CustimizeMessageForEmail1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustimizeMessageForEmail1.m; sourceTree = "<group>"; };
 		7F699BE919AAD14D0016526B /* CustimizeMessageForEmail2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustimizeMessageForEmail2.h; sourceTree = "<group>"; };
 		7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustimizeMessageForEmail2.m; sourceTree = "<group>"; };
 		7FC797D519DB6D210093ED54 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -287,8 +284,6 @@
 		7F699BEC19AAD1570016526B /* SocialMediaMessages */ = {
 			isa = PBXGroup;
 			children = (
-				7F699BE619AAD13C0016526B /* CustimizeMessageForEmail1.h */,
-				7F699BE719AAD13C0016526B /* CustimizeMessageForEmail1.m */,
 				7F699BE919AAD14D0016526B /* CustimizeMessageForEmail2.h */,
 				7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */,
 			);
@@ -729,7 +724,6 @@
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
 				8E034B70194A67CE006D8DD6 /* ArchiveTableViewCell.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
-				7F699BE819AAD13C0016526B /* CustimizeMessageForEmail1.m in Sources */,
 				8E31BE89191C44B900EB9032 /* ShareImageViewController.m in Sources */,
 				7F36979F19AAE2E200BDC2A3 /* AddCharityViewController.m in Sources */,
 				8EB6F6D4191FAE3C004F70C5 /* TWAPIManager.m in Sources */,

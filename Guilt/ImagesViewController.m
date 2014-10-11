@@ -104,6 +104,7 @@
 - (void)getFlickrImageUrl
 {
     NSMutableDictionary *dictOfManyImageUrls = [NSMutableDictionary dictionary];
+    
 
     for (int i = 0; i < self.flickrImageUrlDictionary.count; i++) {
 
@@ -132,6 +133,20 @@
     }
 }
 
+- (int)getRandomNumber:(int)numberOfFlickrImagesInCharityVerticalArray
+{
+    int top7thFlickrResults;
+    
+    if (numberOfFlickrImagesInCharityVerticalArray > 7) {
+        top7thFlickrResults =  roundf(numberOfFlickrImagesInCharityVerticalArray / 7);
+    } else {
+        top7thFlickrResults =  roundf(numberOfFlickrImagesInCharityVerticalArray / 2);
+    }
+    
+    int randomNumber = arc4random() % top7thFlickrResults;
+    
+    return randomNumber;
+}
 
 - (UIImage *)imageFromCellAtIndex:(NSInteger)index
 {
