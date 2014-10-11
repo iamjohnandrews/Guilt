@@ -7,6 +7,7 @@
 //
 
 #import "Comms.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 @implementation Comms
 

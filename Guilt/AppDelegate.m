@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "InitialParseNetworking.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+
 
 @implementation AppDelegate
 

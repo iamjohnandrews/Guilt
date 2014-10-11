@@ -46,6 +46,7 @@
     self.logoImageView.layer.cornerRadius = 10.0f;
     self.logoImageView.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
     self.logoImageView.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
+    self.logoImageView.userInteractionEnabled = NO;
     [self bringSubviewToFront:self.logoImageView];
     
 
