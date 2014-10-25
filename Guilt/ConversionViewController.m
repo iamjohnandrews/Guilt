@@ -37,7 +37,7 @@
     self.screenName = @"ConversionViewController";
     [self setupUI];
     userEnterDollarAmountTextField.delegate = self;
-    
+
     CGRect frameRect = userEnterDollarAmountTextField.frame;
     frameRect.size.height = 50;
     userEnterDollarAmountTextField.frame = frameRect;
@@ -54,6 +54,7 @@
 {
     [super viewDidAppear:animated];
     self.convertedCharitableGoodsDict = [[NSMutableDictionary alloc] init];
+    conversionButtonOutlet.userInteractionEnabled = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -68,7 +69,7 @@
     if ([PFUser currentUser]) {
         self.userProfileButtonOutlet.enabled = YES;
         self.navigationItem.hidesBackButton = YES;
-        
+
         UIBarButtonItem *logOutUserButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logOutUser)];
         [self.navigationItem setLeftBarButtonItem:logOutUserButton animated:YES];
     } else {
@@ -108,7 +109,6 @@
     //UIColor* orangeKindaColor = [UIColor colorWithRed:244.0/255 green:128.0/255 blue:0.0/255 alpha:1];
     [conversionButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [conversionButtonOutlet setTitle:@"Get Impact Value" forState:UIControlStateNormal];
-    conversionButtonOutlet.userInteractionEnabled = NO;
 }
 
 - (void)logOutUser
@@ -179,7 +179,8 @@
     {
         return NO;
     }
-    if (textField.text.length > 0) {
+    NSString *removeDollarSignString = [newText substringFromIndex:1];
+    if ([removeDollarSignString floatValue] > 0) {
         self.conversionButtonOutlet.userInteractionEnabled = YES;
     }
     

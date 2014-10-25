@@ -25,9 +25,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self findOutHowManyMemesUserHasinDatabase];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    if ([self checkInternetConnection]) {
+        [self findOutHowManyMemesUserHasinDatabase];
+    } else {
+        
+    }
+    
     [self cellVisualEffect];
             
     // Uncomment the following line to preserve selection between presentations.
@@ -66,6 +72,22 @@
     */
 }
 
+- (BOOL)checkInternetConnection
+{
+    NSURL *scriptUrl = [NSURL URLWithString:@"http://www.google.com"];
+    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
+    if (data) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void)getImagesAndDatesFromDisk
+{
+    
+}
+
 #pragma mark - Table View Visual Effects
 
 - (void)cellVisualEffect
@@ -98,7 +120,7 @@
         [query addDescendingOrder:@"User"];
         query.skip = pullNumber;
     }
-    query.limit = 7;
+    query.limit = 10;
     [query findObjectsInBackgroundWithBlock:^(NSArray *PFobjects, NSError *error) {
         //3
         if (!error) {
@@ -119,6 +141,7 @@
 
 - (void)findOutHowManyMemesUserHasinDatabase
 {
+    //Cloud Code needed here
     PFQuery *query = [PFQuery queryWithClassName:@"CharityMemes"];
     [query whereKey:@"User" equalTo:[PFUser currentUser]];
     
@@ -155,10 +178,8 @@
         PFFile *meme = (PFFile *)[dateAndImageObject objectForKey:@"image"];
         [self.images addObject:[UIImage imageWithData:meme.getData]];
         
-        
         NSDate *creationDate = dateAndImageObject.createdAt;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; 
-//        [dateFormatter setDateFormat:@"HH:mm dd/MM yyyy"];
         [dateFormatter setDateFormat:@"eeee, MMMM dd, yyyy"];
         [self.dates addObject:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:creationDate]]];
     }
@@ -210,7 +231,7 @@
 //    NSLog(@"self.dates.count = %d, indexPath.row =%d, cell.archiveDateLabel.text = %@", self.dates.count, indexPath.row, cell.archiveDateLabel.text);
     
     if (self.archiveMemesArray.count < self.totalNumberArchiveMemes) {
-        if (indexPath.row == self.archiveMemesArray.count-2) {
+        if (indexPath.row == self.archiveMemesArray.count-4) {
             [self getArhiveMemesFromParse:self.archiveMemesArray.count];
         }
     }

@@ -16,6 +16,7 @@
 #import "FlickrNetworkManager.h"
 #import "UIImageView+WebCache.h"
 #import "CharityImage.h"
+#import "ImageSaver.h"
 
 @interface ImagesViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -30,7 +31,7 @@
 @property (nonatomic) int charityCellUpdateUICalled;
 
 @property (strong, nonatomic) NSMutableDictionary *alreadyUsedFlikrURLDictionary;
-
+@property (nonatomic) BOOL gotFlickrImageURLs;
 @end
 
 @implementation ImagesViewController
@@ -62,10 +63,25 @@
     
     [self.navigationItem setTitle:@"Impact"];
     
-    self.flickrImageUrlDictionary = [[NSMutableDictionary alloc] initWithDictionary:[FlickrNetworkManager sharedManager].flickrCharityUrlDictionary];
+    if ([FlickrNetworkManager sharedManager].flickrCharityUrlDictionary.count) {
+        self.gotFlickrImageURLs = YES;
+        self.flickrImageUrlDictionary = [[NSMutableDictionary alloc] initWithDictionary:[FlickrNetworkManager sharedManager].flickrCharityUrlDictionary];
+    } else {
+        self.gotFlickrImageURLs = NO;
+//        self.flickrImageUrlDictionary = [NSMutableDictionary dictionary];
+//        for (int i = 0; i < self.resultOfCharitableConversionsDict.count; i++) {
+//            CharityImage *individualCharity = [self.resultOfCharitableConversionsDict objectForKey:[self.resultOfCharitableConversionsDict allKeys][i]];
+//            [self.flickrImageUrlDictionary setObject:[ImageSaver fetchImageFromDiskWithName:individualCharity.charityName] forKey:individualCharity.charityName];
+//        }
+    }
+    
 
     if (self.flickrImageUrlDictionary.count) {
         [self getFlickrImageUrl];
+    }
+    
+    if (!self.resultOfCharitableConversionsDict.count) {
+        [self showNoImagesMessage];
     }
 }
 
@@ -78,6 +94,7 @@
 
         [self removeAlreadyUsedImage:alreadyUsedURL fromInitialFlickrAPICall:searchTerm];
     }
+    [[SDImageCache sharedImageCache] clearMemory];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -98,6 +115,23 @@
                                                                value:nil] build]];
         [tracker set:kGAIScreenName value:nil];
     }
+}
+
+- (void)showNoImagesMessage
+{
+    UILabel *noImagesMessage = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, self.navigationController.navigationBar.frame.size.height + 10.0f, self.view.frame.size.width - 40.0f, (44.0f * 3))];
+    noImagesMessage.font = [UIFont fontWithName:@"Quicksand-Regular" size:18];
+    noImagesMessage.backgroundColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
+    noImagesMessage.numberOfLines = 0;
+    noImagesMessage.textAlignment = NSTextAlignmentCenter;
+    noImagesMessage.textColor = [UIColor whiteColor];
+    
+    if ([PFUser currentUser]) {
+        noImagesMessage.text = @"Unfortunately, conversion data is unavailable. Please try again or review your user profile to see your social impact.";
+    } else {
+        noImagesMessage.text = @"Unfortunately, conversion data is unavailable. Please close and restart the app.";
+    }
+    [self.view addSubview:noImagesMessage];
 }
 
 #pragma mark - Image Methods
@@ -234,6 +268,11 @@
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
     charityCell.displayImageView.image = individualCharity.charityLogo;
     charityCell.shareButtonOutlet.tag = indexPath.row;
+    [charityCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+    if (!individualCharity.charityLogo) {
+        [self showNoImagesMessage];
+    }
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
@@ -244,75 +283,77 @@
     
     self.charityCellUpdateUICalled ++;
     
-    NSURL *flikrImageURL = [self.specificTypeOfFlickrImageUrlDictionary objectForKey:individualCharity.flickrSearchTerm];
-    UIImageView *flickrImage = [[UIImageView alloc] init];
-    [flickrImage sd_setImageWithURL:flikrImageURL
-                   placeholderImage:nil
-                            options:SDWebImageLowPriority
-                           progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                               [indicator startAnimating];
-//                               NSLog(@"percentage until complete =%f", (float)receivedSize/(float)expectedSize);
-                               
-                           } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                               [indicator stopAnimating];
-                               if (!error) {
-                                   [self.alreadyUsedFlikrURLDictionary setObject:flikrImageURL forKey:individualCharity.flickrSearchTerm];
-                                   if (self.flickrImageUrlDictionary.count) {
-                                       charityCell.layer.transform = self.makeImagesLean;
-                                       charityCell.layer.opacity = 0.2;
-                                       [UIView animateWithDuration:0.4 animations:^{
-                                           charityCell.layer.transform = CATransform3DIdentity;
-                                           charityCell.layer.opacity = 1;
-                                       }];
-                                       
-                                       CGSize shrinkLogoSize = CGSizeMake(60.0f, 40.0f);
-                                       UIGraphicsBeginImageContext(shrinkLogoSize);
-                                       [individualCharity.charityLogo drawInRect:CGRectMake(0,0,shrinkLogoSize.width,shrinkLogoSize.height)];
-                                       UIImage* shrunkLogoImage = UIGraphicsGetImageFromCurrentImageContext();
-                                       UIGraphicsEndImageContext();
-                                       charityCell.logoImageView.image = shrunkLogoImage;
-                                       
-                                       CGSize shrinkflickrImage = CGSizeMake(320.0f, 240.0f);
-                                       UIGraphicsBeginImageContext(shrinkflickrImage);
-                                       [flickrImage.image drawInRect:CGRectMake(0,0,shrinkflickrImage.width,shrinkflickrImage.height)];
-                                       UIImage* shrunkflickrImage = UIGraphicsGetImageFromCurrentImageContext();
-                                       UIGraphicsEndImageContext();
-                                       
-                                       //need a method to clear displayImageView.image? Currently, I think I'm showing an image on top of an image
-                                       charityCell.displayImageView.image = shrunkflickrImage;
-                                       charityCell.displayImageView.contentMode = UIViewContentModeScaleAspectFit;
-                                       if (self.charityCellUpdateUICalled < self.flickrImageUrlDictionary.count) {
+    if (self.gotFlickrImageURLs) {
+        NSURL *flikrImageURL = [self.specificTypeOfFlickrImageUrlDictionary objectForKey:individualCharity.flickrSearchTerm];
+        UIImageView *flickrImage = [[UIImageView alloc] init];
+        [flickrImage sd_setImageWithURL:flikrImageURL
+                       placeholderImage:nil
+                                options:SDWebImageLowPriority
+                               progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                   [indicator startAnimating];
+                                   //                               NSLog(@"percentage until complete =%f", (float)receivedSize/(float)expectedSize);
+                                   
+                               } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                   [indicator stopAnimating];
+                                   if (!error) {
+                                       [self.alreadyUsedFlikrURLDictionary setObject:flikrImageURL forKey:individualCharity.flickrSearchTerm];
+                                       if (self.flickrImageUrlDictionary.count) {
+                                           charityCell.layer.transform = self.makeImagesLean;
+                                           charityCell.layer.opacity = 0.2;
+                                           [UIView animateWithDuration:0.4 animations:^{
+                                               charityCell.layer.transform = CATransform3DIdentity;
+                                               charityCell.layer.opacity = 1;
+                                           }];
+                                           
+                                           CGSize shrinkLogoSize = CGSizeMake(60.0f, 40.0f);
+                                           UIGraphicsBeginImageContext(shrinkLogoSize);
+                                           [individualCharity.charityLogo drawInRect:CGRectMake(0,0,shrinkLogoSize.width,shrinkLogoSize.height)];
+                                           UIImage* shrunkLogoImage = UIGraphicsGetImageFromCurrentImageContext();
+                                           UIGraphicsEndImageContext();
+                                           charityCell.logoImageView.image = shrunkLogoImage;
+                                           
+                                           CGSize shrinkflickrImage = CGSizeMake(320.0f, 240.0f);
+                                           UIGraphicsBeginImageContext(shrinkflickrImage);
+                                           [flickrImage.image drawInRect:CGRectMake(0,0,shrinkflickrImage.width,shrinkflickrImage.height)];
+                                           UIImage* shrunkflickrImage = UIGraphicsGetImageFromCurrentImageContext();
+                                           UIGraphicsEndImageContext();
+                                           
+                                           charityCell.displayImageView.image = shrunkflickrImage;
+                                           charityCell.displayImageView.contentMode = UIViewContentModeScaleAspectFit;
+                                           if (self.charityCellUpdateUICalled < self.flickrImageUrlDictionary.count) {
+                                               [charityCell updateUI];
+                                           }
+                                       } else {
                                            [charityCell updateUI];
                                        }
+                                       
                                    } else {
-                   
+                                       NSLog(@"error =%@", [error localizedDescription]);
                                        [charityCell updateUI];
                                    }
-                                   
-                                   NSString *charityDescription = [[NSString alloc] init];
-                                   if ([[self.resultOfCharitableConversionsDict objectForKey:individualCharity.charityName] integerValue] == 1) {
-                                       charityDescription = individualCharity.singularDescription;
-                                   } else {
-                                       charityDescription = individualCharity.pluralDescription;
-                                   }
-                                   NSAttributedString *charityDescriptionText = [[NSAttributedString alloc] initWithString:[[NSString stringWithFormat:@"%@ %@",[self.resultOfCharitableConversionsDict allKeys][indexPath.row], charityDescription] uppercaseString] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
-                                   charityCell.charityConversionDetailsLabel.attributedText = charityDescriptionText;
-                                   charityCell.charityConversionDetailsLabel.tag = 4;
-                                   
-                                   NSAttributedString *dollarConversionDescriptionText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"$%@ IS EQUIVALENT TO", self.productPrice] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
-                                   charityCell.dollarAmountConvertedLabel.attributedText = dollarConversionDescriptionText;
-                                   
-                                   charityCell.donateButtonOutlet.tag = indexPath.row;
-                                   [charityCell.donateButtonOutlet addTarget:self action:@selector(onDonationButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-                                   
-                                   [charityCell.shareButtonOutlet addTarget:self action:@selector(onShareButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-
-                               } else {
-                                   NSLog(@"error =%@", [error localizedDescription]);
-                                   [charityCell updateUI];
-                               }
-                           }];
-
+                               }];
+    } else {
+        [charityCell updateUI];
+    }
+    
+    NSString *charityDescription = [[NSString alloc] init];
+    if ([[self.resultOfCharitableConversionsDict objectForKey:individualCharity.charityName] integerValue] == 1) {
+        charityDescription = individualCharity.singularDescription;
+    } else {
+        charityDescription = individualCharity.pluralDescription;
+    }
+    NSAttributedString *charityDescriptionText = [[NSAttributedString alloc] initWithString:[[NSString stringWithFormat:@"%@ %@",[self.resultOfCharitableConversionsDict allKeys][indexPath.row], charityDescription] uppercaseString] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
+    charityCell.charityConversionDetailsLabel.attributedText = charityDescriptionText;
+    charityCell.charityConversionDetailsLabel.tag = 4;
+    
+    NSAttributedString *dollarConversionDescriptionText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"$%@ IS EQUIVALENT TO", self.productPrice] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
+    charityCell.dollarAmountConvertedLabel.attributedText = dollarConversionDescriptionText;
+    
+    charityCell.donateButtonOutlet.tag = indexPath.row;
+    [charityCell.donateButtonOutlet addTarget:self action:@selector(onDonationButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [charityCell.shareButtonOutlet addTarget:self action:@selector(onShareButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
     return charityCell;
 }
 

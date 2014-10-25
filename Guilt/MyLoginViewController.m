@@ -93,6 +93,28 @@
     [self.view addSubview:self.emailTextField];
 }
 
+- (void)disableUIElementsWhenLoggingInThroughFBorTwitter:(id)sender
+{
+    self.userName.userInteractionEnabled = NO;
+    self.password.userInteractionEnabled = NO;
+    self.loginButtonOutlet.userInteractionEnabled = NO;
+    self.signupButtonOutlet.userInteractionEnabled = NO;
+    [self.navigationItem.leftBarButtonItem setEnabled:NO];
+}
+
+- (void)EnableUIElementsWhenRecieveFBorTwitterLoginResponse
+{
+    self.userName.userInteractionEnabled = YES;
+    self.password.userInteractionEnabled = YES;
+    self.loginButtonOutlet.userInteractionEnabled = YES;
+    self.signupButtonOutlet.userInteractionEnabled = YES;
+    
+    self.twitterLoginButtonOutlet.userInteractionEnabled = YES;
+    self.facebookLoginButtonOutlet.userInteractionEnabled = YES;
+    
+    [self.navigationItem.leftBarButtonItem setEnabled:YES];
+}
+
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -107,6 +129,7 @@
     [self displayUIActivityIndicatorView];
     
     [Comms login:self];
+    [self disableUIElementsWhenLoggingInThroughFBorTwitter:sender];
 }
 
 - (void) commsDidLogin:(BOOL)loggedIn
@@ -128,6 +151,7 @@
                           cancelButtonTitle:@"Ok"
                           otherButtonTitles:nil] show];
 	}
+    [self EnableUIElementsWhenRecieveFBorTwitterLoginResponse];
 }
 
 #pragma mark - Twitter Login methods
@@ -141,9 +165,10 @@
     [PFTwitterUtils getTwitterAccounts:^(BOOL accountsWereFound, NSArray *twitterAccounts) {
         [weakSelf handleTwitterAccounts:twitterAccounts];
     }];
+    [self disableUIElementsWhenLoggingInThroughFBorTwitter:sender];
 }
 
-- (void)userDidLogIntoTwitter:(BOOL)loggedIn 
+- (void)userDidLogIntoTwitter:(BOOL)loggedIn
 {
 	[self.twitterLoginButtonOutlet setEnabled:YES];
     
@@ -158,6 +183,7 @@
                                    delegate:nil
                           cancelButtonTitle:@"Ok"
                           otherButtonTitles:nil] show];
+        [self EnableUIElementsWhenRecieveFBorTwitterLoginResponse];
 	}
 }
 
@@ -339,7 +365,6 @@
     [self.skipButtonOutlet setTitle:@"Skip"];
     
     [self.navigationItem setTitle:@"Login"];
-    
 }
 
 

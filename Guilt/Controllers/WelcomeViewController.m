@@ -17,10 +17,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
-    if ([PFUser currentUser]) {
-        [self performSegueWithIdentifier:@"WelcomeToConversionSegue" sender:self];
-    }
+    [super viewDidLoad];
     
     self.screenName = @"WelcomeViewController";
     self.introScrollView.pagingEnabled = YES;
@@ -41,6 +38,10 @@
     self.view.contentMode = UIViewContentModeScaleAspectFit;
     
     [self updateUI];
+    if ([PFUser currentUser]) {
+        self.navigationItem.title = @" ";
+        [self performSegueWithIdentifier:@"WelcomeToConversionSegue" sender:self];
+    } 
 }
 
 - (void)updateUI
@@ -154,6 +155,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+
 }
 @end

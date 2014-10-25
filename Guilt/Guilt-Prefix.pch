@@ -16,9 +16,11 @@
     #import <Parse/Parse.h>
     #import "BaseViewController.h"
     #import "Constants.h"
-    #import "GAI.h"
-    #import "GAIFields.h"
-    #import "GAIDictionaryBuilder.h"
     #define MR_SHORTHAND
     #import "CoreData+MagicalRecord.h"
+#import "GoogleAnalytics.h"
+#import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+
 #endif

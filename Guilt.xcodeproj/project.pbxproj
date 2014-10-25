@@ -27,6 +27,7 @@
 		7F4B93C819E8CA410047BE25 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4B93C719E8CA410047BE25 /* Parse.framework */; };
 		7F4B93CA19E8CA780047BE25 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4B93C919E8CA780047BE25 /* ParseFacebookUtils.framework */; };
 		7F699BEB19AAD14D0016526B /* CustimizeMessageForEmail2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */; };
+		7FA3C29F19F5C42C00A5FEA8 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3C29E19F5C42C00A5FEA8 /* GoogleAnalytics.m */; };
 		7FC797D619DB6D210093ED54 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7FC797D419DB6D210093ED54 /* Model.xcdatamodeld */; };
 		7FC797D919DB6FD50093ED54 /* DonationHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC797D819DB6FD50093ED54 /* DonationHistory.m */; };
 		7FC797DC19DB6FD60093ED54 /* ArchiveImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC797DB19DB6FD60093ED54 /* ArchiveImage.m */; };
@@ -126,6 +127,8 @@
 		7F4B93C919E8CA780047BE25 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		7F699BE919AAD14D0016526B /* CustimizeMessageForEmail2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustimizeMessageForEmail2.h; sourceTree = "<group>"; };
 		7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustimizeMessageForEmail2.m; sourceTree = "<group>"; };
+		7FA3C29D19F5C42C00A5FEA8 /* GoogleAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalytics.h; sourceTree = "<group>"; };
+		7FA3C29E19F5C42C00A5FEA8 /* GoogleAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalytics.m; sourceTree = "<group>"; };
 		7FC797D519DB6D210093ED54 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7FC797D719DB6FD50093ED54 /* DonationHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonationHistory.h; sourceTree = "<group>"; };
 		7FC797D819DB6FD50093ED54 /* DonationHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonationHistory.m; sourceTree = "<group>"; };
@@ -345,6 +348,8 @@
 				8E00AACD18182E9700BB32E4 /* Supporting Files */,
 				8EB6F6B7191FAC9A004F70C5 /* Constants.h */,
 				8EB6F6B8191FAC9A004F70C5 /* Constants.m */,
+				7FA3C29D19F5C42C00A5FEA8 /* GoogleAnalytics.h */,
+				7FA3C29E19F5C42C00A5FEA8 /* GoogleAnalytics.m */,
 			);
 			path = Guilt;
 			sourceTree = "<group>";
@@ -688,6 +693,7 @@
 				8E00AAD718182E9700BB32E4 /* AppDelegate.m in Sources */,
 				8EB6F6CD191FAE2F004F70C5 /* NSData+Base64.m in Sources */,
 				8EAE7B73182006A7001BDC08 /* ConversionViewController.m in Sources */,
+				7FA3C29F19F5C42C00A5FEA8 /* GoogleAnalytics.m in Sources */,
 				8EB6F6D5191FAE3C004F70C5 /* TWSignedRequest.m in Sources */,
 				8E034B73194C9412006D8DD6 /* ModalArchiveViewController.m in Sources */,
 				7FC797DF19DCBB5A0093ED54 /* ImageSaver.m in Sources */,

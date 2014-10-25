@@ -14,8 +14,6 @@ static NSMutableSet *allInstances;
 
 + (NSArray *)allCharityDetails:(BOOL)randomized
 {
-
-    
     NSMutableArray *returnObject = [[allInstances allObjects] mutableCopy];
     if (randomized) {
         //randomize code here
@@ -27,7 +25,6 @@ static NSMutableSet *allInstances;
         }
     }
     return [NSArray arrayWithArray:returnObject];
-
 }
 
 -(id)init

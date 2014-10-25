@@ -10,7 +10,6 @@
 #import "CharityImage.h"
 #import "FlickrNetworkManager.h"
 #import "ImageSaver.h"
-#import "DonationHistory.h"
 
 @implementation InitialParseNetworking
 
@@ -43,6 +42,8 @@
             //4 What to do if no internet connection
 
             NSLog(@"Parse Error =%@ %@ %@", error, [error localizedDescription], [error localizedFailureReason]);
+            NSMutableArray *defaultSearchTerms = [[NSMutableArray alloc] initWithObjects:@"beekeeper", @"ducklings", @"child vaccination", @"happy pets", @"military care package", @"child eyes", @"child drink water africa", nil];
+            [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil withSearchTerms:defaultSearchTerms];
         }
     }];
 }
@@ -68,19 +69,29 @@
             if (!error) {
                 individualCharityInfo.charityLogo = [UIImage imageWithData:data];
                 
-                //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     if (!isLogoSavedToDisk) {
                         [ImageSaver saveImageToDisk:individualCharityInfo.charityLogo withName:individualCharityInfo.charityName];
                     }
-                //});
+                });
             }
         }];
         
         [searhTerms addObject:individualCharityInfo.flickrSearchTerm];
         [self.allCharitiesInfo addObject:individualCharityInfo];
     }
+    [self saveContext];
     [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil withSearchTerms:searhTerms];
+}
 
+- (void)saveContext {
+    [[NSManagedObjectContext contextForCurrentThread] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"You successfully saved your context.");
+        } else if (error) {
+            NSLog(@"Error saving context: %@", error.description);
+        }
+    }];
 }
 
 @end

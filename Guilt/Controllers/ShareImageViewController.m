@@ -11,6 +11,7 @@
 #import <MessageUI/MessageUI.h>
 #import "ArchiveTableViewController.h"
 #import "CustimizeMessageForEmail2.h"
+#import "ImageSaver.h"
 
 
 @interface ShareImageViewController () <UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
@@ -222,6 +223,16 @@
     [tracker set:kGAIScreenName value:nil];
 }
 
+
+- (NSString *)convertNSDateToImageTitleString
+{
+    NSDate *creationDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"eeee, MMMM dd, yyyy"];
+    
+    return [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:creationDate]];
+}
+
 - (void)uploadImageToParse:(UIImage *)charityMeme
 {
     NSData *imageData = UIImagePNGRepresentation(charityMeme);
@@ -243,6 +254,10 @@
                 //4
                 if (succeeded){
                     NSLog(@"successful image upload to Parse");
+                    
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        [ImageSaver saveImageToDisk:charityMeme withName:[self convertNSDateToImageTitleString]];
+                    });
                 }
                 else{
                     NSString *errorString = [[error userInfo] objectForKey:@"error"];
