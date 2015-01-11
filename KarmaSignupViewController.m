@@ -8,7 +8,7 @@
 
 #import "KarmaSignupViewController.h"
 
-@interface KarmaSignupViewController ()
+@interface KarmaSignupViewController () <UITextFieldDelegate>
 
 @end
 
@@ -23,10 +23,22 @@
 
 }
 
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (userName.text.length && emailAddress.text.length && password.text.length) {
+        addUserButtonOutlet.hidden = NO;
+    }
+    return NO;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setupUI];
+    userName.delegate = self;
+    emailAddress.delegate = self;
+    password.delegate = self;
 }
 
 - (IBAction)addUser:(id)sender 
@@ -40,12 +52,14 @@
         
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
+                [UsersLoginInfo saveLoginInfoToNSUserDefaults:@"email" and:[[PFUser currentUser] objectId]];
+
                 [self dismissViewControllerAnimated:YES completion:nil];
             } else {
                 NSString *errorString = [error userInfo][@"error"];
                 NSLog(@"This is what went wrong, %@", errorString);
                 
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"SignUp did not work, %@", [error userInfo]]
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"SignUp did not work"
                                                                 message:@"Please try again. Sorry for the manual labor." 
                                                                delegate:self 
                                                       cancelButtonTitle:@"Got It" 
@@ -69,6 +83,7 @@
     addUserButtonOutlet.titleLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:14];
     [addUserButtonOutlet setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addUserButtonOutlet setTitle:@"Save" forState:UIControlStateNormal];
+    addUserButtonOutlet.hidden = YES;
     
     self.cancelSignupButtonOutlet.layer.cornerRadius = 8;
     self.cancelSignupButtonOutlet.layer.borderWidth = 1;

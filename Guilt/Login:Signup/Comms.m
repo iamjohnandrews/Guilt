@@ -8,6 +8,7 @@
 
 #import "Comms.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+@class UsersLoginInfo;
 
 @implementation Comms
 
@@ -38,6 +39,9 @@
 			// Callback - login successful
 			if ([delegate respondsToSelector:@selector(commsDidLogin:)]) {
 				[delegate commsDidLogin:YES];
+                if (![UsersLoginInfo checkIfLoginInfoAlreadySaved:@"facebook"]) {
+                    [UsersLoginInfo saveLoginInfoToNSUserDefaults:@"facebook" and:[[PFUser currentUser] objectId]];
+                }
 			}
 		}
 	}];

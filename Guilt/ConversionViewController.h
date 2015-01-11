@@ -12,6 +12,7 @@
 @interface ConversionViewController : BaseViewController <ScannerDidNotWorkDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *valueQuestionLabel;
+@property (nonatomic) BOOL userIsLoggedIn;
 
 @property (weak, nonatomic) IBOutlet UITextField *userEnterDollarAmountTextField;
 @property (weak, nonatomic) IBOutlet UILabel *orLabel;

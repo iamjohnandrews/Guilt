@@ -39,4 +39,32 @@ static NSMutableSet *allInstances;
     return instance;
 }
 
+#pragma mark - NSCoding
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.charityName = [decoder decodeObjectForKey:@"charityName"];
+    self.singularDescription = [decoder decodeObjectForKey:@"singularDescription"];
+    self.pluralDescription = [decoder decodeObjectForKey:@"pluralDescription"];
+    self.flickrSearchTerm = [decoder decodeObjectForKey:@"flickrSearchTerm"];
+    self.donationURL = [decoder decodeObjectForKey:@"donationURL"];
+    self.conversionValue = [decoder decodeObjectForKey:@"conversionValue"];
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    
+    [encoder encodeObject:self.charityName forKey:@"charityName"];
+    [encoder encodeObject:self.singularDescription forKey:@"singularDescription"];
+    [encoder encodeObject:self.pluralDescription forKey:@"pluralDescription"];
+    [encoder encodeObject:self.conversionValue forKey:@"conversionValue"];
+    [encoder encodeObject:self.flickrSearchTerm forKey:@"flickrSearchTerm"];
+    [encoder encodeObject:self.donationURL forKey:@"donationURL"];
+}
+
 @end

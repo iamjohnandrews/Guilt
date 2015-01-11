@@ -12,7 +12,8 @@
 @optional
 - (void) commsDidLogin:(BOOL)loggedIn;
 - (void) commsUploadImageComplete:(BOOL)success;
-
+- (BOOL)checkIfLoginInfoAlreadySaved:(NSString *)loginMethod;
+- (void)saveLoginInfoToNSUserDefaults:(NSString *)loginMethod and:(NSString*)objectID;
 @end
 
 @interface Comms : NSObject

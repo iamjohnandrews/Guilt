@@ -12,6 +12,7 @@
 #import "PFTwitterUtils+NativeTwitter.h"
 #import "TwitterClient.h"
 #import "FHSTwitterEngine.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface MyLoginViewController () <UITextFieldDelegate, CommsDelegate, UIActionSheetDelegate, TwitterDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) UITextField *emailTextField;
@@ -50,27 +51,6 @@
     [super viewWillAppear:animated];
     if ([PFUser currentUser]) {
         [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
-    }
-}
-
-- (IBAction)didLogin:(id)sender {
-    NSString *user = userName.text;
-    NSString *passwd = password.text;
-        
-    if ([user length] < 2 || [passwd length] < 4) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Entry" message:@"Make sure you fill out all of the information!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-        [alert show];
-    } else {
-        [PFUser logInWithUsernameInBackground:user password:passwd block:^(PFUser *user, NSError *error) {
-            if (user) {
-                self.userIsLoggedIn = YES;
-                [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
-            } else {
-                NSLog(@"%@",error);
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed." message:@"Invalid Username and/or Password." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-                [alert show];
-            }
-        }];
     }
 }
 
@@ -121,15 +101,55 @@
     [[self view] endEditing:TRUE];
 }
 
+#pragma mark - Email Login
+
+- (IBAction)didLogin:(id)sender {
+    NSString *user = userName.text;
+    NSString *passwd = password.text;
+    
+    if ([user length] < 2 || [passwd length] < 4) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Entry" message:@"Make sure you fill out all of the information!" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+        [alert show];
+    } else {
+        if ([AFNetworkReachabilityManager sharedManager].reachable) {
+            [PFUser logInWithUsernameInBackground:user password:passwd block:^(PFUser *user, NSError *error) {
+                if (user) {
+                    self.userIsLoggedIn = YES;
+                    if (![UsersLoginInfo checkIfLoginInfoAlreadySaved:@"email"]) {
+                        [UsersLoginInfo saveLoginInfoToNSUserDefaults:@"email" and:[[PFUser currentUser] objectId]];
+                    }
+                    [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
+                } else {
+                    NSLog(@"%@",error);
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed." message:@"Invalid Username and/or Password." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+                    [alert show];
+                }
+            }];
+        } else if([UsersLoginInfo checkIfLoginInfoAlreadySaved:@"email"]) {
+            self.userIsLoggedIn = YES;
+            [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed." message:@"Invalid Username and/or Password." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+}
+
+
 #pragma mark - Facebook Login
 - (IBAction)facebookLoginButtonPressed:(id)sender 
 {
     [self.facebookLoginButtonOutlet setEnabled:NO];
-    
     [self displayUIActivityIndicatorView];
-    
-    [Comms login:self];
     [self disableUIElementsWhenLoggingInThroughFBorTwitter:sender];
+
+    if ([AFNetworkReachabilityManager sharedManager].reachable) {
+        [Comms login:self];
+    } else if([UsersLoginInfo checkIfLoginInfoAlreadySaved:@"facebook"]) {
+        [self commsDidLogin:YES];
+    } else {
+        [self commsDidLogin:NO];
+    }
 }
 
 - (void) commsDidLogin:(BOOL)loggedIn
@@ -160,12 +180,18 @@
 {
     [self.twitterLoginButtonOutlet setEnabled:NO];
     [self displayUIActivityIndicatorView];
+    [self disableUIElementsWhenLoggingInThroughFBorTwitter:sender];
 
+    if ([AFNetworkReachabilityManager sharedManager].reachable) {
     __weak MyLoginViewController *weakSelf = self;
     [PFTwitterUtils getTwitterAccounts:^(BOOL accountsWereFound, NSArray *twitterAccounts) {
         [weakSelf handleTwitterAccounts:twitterAccounts];
     }];
-    [self disableUIElementsWhenLoggingInThroughFBorTwitter:sender];
+    } else if([UsersLoginInfo checkIfLoginInfoAlreadySaved:@"twitter"]) {
+        [self userDidLogIntoTwitter:YES];
+    } else {
+        [self userDidLogIntoTwitter:NO];
+    }
 }
 
 - (void)userDidLogIntoTwitter:(BOOL)loggedIn
@@ -365,6 +391,8 @@
     [self.skipButtonOutlet setTitle:@"Skip"];
     
     [self.navigationItem setTitle:@"Login"];
+    
+    password.secureTextEntry = YES;
 }
 
 

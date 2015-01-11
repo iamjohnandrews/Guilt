@@ -10,6 +10,9 @@
 #import "CharityImage.h"
 #import "FlickrNetworkManager.h"
 #import "ImageSaver.h"
+#import "ConversionSaver.h"
+#import <AFNetworking/AFNetworking.h>
+
 
 @implementation InitialParseNetworking
 
@@ -29,31 +32,43 @@
     //Prepare the query to get all the images in descending order
     //1
     PFQuery *query = [PFQuery queryWithClassName:@"ConversionNonprofits"];
+    int locallyStoredNonprofits = [[[NSUserDefaults standardUserDefaults] objectForKey:@"allCharityNames"] count];
     
-    //2
-    [query orderByAscending:@"conversionValue"];
+    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        if (number == locallyStoredNonprofits){
+            NSLog(@"local storage = remote storage ann all is right with KarmaScan World");
+        } else if (number > locallyStoredNonprofits) {
+            NSLog(@"local storage < remote storage and need to retrieve nonprofits");
+            [self retrieveNonProfitDataFromParse:query butSkipTheFirst:locallyStoredNonprofits];
+        } else {
+            NSLog(@"local storage > remote storage and need to push nonprofit info to remote storage");
+        }
+        NSLog(@"Parse Error =%@ %@ %@", error, [error localizedDescription], [error localizedFailureReason]);
+    }];
+}
 
-    query.limit = 7;
+- (void)retrieveNonProfitDataFromParse:(PFQuery *)query butSkipTheFirst:(int)skip
+{
+    [query orderByAscending:@"conversionValue"];
+    query.skip = skip;
     [query findObjectsInBackgroundWithBlock:^(NSArray *PFobjects, NSError *error) {
         //3
         if (!error) {
             [self parseThroughNonProfitObjects:PFobjects];
         } else {
             //4 What to do if no internet connection
-
+            [self ifNoInternetStillCreateCharityObjects];
             NSLog(@"Parse Error =%@ %@ %@", error, [error localizedDescription], [error localizedFailureReason]);
-            NSMutableArray *defaultSearchTerms = [[NSMutableArray alloc] initWithObjects:@"beekeeper", @"ducklings", @"child vaccination", @"happy pets", @"military care package", @"child eyes", @"child drink water africa", nil];
-            [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil withSearchTerms:defaultSearchTerms];
         }
     }];
 }
 
 - (void)parseThroughNonProfitObjects:(NSArray *)charityObjectsArray
 {
-    
     NSMutableArray *searhTerms = [NSMutableArray array];
+    NSMutableArray *allCharityNamesArray = [NSMutableArray array];
     self.allCharitiesInfo = [[NSMutableSet alloc] init];
-    
+
     for (PFObject *charityDetails in charityObjectsArray) {
         CharityImage *individualCharityInfo = [[CharityImage alloc] init];
         individualCharityInfo.charityName = [charityDetails objectForKey:@"name"];
@@ -62,8 +77,10 @@
         individualCharityInfo.flickrSearchTerm = [charityDetails objectForKey:@"flickrSearchTerm"];
         individualCharityInfo.donationURL = [charityDetails objectForKey:@"donationURL"];
         individualCharityInfo.conversionValue = [charityDetails objectForKey:@"conversionValue"];
+        [allCharityNamesArray addObject:individualCharityInfo.charityName];
         
         BOOL isLogoSavedToDisk = [ImageSaver imageAlreadySavedToDiskWithName:individualCharityInfo.charityName];
+        BOOL isCharityConversionInfoSavedToDisk = [ConversionSaver charityConversionInfoAlreadySavedToDisk:individualCharityInfo.charityName];
         
         [[charityDetails objectForKey:@"logo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
@@ -77,21 +94,32 @@
             }
         }];
         
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if (!isCharityConversionInfoSavedToDisk) {
+                [ConversionSaver saveSpecificCharityConversionInfo:individualCharityInfo];
+            }
+        });
+        
         [searhTerms addObject:individualCharityInfo.flickrSearchTerm];
         [self.allCharitiesInfo addObject:individualCharityInfo];
     }
-    [self saveContext];
+    [ConversionSaver saveCharityNamesToNSUserDefaults:allCharityNamesArray];
     [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil withSearchTerms:searhTerms];
 }
 
-- (void)saveContext {
-    [[NSManagedObjectContext contextForCurrentThread] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"You successfully saved your context.");
-        } else if (error) {
-            NSLog(@"Error saving context: %@", error.description);
-        }
-    }];
+- (void)ifNoInternetStillCreateCharityObjects
+{
+    NSArray *charityNamesDescriptionsAndConversionValuesArray = [[NSArray alloc] initWithArray:[ConversionSaver getsAllCharityConversionInfo]];
+    
+    NSMutableArray *searchTerms = [NSMutableArray array];
+    
+    for (CharityImage *conversionInfoObject in charityNamesDescriptionsAndConversionValuesArray) {
+        [searchTerms addObject:conversionInfoObject.flickrSearchTerm];
+    }
+
+    [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil withSearchTerms:searchTerms];
 }
+
 
 @end

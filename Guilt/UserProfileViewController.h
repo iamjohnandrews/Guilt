@@ -13,10 +13,6 @@
 
 @interface UserProfileViewController : BaseViewController <UITableViewDelegate,UITableViewDataSource>
 
-@property (strong, nonatomic) NSMutableArray *parseNonprofitInfoArray;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-@property BOOL connectedToInternet;
 
 @end

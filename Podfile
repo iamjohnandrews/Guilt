@@ -8,7 +8,6 @@ pod 'Parse', '~> 1.4'
 pod 'AFNetworking', '~> 2.2'
 pod 'RaptureXML'
 pod 'SDWebImage', '~>3.6'
-pod 'MagicalRecord/Shorthand', '~> 2.2'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.0'
 end
 

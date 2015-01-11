@@ -13,7 +13,9 @@
 #import "AddCharityViewController.h"
 #import "InitialParseNetworking.h"
 #import "CharityImage.h"
-
+#import <AFNetworking/AFNetworking.h>
+#import "ConversionSaver.h"
+#import "ConversoinAmount.h"
 
 
 @interface ConversionViewController (){
@@ -22,6 +24,7 @@
 @property (strong, nonatomic) NSMutableDictionary *convertedCharitableGoodsDict;
 @property (nonatomic, strong) NSMutableArray *parseNonprofitInfoArray;
 @property (nonatomic, strong) NSDictionary *oneToOneCharityURLCharityNameDict;
+@property (nonatomic, strong) NSString *userInputToPassOn;
 @end
 
 @implementation ConversionViewController
@@ -66,7 +69,7 @@
 - (void)setupUI
 {
     [self.navigationItem setTitle:@"Convert"];
-    if ([PFUser currentUser]) {
+    if ([PFUser currentUser] || self.userIsLoggedIn) {
         self.userProfileButtonOutlet.enabled = YES;
         self.navigationItem.hidesBackButton = YES;
 
@@ -188,6 +191,12 @@
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.userInputToPassOn = [textField.text stringByReplacingOccurrencesOfString:@"$" withString:@""];
+    
+}
+
 - (IBAction)backToIntroductionButton:(id)sender 
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -220,11 +229,10 @@
             float impactNumber = convertToFloat / [charityInfo.conversionValue floatValue];
             int roundUp = ceilf(impactNumber);
             NSString* floatToAString = [addCommasFormatter stringFromNumber:[NSNumber numberWithInt:roundUp]];
-//            [self.convertedCharitableGoodsDict setObject:floatToAString forKey:charityInfo.charityName];
             [self.convertedCharitableGoodsDict setObject:charityInfo forKey:floatToAString];
         }
     }
-
+    
     [userEnterDollarAmountTextField resignFirstResponder];
     convertedProductPrice = [NSNumber numberWithFloat:convertToFloat];
     userEnterDollarAmountTextField.text = nil;
@@ -237,10 +245,10 @@
         ImagesViewController* imagesVC = [segue destinationViewController];
         imagesVC.resultOfCharitableConversionsDict = [self.convertedCharitableGoodsDict copy];
         imagesVC.productPrice = convertedProductPrice;
-        imagesVC.oneCharityURLforOneCharityNameDict = [self.oneToOneCharityURLCharityNameDict copy];
+//        imagesVC.oneCharityURLforOneCharityNameDict = [self.oneToOneCharityURLCharityNameDict copy];
         imagesVC.productName = productName;
         imagesVC.productProductURL = urlForProduct;
-        imagesVC.userImputPrice = self.userEnterDollarAmountTextField.text;
+        imagesVC.userImputPrice = self.userInputToPassOn;
         
     } else if ([[segue identifier] isEqualToString:@"ScannerSegue"]){
         // Get reference to the destination view controller

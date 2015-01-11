@@ -7,25 +7,21 @@
 //
 
 #import "UserProfileViewController.h"
-#import "CharityImage.h"
 #import "ArchiveTableViewController.h"
-#import "DonationHistory.h"
+#import "UserDonationHistory.h"
 #import "ImageSaver.h"
-#import "CoreData+MagicalRecord.h"
+#import <AFNetworking/AFNetworking.h>
+#import "UserProfileSaver.h"
+#import "UsersLoginInfo.h"
 
 @interface UserProfileViewController () {
-    NSMutableArray *donorInfo;
+    NSMutableArray *diskDonorInfo;
     int tempPoints;
     
 }
 @property (weak, nonatomic) IBOutlet UILabel *myKarmaPointsLabel;
 
-@property (weak, nonatomic) IBOutlet UITextField *emailAddressTextField;
-
-@property (weak, nonatomic) IBOutlet UILabel *passwordTextField;
-
-@property (nonatomic) DonationHistory *donationHistory;
-
+@property (nonatomic, strong) NSMutableArray *parseDonorInfoArray;
 @end
 
 @implementation UserProfileViewController
@@ -34,27 +30,30 @@
 {
     [super viewDidLoad];
     self.screenName = @"UserProfileViewController";
-    donorInfo = [NSMutableArray new];
-
-    // Setup CoreData with MagicalRecord
-    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Model"];
+    diskDonorInfo = [NSMutableArray new];
+    [self getUsersDonationHistoryFromArchive];
     
-    if ([self checkInternetConnection]) {
+    if ([AFNetworkReachabilityManager sharedManager].reachable) {
         [self getParseData];
-    } else {
-        [ self getCoreData];
-    }
+    } 
 }
 
-- (BOOL)checkInternetConnection
+- (void)getUsersDonationHistoryFromArchive
 {
-    NSURL *scriptUrl = [NSURL URLWithString:@"http://www.google.com"];
-    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
-    if (data) {
-        return YES;
-    } else {
-        return NO;
+    NSArray *tempArray = [[NSArray alloc] initWithArray:[UsersLoginInfo getUsersObjectID]];
+    
+    for (NSString *userID in tempArray) {
+        NSArray *userdonationHistoryArray = [NSArray array];
+        userdonationHistoryArray = [UserProfileSaver getUsersDonationHistory:userID];
+        
+        [diskDonorInfo addObjectsFromArray:userdonationHistoryArray];
     }
+    if (!diskDonorInfo.count) {
+        [self showEncourageToDonateMessage];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    
+    [self myKarmaPointsValueLabel:diskDonorInfo.count * 10];
 }
 
 - (void)getParseData
@@ -73,25 +72,52 @@
         tempPoints = [currPoints integerValue];
     }
     
-    [self myKarmaPointsValueLabel:tempPoints];
-    
     [donationsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            for (PFObject *object in objects) {
-                [donorInfo addObject:object];
-            }
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                if (![self charityAlreadyExistsInCoreData:[[objects firstObject]objectForKey:@"recipientCharity"] forUser:user.objectId]) {
-                    [self updateAndSaveToCoreData:user.objectId];
+            if (objects.count != diskDonorInfo.count) {
+                self.parseDonorInfoArray = [[NSMutableArray alloc] initWithArray:objects];
+                if (self.parseDonorInfoArray.count < diskDonorInfo.count) {
+                    [self updateRemoteDatabaseWithUserDonationInfo];
+                } else {
+                    [self updateLocalDiskWithUserDonationInfo];
                 }
-            });
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
         }
-        [_tableView reloadData];
     }];
+}
+
+- (void)updateLocalDiskWithUserDonationInfo
+{
+    for (int i = diskDonorInfo.count; i < self.parseDonorInfoArray.count; i++) {
+        PFObject *individualDonation = [self.parseDonorInfoArray objectAtIndex:i];
+        [UserProfileSaver saveUserDonatoinHistory:[[PFUser currentUser] objectId]
+                                       forCharity:[individualDonation objectForKey:@"recipientCharity"]
+                                           onDate:individualDonation.createdAt
+                                        forAmount:[individualDonation objectForKey:@"donationAmount"]];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
+
+- (void)updateRemoteDatabaseWithUserDonationInfo
+{
+    NSMutableArray *transferArray = [NSMutableArray array];
+    
+    for (int i = self.parseDonorInfoArray.count; i < diskDonorInfo.count; i++) {
+        UserDonationHistory *individualDonation = diskDonorInfo[i];
+        
+        PFObject *donation = [PFObject objectWithClassName:@"Donation"];
+        donation[@"donor"] = [PFUser currentUser];
+        donation[@"recipientCharity"] = individualDonation.recipientCharity;
+        donation[@"donationAmount"]= individualDonation.donationAmount;
+        
+        [transferArray addObject:donation];
+    }
+    
+    [PFObject saveAllInBackground:transferArray];
 }
 
 - (void)myKarmaPointsValueLabel:(int)usersPoints
@@ -110,66 +136,22 @@
     }
 }
 
-#pragma mark - Sync Parse and Core Data
-- (void)getCoreData
+- (void)showEncourageToDonateMessage
 {
-    donorInfo = [[DonationHistory findAllSortedBy:self.donationHistory.recipientCharity ascending:YES] mutableCopy];
-    DonationHistory *tempObject = [donorInfo firstObject];
-    self.myKarmaPointsLabel.text = tempObject.karmaPoints;
-}
-
-- (BOOL)charityAlreadyExistsInCoreData:(NSString *)charityName forUser:(NSString *)user
-{
-    BOOL itsInThere = NO;
-    
-    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:[[DonationHistory findAllSortedBy:self.donationHistory.recipientCharity ascending:YES] mutableCopy]];
-    
-    for (DonationHistory *tempObject in tempArray) {
-        if ([tempObject.userID isEqualToString:user]) {
-            if ([charityName isEqualToString:tempObject.recipientCharity]) {
-                itsInThere = YES;
-            }
-        }
-    }
-    
-    return itsInThere;
-}
-
-- (void)updateAndSaveToCoreData:(NSString *)forUser
-{
-    for (PFObject *singleDonation in donorInfo) {
-        self.donationHistory = [DonationHistory createEntity];
-        self.donationHistory.date = singleDonation.createdAt;
-        self.donationHistory.donationAmount = [[singleDonation objectForKey:@"donationAmount"] floatValue];
-        self.donationHistory.recipientCharity = [singleDonation objectForKey:@"recipientCharity"];
-        self.donationHistory.userID = forUser;
-        self.donationHistory.karmaPoints = self.myKarmaPointsLabel.text;
-    }
-    [self saveContext];
-}
-
-- (void)saveContext {
-    [[NSManagedObjectContext contextForCurrentThread] saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"You successfully saved your context.");
-        } else if (error) {
-            NSLog(@"Error saving context: %@", error.description);
-        }
-    }];
+    UILabel *shareEncouragementMessage = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, self.tableView.frame.origin.y + 10.0f, self.view.frame.size.width - 40.0f, (44.0f * 3))];
+    shareEncouragementMessage.font = [UIFont fontWithName:@"Quicksand-Regular" size:22];
+    shareEncouragementMessage.backgroundColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
+    shareEncouragementMessage.numberOfLines = 0;
+    shareEncouragementMessage.textAlignment = NSTextAlignmentCenter;
+    shareEncouragementMessage.textColor = [UIColor whiteColor];
+    shareEncouragementMessage.text = @"Whenever you make a donation, you earn KarmaPoints";
+    [self.view addSubview:shareEncouragementMessage];
 }
 
 #pragma mark - Tableview Delegate Method
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (donorInfo.count == 0) {
-        return 0;
-    }
-    return donorInfo.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 44.0f;
+    return diskDonorInfo.count;
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -177,42 +159,13 @@
     UserHistoryCell* cell = [tableView dequeueReusableCellWithIdentifier:@"UserHistory"];
     cell.userInteractionEnabled = NO;
     
-    NSString *charityName;
-    float moneyFormat;
-    NSDate *donationTimeStamp;
+    UserDonationHistory *donation = diskDonorInfo[indexPath.row];
+    NSString *charityName = donation.recipientCharity;
+    float moneyFormat = [donation.donationAmount floatValue];
+    NSDate *donationTimeStamp = donation.date;
+
     UIImage *logoImage = [[UIImage alloc] init];
-    
-    if ([[donorInfo firstObject] isKindOfClass:[DonationHistory class]]) {
-        DonationHistory *donation = donorInfo[indexPath.row];
-        charityName = donation.recipientCharity;
-        moneyFormat = donation.donationAmount;
-        donationTimeStamp = donation.date;
-        logoImage = [ImageSaver fetchImageFromDiskWithName:charityName];
-    } else {
-        charityName = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"recipientCharity"];
-        NSNumber *donationAmount = [[donorInfo objectAtIndex:indexPath.row] objectForKey:@"donationAmount"];
-        moneyFormat = [donationAmount floatValue];
-        PFObject *object = [donorInfo objectAtIndex:indexPath.row];
-        donationTimeStamp = object.createdAt;
-        
-        for (CharityImage *charity in [CharityImage allCharityDetails:NO]) {
-            if ([charity.charityName isEqualToString:charityName]) {
-                logoImage = charity.charityLogo;
-            }
-        }
-    }
-    
-    if ([charityName isEqualToString:@"made a purchase"]) {
-        cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Purchase made $%.02f", moneyFormat];
-    } else {
-        cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Donation Amount $%.02f", moneyFormat];
-    }
-    
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"eeee, MMMM dd, yyyy"];
-    cell.donationTimeStamp.text = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:donationTimeStamp]];
-    
+    logoImage = [ImageSaver fetchImageFromDiskWithName:charityName];
     CGSize shrinkLogoSize = CGSizeMake(81.0f, 44.0f);
     UIGraphicsBeginImageContext(shrinkLogoSize);
     [logoImage drawInRect:CGRectMake(0,0,shrinkLogoSize.width,shrinkLogoSize.height)];
@@ -220,8 +173,16 @@
     UIGraphicsEndImageContext();
     
     if ([charityName isEqualToString:@"made a purchase"]) {
+        cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Purchase made $%.02f", moneyFormat];
         shrunkLogoImage = [UIImage imageNamed:@"dollarSign.jpg"];
+    } else {
+        cell.moneyDetailsLabel.text = [NSString stringWithFormat:@"Donation Amount $%.02f", moneyFormat];
     }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"eeee, MMMM dd, yyyy"];
+    cell.donationTimeStamp.text = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:donationTimeStamp]];
+
     cell.logoImageView.image = shrunkLogoImage;
 
     return cell;    
@@ -233,7 +194,6 @@
 {
     if ([segue.identifier isEqualToString:@"UserToArchiveSegue"]) {
         ArchiveTableViewController * archiveVC = [segue destinationViewController];
-        archiveVC.imageTransformEnabled = YES;
         archiveVC.segueingFromUserProfileOrShareVC = YES;
     } 
 }

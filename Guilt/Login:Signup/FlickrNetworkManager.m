@@ -53,7 +53,7 @@ NSString * const FlickrAPIKey = @"ba09703c363c9c64279b1a1f4a2d196a";
                                                              @"extras": @"url_l"}
                                                    success:^(NSURLSessionDataTask *task, id responseObject) {
                                                        NSArray *photos = [self parseImagesXMLRequest:responseObject];
-                                                       
+                                                       NSLog(@"%@ photos %d", searchterms[flickrCall], photos.count);
                                                        [self.flickrCharityUrlDictionary setObject:photos forKey:searchterms[flickrCall]];
                                                        
                                                        if (completion) {

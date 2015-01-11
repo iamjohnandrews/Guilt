@@ -256,7 +256,7 @@
                     NSLog(@"successful image upload to Parse");
                     
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        [ImageSaver saveImageToDisk:charityMeme withName:[self convertNSDateToImageTitleString]];
+                        [self saveImageLocally:charityMeme withIdentifier:imageObject.objectId];
                     });
                 }
                 else{
@@ -277,13 +277,21 @@
     }];
 }
 
+- (void)saveImageLocally:(UIImage *)meme withIdentifier:(NSString *)objectID
+{
+    NSArray *usersDiffLoginsArray = [[NSArray alloc] initWithArray:[UsersLoginInfo getUsersObjectID]];
+    
+    for (NSString *loginID in usersDiffLoginsArray) {
+        [ImageSaver saveMemeToArchiveDisk:meme forUser:loginID  withIdentifier:objectID];
+    }
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ShareToArchiveSegue"]) {
         ArchiveTableViewController * archiveVC = [segue destinationViewController];
-        archiveVC.imageTransformEnabled = YES;
         archiveVC.segueingFromUserProfileOrShareVC = YES;
     } 
 }

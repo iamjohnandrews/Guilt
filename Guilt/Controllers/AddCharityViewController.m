@@ -101,7 +101,7 @@
         }
         else{
             //5
-            NSLog(@"Parse uplaed did not work. Error: %@", [[error userInfo] objectForKey:@"error"]);
+            NSLog(@"Parse upload did not work. Error: %@", [[error userInfo] objectForKey:@"error"]);
             UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"For some reason we did not get your organization's information. Please try again." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [errorAlertView show];
         }
@@ -171,8 +171,12 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.backButtonOutlet.frame = CGRectMake(16.0f, 10.0f, 60.0f, 30.0f);
-    [self.backButtonOutlet setTitle:@"Back" forState:UIControlStateNormal];
     self.backButtonOutlet.userInteractionEnabled = YES;
+    if (![self checkIfAnyTextFieldIsEmpty]) {
+        [self switchBackButtonToDoneButton];
+    } else {
+        [self.backButtonOutlet setTitle:@"Back" forState:UIControlStateNormal];
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

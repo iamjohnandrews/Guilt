@@ -4,6 +4,10 @@
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="meme" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="ConversoinAmount" representedClassName="ConversoinAmount" syncable="YES">
+        <attribute name="charityName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="conversionValue" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+    </entity>
     <entity name="DonationHistory" representedClassName="DonationHistory" syncable="YES">
         <attribute name="charityLogo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -15,5 +19,6 @@
     <elements>
         <element name="ArchiveImage" positionX="-63" positionY="-18" width="128" height="73"/>
         <element name="DonationHistory" positionX="-54" positionY="9" width="128" height="135"/>
+        <element name="ConversoinAmount" positionX="-54" positionY="45" width="128" height="73"/>
     </elements>
 </model>

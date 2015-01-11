@@ -17,6 +17,9 @@
 #import "UIImageView+WebCache.h"
 #import "CharityImage.h"
 #import "ImageSaver.h"
+#import <AFNetworking/AFNetworking.h>
+#import "UserProfileSaver.h"
+#import "UsersLoginInfo.h"
 
 @interface ImagesViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -32,6 +35,8 @@
 
 @property (strong, nonatomic) NSMutableDictionary *alreadyUsedFlikrURLDictionary;
 @property (nonatomic) BOOL gotFlickrImageURLs;
+
+@property (strong, nonatomic) NSMutableArray *resultOfCharitableConversionsArray;
 @end
 
 @implementation ImagesViewController
@@ -51,6 +56,12 @@
 
     self.alreadyUsedFlikrURLDictionary = [NSMutableDictionary dictionary];
     
+    self.resultOfCharitableConversionsArray = [NSMutableArray array];
+    
+    for (CharityImage *charity in [self.resultOfCharitableConversionsDict allValues]) {
+        [self.resultOfCharitableConversionsArray addObject:charity];
+    }
+    
     //Part of code to get images to animate when appear
     CGFloat rotationAngleDegrees = -15;
     CGFloat rotationAngleRadians = rotationAngleDegrees * (M_PI/180);
@@ -68,20 +79,10 @@
         self.flickrImageUrlDictionary = [[NSMutableDictionary alloc] initWithDictionary:[FlickrNetworkManager sharedManager].flickrCharityUrlDictionary];
     } else {
         self.gotFlickrImageURLs = NO;
-//        self.flickrImageUrlDictionary = [NSMutableDictionary dictionary];
-//        for (int i = 0; i < self.resultOfCharitableConversionsDict.count; i++) {
-//            CharityImage *individualCharity = [self.resultOfCharitableConversionsDict objectForKey:[self.resultOfCharitableConversionsDict allKeys][i]];
-//            [self.flickrImageUrlDictionary setObject:[ImageSaver fetchImageFromDiskWithName:individualCharity.charityName] forKey:individualCharity.charityName];
-//        }
     }
-    
 
     if (self.flickrImageUrlDictionary.count) {
         [self getFlickrImageUrl];
-    }
-    
-    if (!self.resultOfCharitableConversionsDict.count) {
-        [self showNoImagesMessage];
     }
 }
 
@@ -117,29 +118,11 @@
     }
 }
 
-- (void)showNoImagesMessage
-{
-    UILabel *noImagesMessage = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, self.navigationController.navigationBar.frame.size.height + 10.0f, self.view.frame.size.width - 40.0f, (44.0f * 3))];
-    noImagesMessage.font = [UIFont fontWithName:@"Quicksand-Regular" size:18];
-    noImagesMessage.backgroundColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
-    noImagesMessage.numberOfLines = 0;
-    noImagesMessage.textAlignment = NSTextAlignmentCenter;
-    noImagesMessage.textColor = [UIColor whiteColor];
-    
-    if ([PFUser currentUser]) {
-        noImagesMessage.text = @"Unfortunately, conversion data is unavailable. Please try again or review your user profile to see your social impact.";
-    } else {
-        noImagesMessage.text = @"Unfortunately, conversion data is unavailable. Please close and restart the app.";
-    }
-    [self.view addSubview:noImagesMessage];
-}
-
 #pragma mark - Image Methods
 - (void)getFlickrImageUrl
 {
     NSMutableDictionary *dictOfManyImageUrls = [NSMutableDictionary dictionary];
     
-
     for (int i = 0; i < self.flickrImageUrlDictionary.count; i++) {
 
         NSURL *flickrImageUrl = [[self.flickrImageUrlDictionary objectForKey:[self.flickrImageUrlDictionary allKeys][i]] firstObject];
@@ -263,16 +246,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CharityImage *individualCharity = [self.resultOfCharitableConversionsDict objectForKey:[self.resultOfCharitableConversionsDict allKeys][indexPath.row]];
+    CharityImage *individualCharity = [self.resultOfCharitableConversionsArray objectAtIndex:indexPath.row];
     
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
-    charityCell.displayImageView.image = individualCharity.charityLogo;
+    charityCell.displayImageView.image = [ImageSaver fetchImageFromDiskWithName:individualCharity.charityName];
     charityCell.shareButtonOutlet.tag = indexPath.row;
     [charityCell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
-    if (!individualCharity.charityLogo) {
-        [self showNoImagesMessage];
-    }
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
@@ -291,7 +270,7 @@
                                 options:SDWebImageLowPriority
                                progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                    [indicator startAnimating];
-                                   //                               NSLog(@"percentage until complete =%f", (float)receivedSize/(float)expectedSize);
+                                   //NSLog(@"percentage until complete =%f", (float)receivedSize/(float)expectedSize);
                                    
                                } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                    [indicator stopAnimating];
@@ -337,11 +316,12 @@
     }
     
     NSString *charityDescription = [[NSString alloc] init];
-    if ([[self.resultOfCharitableConversionsDict objectForKey:individualCharity.charityName] integerValue] == 1) {
+    if ([individualCharity.conversionValue integerValue] == 1) {
         charityDescription = individualCharity.singularDescription;
     } else {
         charityDescription = individualCharity.pluralDescription;
     }
+
     NSAttributedString *charityDescriptionText = [[NSAttributedString alloc] initWithString:[[NSString stringWithFormat:@"%@ %@",[self.resultOfCharitableConversionsDict allKeys][indexPath.row], charityDescription] uppercaseString] attributes:@{NSStrokeWidthAttributeName: @-2, NSStrokeColorAttributeName: [UIColor blackColor]}];
     charityCell.charityConversionDetailsLabel.attributedText = charityDescriptionText;
     charityCell.charityConversionDetailsLabel.tag = 4;
@@ -365,11 +345,18 @@
 
 - (void)onDonationButtonTapped:(UIButton *)sender
 {
-    CharityImage *selectedCharity = [CharityImage allCharityDetails:YES][sender.tag];
-
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:selectedCharity.donationURL]];
-    
+    if ([AFNetworkReachabilityManager sharedManager].reachable) {
+    CharityImage *selectedCharity = [self.resultOfCharitableConversionsArray objectAtIndex:sender.tag];
     [self didUpdateKarmaPoints:YES charity:selectedCharity.donationURL];
+        [UserProfileSaver saveUserDonatoinHistory:[[UsersLoginInfo getUsersObjectID] firstObject]
+                                       forCharity:selectedCharity.charityName
+                                           onDate:[NSDate date]
+                                        forAmount:[NSNumber numberWithFloat:[self.userImputPrice floatValue]]];
+        
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:selectedCharity.donationURL]];
+    } else {
+        [self showMesssageCantDonateNoInternet];
+    }
 }
 
 - (void)onBuyNowButtonTapped
@@ -379,6 +366,18 @@
     
     [self didUpdateKarmaPoints:YES charity:@"made a purchase"];
     
+}
+
+- (void)showMesssageCantDonateNoInternet
+{
+    UILabel *shareEncouragementMessage = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, self.imagesTableView.frame.size.height + 10.0f, self.view.frame.size.width - 40.0f, (44.0f * 3))];
+    shareEncouragementMessage.font = [UIFont fontWithName:@"Quicksand-Regular" size:22];
+    shareEncouragementMessage.backgroundColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
+    shareEncouragementMessage.numberOfLines = 0;
+    shareEncouragementMessage.textAlignment = NSTextAlignmentCenter;
+    shareEncouragementMessage.textColor = [UIColor whiteColor];
+    shareEncouragementMessage.text = @"We cannot take you to donation page because your device has lost internet connection";
+    [self.view addSubview:shareEncouragementMessage];
 }
 
 -(void)didUpdateKarmaPoints: (BOOL)flag charity:(NSString*)recipientCharity
@@ -391,7 +390,7 @@
     donation[@"donationAmount"]= self.productPrice;
     
     [donation saveInBackground]; //save the donation to Parse
-    
+
     
     PFUser *user = [PFUser currentUser];
     

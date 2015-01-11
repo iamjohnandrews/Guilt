@@ -10,6 +10,7 @@
 #import "PFTwitterUtils+NativeTwitter.h"
 #import <Accounts/Accounts.h>
 #import "FHSTwitterEngine.h"
+@class UsersLoginInfo;
 
 @implementation TwitterClient
 
@@ -20,6 +21,9 @@
     [PFTwitterUtils setNativeLogInSuccessBlock:^(PFUser *parseUser, NSString *userTwitterId, NSError *error) {
         NSLog(@"Twitter Login Success for parseUser,%@", parseUser);
         [self keepIt:twitterDelegate MovingAlong:parseUser];
+        if (![UsersLoginInfo checkIfLoginInfoAlreadySaved:@"twitter"]) {
+            [UsersLoginInfo saveLoginInfoToNSUserDefaults:@"twitter" and:[[PFUser currentUser] objectId]];
+        }
     }];
     
     [PFTwitterUtils setNativeLogInErrorBlock:^(TwitterLogInError logInError) {

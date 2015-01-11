@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CharityImage : NSObject
+@interface CharityImage : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSURL *imageUrl;
 @property (strong, nonatomic) UIImage *image;

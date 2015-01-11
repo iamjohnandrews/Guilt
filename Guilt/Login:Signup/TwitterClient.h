@@ -11,6 +11,8 @@
 @protocol TwitterDelegate <NSObject>
 @optional
 - (void)userDidLogIntoTwitter:(BOOL)loggedIn;
+- (BOOL)checkIfLoginInfoAlreadySaved:(NSString *)loginMethod;
+- (void)saveLoginInfoToNSUserDefaults:(NSString *)loginMethod and:(NSString*)objectID;
 @end
 
 @interface TwitterClient : NSObject

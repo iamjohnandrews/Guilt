@@ -11,9 +11,15 @@
 #import "ArchiveTableViewCell.h"
 #import "ModalArchiveViewController.h"
 #import "GAIDictionaryBuilder.h"
+#import <AFNetworking/AFNetworking.h>
+#import "ImageSaver.h"
+#import "UIImageView+WebCache.h"
+
 
 @interface ArchiveTableViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *archiveMemesArray;
+@property (nonatomic, strong) NSMutableArray *archiveDatesArray;
+
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) NSMutableArray *dates;
 @property (assign, nonatomic) CATransform3D makeImagesLean;
@@ -28,20 +34,22 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    if ([self checkInternetConnection]) {
-        [self findOutHowManyMemesUserHasinDatabase];
-    } else {
-        
+    [self cellVisualEffect];
+    NSArray *loginsArray = [[NSArray alloc] initWithArray:[UsersLoginInfo getUsersObjectID]];
+    self.archiveMemesArray = [NSMutableArray array];
+    self.archiveDatesArray = [NSMutableArray array];
+    
+    for (NSString *loginMethod in loginsArray) {
+        self.archiveMemesArray = [ImageSaver getAllArchiveImagesForUser:loginMethod];
+        self.archiveDatesArray = [ImageSaver calculateAndGetFileCreationDate:self.archiveMemesArray];
     }
     
-    [self cellVisualEffect];
-            
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.archiveMemesArray = [NSMutableArray array];
+    if ([AFNetworkReachabilityManager sharedManager].reachable) {
+        [self findOutHowManyMemesUserHasinDatabase];
+    }
+    if (!self.archiveMemesArray.count) {
+        [self showEncourageToShareAndArchiveMessage];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -56,35 +64,6 @@
     [tracker set:kGAIScreenName value:@"ArchiveTableViewController"];
     // manual screen tracking
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-    
-    if (self.imageTransformEnabled) {
-        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-    } 
-//    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
-    
-    /* for some reason, the below code does not work on a device
-    if (self.segueingFromUserProfileOrShareVC) {
-        if (self.archiveMemesArray.count < self.totalNumberArchiveMemes) {
-            [self getArhiveMemesFromParse:1];
-        }
-    }
-    NSLog(@"self.archiveMemesArray.count = %d", self.archiveMemesArray.count);
-    */
-}
-
-- (BOOL)checkInternetConnection
-{
-    NSURL *scriptUrl = [NSURL URLWithString:@"http://www.google.com"];
-    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
-    if (data) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-- (void)getImagesAndDatesFromDisk
-{
     
 }
 
@@ -148,9 +127,6 @@
     [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         if (!error) {
             self.totalNumberArchiveMemes = number;
-            if (self.totalNumberArchiveMemes == 0) {
-                [self showEncourageToShareAndArchiveMessage];
-            }
             NSLog(@"self.totalNumberArchiveMemes =%d", self.totalNumberArchiveMemes);
         }
     }];
@@ -177,12 +153,16 @@
         
         PFFile *meme = (PFFile *)[dateAndImageObject objectForKey:@"image"];
         [self.images addObject:[UIImage imageWithData:meme.getData]];
-        
-        NSDate *creationDate = dateAndImageObject.createdAt;
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; 
-        [dateFormatter setDateFormat:@"eeee, MMMM dd, yyyy"];
-        [self.dates addObject:[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:creationDate]]];
+        [self.dates addObject:[self formateDates:dateAndImageObject.createdAt]];
     }
+}
+
+- (NSString *)formateDates:(NSDate *)date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"eeee, MMMM dd, yyyy"];
+    
+    return [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:date]];
 }
 
 #pragma mark - Table view data source
@@ -194,13 +174,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger neededRows;
-    if (self.totalNumberArchiveMemes) {
-        neededRows = self.archiveMemesArray.count;
-    } else {
-        neededRows = 1;
-    }
-    return neededRows;    
+    return self.archiveMemesArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -212,29 +186,33 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ArchiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dateAndImage" forIndexPath:indexPath];
-    if (self.imageTransformEnabled) {
-        cell.layer.transform = self.makeImagesLean;
-        cell.layer.opacity = 0.2;
-        [UIView animateWithDuration:0.4 animations:^{
-            cell.layer.transform = CATransform3DIdentity;
-            cell.layer.opacity = 1;
-        }]; 
-        self.imageTransformEnabled = NO;
+//    if (self.imageTransformEnabled) {
+//        cell.layer.transform = self.makeImagesLean;
+//        cell.layer.opacity = 0.2;
+//        [UIView animateWithDuration:0.4 animations:^{
+//            cell.layer.transform = CATransform3DIdentity;
+//            cell.layer.opacity = 1;
+//        }]; 
+//        self.imageTransformEnabled = NO;
+//    }
+    
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    UIImageView *archiveImageView = [[UIImageView alloc] init];
+    [archiveImageView sd_setImageWithPreviousCachedImageWithURL:self.archiveMemesArray[indexPath.row]
+                                            andPlaceholderImage:nil
+                                                        options:SDWebImageHighPriority
+                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        [indicator startAnimating];
     }
-
-    cell.archiveImage.contentMode = UIViewContentModeScaleAspectFit;
-    cell.archiveImage.image = [self.images objectAtIndex:indexPath.row];
+                                                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [indicator stopAnimating];
+        cell.archiveImage.contentMode = UIViewContentModeScaleAspectFit;
+        cell.archiveImage.image = image;
+    }];
     
     cell.archiveDateLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:18];
     cell.archiveDateLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
-    cell.archiveDateLabel.text = [self.dates objectAtIndex:indexPath.row];
-//    NSLog(@"self.dates.count = %d, indexPath.row =%d, cell.archiveDateLabel.text = %@", self.dates.count, indexPath.row, cell.archiveDateLabel.text);
-    
-    if (self.archiveMemesArray.count < self.totalNumberArchiveMemes) {
-        if (indexPath.row == self.archiveMemesArray.count-4) {
-            [self getArhiveMemesFromParse:self.archiveMemesArray.count];
-        }
-    }
+    cell.archiveDateLabel.text = [self formateDates:self.archiveDatesArray[indexPath.row]];
     
     return cell;
 }
