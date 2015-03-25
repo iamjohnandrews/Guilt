@@ -39,6 +39,13 @@
     userName.delegate = self;
     emailAddress.delegate = self;
     password.delegate = self;
+    self.screenName = @"SignupViewController";
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [GoogleAnalytics trackAnalyticsForScreen:self.screenName];
 }
 
 - (IBAction)addUser:(id)sender 
@@ -68,6 +75,7 @@
             }
         }];
     }
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:self.addUserButtonOutlet.titleLabel.text onScreen:self.screenName];
 }
 
 - (void)setupUI
@@ -101,6 +109,7 @@
 
 - (IBAction)cancelSignupButtonPressed:(id)sender 
 {
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:self.cancelSignupButtonOutlet.titleLabel.text onScreen:self.screenName];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

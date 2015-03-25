@@ -26,7 +26,6 @@
 		7F4B93C619E8C9F60047BE25 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4B93C519E8C9F60047BE25 /* libGoogleAnalyticsServices.a */; };
 		7F4B93C819E8CA410047BE25 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4B93C719E8CA410047BE25 /* Parse.framework */; };
 		7F4B93CA19E8CA780047BE25 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4B93C919E8CA780047BE25 /* ParseFacebookUtils.framework */; };
-		7F68B50F1A17E4FA007AF7F1 /* ConversionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68B50E1A17E4FA007AF7F1 /* ConversionInfo.m */; };
 		7F699BEB19AAD14D0016526B /* CustimizeMessageForEmail2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */; };
 		7FA3C29F19F5C42C00A5FEA8 /* GoogleAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3C29E19F5C42C00A5FEA8 /* GoogleAnalytics.m */; };
 		7FC797DF19DCBB5A0093ED54 /* ImageSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC797DE19DCBB5A0093ED54 /* ImageSaver.m */; };
@@ -126,8 +125,6 @@
 		7F4B93C519E8C9F60047BE25 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		7F4B93C719E8CA410047BE25 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		7F4B93C919E8CA780047BE25 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
-		7F68B50D1A17E4FA007AF7F1 /* ConversionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversionInfo.h; sourceTree = "<group>"; };
-		7F68B50E1A17E4FA007AF7F1 /* ConversionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversionInfo.m; sourceTree = "<group>"; };
 		7F699BE919AAD14D0016526B /* CustimizeMessageForEmail2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustimizeMessageForEmail2.h; sourceTree = "<group>"; };
 		7F699BEA19AAD14D0016526B /* CustimizeMessageForEmail2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustimizeMessageForEmail2.m; sourceTree = "<group>"; };
 		7FA3C29D19F5C42C00A5FEA8 /* GoogleAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalytics.h; sourceTree = "<group>"; };
@@ -445,8 +442,6 @@
 				7FCC55A41A0589A8002497F2 /* UsersLoginInfo.m */,
 				7FCC55A91A071E04002497F2 /* UserDonationHistory.h */,
 				7FCC55AA1A071E04002497F2 /* UserDonationHistory.m */,
-				7F68B50D1A17E4FA007AF7F1 /* ConversionInfo.h */,
-				7F68B50E1A17E4FA007AF7F1 /* ConversionInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -725,7 +720,6 @@
 				8EB6F6C2191FAE0D004F70C5 /* FHSTwitterEngine.m in Sources */,
 				8EB6F6BC191FAD7F004F70C5 /* TwitterClient.m in Sources */,
 				8EB17BF918201F00000DDFCC /* ImagesViewController.m in Sources */,
-				7F68B50F1A17E4FA007AF7F1 /* ConversionInfo.m in Sources */,
 				8E034B70194A67CE006D8DD6 /* ArchiveTableViewCell.m in Sources */,
 				8E00AAD318182E9700BB32E4 /* main.m in Sources */,
 				8E31BE89191C44B900EB9032 /* ShareImageViewController.m in Sources */,

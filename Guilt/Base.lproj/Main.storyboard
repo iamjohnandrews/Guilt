@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Rjc-b0-24u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Rjc-b0-24u">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--Scanner View Controller-->
@@ -592,6 +592,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="archiveButtonOutlet" destination="Ny1-Rx-gNG" id="qRG-R7-qWS"/>
+                        <outlet property="shareButtonOutlet" destination="Aij-E5-lg1" id="3S8-Yd-KNs"/>
                         <outlet property="sharingImage" destination="WID-1z-79Y" id="85M-6Z-lVB"/>
                     </connections>
                 </viewController>
@@ -816,7 +817,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="DqT-8L-8h8"/>
         <segue reference="eV3-BS-VXY"/>
-        <segue reference="Jte-e4-Cc6"/>
+        <segue reference="I5p-2b-h2H"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.96621304419999998" blue="0.043735437330000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

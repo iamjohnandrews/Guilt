@@ -11,31 +11,21 @@
 @implementation UserProfileSaver
 
 #pragma mark Archive Specific Methods
-+ (void)saveUserDonatoinHistory:(NSString *)userID
-                     forCharity:(NSString *)recipientCharity
-                         onDate:(NSDate *)date
-                      forAmount:(NSNumber *)donationAmount
++ (void)saveUserDonatoinHistory:(UserDonationHistory *)userDonationHistory
 {
-    UserDonationHistory* userDonationHistory = [[UserDonationHistory alloc] init];
-
-    userDonationHistory.userID = userID;
-    userDonationHistory.recipientCharity = recipientCharity;
-    userDonationHistory.date = date;
-    userDonationHistory.donationAmount = donationAmount;
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *pathForUser = [[documentsPath stringByAppendingPathComponent:userID] stringByAppendingPathComponent:@"donationHistory"];
+    NSString *pathForUser = [[documentsPath stringByAppendingPathComponent:userDonationHistory.userID] stringByAppendingPathComponent:@"donationHistory"];
     
     if (![fileManager fileExistsAtPath:pathForUser]) {
         BOOL directoryCreated = [fileManager createDirectoryAtPath:pathForUser withIntermediateDirectories:YES attributes:nil error:nil];
-        NSLog(@"directoryCreated %hhd", directoryCreated);
+        NSLog(@"directoryCreated %d", directoryCreated);
     }
     
-    NSString *pathForUsersDonations = [pathForUser stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", date]];
+    NSString *pathForUsersDonations = [pathForUser stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", userDonationHistory.date]];
     BOOL archived = [NSKeyedArchiver archiveRootObject:userDonationHistory toFile:pathForUsersDonations];
     
-    NSLog(@"%@ donationHistory Archived %hhd", userID, archived);
+    NSLog(@"%@ donationHistory Archived %d", userDonationHistory.userID, archived);
 }
 
 + (NSArray *)getUsersDonationHistory:(NSString *)userID
@@ -43,7 +33,7 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     NSString *filePath = [[documentsPath stringByAppendingPathComponent:userID] stringByAppendingPathComponent:@"donationHistory"];
-    NSArray *contents = [fileManager contentsOfDirectoryAtURL:[[NSBundle bundleWithPath:filePath] bundleURL]
+    NSArray *contents = [fileManager contentsOfDirectoryAtURL:[NSURL URLWithString:filePath]
                                    includingPropertiesForKeys:@[]
                                                       options:NSDirectoryEnumerationSkipsHiddenFiles
                                                         error:nil];

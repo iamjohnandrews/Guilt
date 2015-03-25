@@ -52,12 +52,12 @@
     [self.view addGestureRecognizer:tap];
 }
 
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     self.convertedCharitableGoodsDict = [[NSMutableDictionary alloc] init];
     conversionButtonOutlet.userInteractionEnabled = NO;
+    [GoogleAnalytics trackAnalyticsForScreen:self.screenName];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -134,28 +134,15 @@
     [self.navigationController popViewControllerAnimated: YES];
 }
 
-- (IBAction)scannerButton:(id)sender {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"ConversionViewController"];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                          action:@"touch"
-                                                           label:scannerButtonOutlet.titleLabel.text
-                                                           value:nil] build]];
-    [tracker set:kGAIScreenName value:nil];
-
+- (IBAction)scannerButton:(id)sender
+{
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:self.scannerButtonOutlet.titleLabel.text onScreen:self.screenName];
     [self performSegueWithIdentifier:@"ScannerSegue" sender:self];
 }
 
 - (IBAction)conversionButton:(id)sender 
 {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"ConversionViewController"];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                          action:@"touch"
-                                                           label:conversionButtonOutlet.titleLabel.text
-                                                           value:nil] build]];
-    [tracker set:kGAIScreenName value:nil];
-    
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:self.conversionButtonOutlet.titleLabel.text onScreen:self.screenName];
     NSString *removeDollarSignString;
     if ([userEnterDollarAmountTextField.text hasPrefix:[[NSLocale currentLocale] objectForKey:NSLocaleCurrencySymbol]] && [userEnterDollarAmountTextField.text length] > 1) {
         removeDollarSignString = [userEnterDollarAmountTextField.text substringFromIndex:1];
@@ -205,17 +192,12 @@
 
 - (IBAction)userProfileButton:(id)sender 
 {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"ConversionViewController"];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                          action:@"touch"
-                                                           label:userProfileButtonOutlet.title
-                                                           value:nil] build]];
-    [tracker set:kGAIScreenName value:nil];
-    
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:self.userProfileButtonOutlet.title onScreen:self.screenName];
 }
 
-- (IBAction)addNonprofitButton:(id)sender {
+- (IBAction)addNonprofitButton:(id)sender
+{
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:self.addNonprofitButtonOutlet.titleLabel.text onScreen:self.screenName];
 }
 
 - (void) calculateCharitableImpactValue:(NSNumber*)dollarAmount {

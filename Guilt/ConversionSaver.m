@@ -8,42 +8,63 @@
 
 #import "ConversionSaver.h"
 
+@interface ConversionSaver ()
+@property (strong, nonatomic) NSFileManager *fileManager;
+@property (strong, nonatomic) NSString *documentsPath;
+
+@end
 
 @implementation ConversionSaver
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.fileManager = [NSFileManager defaultManager];
+        self.documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    }
+    
+    return self;
+}
 
-+ (void)saveCharityNamesToNSUserDefaults:(NSMutableArray *)names
+- (void)saveCharityNamesToNSUserDefaults:(NSMutableArray *)names
 {    
     [[NSUserDefaults standardUserDefaults] setObject:names forKey:@"allCharityNames"];
 }
 
-+ (void)saveSpecificCharityConversionInfo:(CharityImage *)charitysDetails
+- (void)saveSpecificCharityConversionInfo:(NSArray *)charitysDetailsArray
 {
-    NSString *noWhiteSpaceCharityName = [charitysDetails.charityName stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *pathForCharityConversion = [[documentsPath stringByAppendingPathComponent:noWhiteSpaceCharityName] stringByAppendingPathComponent:@"conversionInfo"];
-    
-    if (![fileManager fileExistsAtPath:pathForCharityConversion]) {
-        BOOL directoryCreated = [fileManager createDirectoryAtPath:pathForCharityConversion withIntermediateDirectories:YES attributes:nil error:nil];
-        NSLog(@"directoryCreated %hhd", directoryCreated);
-    }
-    
-//    NSString *pathForConversionBeingSaved = [pathForCharityConversion stringByAppendingPathComponent:@"number"];
-    
-    BOOL archived = [NSKeyedArchiver archiveRootObject:charitysDetails toFile:pathForCharityConversion];
-    NSLog(@"conversionInfo Archived %hhd", archived);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        for (CharityImage *charitysDetails in charitysDetailsArray) {
+            NSDictionary *tempDict = @{@"charityName" : charitysDetails.charityName,
+                                       @"singularDescription" : charitysDetails.singularDescription,
+                                       @"pluralDescription" : charitysDetails.pluralDescription,
+                                       @"flickrSearchTerm" : charitysDetails.flickrSearchTerm,
+                                       @"donationURL" : charitysDetails.donationURL,
+                                       @"conversionValue" : charitysDetails.conversionValue};
+            
+            NSString *noWhiteSpaceCharityName = [charitysDetails.charityName stringByReplacingOccurrencesOfString:@" " withString:@""];
+            
+            NSString *pathForCharityConversion = [self.documentsPath stringByAppendingPathComponent:noWhiteSpaceCharityName];
+            
+            if (![self.fileManager fileExistsAtPath:pathForCharityConversion]) {
+                BOOL directoryCreated = [self.fileManager createDirectoryAtPath:pathForCharityConversion withIntermediateDirectories:YES attributes:nil error:nil];
+                NSLog(@"directoryCreated %d", directoryCreated);
+                
+                BOOL archived = [NSKeyedArchiver archiveRootObject:tempDict toFile:[pathForCharityConversion stringByAppendingPathComponent:@"conversionInfo"]];
+                NSLog(@"conversionInfo Archived %d", archived);
+            }
+
+        }
+    });
 }
 
-+ (CharityImage *)getspecificCharityConversionInfo:(NSString *)charityName
+- (CharityImage *)getspecificCharityConversionInfo:(NSString *)charityName
 {
     NSString *noWhiteSpaceCharityName = [charityName stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *filePath = [[documentsPath stringByAppendingPathComponent:noWhiteSpaceCharityName] stringByAppendingPathComponent:@"conversionInfo"];
-    NSArray *contents = [fileManager contentsOfDirectoryAtURL:[NSURL URLWithString:filePath]
+    NSString *filePath = [[self.documentsPath stringByAppendingPathComponent:noWhiteSpaceCharityName] stringByAppendingPathComponent:@"conversionInfo"];
+    NSArray *contents = [self.fileManager contentsOfDirectoryAtURL:[NSURL URLWithString:filePath]
                                    includingPropertiesForKeys:@[]
                                                       options:NSDirectoryEnumerationSkipsHiddenFiles
                                                         error:nil];
@@ -53,7 +74,7 @@
     return specificCharityConversionInfo;
 }
 
-+ (NSArray *)getsAllCharityConversionInfo
+- (NSArray *)getsAllCharityConversionInfo
 {
     NSMutableArray *converionInfoObjectsArray = [NSMutableArray array];
     
@@ -69,7 +90,7 @@
 }
 
 
-+ (BOOL)charityConversionInfoAlreadySavedToDisk:(NSString *)charityName
+- (BOOL)charityConversionInfoAlreadySavedToDisk:(NSString *)charityName
 {
     CharityImage *test = [self getspecificCharityConversionInfo:charityName];
     

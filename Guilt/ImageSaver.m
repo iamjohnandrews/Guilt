@@ -4,137 +4,140 @@
 
 #import "ImageSaver.h"
 
+@interface ImageSaver ()
+@property (strong, nonatomic) NSFileManager *fileManager;
+@property (strong, nonatomic) NSString *charityLogosPath;
+@property (strong, nonatomic) NSString *memesPath;
+@property (strong, nonatomic) NSString *documentsDirectory;
+
+@end
 
 @implementation ImageSaver
 
-+ (void)saveImageToDisk:(UIImage*)image withName:(NSString *)imageTitle
+- (instancetype)init
 {
-    NSData *imageData = UIImagePNGRepresentation(image);
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *charityLogosPath = [documentsDirectory stringByAppendingPathComponent:@"charityLogos"];
-    
-    if (![fileManager fileExistsAtPath:charityLogosPath]) {
-        BOOL directoryCreated = [fileManager createDirectoryAtPath:charityLogosPath withIntermediateDirectories:YES attributes:nil error:nil];
-        NSLog(@"directoryCreated %hhd", directoryCreated);
+    self = [super init];
+    if (self) {
+        self.fileManager = [NSFileManager defaultManager];
+        self.documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        self.charityLogosPath = [self.documentsDirectory stringByAppendingPathComponent:@"charityLogos"];
+        self.memesPath = [self.documentsDirectory stringByAppendingString:@"archiveImages"];
     }
     
-    NSString *savedImagePath = [charityLogosPath stringByAppendingPathComponent:imageTitle];
-    if (![fileManager fileExistsAtPath:savedImagePath]) {
-        [imageData writeToFile:savedImagePath atomically:NO];
+    return self;
+}
+
+- (void)saveImageToDisk:(UIImage *)logo forCharity:(NSString *)name
+{
+    NSString *noWhiteSpaceCharityName = [name stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSData *imageData = UIImagePNGRepresentation(logo);
+    
+    if (![self.fileManager fileExistsAtPath:self.charityLogosPath]) {
+        BOOL directoryCreated = [self.fileManager createDirectoryAtPath:self.charityLogosPath withIntermediateDirectories:YES attributes:nil error:nil];
+        NSLog(@"directory for Logo Created %d", directoryCreated);
     }
+    
+    NSString *savedImagePath = [self.charityLogosPath stringByAppendingPathComponent:noWhiteSpaceCharityName];
+    BOOL isLogoSaved = [imageData writeToFile:savedImagePath atomically:NO];
+    NSLog(@"isLogoSaved for charity%@ =%i", name, isLogoSaved);
 }
 
 
-+ (UIImage *)fetchImageFromDiskWithName:(NSString *)imageTitle
+- (UIImage *)fetchImageFromDiskWithName:(NSString *)imageTitle
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *getImagePath = [[documentsDirectory stringByAppendingPathComponent:@"charityLogos"] stringByAppendingPathComponent:imageTitle];
+    NSString *noWhiteSpaceCharityName = [imageTitle stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    NSString *getImagePath = [self.charityLogosPath stringByAppendingPathComponent:noWhiteSpaceCharityName];
     
     return [UIImage imageWithContentsOfFile:getImagePath];
 }
 
-//gotta be a better way
-+ (BOOL)imageAlreadySavedToDiskWithName:(NSString *)imageTitle
+- (BOOL)imageAlreadySavedToDiskWithName:(NSString *)imageTitle
 {
-    UIImage *returnedImage = [self fetchImageFromDiskWithName:imageTitle];
+    NSString *noWhiteSpaceCharityName = [imageTitle stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    NSString *specificCharityLogoPath = [self.charityLogosPath stringByAppendingPathComponent:noWhiteSpaceCharityName];
     
-    if (returnedImage) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return [self.fileManager fileExistsAtPath:specificCharityLogoPath];
 }
 
-+ (void)deleteImageAtPath:(NSString *)path {
+- (NSArray *)getAllLogs;
+{
+    NSArray *contents = [self.fileManager contentsOfDirectoryAtURL:[NSURL URLWithString:self.charityLogosPath]
+                                        includingPropertiesForKeys:@[]
+                                                           options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                             error:nil];
+    return contents;
+}
+
+- (void)deleteImageAtPath:(NSString *)path {
 	NSError *error;
 	NSString *imgToRemove = [NSHomeDirectory() stringByAppendingPathComponent:path];
-	[[NSFileManager defaultManager] removeItemAtPath:imgToRemove error:&error];
+	[self.fileManager removeItemAtPath:imgToRemove error:&error];
 }
 
 #pragma mark Archive Specific Methods
-+ (void)saveMemeToArchiveDisk:(UIImage*)image forUser:(NSString *)userID withIdentifier:(NSString *)imageID
-{ 
-    NSData *imageData = UIImagePNGRepresentation(image);
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *pathForCurrentUser = [[documentsPath stringByAppendingPathComponent:userID] stringByAppendingPathComponent:@"archiveImages"];
-    
-    if (![fileManager fileExistsAtPath:pathForCurrentUser]) {
-       BOOL directoryCreated = [fileManager createDirectoryAtPath:pathForCurrentUser withIntermediateDirectories:YES attributes:nil error:nil];
-        NSLog(@"directoryCreated %hhd", directoryCreated);
-    }
-    
-    NSString *pathForImageBeingSaved = [pathForCurrentUser stringByAppendingPathComponent:imageID];
-    BOOL ableToSaveToUserFile = [imageData writeToFile:pathForImageBeingSaved atomically:NO];
-    NSLog(@"ableToSaveToUserFile %hhd", ableToSaveToUserFile);
-
-}
-
-+ (BOOL)fileExistsAtPath:(NSString *)path isDirectory:(BOOL *)isDirectory
+- (void)saveMemeToArchiveDisk:(NSArray*)imagesArray forUser:(NSString *)userID withIdentifier:(NSArray *)imageIDsArray
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-
-    BOOL directoryExists = NO;
-    BOOL isDir;
-    BOOL exists = [fileManager fileExistsAtPath:path isDirectory:&isDir];
-    if (exists) {
-        /* file exists */
-        if (isDir) {
-            /* file is a directory */
-            directoryExists = YES;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        for (int i =0; i < imagesArray.count; i++) {
+            NSData *imageData = UIImagePNGRepresentation(imagesArray[i]);
+            NSString *pathForCurrentUser = [self.memesPath stringByAppendingPathComponent:userID];
+            
+            if (![self.fileManager fileExistsAtPath:pathForCurrentUser]) {
+                BOOL directoryCreated = [self.fileManager createDirectoryAtPath:pathForCurrentUser withIntermediateDirectories:YES attributes:nil error:nil];
+                NSLog(@"Archive Directory Created %hhd", directoryCreated);
+            }
+            
+            NSString *pathForImageBeingSaved = [pathForCurrentUser stringByAppendingPathComponent:imageIDsArray[i]];
+            BOOL ableToSaveToUserFile = [imageData writeToFile:pathForImageBeingSaved atomically:NO];
+            NSLog(@"ableToSaveToUserFile %hhd", ableToSaveToUserFile);
         }
-    }
-    
-    return directoryExists;
+    });
 }
 
-+ (NSMutableArray *)getAllArchiveImagesForUser:(NSString *)userID;
+- (NSArray *)getAllArchiveImagesForUser:(NSString *)userID;
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:userID];
-    NSArray *contents = [fileManager contentsOfDirectoryAtURL:[[NSBundle bundleWithPath:filePath] bundleURL]
+    NSURL *allUsersMemesURL = [NSURL URLWithString:[self.memesPath stringByAppendingPathComponent:userID]];
+    NSArray *contents = [self.fileManager contentsOfDirectoryAtURL:allUsersMemesURL
                                    includingPropertiesForKeys:@[]
                                                       options:NSDirectoryEnumerationSkipsHiddenFiles
                                                         error:nil];
-    NSMutableArray *iHateiOSTypeArray = [[NSMutableArray alloc] initWithArray:contents];
-    
-    return iHateiOSTypeArray;
+    return contents;
 }
 
-+ (NSMutableArray *)calculateAndGetFileCreationDate:(NSArray *)archiveImagesArray
+- (NSArray *)calculateAndGetFileCreationDate:(NSArray *)archiveImagesArray
 {
+    if (!archiveImagesArray) {
+        return nil;
+    }
     NSMutableArray *archiveDatesArray = [NSMutableArray array];
 
     for (NSURL *archiveImagesurl in archiveImagesArray) {
-        NSFileManager *fileManager = [NSFileManager defaultManager];
         NSDate *creationDate = nil;
-        
-        if ([fileManager fileExistsAtPath:archiveImagesurl.path]) {
-            NSDictionary *attributes = [fileManager attributesOfItemAtPath:archiveImagesurl.path error:nil];
+    
+        if ([self.fileManager fileExistsAtPath:archiveImagesurl.path]) {
+            NSDictionary *attributes = [self.fileManager attributesOfItemAtPath:archiveImagesurl.path error:nil];
             creationDate = attributes[NSFileCreationDate];
         }
         [archiveDatesArray addObject:creationDate];
     }
     
-    if (!archiveImagesArray) {
-        return nil;
-    } else {
-        return archiveDatesArray;
-    }
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:NO];
+    NSArray *descriptors = [NSArray arrayWithObject: descriptor];
+    NSArray *descendingDateOrder = [archiveDatesArray sortedArrayUsingDescriptors:descriptors];
+    
+    return descendingDateOrder;
 }
 
-+ (void)deleteFileForDirectory:(NSString *)userID
+- (void)deleteFileForDirectory:(NSString *)userID withIdentifier:(NSString *)imageID
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:userID];
+    NSString *memeFilePath = [[self.memesPath stringByAppendingPathComponent:userID] stringByAppendingPathComponent:imageID];
     NSError *error = nil;
     
-    if (![fileManager removeItemAtPath:filePath error:&error]) {
-        NSLog(@"[Error] %@ (%@)", error, filePath);
+    if (![self.fileManager removeItemAtPath:memeFilePath error:&error]) {
+        NSLog(@"[Error] %@", error);
     }
 }
 

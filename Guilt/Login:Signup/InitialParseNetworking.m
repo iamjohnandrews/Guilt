@@ -13,6 +13,11 @@
 #import "ConversionSaver.h"
 #import <AFNetworking/AFNetworking.h>
 
+@interface InitialParseNetworking ()
+@property (strong, nonatomic) ImageSaver *imageSaver;
+@property (strong, nonatomic) ConversionSaver *conversionSaver;
+
+@end
 
 @implementation InitialParseNetworking
 
@@ -29,6 +34,8 @@
 
 - (void)getConversionNonprofitDataFromParse
 {
+    self.imageSaver = [[ImageSaver alloc] init];
+    self.conversionSaver = [[ConversionSaver alloc] init];
     //Prepare the query to get all the images in descending order
     //1
     PFQuery *query = [PFQuery queryWithClassName:@"ConversionNonprofits"];
@@ -36,14 +43,15 @@
     
     [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         if (number == locallyStoredNonprofits){
-            NSLog(@"local storage = remote storage ann all is right with KarmaScan World");
+            NSLog(@"local storage(%d) = remote storage(%d) ann all is right with KarmaScan World", locallyStoredNonprofits, number);
         } else if (number > locallyStoredNonprofits) {
             NSLog(@"local storage < remote storage and need to retrieve nonprofits");
-            [self retrieveNonProfitDataFromParse:query butSkipTheFirst:locallyStoredNonprofits];
         } else {
             NSLog(@"local storage > remote storage and need to push nonprofit info to remote storage");
         }
         NSLog(@"Parse Error =%@ %@ %@", error, [error localizedDescription], [error localizedFailureReason]);
+        [self retrieveNonProfitDataFromParse:query butSkipTheFirst:locallyStoredNonprofits];
+
     }];
 }
 
@@ -67,6 +75,7 @@
 {
     NSMutableArray *searhTerms = [NSMutableArray array];
     NSMutableArray *allCharityNamesArray = [NSMutableArray array];
+    NSMutableDictionary *imageAndTitleDict = [NSMutableDictionary dictionary];
     self.allCharitiesInfo = [[NSMutableSet alloc] init];
 
     for (PFObject *charityDetails in charityObjectsArray) {
@@ -77,45 +86,65 @@
         individualCharityInfo.flickrSearchTerm = [charityDetails objectForKey:@"flickrSearchTerm"];
         individualCharityInfo.donationURL = [charityDetails objectForKey:@"donationURL"];
         individualCharityInfo.conversionValue = [charityDetails objectForKey:@"conversionValue"];
+        
+        [imageAndTitleDict setObject:[charityDetails objectForKey:@"logo"] forKey:individualCharityInfo.charityName];
         [allCharityNamesArray addObject:individualCharityInfo.charityName];
-        
-        BOOL isLogoSavedToDisk = [ImageSaver imageAlreadySavedToDiskWithName:individualCharityInfo.charityName];
-        BOOL isCharityConversionInfoSavedToDisk = [ConversionSaver charityConversionInfoAlreadySavedToDisk:individualCharityInfo.charityName];
-        
-        [[charityDetails objectForKey:@"logo"] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if (!error) {
-                individualCharityInfo.charityLogo = [UIImage imageWithData:data];
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    if (!isLogoSavedToDisk) {
-                        [ImageSaver saveImageToDisk:individualCharityInfo.charityLogo withName:individualCharityInfo.charityName];
-                    }
-                });
-            }
-        }];
-        
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            if (!isCharityConversionInfoSavedToDisk) {
-                [ConversionSaver saveSpecificCharityConversionInfo:individualCharityInfo];
-            }
-        });
-        
         [searhTerms addObject:individualCharityInfo.flickrSearchTerm];
         [self.allCharitiesInfo addObject:individualCharityInfo];
     }
-    [ConversionSaver saveCharityNamesToNSUserDefaults:allCharityNamesArray];
+    [self.conversionSaver saveCharityNamesToNSUserDefaults:allCharityNamesArray];
     [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil withSearchTerms:searhTerms];
+    [self saveCharityInfoIfNeedTo];
+    [self saveLogoIfNeedBe:imageAndTitleDict];
+}
+
+- (void)saveLogoIfNeedBe:(NSMutableDictionary *)logosOnParse
+{
+    NSMutableDictionary *imageAndTitleCheckDict = [NSMutableDictionary dictionary];
+    NSInteger logosOnDisk = [[self.imageSaver getAllLogs] count];
+    NSLog(@"logosOnDisk =%ld, logosOnParse =%lu", (long)logosOnDisk, (unsigned long)logosOnParse.count);
+    
+    if (logosOnParse.count == logosOnDisk) {
+        return;
+    }
+    
+    for (NSString *charityName in logosOnParse) {
+        BOOL isLogoSavedToDisk = [self.imageSaver imageAlreadySavedToDiskWithName:charityName];
+        if (!isLogoSavedToDisk) {
+            [imageAndTitleCheckDict setObject:[logosOnParse objectForKey:charityName]  forKey:charityName];
+        }
+    }
+    
+    if (imageAndTitleCheckDict.count) {
+        [self convertPFObjectIntoimage:imageAndTitleCheckDict];
+    }
+}
+
+- (void)convertPFObjectIntoimage:(NSMutableDictionary *)parseObjects
+{
+    for (NSString *charityName in parseObjects) {
+        PFFile *image = [parseObjects objectForKey:charityName];
+        [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            [self.imageSaver saveImageToDisk:[UIImage imageWithData:data] forCharity:charityName];
+        } progressBlock:^(int percentDone) {
+            
+        }];
+    }
+}
+
+- (void)saveCharityInfoIfNeedTo
+{
+    [self.conversionSaver saveSpecificCharityConversionInfo:[self.allCharitiesInfo allObjects]];
 }
 
 - (void)ifNoInternetStillCreateCharityObjects
 {
-    NSArray *charityNamesDescriptionsAndConversionValuesArray = [[NSArray alloc] initWithArray:[ConversionSaver getsAllCharityConversionInfo]];
+    NSArray *charityNamesDescriptionsAndConversionValuesArray = [[NSArray alloc] initWithArray:[self.conversionSaver getsAllCharityConversionInfo]];
     
     NSMutableArray *searchTerms = [NSMutableArray array];
     
-    for (CharityImage *conversionInfoObject in charityNamesDescriptionsAndConversionValuesArray) {
-        [searchTerms addObject:conversionInfoObject.flickrSearchTerm];
+    for (NSDictionary *conversionInfoObject in charityNamesDescriptionsAndConversionValuesArray) {
+        [searchTerms addObject:[conversionInfoObject objectForKey:@"flickrSearchTerm"]];
     }
 
     [[FlickrNetworkManager sharedManager] requestCharityImagescompletion:nil withSearchTerms:searchTerms];

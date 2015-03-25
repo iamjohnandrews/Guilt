@@ -36,7 +36,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
+    [GoogleAnalytics trackAnalyticsForScreen:self.screenName];
     if (self.activitySheetEnabled) {
         [self shareActionSheet];
     } else {
@@ -52,6 +52,7 @@
     [self presentViewController:activityViewController animated:YES completion:^{
     }];
     self.activitySheetEnabled = NO;
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:@"share Archive Image" onScreen:self.screenName];
 }
 
 - (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController

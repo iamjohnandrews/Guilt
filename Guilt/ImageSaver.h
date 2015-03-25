@@ -6,14 +6,15 @@
 
 @interface ImageSaver : NSObject
 
-+ (void)saveImageToDisk:(UIImage*)image withName:(NSString *)imageTitle;
-+ (UIImage *)fetchImageFromDiskWithName:(NSString *)imageTitle;
-+ (void)deleteImageAtPath:(NSString*)path;
-+ (BOOL)imageAlreadySavedToDiskWithName:(NSString *)imageTitle;
+- (void)saveImageToDisk:(UIImage *)logo forCharity:(NSString *)name;
+- (UIImage *)fetchImageFromDiskWithName:(NSString *)imageTitle;
+- (void)deleteImageAtPath:(NSString*)path;
+- (BOOL)imageAlreadySavedToDiskWithName:(NSString *)imageTitle;
+- (NSArray *)getAllLogs;
 
-+ (void)saveMemeToArchiveDisk:(UIImage*)image forUser:(NSString *)userID withIdentifier:(NSString *)imageID;
-+ (NSMutableArray *)getAllArchiveImagesForUser:(NSString *)userID;
-+ (NSMutableArray *)calculateAndGetFileCreationDate:(NSArray *)archiveImagesArray;
-+ (void)deleteFileForDirectory:(NSString *)userID;
+- (void)saveMemeToArchiveDisk:(NSArray*)imagesArray forUser:(NSString *)userID withIdentifier:(NSArray *)imageIDsArray;
+- (NSArray *)getAllArchiveImagesForUser:(NSString *)userID;
+- (NSArray *)calculateAndGetFileCreationDate:(NSArray *)archiveImagesArray;
+- (void)deleteFileForDirectory:(NSString *)userID withIdentifier:(NSString *)imageID;
 
 @end

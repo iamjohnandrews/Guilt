@@ -13,6 +13,7 @@
 #import "TwitterClient.h"
 #import "FHSTwitterEngine.h"
 #import <AFNetworking/AFNetworking.h>
+#import "UsersLoginInfo.h"
 
 @interface MyLoginViewController () <UITextFieldDelegate, CommsDelegate, UIActionSheetDelegate, TwitterDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) UITextField *emailTextField;
@@ -28,7 +29,7 @@
 - (void)viewDidLoad
 {  
     [super viewDidLoad];
-
+    self.screenName = @"MyLoginViewController";
     [self setupUI];    
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
@@ -36,6 +37,12 @@
     NSLog(@"twitterLoginButtonOutlet measurements =%@", NSStringFromCGRect(self.twitterLoginButtonOutlet.frame));
     userName.clearButtonMode = UITextFieldViewModeWhileEditing;
     password.clearButtonMode = UITextFieldViewModeWhileEditing;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [GoogleAnalytics trackAnalyticsForScreen:self.screenName];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -56,6 +63,7 @@
 
 - (IBAction)skipButtonPressed:(id)sender 
 {
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:self.skipButtonOutlet.title onScreen:self.screenName];
     [self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
 }
 
@@ -71,6 +79,7 @@
     self.emailTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.emailTextField.delegate = self;
     [self.view addSubview:self.emailTextField];
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:self.fogottenPWButtonOutlet.titleLabel.text onScreen:self.screenName];
 }
 
 - (void)disableUIElementsWhenLoggingInThroughFBorTwitter:(id)sender
@@ -150,6 +159,8 @@
     } else {
         [self commsDidLogin:NO];
     }
+    
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:@"facebook" onScreen:self.screenName];
 }
 
 - (void) commsDidLogin:(BOOL)loggedIn
@@ -162,6 +173,7 @@
 	// Did we login successfully ?
 	if (loggedIn) {
 		self.userIsLoggedIn = YES;
+        [UsersLoginInfo saveLoginInfoToNSUserDefaults:@"facebook" and:[[PFUser currentUser] objectId]];
 		[self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
 	} else {
 		// Show error alert
@@ -192,6 +204,7 @@
     } else {
         [self userDidLogIntoTwitter:NO];
     }
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:@"twitter" onScreen:self.screenName];
 }
 
 - (void)userDidLogIntoTwitter:(BOOL)loggedIn
@@ -202,6 +215,7 @@
     
 	if (loggedIn) {
 		self.userIsLoggedIn = YES;
+        [UsersLoginInfo saveLoginInfoToNSUserDefaults:@"twitter" and:[[PFUser currentUser] objectId]];
 		[self performSegueWithIdentifier:@"ShowMeSegue" sender:self];
 	} else {
 		[[[UIAlertView alloc] initWithTitle:@"Twitter Login Failed"

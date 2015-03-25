@@ -15,6 +15,7 @@
 
 
 @interface ShareImageViewController () <UIActivityItemSource, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>
+@property (strong, nonatomic) ImageSaver *imageSaver;
 @end
 
 @implementation ShareImageViewController
@@ -23,7 +24,7 @@
 {
     [super viewDidLoad];
     self.screenName = @"ShareImageViewController";
-    
+    self.imageSaver = [[ImageSaver alloc] init];
     UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"KarnaScan_Background"]];
     [self.view addSubview:background];
     [self.view sendSubviewToBack:background];
@@ -54,6 +55,7 @@
 {
     [super viewDidAppear:animated];
     self.sharingImage.image = self.unfinishedMeme;
+    [GoogleAnalytics trackAnalyticsForScreen:self.screenName];
 }
 
 #pragma mark Sharing & Action
@@ -206,21 +208,16 @@
     }
 }
 
+
 - (IBAction)shareButtonPressed:(id)sender 
 {
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:@"Share Button" onScreen:self.screenName];
     [self shareActionSheet];
 }
 
 - (IBAction)archiveButtonPressed:(id)sender 
 {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    
-    [tracker set:kGAIScreenName value:@"ShareImageViewController"];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                          action:@"touch"
-                                                           label:self.archiveButtonOutlet.titleLabel.text
-                                                           value:nil] build]];
-    [tracker set:kGAIScreenName value:nil];
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:self.archiveButtonOutlet.titleLabel.text onScreen:self.screenName];
 }
 
 
@@ -282,7 +279,7 @@
     NSArray *usersDiffLoginsArray = [[NSArray alloc] initWithArray:[UsersLoginInfo getUsersObjectID]];
     
     for (NSString *loginID in usersDiffLoginsArray) {
-        [ImageSaver saveMemeToArchiveDisk:meme forUser:loginID  withIdentifier:objectID];
+        [self.imageSaver saveMemeToArchiveDisk:@[meme] forUser:loginID  withIdentifier:@[objectID]];
     }
 }
 

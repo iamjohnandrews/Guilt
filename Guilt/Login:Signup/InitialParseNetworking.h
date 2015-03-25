@@ -14,4 +14,6 @@
 - (void)getConversionNonprofitDataFromParse;
 
 @property (strong, nonatomic) NSMutableSet *allCharitiesInfo;
+@property BOOL hasArchives;
+
 @end

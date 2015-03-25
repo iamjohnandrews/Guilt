@@ -13,7 +13,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
+   self.screenName = @"AddCharityViewController";
     [self setUpButtonsAndFonts];
     self.orgName.delegate = self;
     self.donationURL.delegate = self;
@@ -24,6 +24,12 @@
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [GoogleAnalytics trackAnalyticsForScreen:self.screenName];
 }
 
 #pragma mark Validation Methods

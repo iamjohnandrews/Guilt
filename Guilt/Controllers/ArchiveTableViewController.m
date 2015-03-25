@@ -10,20 +10,19 @@
 #import <Parse/Parse.h>
 #import "ArchiveTableViewCell.h"
 #import "ModalArchiveViewController.h"
-#import "GAIDictionaryBuilder.h"
 #import <AFNetworking/AFNetworking.h>
 #import "ImageSaver.h"
-#import "UIImageView+WebCache.h"
-
 
 @interface ArchiveTableViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *archiveMemesArray;
 @property (nonatomic, strong) NSMutableArray *archiveDatesArray;
-
+@property (nonatomic, strong) ImageSaver *imageSaver;
 @property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) NSMutableArray *dates;
+@property (nonatomic, strong) NSMutableArray *objectIDs;
 @property (assign, nonatomic) CATransform3D makeImagesLean;
 @property (nonatomic) int totalNumberArchiveMemes;
+@property BOOL hadToGetImagesFromParse;
 @end
 
 @implementation ArchiveTableViewController
@@ -33,21 +32,32 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+    self.hadToGetImagesFromParse = NO;
     [self cellVisualEffect];
-    NSArray *loginsArray = [[NSArray alloc] initWithArray:[UsersLoginInfo getUsersObjectID]];
+    self.objectIDs = [NSMutableArray array];
     self.archiveMemesArray = [NSMutableArray array];
     self.archiveDatesArray = [NSMutableArray array];
+    self.images = [NSMutableArray array];
+    NSArray *loginsArray = [[NSArray alloc] initWithArray:[UsersLoginInfo getUsersObjectID]];
+    self.imageSaver = [[ImageSaver alloc] init];
     
     for (NSString *loginMethod in loginsArray) {
-        self.archiveMemesArray = [ImageSaver getAllArchiveImagesForUser:loginMethod];
-        self.archiveDatesArray = [ImageSaver calculateAndGetFileCreationDate:self.archiveMemesArray];
+        //need to check if imageSaver method is nil -->cannot add nil to array
+        if ([[self.imageSaver getAllArchiveImagesForUser:loginMethod] count] > 0) {
+            self.archiveMemesArray = (NSMutableArray *)[self.imageSaver getAllArchiveImagesForUser:loginMethod];
+        }
+        if ([[self.imageSaver calculateAndGetFileCreationDate:self.archiveMemesArray] count]) {
+            self.archiveDatesArray = (NSMutableArray *)[self.imageSaver calculateAndGetFileCreationDate:self.archiveMemesArray];
+        }
     }
     
-    if ([AFNetworkReachabilityManager sharedManager].reachable) {
+    if (!self.archiveMemesArray.count && [AFNetworkReachabilityManager sharedManager].reachable) {
+        [self getArhiveMemesFromParse:1];
+    } else {
         [self findOutHowManyMemesUserHasinDatabase];
     }
-    if (!self.archiveMemesArray.count) {
+    
+    if (![AFNetworkReachabilityManager sharedManager].reachable && !self.archiveMemesArray.count) {
         [self showEncourageToShareAndArchiveMessage];
     }
 }
@@ -55,17 +65,17 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //Google Analytics
-    // returns the same tracker you created in your app delegate
-    // defaultTracker originally declared in AppDelegate.m
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    // This screen name value will remain set on the tracker and sent with
-    // hits until it is set to a new value or to nil.
-    [tracker set:kGAIScreenName value:@"ArchiveTableViewController"];
-    // manual screen tracking
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-    
+    [GoogleAnalytics trackAnalyticsForScreen:@"ArchiveTableViewController"];
 }
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    if (self.hadToGetImagesFromParse) {
+        [self.imageSaver saveMemeToArchiveDisk:self.images forUser:[[PFUser currentUser] objectId] withIdentifier:self.objectIDs];
+    }
+    [super viewDidDisappear:animated];
+}
+
 
 #pragma mark - Table View Visual Effects
 
@@ -87,7 +97,9 @@
 
 - (void)getArhiveMemesFromParse:(NSInteger)pullNumber
 {
+    self.refreshControl.tintColor = [UIColor orangeColor];
     [self.refreshControl beginRefreshing];
+    
     //Prepare the query to get all the images in descending order
     //1
     PFQuery *query = [PFQuery queryWithClassName:@"CharityMemes"];
@@ -100,14 +112,16 @@
         query.skip = pullNumber;
     }
     query.limit = 10;
+    query.cachePolicy = kPFCachePolicyIgnoreCache;
     [query findObjectsInBackgroundWithBlock:^(NSArray *PFobjects, NSError *error) {
         //3
         if (!error) {
-            //Everything was correct, put the new objects and load the wall
-            [self.archiveMemesArray addObjectsFromArray:PFobjects];
-            [self parseThroughBackEndData];
-            [self.tableView reloadData];
+            [self addToArrayImageURLsFromParseObjects:PFobjects];
             [self.refreshControl endRefreshing];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+            self.hadToGetImagesFromParse = YES;
         } else {
             
             //4
@@ -118,6 +132,19 @@
     }];
 }
 
+- (void)addToArrayImageURLsFromParseObjects:(NSArray *)parseObjects
+{
+    NSMutableArray *cachedURLsArray = [NSMutableArray array];
+    for (PFObject *object in parseObjects) {
+        [self.archiveDatesArray addObject:object.createdAt];
+        [self.archiveMemesArray addObject:[object objectForKey:@"image"]];
+        [self.objectIDs addObject:object.objectId];
+        
+//        NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0] stringByAppendingFormat:@"/Caches/Parse/PFFileCache/%@", [[object objectForKey:@"image"] name]];
+//        [cachedURLsArray addObject:path];
+    }
+}
+
 - (void)findOutHowManyMemesUserHasinDatabase
 {
     //Cloud Code needed here
@@ -126,9 +153,54 @@
     
     [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         if (!error) {
-            self.totalNumberArchiveMemes = number;
-            NSLog(@"self.totalNumberArchiveMemes =%d", self.totalNumberArchiveMemes);
+            if (self.totalNumberArchiveMemes == number) {
+                NSLog(@"local archive memes(%d) = remote memes(%d)", self.totalNumberArchiveMemes, number);
+            } else if (self.totalNumberArchiveMemes > number) {
+                NSLog(@"theres more local archive memes(%d) and need to push to remote(%d)", self.totalNumberArchiveMemes, number);
+            } else {
+                NSLog(@"less local archive memes(%d) and need to get from remote memes(%d)", self.totalNumberArchiveMemes, number);
+            }
         }
+    }];
+}
+
+- (void)uploadMemeToParse:(UIImage *)charityMeme
+{
+    NSData *imageData = UIImagePNGRepresentation(charityMeme);
+    
+    //Upload a new picture
+    //1
+    PFFile *file = [PFFile fileWithName:@"img" data:imageData];
+    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        if (succeeded){
+            //2
+            
+            PFObject *imageObject = [PFObject objectWithClassName:@"CharityMemes"];
+            [imageObject setObject:[PFUser currentUser] forKey:@"User"];
+            [imageObject setObject:file forKey:@"image"];
+            
+            //3
+            [imageObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                //4
+                if (succeeded){
+                    NSLog(@"successful image upload to Parse");
+                }
+                else{
+                    NSString *errorString = [[error userInfo] objectForKey:@"error"];
+                    UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [errorAlertView show];
+                }
+            }];
+        }
+        else{
+            //5
+            NSString *errorString = [[error userInfo] objectForKey:@"error"];
+            UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [errorAlertView show];
+        }
+    } progressBlock:^(int percentDone) {
+        NSLog(@"Uploaded: %d %%", percentDone);
     }];
 }
 
@@ -142,19 +214,6 @@
     shareEncouragementMessage.textColor = [UIColor whiteColor];
     shareEncouragementMessage.text = @"Whenever you share a #KarmaScanFact meme, it is saved to your personal archive";
     [self.view addSubview:shareEncouragementMessage];
-}
-
-- (void)parseThroughBackEndData
-{
-    self.dates = [NSMutableArray array];
-    self.images = [NSMutableArray array];
-    
-    for (PFObject *dateAndImageObject in self.archiveMemesArray){
-        
-        PFFile *meme = (PFFile *)[dateAndImageObject objectForKey:@"image"];
-        [self.images addObject:[UIImage imageWithData:meme.getData]];
-        [self.dates addObject:[self formateDates:dateAndImageObject.createdAt]];
-    }
 }
 
 - (NSString *)formateDates:(NSDate *)date
@@ -186,47 +245,40 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ArchiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dateAndImage" forIndexPath:indexPath];
-//    if (self.imageTransformEnabled) {
-//        cell.layer.transform = self.makeImagesLean;
-//        cell.layer.opacity = 0.2;
-//        [UIView animateWithDuration:0.4 animations:^{
-//            cell.layer.transform = CATransform3DIdentity;
-//            cell.layer.opacity = 1;
-//        }]; 
-//        self.imageTransformEnabled = NO;
-//    }
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicator.tintColor = [UIColor orangeColor];
+    [indicator startAnimating];
     
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    UIImageView *archiveImageView = [[UIImageView alloc] init];
-    [archiveImageView sd_setImageWithPreviousCachedImageWithURL:self.archiveMemesArray[indexPath.row]
-                                            andPlaceholderImage:nil
-                                                        options:SDWebImageHighPriority
-                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        [indicator startAnimating];
+    if (self.hadToGetImagesFromParse) {
+        PFFile *image = (PFFile *)self.archiveMemesArray[indexPath.row];
+        [image getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            [indicator stopAnimating];
+            cell.archiveImage.image =  [UIImage imageWithData:data];
+            [self.images addObject:cell.archiveImage.image];
+        } progressBlock:^(int percentDone) {
+            
+        }];
+    } else {
+        NSURL *localImageStorage = self.archiveMemesArray[indexPath.row];
+        cell.archiveImage.image = [UIImage imageWithContentsOfFile:localImageStorage.path];
     }
-                                                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        [indicator stopAnimating];
-        cell.archiveImage.contentMode = UIViewContentModeScaleAspectFit;
-        cell.archiveImage.image = image;
-    }];
-    
     cell.archiveDateLabel.font = [UIFont fontWithName:@"Quicksand-Regular" size:18];
     cell.archiveDateLabel.textColor = [UIColor colorWithRed:0.0/255 green:68.0/255 blue:94.0/255 alpha:1];
     cell.archiveDateLabel.text = [self formateDates:self.archiveDatesArray[indexPath.row]];
+    
+    cell.layer.transform = self.makeImagesLean;
+    cell.layer.opacity = 0.2;
+    [UIView animateWithDuration:0.4 animations:^{
+        cell.layer.transform = CATransform3DIdentity;
+        cell.layer.opacity = 1;
+    }];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"ArchiveTableViewController"];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                          action:@"touch"
-                                                           label:@"share archive meme"
-                                                           value:nil] build]];
-    [tracker set:kGAIScreenName value:nil];
-    
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:@"share archive meme" onScreen:@"ArchiveTableViewController"];
     [self performSegueWithIdentifier:@"ArchiveToModalShareSegue" sender:self];
 }
 

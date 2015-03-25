@@ -37,6 +37,7 @@
 @property (nonatomic) BOOL gotFlickrImageURLs;
 
 @property (strong, nonatomic) NSMutableArray *resultOfCharitableConversionsArray;
+@property (strong, nonatomic) ImageSaver *fetchImages;
 @end
 
 @implementation ImagesViewController
@@ -53,7 +54,7 @@
     }
     self.imagesTableView.dataSource = self;
     self.imagesTableView.delegate = self;
-
+    self.fetchImages = [[ImageSaver alloc] init];
     self.alreadyUsedFlikrURLDictionary = [NSMutableDictionary dictionary];
     
     self.resultOfCharitableConversionsArray = [NSMutableArray array];
@@ -86,6 +87,17 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [GoogleAnalytics trackAnalyticsForScreen:self.screenName];
+}
+
+- (void)setUserProfileButtonOutlet:(UIBarButtonItem *)userProfileButtonOutlet
+{
+    //get archive images from parse in background
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -108,13 +120,6 @@
         } else {
             shareImageVC.productPrice = self.userImputPrice;
         }
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker set:kGAIScreenName value:@"ImagesViewController"];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                              action:@"touch"
-                                                               label:@"share specific meme"
-                                                               value:nil] build]];
-        [tracker set:kGAIScreenName value:nil];
     }
 }
 
@@ -207,20 +212,14 @@
         urlLinkButton.clipsToBounds = YES;
         urlLinkButton.titleLabel.textColor = [UIColor whiteColor];
         
-        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker set:kGAIScreenName value:@"ImagesViewController"];
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                              action:@"touch"
-                                                               label:urlLinkButton.titleLabel.text
-                                                               value:nil] build]];
-        [tracker set:kGAIScreenName value:nil];
+        [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:urlLinkButton.titleLabel.text onScreen:self.screenName];
         
         [headerView addSubview:urlLinkButton];
         [headerView bringSubviewToFront:urlLinkButton];
         
         [urlLinkButton setUserInteractionEnabled:YES];
         
-        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBuyNowButtonTapped)];
+        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBuyNowButtonTapped:)];
         [urlLinkButton addGestureRecognizer:recognizer];
     }
     
@@ -249,7 +248,7 @@
     CharityImage *individualCharity = [self.resultOfCharitableConversionsArray objectAtIndex:indexPath.row];
     
     CharityAndProductDisplayCell *charityCell = [tableView dequeueReusableCellWithIdentifier:@"CharityDisplay"];
-    charityCell.displayImageView.image = [ImageSaver fetchImageFromDiskWithName:individualCharity.charityName];
+    charityCell.displayImageView.image = [self.fetchImages fetchImageFromDiskWithName:individualCharity.charityName];
     charityCell.shareButtonOutlet.tag = indexPath.row;
     [charityCell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
@@ -286,7 +285,7 @@
                                            
                                            CGSize shrinkLogoSize = CGSizeMake(60.0f, 40.0f);
                                            UIGraphicsBeginImageContext(shrinkLogoSize);
-                                           [individualCharity.charityLogo drawInRect:CGRectMake(0,0,shrinkLogoSize.width,shrinkLogoSize.height)];
+                                           [[self.fetchImages fetchImageFromDiskWithName:individualCharity.charityName] drawInRect:CGRectMake(0,0,shrinkLogoSize.width,shrinkLogoSize.height)];
                                            UIImage* shrunkLogoImage = UIGraphicsGetImageFromCurrentImageContext();
                                            UIGraphicsEndImageContext();
                                            charityCell.logoImageView.image = shrunkLogoImage;
@@ -340,32 +339,35 @@
 
 - (void)onShareButtonTapped:(UIButton *)sender
 {
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:sender.titleLabel.text onScreen:self.screenName];
     [self performSegueWithIdentifier:@"ImageSelectionSegue" sender:sender];
 }
 
 - (void)onDonationButtonTapped:(UIButton *)sender
 {
     if ([AFNetworkReachabilityManager sharedManager].reachable) {
-    CharityImage *selectedCharity = [self.resultOfCharitableConversionsArray objectAtIndex:sender.tag];
-    [self didUpdateKarmaPoints:YES charity:selectedCharity.donationURL];
-        [UserProfileSaver saveUserDonatoinHistory:[[UsersLoginInfo getUsersObjectID] firstObject]
-                                       forCharity:selectedCharity.charityName
-                                           onDate:[NSDate date]
-                                        forAmount:[NSNumber numberWithFloat:[self.userImputPrice floatValue]]];
+        CharityImage *selectedCharity = [self.resultOfCharitableConversionsArray objectAtIndex:sender.tag];
+        [self didUpdateKarmaPoints:YES charity:selectedCharity.donationURL];
         
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:selectedCharity.donationURL]];
+        UserDonationHistory *userDonation = [[UserDonationHistory alloc] init];
+        userDonation.date = [NSDate date];
+        userDonation.recipientCharity = selectedCharity.charityName;
+        userDonation.donationAmount = [NSNumber numberWithFloat:[self.userImputPrice floatValue]];
+        userDonation.userID = [[UsersLoginInfo getUsersObjectID] firstObject];
+        [UserProfileSaver saveUserDonatoinHistory:userDonation];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:selectedCharity.donationURL]];
     } else {
         [self showMesssageCantDonateNoInternet];
     }
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:sender.titleLabel.text onScreen:self.screenName];
 }
 
-- (void)onBuyNowButtonTapped
+- (void)onBuyNowButtonTapped:(UIButton *)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_productProductURL]];
-    NSLog(@"sending user to purchase product at %@", _productProductURL);
-    
     [self didUpdateKarmaPoints:YES charity:@"made a purchase"];
-    
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:sender.titleLabel.text onScreen:self.screenName];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_productProductURL]];
 }
 
 - (void)showMesssageCantDonateNoInternet
@@ -419,15 +421,10 @@
 
 - (IBAction)userProfileButton:(id)sender 
 {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"ImagesViewController"];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                          action:@"touch"
-                                                           label:userProfileButtonOutlet.title
-                                                           value:nil] build]];
-    [tracker set:kGAIScreenName value:nil];
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:self.userProfileButtonOutlet.title onScreen:self.screenName];
 }
 
+#pragma mark - Parse Archive Meme Methods
 
 
 @end

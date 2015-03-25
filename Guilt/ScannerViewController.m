@@ -36,7 +36,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    
     _session = [[AVCaptureSession alloc] init];
     _device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     NSError *error = nil;
@@ -65,18 +64,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
-    // returns the same tracker you created in your app delegate
-    // defaultTracker originally declared in AppDelegate.m
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    
-    // This screen name value will remain set on the tracker and sent with
-    // hits until it is set to a new value or to nil.
-    [tracker set:kGAIScreenName value:@"ScannerViewController"];
-    
-    // manual screen tracking
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     [self setupUI];
+    [GoogleAnalytics trackAnalyticsForScreen:@"ScannerViewController"];
 }
 
 - (void)setupUI
@@ -103,20 +92,12 @@
     dismissScannerButton.clipsToBounds = YES;
     dismissScannerButton.titleLabel.textColor = [UIColor blueColor];
     
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:@"ScannerViewController"];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"
-                                                          action:@"touch"
-                                                           label:@"dismiss scanner"
-                                                           value:nil] build]];
-    [tracker set:kGAIScreenName value:nil];
-    
     [self.view addSubview:dismissScannerButton];
     [self.view bringSubviewToFront:dismissScannerButton];
     
     [dismissScannerButton setUserInteractionEnabled:YES];
     
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissScannerButtonPressed)];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissScannerButtonPressed:)];
     [dismissScannerButton addGestureRecognizer:recognizer];
     
 }
@@ -266,8 +247,9 @@
 }
 
 
-- (void)dismissScannerButtonPressed
+- (void)dismissScannerButtonPressed:(UIButton *)sender
 {
+    [GoogleAnalytics trackAnalyticsForAction:@"touch" withLabel:sender.titleLabel.text onScreen:@"ScannerViewController"];
     [self exit];
 }
 @end

@@ -10,10 +10,7 @@
 #import "UserDonationHistory.h"
 
 @interface UserProfileSaver : NSObject 
-+ (void)saveUserDonatoinHistory:(NSString *)userID
-                     forCharity:(NSString *)recipientCharity
-                         onDate:(NSDate *)date
-                      forAmount:(NSNumber *)donationAmount;
++ (void)saveUserDonatoinHistory:(UserDonationHistory *)userDonationHistory;
 
 + (NSArray *)getUsersDonationHistory:(NSString *)userID;
 

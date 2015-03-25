@@ -10,12 +10,12 @@
 #import "CharityImage.h"
 
 @interface ConversionSaver : NSObject 
-+ (void)saveCharityNamesToNSUserDefaults:(NSMutableArray *)names;
+- (void)saveCharityNamesToNSUserDefaults:(NSMutableArray *)names;
 
-+ (void)saveSpecificCharityConversionInfo:(CharityImage *)charitysDetails;
+- (void)saveSpecificCharityConversionInfo:(NSArray *)charitysDetailsArray;
 
-+ (NSArray *)getsAllCharityConversionInfo;
+- (NSArray *)getsAllCharityConversionInfo;
 
-+ (BOOL)charityConversionInfoAlreadySavedToDisk:(NSString *)charityName;
+- (BOOL)charityConversionInfoAlreadySavedToDisk:(NSString *)charityName;
 
 @end
